@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber chapters/BuchChapter3"] 1762950805.43019 "chapters/BuchChapter3.bcf" "chapters/BuchChapter3.bbl" "chapters/BuchChapter3" 1762966537.88526 0
-  "chapters/BuchChapter3.bcf" 1762966537 108335 611722b37bc84bc65f07e6bdb1bfc626 "pdflatex"
+["biber chapters/BuchChapter3"] 1762950805.43019 "chapters/BuchChapter3.bcf" "chapters/BuchChapter3.bbl" "chapters/BuchChapter3" 1762968108.32334 0
+  "chapters/BuchChapter3.bcf" 1762968107 108335 611722b37bc84bc65f07e6bdb1bfc626 "pdflatex"
   (generated)
   "chapters/BuchChapter3.bbl"
   "chapters/BuchChapter3.blg"
   (rewritten before read)
-["pdflatex"] 1762966531.3896 "c:/Users/Lenna/Downloads/Uni/BA/BAtex/chapters/BuchChapter3.tex" "chapters/BuchChapter3.pdf" "BuchChapter3" 1762966537.88689 0
-  "c:/Users/Lenna/Downloads/Uni/BA/BAtex/chapters/BuchChapter3.tex" 1762966529 625 54ce2fdda36afd5da07e953e28033574 ""
+["pdflatex"] 1762968101.9464 "c:/Users/Lenna/Downloads/Uni/BA/BAtex/chapters/BuchChapter3.tex" "chapters/BuchChapter3.pdf" "BuchChapter3" 1762968108.32532 0
+  "c:/Users/Lenna/Downloads/Uni/BA/BAtex/chapters/BuchChapter3.tex" 1762968100 629 45fe0bcaf109f0414d379bf265270f44 ""
   "c:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1749128479 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1749126984 1536 06717a2b50de47d4087ac0e6cd759455 ""
   "c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmbsy6.tfm" 1749122313 1124 14ccf5552bc7f77ca02a8a402bea8bfb ""
@@ -327,10 +327,10 @@
   "c:/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1749203943 3598375 e97beef865ab38d17ad786553b949dfe ""
   "c:/texlive/2025/texmf.cnf" 1749203425 713 e69b156964470283e0530f5060668171 ""
   "chapters/../Bachelor_LennartKoliwer.tex" 1762959234 1398 38317ccdafdfbd95cb09ba7ed30f3dc9 ""
-  "chapters/BuchChapter3.aux" 1762966537 483 b73d0d6657ab7a84e5b912822c7abd58 "pdflatex"
+  "chapters/BuchChapter3.aux" 1762968107 483 b73d0d6657ab7a84e5b912822c7abd58 "pdflatex"
   "chapters/BuchChapter3.bbl" 1762950817 486 76d65a242ec496c9b4361af646ff12cb "biber chapters/BuchChapter3"
-  "chapters/BuchChapter3.run.xml" 1762966537 2453 2e2c91853fa470ea307e2b744ebf1de0 "pdflatex"
-  "chapters/BuchChapter3.tex" 1762966529 625 54ce2fdda36afd5da07e953e28033574 ""
+  "chapters/BuchChapter3.run.xml" 1762968107 2453 2e2c91853fa470ea307e2b744ebf1de0 "pdflatex"
+  "chapters/BuchChapter3.tex" 1762968100 629 45fe0bcaf109f0414d379bf265270f44 ""
   "rwtmath.bbx" 1751027716 1510 6b80c9f89101708b1016fe252b62a88f ""
   "rwtmath.cbx" 1751027716 91 dfdd902bbc752950c591e596725af42b ""
   "thesis.cls" 1757345675 7781 84823251d6a13951770476572d99d0af ""

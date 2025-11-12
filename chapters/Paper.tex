@@ -1,0 +1,70 @@
+\documentclass[../Bachelor_LennartKoliwer.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+
+\begin{document}
+
+\textcolor{red}{Dieses Kapitel ist noch seeeehr work in progress also ich hab erstmal grob Gedanken aufgeschrieben.}
+\section{paper \cite{OHT}}
+\section{Idee}
+Wir betrachten die gemessene Datenmatrix
+\begin{align}
+	X = \Xtrue+\gamma \Xnoise
+\end{align}
+mit $X\in\RR^{n\times m}$, $\Xtrue$ als \emph{echte} Datenmatrix und \textcolor{red}{approximately of low rank} und $\Xnoise$ als Messfehlermatrix welche Unabhängig und identisch verteilte Zufallsvariablen enthält \textcolor{red}{vielleicht noch definieren}.
+
+Hier benutzen wir die \emph{truncated} Singulärwertzerlegung also
+
+\begin{align}
+	X = \sum_{i=1}^{n}\sigma_i u_i v_i'\,.
+\end{align}
+
+Schätzen kann man die \emph{truncation} jetzt mit
+\begin{align}
+	\hat{X}_r = \sum_{i=1}^{r}\sigma_i u_i v_i'\,.
+\end{align}
+mit $r = \rang(\Xtrue)$ und den Singulärwerten wieder nach größe absteigend sortiert.
+
+Da aber der Rang von $\Xtrue$ nicht unbedingt bekannt ist kann man versuchen, anhand der Größe, der Singulärwerte zu Kürzen. Dafür bauen wir mithilfe einer Indikatorfunktion $\eta_H(\sigma_i;\tau) = \sigma\chi_{\{\sigma\geq\tau\}}$ die gekürzte Matrix
+\begin{align}
+	\hat{X}_\tau = \sum_{i=1}^{r}\eta_H(\sigma_i;\tau)u_i v_i'\,.
+\end{align}
+Jetzt gilt es aber herauszufinden wie wir dieses $\tau$ wählen damit wir immernoch sinnvolle Ergebnisse erhalten, aber gleichzeitig zu viel rechenaufwand spaaren wie möglich.
+
+\section{Setting}
+\begin{definition}[denoiser]
+	Ein \emph{Denoiser} reduziert eine Matrix auf nur noch \emph{relevante} Ränge mit der Form
+	\begin{align}
+		\hat{X}\colon \sum_{i=1}^{n}\sigma_i u_i v_i' \to \sum_{i=1}^{n}\eta(\sigma_i;\lambda)u_i v_i'
+	\end{align}
+
+\end{definition}
+
+\begin{definition}[Mean Square Error (MSE)]
+	Mit dem MSE wird der Fehler der beim \emph{denoising} Prozess entsteht, durch
+	\begin{align}
+		\dabs{\hat{X}(X)-\Xtrue}_F^2 = \sum_{i,j}\left(\hat{X}(X)_{i,j}-\Xtrue_{i,j} \right)^2
+	\end{align}
+	quantifiziert.
+\end{definition}
+
+Wir betrachten eine Folge an denoising Problemen, die immer größer werden.
+\begin{align}
+	X_k = \Xtrue_k+\gamma \Xnoise_k
+\end{align}
+mit $\Xtrue_k, \Xnoise_k \in M_{n_k,m}$.
+
+Jedes $\Xnoise_k$ erfüllt die Eigenschaften von $\Xnoise$.
+Gegeben sei ein fixer Vektor $\mathbf{x}\in\RR^r$, mit $r>0$, den Einträgen $\mathbf{x} = (x_1, \dots , x_r)$ und $x_i \geq x_{i+1}>0$. Für alle $k$ gilt
+\begin{align}
+	\Xtrue_k = U_k\diag(x_1, \dots , x_r, 0,\dots , 0)V_k'\,.
+\end{align}
+
+
+\begin{definition}[Asymptotic Mean Square Error (AMSE)]
+	lalala
+\end{definition}
+
+
+
+\end{document}

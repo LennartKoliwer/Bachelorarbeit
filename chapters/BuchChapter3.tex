@@ -1,0 +1,12 @@
+\documentclass[../Bachelor_LennartKoliwer.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+\begin{document}
+
+\begin{definition}[empirische Kovarianzmatrix]
+    Sei $X\in\CC^{n\times m}$ eine Matrix dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind und ihr Erwartungswert $0$ mit Varianz $\sigma^2$ ist. Weiter sind $x_k=\left(x_{1k},\dots,x_{nk}\right)$, $\bm{X}=(x_1,\dots,x_m)$ und $\bar{x}=\frac1m\sum_{k=1}^m x_k$. Dann ist die empirische Kovarianzmatrix 
+    \[
+        \bm{S}=\frac{1}{m-1}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H
+    \]
+\end{definition}
+
+\end{document}

@@ -1,0 +1,14 @@
+\babel@toc {ngerman}{}\relax 
+\contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Definitionen}{3}{chapter.2}%
+\contentsline {chapter}{\numberline {3}DMD}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Dynamic Mode Decomposition (DMD) \blx@tocontentsinit {0}\cite {BigBook}}{11}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Paper}{13}{chapter.4}%
+\contentsline {section}{\numberline {4.1}paper \blx@tocontentsinit {0}\cite {OHT}}{13}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Idee}{13}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Setting}{14}{section.4.3}%
+\contentsline {chapter}{\numberline {5}Marchenko-Pastur-Verteilung}{15}{chapter.5}%
+\contentsline {chapter}{\numberline {6}BuchChapter3}{21}{chapter.6}%
+\contentsline {chapter}{\nonumberline Literatur}{25}{chapter*.2}%
+\contentsline {chapter}{\nonumberline \ignorespaces Eigenständigkeits- und Einverständniserklärung}{28}{chapter*.3}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

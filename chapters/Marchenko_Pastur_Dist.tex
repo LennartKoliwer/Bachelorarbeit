@@ -1,0 +1,132 @@
+\documentclass[../Bachelor_LennartKoliwer.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+\begin{document}
+
+\begin{lemma} \label{lem:betaUmformung}
+	Sei $\beta\in(0,1]$ und $\beta_\pm=(1\pm\sqrt{\beta})^2$. Dann gilt
+	\begin{align}
+		\beta_+-\beta_- & =4\sqrt{\beta}  \\
+		\beta_++\beta_- & =2\beta+2       \\
+		\beta_+\beta_-  & =(\beta-1)^2    \\
+		m               & = \beta+1       \\
+		r               & = 4\sqrt{\beta}
+	\end{align}
+\end{lemma}
+
+Beweis, dass die Lösung der Marchenko Pastur Verteilung mit $\beta_-\leq \mu_\beta \leq\beta_+$ und $\beta_\pm=(1\pm\sqrt{\beta})^2$ also
+\begin{align}
+	\int_{\beta_-}^{\mu_\beta} \frac{\sqrt{(\beta_+-t)(t-\beta_-)}}{2\pi \beta t} dt = \frac12
+\end{align}
+ergeben kann.
+
+\textcolor{red}{Umgangssprache ist überall :(. Definitionen und Sätze aufschreiben. Und aus den align Umgebungen vielleicht noch die Label auf ein angenehmes Minimum reduzieren.}
+\begin{proof}
+	Da das Integral mit $\mu_\beta=\beta_-$ gleich $0$ ist und das Integral stetig innerhalb des Intervalls $[\beta_-,\beta_+]$ ist, müssen wir nur noch zeigen, dass das Integral bei $\mu_\beta=\beta_+$ gleich $1$ ist, damit wir den Zwischenwertsatz nutzen können.
+	Dafür bietet sich an, das Integral
+	\begin{align}
+		\frac{1}{2\pi \beta}\int_{\beta_-}^{\beta_+} \frac{\sqrt{(\beta_+-t)(t-\beta_-)}}{t} dt\
+	\end{align}
+	mit $\mu_\beta=\beta_+$ auszurechnen. Wir beginnen damit eine Substitution zu finden.
+	Dafür bauen wir uns also einen Weg $\delta$, der von $\beta_-$ zu $\beta_+$ läuft.
+	Sei $m=\frac{\beta_++\beta_-}{2}$ der Mittelpunkt zwischen $\beta_-$ und $\beta_+$ und $r=\frac{\beta_+-\beta_-}{2}$ der Abstand von Mittelpunkt zu den Grenzen, dann brauchen wir nur noch eine Funktion, die von $-1$ bis $1$ läuft, damit wir den Weg von einer Grenze zur anderen ablaufen. Dafür eignet sich der Cosinus von $-\pi$ bis $0$. Da dieser aber eine gerade Funktion ist, können wir auch von $0$ bis $\pi$ gehen.
+
+	Damit erhalten wir
+	\begin{align}
+		\delta\colon [0,\pi] & \to \RR                     \\
+		\varphi              & \mapsto m+r\cos(\varphi)\,.
+	\end{align}
+	Da $\delta$ injektiv und stetig differenzierbar ist, substituieren wir $t$ mit $\delta$ und erhalten
+	\begin{align*}
+		  & -\frac{1}{2\pi \beta}\int_{\pi}^{0} \frac{\sqrt{\left(\beta_+-(m+r\cos(\varphi))\right)\left(\left(m+r\cos(\varphi)\right)-\beta_-\right)}}{m+r\cos(\varphi)} r\sin(\varphi)d\varphi
+		\intertext{
+			setzen wir \(\beta_+=m+r\) und \(\beta_-=m-r\)
+		}
+		= & -\frac{1}{2\pi \beta}\int_{\pi}^{0} \frac{\sqrt{\left((m+r)-(m+r\cos(\varphi))\right)\left(\left(m+r\cos(\varphi)\right)-(m-r)\right)}}{m+r\cos(\varphi)} r\sin(\varphi)d\varphi
+		\\[0.3em]
+		= & -\frac{1}{2\pi \beta}\int_{\pi}^{0} \frac{\sqrt{\left(r-r\cos(\varphi)\right)\left(r+r\cos(\varphi)\right)}}{m+r\cos(\varphi)} r\sin(\varphi)d\varphi
+		\\[0.3em]
+		= & -\frac{1}{2\pi \beta}\int_{\pi}^{0} \frac{\sqrt{\left(r^2-r^2\cos^2(\varphi)\right)}}{m+r\cos(\varphi)} r\sin(\varphi)d\varphi
+		\\[0.3em]
+		= & -\frac{1}{2\pi \beta}\int_{\pi}^{0} \frac{\left(r-r\cos(\varphi)\right)}{m+r\cos(\varphi)} r\sin(\varphi)d\varphi
+		\\[0.3em]
+		= & -\frac{1}{2\pi \beta}\int_{\pi}^{0} \frac{r^2\sin^2(\varphi)}{m+r\cos(\varphi)} d\varphi
+		\intertext{Nutzen wir hier Lemma \ref{lem:betaUmformung}, erhalten wir}
+		= & -\frac{1}{2\pi \beta}\int_{\pi}^{0} \frac{4\beta\sin^2(\varphi)}{\beta+1+2\sqrt{\beta}\cos(\varphi)} d\varphi
+		\\[0.3em]
+		= & \frac{1}{2\pi \beta}\int_{0}^{\pi} \frac{4\beta\sin^2(\varphi)}{\beta+1+2\sqrt{\beta}\cos(\varphi)} d\varphi\,.
+	\end{align*}
+	Ab hier müssen wir eine Fallunterscheidung vornehmen.
+
+	Fall 1: $\beta=1$.
+	\begin{align}
+		  & \frac{1}{2\pi}\int_{0}^{\pi} \frac{4\sin^2(\varphi)}{2+2\cos(\varphi)} d\varphi                                           \\
+		= & \frac{1}{2\pi}\int_{0}^{\pi} \frac{2^2-2^2\cos^2(\varphi)}{2+2\cos(\varphi)} d\varphi                                     \\
+		= & \frac{1}{2\pi}\int_{0}^{\pi} \frac{\left(2-2\cos(\varphi)\right)\left(2+2\cos(\varphi)\right)}{2+2\cos(\varphi)} d\varphi \\
+		= & \frac{1}{\pi}\int_{0}^{\pi} 1-\cos\left(\varphi\right) d\varphi                                                           \\
+		= & 1\,.
+	\end{align}
+
+	Fall 2: $\beta\in(0,1)$.
+	\textcolor{red}{hier noch eine Motivation finden den Residuensatz nutzen zu wollen}
+	Bei genauerer Betrachtung des Integranten, nennen wir ihn $f$, kann man erkennen, dass man ihn in zwei Teile separieren kann, genau
+	\begin{align}
+		f(\varphi)=a\cdot\sin^2(\varphi)\quad\text{mit}\quad a=\frac{1}{m+r\cos\left(\varphi\right)}\,.
+	\end{align}
+
+	Da der Cosinus $2\pi$-periodisch ist  und $m$ und $r$ konstant sind, ist auch $a$ $2\pi$-periodisch undspiegelt sich an $\varphi=\pi$. $\sin^2(\varphi)$ hingegen ist $\pi$-periodisch. Daraus erkennen wir in $f$ eine $2\pi$-Periodizität mit einer Symmetrie um $\pi$. Wir können das integral also von $0$ bis $2\pi$ laufen lassen und dann halbieren.
+	Wir haben also jetzt
+	\begin{align}
+		\frac{1}{\pi} & \int_{0}^{2\pi} \frac{\sin^2\left(\varphi\right)}{\beta+1+2\sqrt{\beta}\cos\left(\varphi\right)} d\varphi
+	\end{align}
+	Sei nun $z=Re^{i\varphi}$, $\cos\left(\varphi\right) = \frac{e^{i\varphi}+e^{-i\varphi}}{2}$ und $\sin\left(\varphi\right) = \frac{e^{i\varphi}-e^{-i\varphi}}{2i}$ und setzen ein
+	\begin{align}
+		-\frac{1}{4\pi}\int_{0}^{2\pi}\frac{\left(e^{i\varphi}-e^{-i\varphi}\right)^2}{\left(e^{i\varphi}+\sqrt{\beta}\right)\left(e^{-i\varphi}+\sqrt{\beta}\right)} d\varphi\,.
+	\end{align}
+	Um den Residuensatz anwenden zu wollen brauchen wir ein Wegintegral, das wir uns bauen können, indem wir eine Definition für komplexe Wegintegrale nutzen (Definition 3.7 Funktheo Skript).
+	Durch Multiplizieren mit einer passenden $1$  können wir also aus
+	\begin{align}
+		  & -\frac{1}{4\pi}\int_{0}^{2\pi}\frac{\left(e^{i\varphi}-e^{-i\varphi}\right)^2}{\left(e^{i\varphi}+\sqrt{\beta}\right)\left(e^{-i\varphi}+\sqrt{\beta}\right)} \cdot \frac{ie^{i\varphi}}{ie^{i\varphi}}d\varphi \\
+		= & -\frac{1}{4\pi i}\int_{|z|=1} \frac{\left(z-z^{-1}\right)^2}{z\left(z+\sqrt{\beta}\right)\left(z^{-1}+\sqrt{\beta}\right)} dz                                                                                   \\
+		= & -\frac{1}{4\pi i}\int_{|z|=1} \frac{z^2-2+z^{-2}}{\left(z+\sqrt{\beta}\right)\left(z\sqrt{\beta}+1\right)} dz
+		\intertext{machen. Um die $z^{-2}$ in Zähler zu eliminieren multiplizieren wir erneut mit einer passenden $1$}
+		= & -\frac{1}{4\pi i}\int_{|z|=1} \frac{z^4-2z^2+1}{z^2\left(z+\sqrt{\beta}\right)\left(z\sqrt{\beta}+1\right)} dz\,.
+	\end{align}
+	Sichtbar werden hier die Singularitäten $z=0$, welche eine Polstelle 2. Ordnung ist und $z=-\sqrt{\beta}$, welche eine einfache Polstelle ist. Die Singularität $-\sqrt{\beta}^{-1}$ liegt außerhalb des Einheitskreises und damit $\ind\left(\gamma,-\sqrt{\beta}^{-1}\right)=0$. Weiter nennen wir den Weg des Einheitskreises $\gamma$.
+	Der Residuensatz gibt uns dann
+	\begin{align}
+		= & -\frac{1}{4\pi i}\int_{\gamma} \frac{z^4-2z^2+1}{z^2\left(z+\sqrt{\beta}\right)\left(z\sqrt{\beta}+1\right)} dz \\
+		= & -\frac{1}{4\pi i}2\pi i\sum_{z\in\CC}\ind(\gamma,z)\res(f,z)
+		\intertext{Für unsere beiden Singularitäten bekommen wir also}
+		= & -\frac{1}{2}\left(\res(f,-\sqrt{\beta})+\res(f,0)\right)\,.
+	\end{align}
+	Fangen wir mit $z=-\sqrt{\beta}$ an.
+	\begin{align}
+		  & \res(f,-\sqrt\beta)=\lim_{z\to-\sqrt{\beta}}\left(\left(z+\sqrt{\beta}\right)f(z)\right) \\
+		= & \lim_{z\to-\sqrt{\beta}} \frac{z^4-2z^2+1}{z^2\left(z\sqrt{\beta}+1\right)}              \\
+		= & \frac{1-\beta}{\beta}
+	\end{align}
+	Weiter mit $z=0$.
+	\begin{align}
+		  & \res(f,0)=\lim_{z\to0}\frac{d}{dz}\left(z^2f(z)\right)
+		=\lim_{z\to0} \frac{d}{dz} \frac{z^4-2z^2+1}{\left(z+\sqrt{\beta}\right)\left(z\sqrt{\beta}+1\right)}                                                                                                                                 \\[0.3em]
+		= & \lim_{z\to0}\frac{\left(4z^3-4z\right)\left(z+\sqrt{\beta}\right)\left(z\sqrt{\beta}+1\right)-\left(z^4-2z^2+1\right)\left(2z\sqrt{\beta}+1+\beta\right)}{\left(\left(z+\sqrt{\beta}\right)\left(z\sqrt{\beta}+1\right)\right)^2} \\
+		= & -\frac{1+\beta}{\beta}\,.
+	\end{align}
+	Zusammengefasst erhalten wir
+	\begin{align}
+		= & -\frac{1}{2}\left(\res(f,-\sqrt{\beta})+\res(f,0)\right)             \\
+		= & -\frac{1}{2}\left(\frac{1-\beta}{\beta}-\frac{1+\beta}{\beta}\right) \\
+		= & 1\,.
+	\end{align}
+	Juhu
+\end{proof}
+
+
+\begin{theorem}[Zwischenwertsatz \cite{Ana1}\textcolor{red}{weiß noch nicht ob das rein sollte oder nicht weil zu trivial vielleicht}]
+	Sei $f\colon [a,b]\to \RR$ eine stetige Funktion und $n\in\RR$. Weiter sei $f(a)<n$ und $f(b)>n$. Dann gibt es ein $c\in[a,b]$, sodass $f(c)=n$.
+\end{theorem}
+
+
+
+\end{document}

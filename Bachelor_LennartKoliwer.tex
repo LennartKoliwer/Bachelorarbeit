@@ -1,0 +1,67 @@
+\documentclass{thesis}
+
+
+\addbibresource{quack.bib}
+
+\usepackage{lipsum}
+\usepackage{duckuments}
+\usepackage{mathrsfs}
+\usepackage{bm}
+
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\rang}{rang}
+\DeclareMathOperator{\ind}{ind}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\tr}{tr}
+\newcommand{\Xtrue}{X^\text{true}}
+\newcommand{\Xnoise}{X^\text{noise}}
+\newcommand{\dabs}[1]{\ensuremath{\left\vert\left\vert #1 \right\vert\right\vert}}
+
+\begin{document}
+
+\author{Lennart Koliwer}
+\title{An example document}
+\email{koliwer1@uni-bremen.de}
+
+\frontmatter
+% 1. Studiengang (Vollfach/Industrie)
+% 2. Betreuer*in
+% 3. 2. Gutachter*in
+% 4. Semester
+\titlepage{Technomathematik}{Prof. Dr. Anke Pohl}{Dr. Maxim Kirsebom}{WiSe 2025/26}
+
+\thispagestyle{empty}
+\tableofcontents
+
+% Hier die Kapitel einfügen
+\mainmatter
+%\chapter{Einleitung}
+%\subfile{chapters/einleitung.tex}
+%\duckument
+%\duckenumerate
+
+%\duckitemize
+
+
+\chapter{Einleitung}
+\subfile{./chapters/Einleitung.tex}
+\chapter{Definitionen}
+\subfile{./chapters/Definitionen.tex}
+\chapter{DMD}
+\subfile{./chapters/DMD.tex}
+\chapter{Paper}
+\subfile{./chapters/Paper.tex}
+\chapter{Marchenko-Pastur-Verteilung}
+\subfile{./chapters/Marchenko_Pastur_Dist.tex}
+\chapter{BuchChapter3}
+\subfile{./chapters/BuchChapter3.tex}
+
+
+\backmatter
+
+\cleardoubleevenpage
+\printbibliography
+\cleardoubleevenpage
+\declarationofauthorship
+
+\end{document}

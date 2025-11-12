@@ -1,0 +1,77 @@
+\documentclass[../Bachelor_LennartKoliwer.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+\begin{document}
+
+%\begin{definition}[Dynamisches System]
+%	Sei $X$ eine Menge, $G$ eine Gruppe, welche durch die Gruppenwirkung $\varphi:G\times X \to X$ auf $X$ wirkt.
+%	Dann bezeichnet $(X,G)$ ein dynamisches System.
+%\end{definition}
+
+
+\section{Dynamic Mode Decomposition (DMD) \cite{BigBook}}
+
+DMD ist ein Algorithmus, der ursprünglich im Feld der ''Strömungsdynamik'' entwickelt wurde. Er dient dazu anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren zu können. Es wird also ein linearer Operator gesucht, der das System $X' = AX$ so gut wie möglich beschreit. Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD entwickelt. Wir begrenzen uns hier aber nur auf exact DMD. Diese Variante hat den Vorteil gegenüber des ursprünglichen DMD, dass die Messzeitpunkte keine einheitlichen Zeitabstände benötigen. 
+
+
+Sei nun \(X\in\mathbb{R}^{n\times m}\) der Zustand des Systems zu \(m \) diskreten Zeitpunkten \(t_k =k \Delta t\)  mit \(k\in\NN\) also
+\[
+	X=\begin{pmatrix}
+		|      & |      &       & |      \\
+		x(t_1) & x(t_2) & \dots & x(t_m) \\
+		|      & |      &       & |
+	\end{pmatrix}
+\]
+und \(X'\in\mathbb{R}^{n\times m}\) der Zustand mit jedem Punkt einen Zeitschritt weiter mit \(t'_k=t_k +\Delta t\)
+\[
+	X'=\begin{pmatrix}
+		|       & |       &       & |       \\
+		x(t'_1) & x(t'_2) & \dots & x(t'_m) \\
+		|       & |       &       & |
+	\end{pmatrix}
+\]
+dann versuchen wir die Matrix \(A \) zu finden, der dieses System beschreiben kann und wir mit möglichst geringem Fehler
+\[
+	X' \approx AX
+\]
+bestimmen können.
+Ein ideales \(A\) finden wir durch
+\[
+	A = \underset{A}{\arg\min}||X'-AX||_F = X'X^\dag
+\]
+mit \(X^\dag\) als Pseudoinversen von \(X\). 
+Dabei sind die hier betrachteten Pseudoinversen alle Moore-Penrose-Inverse. Um die zu bestimmen, machen wir eine Singulärwertzwerlegung von \(X\).
+Damit erhalten wir wie in \ref{theo:svd} und \ref{theo:moorePenrose}
+\begin{align*}
+	X &=U\Sigma V^\top = U\begin{pmatrix}
+		\hat{\Sigma} & 0 \\
+		0 & 0
+	\end{pmatrix}V^\top 
+	\intertext{und}
+	X^\dag &= V\begin{pmatrix}
+		\hat{\Sigma}^{-1} & 0 \\
+		0 & 0
+	\end{pmatrix}U^\top
+\end{align*}
+so, dass $XX^\dag=\mathbb{1}$ ergibt. Da wir aber häufig mit sehr großen Matrizen arbeiten, liegt es nahe zu versuchen die Dimensionen weitgehend zu reduzieren. \textcolor{red}{Motivation für Paper}. Haben wir ein passendes $r\leq m$ zum Reduzieren gefunden, erhalten wir 
+\begin{align*}
+	X &\approx U_r\Sigma_rV_r^\top 
+	\intertext{und}
+	X^\dag &\approx V_r\Sigma_r^{-1}U_r^\top\,.
+\end{align*}
+Dabei sind $U_r\in\RR^{n\times r}$, $\Sigma_r\in\RR^{r\times r}$ und $V_r\in\RR^{m\times r}$.
+
+$A$ würde man also mit
+\begin{align}
+	A\approx X'X^\dag \approx X' V_r\Sigma_r^{-1}U_r^\top
+\end{align}
+näher approximieren können. Da wir aber nicht an ganz $A$ interessiert sind, sondern nur die ersten $r$ Eigenwerte, Projizieren wir $A$ auf \textcolor{red}{die POD modes von $U$}.
+\
+
+
+
+\begin{itemize}
+	\item DMD mode ist eigenvektor von $A$
+	\item 
+\end{itemize}
+
+\end{document}

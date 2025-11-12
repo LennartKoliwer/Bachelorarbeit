@@ -1,0 +1,57 @@
+\ProvidesFile{rwtmath.bbx}[2024/07/13 v1.0]
+
+\RequireBibliographyStyle{numeric}
+\RequireCitationStyle{numeric-comp}
+
+\ExecuteBibliographyOptions{sorting=nyt, url=false, isbn=false, giveninits=true}
+
+%\RequirePackage{shortmathj}
+
+\RequireBibliographyStyle{standard}
+\newbibmacro*{bbx:savehash}{%
+  \savefield{fullhash}{\bbx@lasthash}}
+\DeclareBibliographyOption[boolean]{dashed}[false]{%
+	\ifstrequal{#1}{true}{
+		\ExecuteBibliographyOptions{pagetracker}%
+		\renewbibmacro*{bbx:savehash}{\savefield{fullhash}{\bbx@lasthash}}
+	}{
+		\renewbibmacro*{bbx:savehash}{}
+	}
+}
+\ExecuteBibliographyOptions{dashed}
+
+
+\renewbibmacro*{in:}{}
+\renewbibmacro*{author}{%
+  \ifboolexpr{
+    test \ifuseauthor
+    and
+    not test {\ifnameundef{author}}
+  }
+  {\usebibmacro{bbx:dashcheck}
+    {\bibnamedash}
+    {\printnames{author}%
+      \setunit{\addcomma\space}%
+      \usebibmacro{bbx:savehash}}%
+    \usebibmacro{authorstrg}}
+  {\global\undef\bbx@lasthash}}
+
+\newbibmacro*{bbx:dashcheck}[2]{%
+  \ifboolexpr{
+    test {\iffieldequals{fullhash}{\bbx@lasthash}}
+    and
+    not test \iffirstonpage
+  }
+  {#1}
+  {#2}}
+\renewcommand*{\bibnamedash}{\rule{3em}{0.4pt}\hspace*{.16667em}\addcomma\addspace}
+
+\AtEveryBibitem{\clearlist{language}}
+
+\DeclareFieldFormat[article,incollection]{title}{\emph{#1}}
+\DeclareFieldFormat[article,incollection]{journaltitle}{\textnormal{#1}}
+\DeclareFieldFormat[incollection]{booktitle}{\textnormal{#1}}
+
+\setlength\bibitemsep{.5\baselineskip}
+\renewcommand*{\bibfont}{\footnotesize}
+\endinput

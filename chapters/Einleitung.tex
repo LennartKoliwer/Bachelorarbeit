@@ -2,26 +2,19 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-% Diese Arbeit beschäftigt sich mit Dynamic Mode Decomposition (DMD). DMD ist ein Algorithmus, mit dem man versucht, in einem dynamischen System mit Hilfe von Messdaten, Zustände vorherzusagen. Da es verschiedene Varianten von DMD gibt beschränken wir uns auf Exact DMD. Im Gegensatz zum ursprünglichen Algorithmus, der eine Reihe an Zeitpunkten fordert, braucht man bei Exact DMD nur Zeitpunkt Paare, die unabhängig voneinander gemessen werden können. Nehmen wir mal das Beispiel von Wasserströmungen. Da müsste man innerhalb eines beschränkten Raumes an diskreten Punkten Messungen durchführen. Was daraus resultiert sind riesige mit Datenpunkten gefüllte Matrizen. Was man also versucht ist sich die Singulärwerte dieser Matrix anzugucken, da diese aussagen, wohin und wie stark sich der Fluss bewegt. Wenn man versuchen möchte, mit allen Daten das System zu simulieren, wird man sehr schnell merken, dass der Rechenaufwand gewaltig werden kann. Eine Möglichkeit den Rechenaufwand zu verringern ist die Matrix verkleinern, indem man alle Singulärwerte entfernt, die $0$ sind. Man könnte aber noch einen Schritt weitergehen und sogar die Singulärwerte entfernen, die einfach zu klein sind, um einen merkbaren Einfluss zu haben. Damit beschäftigt sich das Paper von M. Gavish und D. L. Donoho \cite{OHT}, was in dieser Arbeit näher beleuchtet wird.
+In dieser Arbeit beschäftigen wir uns mit einer Möglichkeit den Rechenaufwand des Dynamic Mode Decomposition Algorithmus, kurz DMD, zu verringern. DMD ist ein Algorithmus, der ursprünglich im Feld der ''Strömungsdynamik'' entwickelt wurde. Er dient dazu anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren zu können. Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD entwickelt. Wir begrenzen uns hier aber nur auf exact DMD. Diese Variante hat den Vorteil gegenüber des ursprünglichen DMD, dass die Messzeitpunkte keine einheitlichen Zeitabstände benötigen. Für jede Messung werden alle Daten der Messpunkte in eine Spalte unserer Datenmatrix $X$ eingetragen. Tut man das gleiche nur um einen Zeitpunkt versetzt, hat man zwei Datenmatrizen, die zwei sich überlappende Zeitintervalle abdecken. Das Ziel ist von DMD ist es nun einen linearen Operator $A$ zu finden, der das System $X' = AX$ so gut wie möglich beschreit. Diesen Operator bestimmt man mittels Singulärwertzerlegung (SVD) unserer Datenmatrix $X$. Um für die folgenden schritte den Rechenaufwand zu minimieren, lohnt es sich eine Dimensionsreduktion durchzuführen.
 
-Motivation DMD 
-Daten haben fehler
-dmd mag fehler nicht  
+\textcolor{red}{mmmmh hat noch formulierungsbedarf... (}
+Dieser Vorgang ist auch unter  ökonomische SVD (TSVD) bekannt. Dabei führt man die SVD so weit durch bis die Singulärwerte $0$ sind, da diese nichts über die Dynamik des Systems aussagen.\textcolor{red}{)}
+
+Frage ob es sich noch weiter kürzen lässt.
+
+Gavish Donoho: Ja
+
+Messfehler und so.
+
+Überleitung zu MP
 
 
-
-
-
-!
-%Da es verschiedene Varianten von DMD gibt beschränken wir uns auf Exact DMD. Im Gegensatz zum ursprünglichen Algorithmus, der eine Reihe an Messzeitpunkten fordert, welche einen einheitlichen Abstand voneinander haben, benutzt man bei Exact DMD Daten von verschiedenen Messdurchführungen.
-lalala
-\begin{align}
-	A=\begin{pmatrix}
-		  a_{11} & \cdots & a_{1m} \\
-		  \vdots & \ddots & \vdots \\
-		  a_{n1} & \cdots & a_{nm}
-	  \end{pmatrix}
-\end{align}
-lalala
 
 \end{document}

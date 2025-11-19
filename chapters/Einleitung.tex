@@ -5,7 +5,7 @@
 In dieser Arbeit beschäftigen wir uns mit einer Möglichkeit den Rechenaufwand des Dynamic Mode Decomposition Algorithmus, kurz DMD, zu verringern. DMD ist ein Algorithmus, der ursprünglich im Feld der ''Strömungsdynamik'' entwickelt wurde. Er dient dazu anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren zu können. Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD entwickelt. Wir begrenzen uns hier aber nur auf exact DMD. Diese Variante hat den Vorteil gegenüber des ursprünglichen DMD, dass die Messzeitpunkte keine einheitlichen Zeitabstände benötigen. Für jede Messung werden alle Daten der Messpunkte in eine Spalte unserer Datenmatrix $X$ eingetragen. Tut man das gleiche nur um einen Zeitpunkt versetzt, hat man zwei Datenmatrizen, die zwei sich überlappende Zeitintervalle abdecken. Das Ziel ist von DMD ist es nun einen linearen Operator $A$ zu finden, der das System $X' = AX$ so gut wie möglich beschreit. Diesen Operator bestimmt man mittels Singulärwertzerlegung (SVD) unserer Datenmatrix $X$. Um für die folgenden schritte den Rechenaufwand zu minimieren, lohnt es sich eine Dimensionsreduktion durchzuführen.
 
 \textcolor{red}{mmmmh hat noch formulierungsbedarf... (}
-Dieser Vorgang ist auch unter  ökonomische SVD (TSVD) bekannt. Dabei führt man die SVD so weit durch bis die Singulärwerte $0$ sind, da diese nichts über die Dynamik des Systems aussagen.\textcolor{red}{)}
+Dieser Vorgang ist auch unter  ökonomischer SVD (TSVD) bekannt. Dabei führt man die SVD so weit durch bis die Singulärwerte $0$ sind, da diese nichts über die Dynamik des Systems aussagen.\textcolor{red}{)}
 
 Frage ob es sich noch weiter kürzen lässt.
 

@@ -71,7 +71,7 @@ Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich u
 		\item \(||XV||_F =||X||_F\).
 	\end{enumerate}
 \end{lemma}
-\begin{proof}$ $
+\begin{proof}\textcolor{white}{Wackelpudding} %\emph{Beweis.}
 	\begin{enumerate}
 		\item Aus Gleichung \eqref{eq:traceFrob} folgt
 		      \[
@@ -83,18 +83,16 @@ Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich u
 		      \]
 		\item Mit 1. und 2. folgt
 		      \[
-			      ||XV||_F = ||V^HX^H||_F = ||X^H||_F = ||X||_F\,.
-		      \]
+			      ||XV||_F = ||V^HX^H||_F = ||X^H||_F = ||X||_F\,. \qedhere
+		      \]%\begin{flushright} $\square$ \end{flushright}
 	\end{enumerate}
 \end{proof}
 
 
 %---------------------------------------------------------------------
 
-
 \begin{theorem}[Singulärwertzerlegung \cite{Numerik1}] \label{theo:svd}
-	Sei \(X\in \mathbb{R}^{n\times m} \) eine Matrix und \(r\in\NN\) mit \(\rang X = r \leq \min(n,m)\). Dann existieren orthogonale Matrizen \(U\in\RR^{n\times n}\) und \(V\in\RR^{m\times m}\) und eine Diagonalmatrix \(\hat{\Sigma}\in\mathbb{R}^{r\times r}\) so, dass
-
+	Sei \(X\in \mathbb{R}^{n\times m} \) eine Matrix und ${r\coloneqq \rang X}$ mit $r\leq \min(n,m)$. Dann existieren orthogonale Matrizen \(U\in\RR^{n\times n}\) und \(V\in\RR^{m\times m}\) und eine Diagonalmatrix \(\hat{\Sigma}=\diag(sigma_1,\dots,sigma_r)\in\mathbb{R}^{r\times r}\) mit $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass 
 	\[
 		X = U\Sigma V^\top \text{ mit } \Sigma = \begin{pmatrix}
 			\hat{\Sigma} & 0 \\
@@ -103,14 +101,47 @@ Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich u
 	\]
 	gilt.
 \end{theorem}
+Der Beweis des Satzes \ref{theo:svd} folgt etwas später, da dafür noch etwas Vorbereitung benötigt wird.
 \begin{remark}
-	Da die Lösung der Singulärwertzerlegung nicht eindeutig ist, können wir eine Lösung finden, mit der die Elemente von \(\hat{\Sigma}\) der Form
-	\[
-		\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0
-	\]
-	entsprechen.
+	Unter den in Satz \ref{theo:svd} genannten Voraussetzungen, ist $\hat{\Sigma}$ durch $X$ eindeutig bestimmt. Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 \end{remark}
-Der Beweis des Satzes \ref{theo:svd} folgt etwas später, da dafür noch zwei Lemmata benötigt werden.
+
+\begin{lemma}
+	Sei \(X\in \mathbb{R}^{n\times m}\) und $\lambda_i$ die Eigenwerte von $X^\top X$. Dann gilt für die Singulärwerte unter den Voraussetzungen aus Satz \ref{theo:svd} 
+	\[
+		\sigma_i=\sqrt{\lambda_i}\,.
+	\]
+\end{lemma}
+
+\begin{proof}
+	Durch 
+	\begin{align*}
+		X^\top X &= \left(U\Sigma V^\top\right)^\top\left(U\Sigma V^\top\right)\\
+				 &= V\Sigma^\top U^\top U\Sigma V^\top \\
+				 &= V\Sigma^\top \Sigma V^\top
+	\end{align*}
+	ist $X^\top X$ ähnlich zu $\Sigma^\top \Sigma$. Also haben $X^\top X$ und $\Sigma^\top \Sigma$ auch die gleichen Eigenwerte.
+\end{proof}
+
+%\begin{theorem}[Singulärwertzerlegung \cite{Numerik1}] \label{theo:svd}
+%	Sei \(X\in \mathbb{R}^{n\times m} \) eine Matrix und \(r\in\NN\) mit \(\rang X = r \leq \min(n,m)\). Dann existieren orthogonale Matrizen \(U\in\RR^{n\times n}\) und \(V\in\RR^{m\times m}\) und eine Diagonalmatrix \(\hat{\Sigma}\in\mathbb{R}^{r\times r}\) so, dass
+
+%	\[
+%		X = U\Sigma V^\top \text{ mit } \Sigma = \begin{pmatrix}
+%			\hat{\Sigma} & 0 \\
+%			0            & 0
+%		\end{pmatrix} \in \mathbb{R}^{n\times m}
+%	\]
+%	gilt.
+%\end{theorem}
+%\begin{remark}
+%	Da die Lösung der Singulärwertzerlegung nicht eindeutig ist, können wir eine Lösung finden, mit der die Elemente von \(\hat{\Sigma}\) der Form
+%	\[
+%		\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0
+%	\]
+%	entsprechen.
+%\end{remark}
+
 
 \begin{definition}
 	Die Diagonalelemente von $\hat{\Sigma}$ aus Satz \ref{theo:svd}, wobei $\sigma_i=\sqrt{\lambda_i}$ sind die Wurzeln der Eigenwerte von \(X^\top X\) und werden als Singulärwerte bezeichnet.

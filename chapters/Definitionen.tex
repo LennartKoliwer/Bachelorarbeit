@@ -92,7 +92,7 @@ Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich u
 %---------------------------------------------------------------------
 
 \begin{theorem}[Singulärwertzerlegung \cite{Numerik1}] \label{theo:svd}
-	Sei \(X\in \mathbb{R}^{n\times m} \) eine Matrix und ${r\coloneqq \rang X}$ mit $r\leq \min(n,m)$. Dann existieren orthogonale Matrizen \(U\in\RR^{n\times n}\) und \(V\in\RR^{m\times m}\) und eine Diagonalmatrix \(\hat{\Sigma}=\diag(sigma_1,\dots,sigma_r)\in\mathbb{R}^{r\times r}\) mit $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass 
+	Sei \(X\in \mathbb{R}^{n\times m} \) eine Matrix und ${r\coloneqq \rang X}$ mit $r\leq \min(n,m)$. Dann existieren orthogonale Matrizen \(U\in\RR^{n\times n}\) und \(V\in\RR^{m\times m}\) und eine Diagonalmatrix \(\hat{\Sigma}=\diag(\sigma_1,\dots,\sigma_r)\in\mathbb{R}^{r\times r}\) mit $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass 
 	\[
 		X = U\Sigma V^\top \text{ mit } \Sigma = \begin{pmatrix}
 			\hat{\Sigma} & 0 \\

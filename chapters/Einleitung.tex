@@ -2,18 +2,56 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-In dieser Arbeit beschäftigen wir uns mit einer Möglichkeit den Rechenaufwand des Dynamic Mode Decomposition Algorithmus, kurz DMD, zu verringern. DMD ist ein Algorithmus, der ursprünglich im Feld der ''Strömungsdynamik'' entwickelt wurde. Er dient dazu anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren zu können. Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD entwickelt. Wir begrenzen uns hier aber nur auf exact DMD. Diese Variante hat den Vorteil gegenüber des ursprünglichen DMD, dass die Messzeitpunkte keine einheitlichen Zeitabstände benötigen. Für jede Messung werden alle Daten der Messpunkte in eine Spalte unserer Datenmatrix $X$ eingetragen. Tut man das gleiche nur um einen Zeitpunkt versetzt, hat man zwei Datenmatrizen, die zwei sich überlappende Zeitintervalle abdecken. Das Ziel ist von DMD ist es nun einen linearen Operator $A$ zu finden, der das System $X' = AX$ so gut wie möglich beschreit. Diesen Operator bestimmt man mittels Singulärwertzerlegung (SVD) unserer Datenmatrix $X$. Um für die folgenden schritte den Rechenaufwand zu minimieren, lohnt es sich eine Dimensionsreduktion durchzuführen.
+(In dieser Arbeit beschäftigen wir uns mit einer Möglichkeit, den Rechenaufwand des Dynamic Mode Decomposition Algorithmus, kurz DMD, zu verringern.)
+DMD ist ein Algorithmus, der ursprünglich im Feld der Strömungsdynamik entwickelt wurde.
+Er dient dazu, anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems zu approximieren.
 
-\textcolor{red}{mmmmh hat noch formulierungsbedarf... (}
-Dieser Vorgang ist auch unter  ökonomischer SVD (TSVD) bekannt. Dabei führt man die SVD so weit durch bis die Singulärwerte $0$ sind, da diese nichts über die Dynamik des Systems aussagen.\textcolor{red}{)}
+Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD Algorithmen entwickelt.
+Wir betrachten hier aber nur exact DMD.
+Diese Variante hat den Vorteil gegenüber des ursprünglichen DMD, dass die Messzeitpunkte keine einheitlichen Zeitabstände benötigen.
+Für jede Messung werden alle Daten der Messpunkte in eine Spalte $x_i$ einer Datenmatrix $X$ eingetragen.
+Wenn man zusätzlich parallel nur um einen Zeitpunkt versetzt misst, erhält man zwei Datenmatrizen, die zwei sich überlappende Zeitintervalle abdecken. Genau $X=(x_1,\dots,x_{k-1})$ und $X'=(x_2,\dots,x_k)$.
 
-Frage ob es sich noch weiter kürzen lässt.
+Das Ziel von DMD ist es nun einen linearen Operator $A$ zu finden, der das System $X' = AX$ so gut wie möglich beschreibt.
+Diesen Operator bestimmt man mittels Singulärwertzerlegung unserer Datenmatrix $X$.
 
-Gavish Donoho: Ja
+Bei der Singulärwertzerlegung (SVD) finden wir für ein $X\in\RR^{n\times m}$ zwei orthogonale Matrizen $U$ und $V$ mit passenden Dimensionen und ${\hat{\Sigma}=\diag(\sigma_1,\dots\sigma_r)}$ mit $r\leq\min(n,m)$ und $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass
+\[
+	X = U\Sigma V^\top \text{ mit } \Sigma = \begin{pmatrix}
+		\hat{\Sigma} & 0 \\
+		0            & 0
+	\end{pmatrix} \in \mathbb{R}^{n\times m}
+\]
+gilt. \textcolor{red}{(}Damit können wir die SVD mit $u_i$ und $v_i$ als linke und rechte Singulärvektoren auch durch $X=\sum_{i=1}^{r}\sigma_iu_iv^\top_i$ beschreiben.\textcolor{red}{) hab ich erstmal eingeführt um einfacher auf die notation vom paper zu verweisen (das ist ja aber noch wip)}
 
-Messfehler und so.
+Um für die folgenden Schritte der DMD den Rechenaufwand zu minimieren, lohnt es sich eine Dimensionsreduktion durchzuführen. Eine Möglichkeit ist unter ökonomischer SVD (TSVD) bekannt.
+Dabei wird $\Sigma$ auf eine $r\times r$ große Matrix reduziert und die Spalten von $U$ und $V$ abgeschnitten, sodass wir mit den reduzierten Matrizen $U_r$, $\Sigma_r$ und $V_r$, 
+\[
+X_r=U_r\Sigma_rV_r^\top=U_r\hat{\Sigma}V_r^\top
+\] 
+erhalten.
+Mit 
+\begin{align*}
+    \dabs{X_r}_F^2=\sum_{i=1}^{r}\sigma_i^2
+\end{align*}
+lässt sich dann zeigen, dass $X_r$ nach dem Eckart-Young-Mirsky-Theorem die beste $\rang r$ Approximation bezüglich der Frobeniusnorm ist.
 
-Überleitung zu MP
+\textcolor{red}{Grobe richtung} Im Paper \cite{OHT} von Matan Gavish and David L. Donoho erhalten wir durch \textcolor{red}{...}, dass noise-freie Datenmatrizen ab einem Singulärwert von $\frac{4}{\sqrt{3}}$ abgeschnitten wird. \textcolor{red}{...}
+
+In der Realität tauchen beim Messen aber Fehler auf. Das heißt, unsere Singulärwerte sind zu einem Teil echt aber auch zu einem Teil Messfehler.
+Wir definieren die Datenmatrix also durch 
+\[
+    X \coloneqq \Xtrue+\gamma \Xnoise
+\]
+einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil.
+
+\textcolor{red}{Gavish Donoho weiter ausführen}
+
+
+\textcolor{red}{Überleitung zu MP}
+Bei kleinen Matrizen, ist die Noise kaum ein Problem aber für ''große'' Matrizen kann der Noiseanteil der Singulärwerte sehr groß werden. 
+
+Ziel ist die Rekonstruktion von $\Xtrue$ aus $X$, insbesondere bei großem $n,m$
 
 
 

@@ -3,11 +3,26 @@
 \begin{document}
 
 \begin{definition}[empirische Kovarianzmatrix]
-    Sei $X\in\CC^{n\times m}$ eine Matrix dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind und ihr Erwartungswert $0$ mit Varianz $\sigma^2$ ist. Weiter sind $x_k=\left(x_{1k},\dots,x_{nk}\right)$, $\bm{X}=(x_1,\dots,x_m)$ und $\bar{x}=\frac1m\sum_{k=1}^m x_k$. Dann ist die empirische Kovarianzmatrix 
-    \[
-        \bm{S}=\frac{1}{m-1}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H
-    \]
+	Sei $X\in\CC^{n\times m}$ eine Matrix dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind und ihr Erwartungswert $0$ mit Varianz $\sigma^2$ ist. Weiter sind $x_k=\left(x_{1k},\dots,x_{nk}\right)$, $\bm{X}=(x_1,\dots,x_m)$ und $\bar{x}=\frac1m\sum_{k=1}^m x_k$. Dann ist die empirische Kovarianzmatrix
+	\[
+		\bm{S}=\frac{1}{m-1}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H
+	\]
 \end{definition}
+
+
+
+\section{Moments of the M-P Law}
+Das Mar\v{c}enko-Pastur Gesetz  $F_y(x)$ hat die Dichtefunktion
+\begin{align}
+    p_y(x)=\begin{cases*}
+        \frac{1}{2\pi x y\sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
+        0\,, & \text{sonst}
+    \end{cases*}
+\end{align}
+
+
+
+\section{Mar\v{c}enko-Pastur Gesetz für i.i.d}
 
 
 

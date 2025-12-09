@@ -2,7 +2,8 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-(In dieser Arbeit beschäftigen wir uns mit einer Möglichkeit, den Rechenaufwand des Dynamic Mode Decomposition Algorithmus, kurz DMD, zu verringern.)
+In dieser Arbeit beschäftigen wir uns mit einer Möglichkeit, den Rechenaufwand des Dynamic Mode Decomposition Algorithmus, kurz DMD, zu verringern. 
+Genauer der effektiven Dimensionsreduktion großer Matrizen.
 DMD ist ein Algorithmus, der ursprünglich im Feld der Strömungsdynamik entwickelt wurde.
 Er dient dazu, anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems zu approximieren.
 
@@ -22,7 +23,7 @@ Bei der Singulärwertzerlegung (SVD) finden wir für ein $X\in\RR^{n\times m}$ z
 		0            & 0
 	\end{pmatrix} \in \mathbb{R}^{n\times m}
 \]
-gilt. \textcolor{red}{(}Damit können wir die SVD mit $u_i$ und $v_i$ als linke und rechte Singulärvektoren auch durch $X=\sum_{i=1}^{r}\sigma_iu_iv^\top_i$ beschreiben.\textcolor{red}{) hab ich erstmal eingeführt um einfacher auf die notation vom paper zu verweisen (das ist ja aber noch wip)}
+gilt. \textcolor{red}{(}Damit können wir die SVD mit $u_i$ und $v_i$ als linke und rechte Singulärvektoren auch durch $X=\sum_{i=1}^{r}\sigma_iu_iv^\top_i$ beschreiben.\textcolor{red}{) hab ich erstmal eingeführt, um einfacher auf die Notation vom Paper zu verweisen (das ist ja aber noch wip)}
 
 Um für die folgenden Schritte der DMD den Rechenaufwand zu minimieren, lohnt es sich eine Dimensionsreduktion durchzuführen. Eine Möglichkeit ist unter ökonomischer SVD (TSVD) bekannt.
 Dabei wird $\Sigma$ auf eine $r\times r$ große Matrix reduziert und die Spalten von $U$ und $V$ abgeschnitten, sodass wir mit den reduzierten Matrizen $U_r$, $\Sigma_r$ und $V_r$, 
@@ -34,9 +35,7 @@ Mit
 \begin{align*}
     \dabs{X_r}_F^2=\sum_{i=1}^{r}\sigma_i^2
 \end{align*}
-lässt sich dann zeigen, dass $X_r$ nach dem Eckart-Young-Mirsky-Theorem die beste $\rang r$ Approximation bezüglich der Frobeniusnorm ist.
-
-\textcolor{red}{Grobe richtung} Im Paper \cite{OHT} von Matan Gavish and David L. Donoho erhalten wir durch \textcolor{red}{...}, dass noise-freie Datenmatrizen ab einem Singulärwert von $\frac{4}{\sqrt{3}}$ abgeschnitten wird. \textcolor{red}{...}
+lässt sich dann zeigen, dass $X_r$ nach dem Eckart-Young-Mirsky-Theorem die beste $\rang r$-Approximation bezüglich der Frobeniusnorm ist.
 
 In der Realität tauchen beim Messen aber Fehler auf. Das heißt, unsere Singulärwerte sind zu einem Teil echt aber auch zu einem Teil Messfehler.
 Wir definieren die Datenmatrix also durch 
@@ -45,13 +44,17 @@ Wir definieren die Datenmatrix also durch
 \]
 einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil.
 
+
+\textcolor{red}{Grobe Richtung} Im Paper \cite{OHT} von Matan Gavish und David L. Donoho erhalten wir durch \textcolor{red}{...}, dass quadratische $n\times n$ Matrizen ab einem Singulärwert von $\tau=\frac{4}{\sqrt{3}}\gamma\sqrt{n}$ abgeschnitten werden. \textcolor{red}{...}
+
+
 \textcolor{red}{Gavish Donoho weiter ausführen}
 
 
 \textcolor{red}{Überleitung zu MP}
 Bei kleinen Matrizen, ist die Noise kaum ein Problem aber für ''große'' Matrizen kann der Noiseanteil der Singulärwerte sehr groß werden. 
 
-Ziel ist die Rekonstruktion von $\Xtrue$ aus $X$, insbesondere bei großem $n,m$
+Ziel ist die Rekonstruktion von $\Xtrue$ aus $X$, insbesondere bei großem $n,m$.
 
 
 

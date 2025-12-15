@@ -2,27 +2,97 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-\begin{definition}[empirische Kovarianzmatrix]
-	Sei $X\in\CC^{n\times m}$ eine Matrix dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind und ihr Erwartungswert $0$ mit Varianz $\sigma^2$ ist. Weiter sind $x_k=\left(x_{1k},\dots,x_{nk}\right)$, $\bm{X}=(x_1,\dots,x_m)$ und $\bar{x}=\frac1m\sum_{k=1}^m x_k$. Dann ist die empirische Kovarianzmatrix
-	\[
-		\bm{S}=\frac{1}{m-1}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H
-	\]
-\end{definition}
+
+
+Sei $X\in\CC^{n\times m}$ eine Matrix dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind und ihr Erwartungswert $0$ mit Varianz $\sigma^2$ ist. Weiter sind $x_k=\left(x_{1k},\dots,x_{nk}\right)$, $\bm{X}=(x_1,\dots,x_m)$ und $\bar{x}=\frac1m\sum_{k=1}^m x_k$. Dann ist die empirische Kovarianzmatrix
+\[
+	\bm{S}=\frac{1}{m-1}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H
+\]
 
 
 
-\section{Moments of the M-P Law}
-Das Mar\v{c}enko-Pastur Gesetz  $F_y(x)$ hat die Dichtefunktion
+
+\section{Mar\v{c}enko-Pastur Momente}
+Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung  $F_y(x)$ ist duch
 \begin{align}
     p_y(x)=\begin{cases*}
-        \frac{1}{2\pi x y\sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
+        \frac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
         0\,, & \text{sonst}
     \end{cases*}
 \end{align}
+gegeben. Debei sind $a=\sigma^2\left(1-\sqrt{y}\right)^2$ und $b=\sigma^2\left(1+\sqrt{y}\right)^2$ jeweils mit $y=\frac{n}{m}$ die Träger der Dichtefunktion. 
+Wenn $\sigma^2=1$ ist, dann sprechen wir von der standard M-P-Verteilung.
+Die k-ten Momente der M-P-Verteilung sind durch die Erwartungswerte der k-ten Potenz $\beta_k\coloneqq\mathbb{E}(X^k)$ definiert.
+Da die Dichtefunktion innerhalb ihrer Träger stetig ist, können wir die Momente auch durch
+\begin{align}
+    \beta_k=\beta_k\left(y,\sigma^2\right)=\int_{a}^{b}x^kp_y(x)dx \label{eq:momente}
+\end{align} 
+beschreiben. An der Definition über den Erwartungswert kann man jetzt sehen, dass wir für das explizite Ausrechnen der Momente durch 
+\[
+    \beta_k\left(y,\sigma^2\right)=\mathbb{E}\left(\left(\sigma^2X\right)^k\right)=\sigma^{2k}\mathbb{E}\left(X^k\right)=\sigma^{2k}\beta_k\left(y,1\right)
+\]
+immer über die standard M-P-Verteilung gehen können.
+\begin{lemma}
+    Die explizite Darstellung der Momente ist 
+    \begin{align}
+        \beta_k = \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r\,.
+    \end{align}
+\end{lemma}
+\begin{proof}
+    Wir haben nach Definition \refeq{eq:momente}
+    \begin{align*}
+        \beta_k=\frac{1}{2\pi y}\int_{a}^{b}x^{k-1}\sqrt{(b-x)(x-a)}dx\,.
+    \end{align*}
+    Substituieren wir hier mit $x=1+y+z$ und setzen $a$ und $b$ ein, dann erhalten wir
+    \begin{align*}
+        \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{\left(\left(1+\sqrt{y}\right)^2-1-y-z\right)\left(1+y+z-\left(1-\sqrt{y}\right)^2\right)}dz \\
+        &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{4y-z^2}dz\,.
+    \end{align*}
+    Hier können wir durch Einsetzen des Binomischen Lehrsatzes das Integral zu 
+    \begin{align*}
+        \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}z^l\sqrt{4y-z^2}dz \\
+        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}\int_{-2\sqrt{y}}^{2\sqrt{y}}z^l\sqrt{4y-z^2}dz
+    \end{align*}
+    umformen.
+    Um das integral weiter zu vereinfachen, substituieren wir mit $z=2\sqrt{y}u$ und erhalten 
+    \begin{align*}
+        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} \int_{-1}^{1}\left(2\sqrt{y}u\right)^l\sqrt{4y-4yu^2}du \\
+        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} (2\sqrt{y})^l 4y \int_{-1}^{1}u^l\sqrt{1-u^2}du\,. 
+        \intertext{Durch die symmetrisch um den Nullpunkt liegenden Integralgrenzen und einem ungeraden Integranten für alle ungeraden $l$ ist jeder zweite Summand gleich $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2l$ statt $l$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt die ungleich $0$ sind. Wir haben also}
+        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (2\sqrt{y})^{2l} 4y \int_{-1}^{1}u^{2l}\sqrt{1-u^2}du\\
+        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}u^{2l}\sqrt{1-u^2}du\,.
+    \end{align*}
+    Wenn wir jetzt mit $u=\sqrt{w}$ Subtituieren,
+    \begin{align*}
+        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}w^{l}\sqrt{1-w}\frac{1}{2\sqrt{w}}dw \\
+        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \frac12\int_{-1}^{1}w^{l-\frac12}\sqrt{1-w}dw
+        \intertext{erhalten wir durch Vereinfachen dank eines geraden Integranten}
+        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}dw
+    \end{align*}
+    ein Integral, dass wir mittels eulerschen Betafunktion lösen können.
+    Die eulersche Betafunktion ist durch 
+    \[
+        \int_{0}^{1}t^{g-1}(1-t)^{h-1}dt \coloneqq \frac{\Gamma(g)\Gamma(h)}{\Gamma(g+h)} 
+    \]
+    definiert. Wir können also mit $g=l+\frac12$ und $h=1+\frac12$ das Integral durch die Gammafunktionen 
+    \begin{align}
+        \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}dw &= \frac{\Gamma(l+\frac12)\Gamma(1+\frac12)}{\Gamma(l+2)} \nonumber \\
+        &= \frac{\frac{(2l)!\sqrt{\pi}}{l!4^l}\frac{2!\sqrt{\pi}}{4^l}}{(l+1)!} \nonumber \\
+        &= \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!} \label{eq:gamma}
+    \end{align}
+    beschreiben.
+    Nach Einsetzen von \refeq{eq:gamma} erhalten wir 
+    \begin{align*}
+        \beta_k = \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!}\,.
+    \end{align*}
+
+\end{proof}
 
 
 
-\section{Mar\v{c}enko-Pastur Gesetz für i.i.d}
+
+
+\section{Mar\v{c}enko-Pastur-Verteilung für i.i.d}
 
 
 

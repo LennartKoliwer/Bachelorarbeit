@@ -20,12 +20,12 @@ Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung  $F_y(x)$ ist duch
         0\,, & \text{sonst}
     \end{cases*}
 \end{align}
-gegeben. Debei sind $a=\sigma^2\left(1-\sqrt{y}\right)^2$ und $b=\sigma^2\left(1+\sqrt{y}\right)^2$ jeweils mit $y=\frac{n}{m}$ die Träger der Dichtefunktion. 
+gegeben. Dabei sind $a=\sigma^2\left(1-\sqrt{y}\right)^2$ und $b=\sigma^2\left(1+\sqrt{y}\right)^2$ jeweils mit $y=\frac{n}{m}$ die Träger der Dichtefunktion. 
 Wenn $\sigma^2=1$ ist, dann sprechen wir von der standard M-P-Verteilung.
 Die k-ten Momente der M-P-Verteilung sind durch die Erwartungswerte der k-ten Potenz $\beta_k\coloneqq\mathbb{E}(X^k)$ definiert.
 Da die Dichtefunktion innerhalb ihrer Träger stetig ist, können wir die Momente auch durch
 \begin{align}
-    \beta_k=\beta_k\left(y,\sigma^2\right)=\int_{a}^{b}x^kp_y(x)dx \label{eq:momente}
+    \beta_k=\beta_k\left(y,\sigma^2\right)=\int_{a}^{b}x^kp_y(x)\diff x \label{eq:momente}
 \end{align} 
 beschreiben. An der Definition über den Erwartungswert kann man jetzt sehen, dass wir für das explizite Ausrechnen der Momente durch 
 \[
@@ -41,58 +41,118 @@ immer über die standard M-P-Verteilung gehen können.
 \begin{proof}
     Wir haben nach Definition \refeq{eq:momente}
     \begin{align*}
-        \beta_k=\frac{1}{2\pi y}\int_{a}^{b}x^{k-1}\sqrt{(b-x)(x-a)}dx\,.
+        \beta_k=\frac{1}{2\pi y}\int_{a}^{b}x^{k-1}\sqrt{(b-x)(x-a)}\diff x\,.
     \end{align*}
     Substituieren wir hier mit $x=1+y+z$ und setzen $a$ und $b$ ein, dann erhalten wir
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{\left(\left(1+\sqrt{y}\right)^2-1-y-z\right)\left(1+y+z-\left(1-\sqrt{y}\right)^2\right)}dz \\
-        &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{4y-z^2}dz\,.
+        \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{\left(\left(1+\sqrt{y}\right)^2-1-y-z\right)\left(1+y+z-\left(1-\sqrt{y}\right)^2\right)}\diff z \\
+        &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{4y-z^2}\diff z\,.
     \end{align*}
     Hier können wir durch Einsetzen des Binomischen Lehrsatzes das Integral zu 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}z^l\sqrt{4y-z^2}dz \\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}\int_{-2\sqrt{y}}^{2\sqrt{y}}z^l\sqrt{4y-z^2}dz
+        \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}z^l\sqrt{4y-z^2}\diff z \\
+        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}\int_{-2\sqrt{y}}^{2\sqrt{y}}z^l\sqrt{4y-z^2}\diff z
     \end{align*}
     umformen.
     Um das integral weiter zu vereinfachen, substituieren wir mit $z=2\sqrt{y}u$ und erhalten 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} \int_{-1}^{1}\left(2\sqrt{y}u\right)^l\sqrt{4y-4yu^2}du \\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} (2\sqrt{y})^l 4y \int_{-1}^{1}u^l\sqrt{1-u^2}du\,. 
+        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} \int_{-1}^{1}\left(2\sqrt{y}u\right)^l\sqrt{4y-4yu^2}\diff u \\
+        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} (2\sqrt{y})^l 4y \int_{-1}^{1}u^l\sqrt{1-u^2}\diff u\,. 
         \intertext{Durch die symmetrisch um den Nullpunkt liegenden Integralgrenzen und einem ungeraden Integranten für alle ungeraden $l$ ist jeder zweite Summand gleich $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2l$ statt $l$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt die ungleich $0$ sind. Wir haben also}
-        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (2\sqrt{y})^{2l} 4y \int_{-1}^{1}u^{2l}\sqrt{1-u^2}du\\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}u^{2l}\sqrt{1-u^2}du\,.
+        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (2\sqrt{y})^{2l} 4y \int_{-1}^{1}u^{2l}\sqrt{1-u^2}\diff z\\
+        &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}u^{2l}\sqrt{1-u^2}\diff z\,.
     \end{align*}
-    Wenn wir jetzt mit $u=\sqrt{w}$ Subtituieren,
+    Wenn wir jetzt mit $u=\sqrt{w}$ subtituieren,
     \begin{align*}
-        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}w^{l}\sqrt{1-w}\frac{1}{2\sqrt{w}}dw \\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \frac12\int_{-1}^{1}w^{l-\frac12}\sqrt{1-w}dw
+        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}w^{l}\sqrt{1-w}\frac{1}{2\sqrt{w}}\diff w \\
+        &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \frac12\int_{-1}^{1}w^{l-\frac12}\sqrt{1-w}\diff w
         \intertext{erhalten wir durch Vereinfachen dank eines geraden Integranten}
-        &= \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}dw
+        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}\diff w
     \end{align*}
-    ein Integral, dass wir mittels eulerschen Betafunktion lösen können.
-    Die eulersche Betafunktion ist durch 
+    ein Integral, dass wir mittels Eulerschen Betafunktion \textcolor{red}{Quelle!} lösen können.
+    Die Eulersche Betafunktion ist durch 
     \[
-        \int_{0}^{1}t^{g-1}(1-t)^{h-1}dt \coloneqq \frac{\Gamma(g)\Gamma(h)}{\Gamma(g+h)} 
+        \int_{0}^{1}t^{p-1}(1-t)^{q-1}dt \coloneqq \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} 
     \]
-    definiert. Wir können also mit $g=l+\frac12$ und $h=1+\frac12$ das Integral durch die Gammafunktionen 
+    definiert. Wir können also mit $p=l+\frac12$ und $q=1+\frac12$ das Integral durch die Gammafunktionen 
     \begin{align}
-        \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}dw &= \frac{\Gamma(l+\frac12)\Gamma(1+\frac12)}{\Gamma(l+2)} \nonumber \\
+        \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}\diff w &= \frac{\Gamma(l+\frac12)\Gamma(1+\frac12)}{\Gamma(l+2)} \nonumber \\
         &= \frac{\frac{(2l)!\sqrt{\pi}}{l!4^l}\frac{2!\sqrt{\pi}}{4^l}}{(l+1)!} \nonumber \\
         &= \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!} \label{eq:gamma}
     \end{align}
     beschreiben.
     Nach Einsetzen von \refeq{eq:gamma} erhalten wir 
     \begin{align*}
-        \beta_k = \frac{1}{2\pi y}\sum_{l=0}^{\lfloor\frac{k-1}{2}\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!}\,.
+        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!} \\
+        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{1}{2\pi y} \frac{(k-1)!}{(2l)!(k-1-2l)!}(1+y)^{k-1-2l} (4y)^{l+1} \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!}\,.
     \end{align*}
 
+    Hier lassen sich diverse variablen kürzen, sodass wir 
+
+    \begin{align*}
+        \beta_k = \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{(k-1)!}{l!(l+1)!(k-1-2l)!}y^l(1+y)^{k-1-2l}
+    \end{align*}
+    erhalten.
+    Wenn wir den Binomischen Lehrsatz mit 
+    \begin{align*}
+        (1+y)^{k-1-2l} &= \sum_{s=0}^{k-1-2l}\binom{k-1-2l}{s}y^s\\
+        &= \sum_{s=0}^{k-1-2l}\frac{(k-1-2l)!}{s!(k-1-2l-s)!}y^s
+    \end{align*}
+    einsetzen, haben wir 
+    \begin{align*}
+        \beta_k &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=0}^{k-1-2l} \frac{(k-1)!}{l!(l+1)!(k-1-2l)!}y^l\frac{(k-1-2l)!}{s!(k-1-2l-s)!}y^s \\
+        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=0}^{k-1-2l} \frac{(k-1)!}{l!(l+1)!s!(k-1-2l-s)!}y^{l+s}\,.
+    \end{align*}
+
+    Jetzt wollen wir den Term wieder vereinfachen. Dafür setzen wir $r=s+l$
+    \begin{align*}
+        \beta_k &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac{(k-1)!}{l!(l+1)!(r-l)!(k-1-2l-s)!}y^{r}
+    \end{align*}
+    und erweitern mit zwei Einsen
+    \begin{align*}
+        \beta_k &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac{(k-1)!}{l!(l+1)!(r-l)!(k-1-2l-s)!} \frac{r!}{r!}\frac{(k-r)!}{(k-r)!}y^{r} 
+        \\
+        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac{(k-1)!}{r!(k-r)!} \frac{r!}{l!(l-r)!} \frac{(k-r)!}{(k-r-l-1)!(l+1)!} y^{r} 
+        \\
+        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac1k\frac{k!}{r!(k-r)!} \frac{r!}{l!(l-r)!} \frac{(k-r)!}{(l+1)!(k-r-(l+1))!} y^{r} 
+        \\
+        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac1k\binom{k}{r} \binom{r}{l} \binom{k-r}{l+1} y^{r}\,.
+    \end{align*}
+    Für den nächsten Schritt müssen wir die Laufvariablen voneinander unabhängig machen. Momentan haben wir erst das $l$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. Für ein festes aber beliebiges $k$ liegen unsere Laufvariablen in
+    \begin{align*}
+        A = \left\{(l,r)\in\NN^2 \,\middle|\, 0\leq l \leq \left\lfloor\frac{k-1}{2}\right\rfloor,\, l\leq r \leq k-1-l\right\}\,.
+    \end{align*}
+    Daraus wissen wir, dass \[0\leq l,\, r\leq k-1-l\] gilt, woraus wir \[l\leq k-1-r\] folgern können. Damit erhalten wir 
+    \begin{align*}
+                    &0\leq l\leq r \leq k-1-l\leq k-1 \\
+        \implies    &0\leq r\leq k-1,\, 0\leq l\leq\min(r,k-1-r)
+    \end{align*} 
+    damit können wir also die Summen äquivalent über 
+    \begin{align}
+        A = \left\{(l,r)\in\NN^2 \,\middle|\, 0\leq r\leq k-1,\, 0\leq l\leq\min(r,k-1-r)\right\} \label{eq:laufvar}
+    \end{align}
+    laufen lassen.
+
+    Wir haben also mit \refeq{eq:laufvar}
+    \begin{align*}
+        \beta_k &= \sum_{r=0}^{k-1}\sum_{l=0}^{\min(r,k-1-r)} \frac1k\binom{k}{r} \binom{r}{l} \binom{k-r}{l+1} y^{r}\\
+        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{\min(r,k-1-r)} \binom{r}{l} \binom{k-r}{l+1}\,.
+    \end{align*}
+    Das Minimum können wir noch weiter vereinfachen, da die Summanden gleich $0$ sind, sobald $l>r$ oder $l>k-1-r$ ist. Wenn wir die Summe also bis $r$ laufen lassen, ändern wir nichts am Ergebnis. 
+    \begin{align*}
+        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{r} \binom{r}{l} \binom{k-r}{l+1}\,.
+    \end{align*}
+    %Formen wir den Term zu 
+    %\begin{align*}
+    %    \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{r+1} \binom{r}{l} \binom{k-r}{l+1}\,.
+    %\end{align*}
 \end{proof}
 
 
 
 
 
-\section{Mar\v{c}enko-Pastur-Verteilung für i.i.d}
+%\section{Mar\v{c}enko-Pastur-Verteilung für i.i.d}
 
 
 

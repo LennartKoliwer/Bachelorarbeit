@@ -142,10 +142,22 @@ immer über die standard M-P-Verteilung gehen können.
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{r} \binom{r}{l} \binom{k-r}{l+1}\,.
     \end{align*}
-    %Formen wir den Term zu 
-    %\begin{align*}
-    %    \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{r+1} \binom{r}{l} \binom{k-r}{l+1}\,.
-    %\end{align*}
+    An diesem Punkt müssen wir nur noch die innere Summe vereinfachen. Dafür machen wir einen Indexshift und formen die Binomialkoeffizienten etwas um. Wir haben also
+    \begin{align*}
+        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=1}^{r+1} \binom{r}{l-1} \binom{k-r}{l} \\
+        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=1}^{r+1} \binom{r}{r-(l-1)} \binom{k-r}{l} \\
+        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=1}^{r+1} \binom{r}{(r+1)-l} \binom{k-r}{l}\,.
+    \end{align*}
+    \textcolor{red}{summen untergrenze noch auf null setzen argumentieren} In dieser Form lässt sich die Vandermonde Identität \textcolor{red}{Quelle!} 
+    \begin{align*}
+        \sum_{"o=0}^{"u}\binom{n}{"o}\binom{m}{"u-"o}=\binom{n+m}{"u}
+    \end{align*}
+    anwenden. Damit erhalten wir dann
+    \begin{align*}
+        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r}\binom{k}{r+1} y^{r}\\
+        &= \sum_{r=0}^{k-1} \frac1k\frac{r+1}{r+1}\binom{k}{r}\binom{k}{r+1} y^{r} \\
+        &= \sum_{r=0}^{k-1} \frac{1}{r+1}\binom{k}{r}\binom{k-1}{r} y^{r}\,.
+    \end{align*}
 \end{proof}
 
 

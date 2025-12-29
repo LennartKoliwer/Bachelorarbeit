@@ -9,9 +9,6 @@ Sei $X\in\CC^{n\times m}$ eine Matrix dessen Elemente unabhängig und identisch 
 	\bm{S}=\frac{1}{m-1}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H
 \]
 
-
-
-
 \section{Mar\v{c}enko-Pastur Momente}
 Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung  $F_y(x)$ ist duch
 \begin{align}
@@ -22,47 +19,67 @@ Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung  $F_y(x)$ ist duch
 \end{align}
 gegeben. Dabei sind $a=\sigma^2\left(1-\sqrt{y}\right)^2$ und $b=\sigma^2\left(1+\sqrt{y}\right)^2$ jeweils mit $y=\frac{n}{m}$ die Träger der Dichtefunktion. 
 Wenn $\sigma^2=1$ ist, dann sprechen wir von der standard M-P-Verteilung.
-Die k-ten Momente der M-P-Verteilung sind durch die Erwartungswerte der k-ten Potenz $\beta_k\coloneqq\mathbb{E}(X^k)$ definiert.
-Da die Dichtefunktion innerhalb ihrer Träger stetig ist, können wir die Momente auch durch
+Die k-ten Momente der M-P-Verteilung sind durch
 \begin{align}
-    \beta_k=\beta_k\left(y,\sigma^2\right)=\int_{a}^{b}x^kp_y(x)\diff x \label{eq:momente}
+    \beta_k=\beta_k\left(y,\sigma^2\right)\coloneqq\int_{a}^{b}x^kp_y(x)\diff x \label{eq:momente}
 \end{align} 
-beschreiben. An der Definition über den Erwartungswert kann man jetzt sehen, dass wir für das explizite Ausrechnen der Momente durch 
-\[
-    \beta_k\left(y,\sigma^2\right)=\mathbb{E}\left(\left(\sigma^2X\right)^k\right)=\sigma^{2k}\mathbb{E}\left(X^k\right)=\sigma^{2k}\beta_k\left(y,1\right)
-\]
-immer über die standard M-P-Verteilung gehen können.
+definiert. 
+Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
+\begin{lemma}
+    Für alle $k\geq1$ gilt
+    \begin{align*}
+        \beta_k\left(y,\sigma^2\right)=\sigma^{2k}\beta_k\left(y,1\right)\,.
+    \end{align*}
+\end{lemma}
+\begin{proof}
+    Nach Definition \refeq{eq:momente} haben wir
+    \begin{align*}
+        \beta_k\left(y,\sigma^2\right)&=\int_{a}^{b}x^kp_y(x)\diff x\\
+        &=\int_{\sigma^2\left(1-\sqrt{y}\right)^2}^{\sigma^2\left(1+\sqrt{y}\right)^2}x^k\frac{1}{2\pi x y \sigma^2}\sqrt{\left(\sigma^2\left(1+\sqrt{y}\right)^2-x\right)\left(x-\sigma^2\left(1-\sqrt{y}\right)^2\right)}\diff x\,.
+        \intertext{Substituieren wir mit $x=u\sigma^2$ erhalten wir}
+        \beta_k\left(y,\sigma^2\right)&=\int_{\left(1-\sqrt{y}\right)^2}^{\left(1+\sqrt{y}\right)^2}\left(u\sigma^2\right)^k\frac{1}{2\pi u y \sigma^2}\sqrt{\left(\sigma^2\left(1+\sqrt{y}\right)^2-u\sigma^2\right)\left(u\sigma^2-\sigma^2\left(1-\sqrt{y}\right)^2\right)}\diff u\\
+        &=\int_{\left(1-\sqrt{y}\right)^2}^{\left(1+\sqrt{y}\right)^2}u^k\sigma^{2k}\frac{1}{2\pi u y \sigma^2}\sqrt{\sigma^4\left(\left(1+\sqrt{y}\right)^2-u\right)\left(u-\left(1-\sqrt{y}\right)^2\right)}\diff u\\
+        &=\sigma^{2k}\int_{\left(1-\sqrt{y}\right)^2}^{\left(1+\sqrt{y}\right)^2}u^k\frac{1}{2\pi u y }\sqrt{\left(\left(1+\sqrt{y}\right)^2-u\right)\left(u-\left(1-\sqrt{y}\right)^2\right)}\diff u\\
+        &=\sigma^{2k}\beta_k\left(y,1\right)\,.
+    \end{align*}
+\end{proof}
+
+Damit können wir die Momente explizit bestimmen.
+%----------------------------------------------------------------------------------
+
 \begin{lemma}
     Die explizite Darstellung der Momente ist 
     \begin{align}
         \beta_k = \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r\,.
     \end{align}
 \end{lemma}
+
+
 \begin{proof}
     Wir haben nach Definition \refeq{eq:momente}
     \begin{align*}
         \beta_k=\frac{1}{2\pi y}\int_{a}^{b}x^{k-1}\sqrt{(b-x)(x-a)}\diff x\,.
     \end{align*}
-    Substituieren wir hier mit $x=1+y+z$ und setzen $a$ und $b$ ein, dann erhalten wir
+    Substituieren wir mit $x=1+y+z$ und setzen $a$ und $b$ ein, erhalten wir
     \begin{align*}
         \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{\left(\left(1+\sqrt{y}\right)^2-1-y-z\right)\left(1+y+z-\left(1-\sqrt{y}\right)^2\right)}\diff z \\
         &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{4y-z^2}\diff z\,.
     \end{align*}
-    Hier können wir durch Einsetzen des Binomischen Lehrsatzes das Integral zu 
+    Durch Einsetzen des Binomischen Lehrsatzes lässt sich das Integral zu 
     \begin{align*}
         \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}z^l\sqrt{4y-z^2}\diff z \\
         &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}\int_{-2\sqrt{y}}^{2\sqrt{y}}z^l\sqrt{4y-z^2}\diff z
     \end{align*}
     umformen.
-    Um das integral weiter zu vereinfachen, substituieren wir mit $z=2\sqrt{y}u$ und erhalten 
+    Um das Integral weiter zu vereinfachen, substituieren wir mit $z=2\sqrt{y}u$ und erhalten 
     \begin{align*}
         \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} \int_{-1}^{1}\left(2\sqrt{y}u\right)^l\sqrt{4y-4yu^2}\diff u \\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} (2\sqrt{y})^l 4y \int_{-1}^{1}u^l\sqrt{1-u^2}\diff u\,. 
-        \intertext{Durch die symmetrisch um den Nullpunkt liegenden Integralgrenzen und einem ungeraden Integranten für alle ungeraden $l$ ist jeder zweite Summand gleich $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2l$ statt $l$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt die ungleich $0$ sind. Wir haben also}
+        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} (2\sqrt{y})^l 4y \int_{-1}^{1}u^l\sqrt{1-u^2}\diff u\,.  
+        \intertext{Hier ist unser Integrand ungerade, sofern $l$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen ist das Integral für alle ungeraden $l$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2l$ statt $l$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt die ungleich $0$ sind. Wir haben also}
         \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (2\sqrt{y})^{2l} 4y \int_{-1}^{1}u^{2l}\sqrt{1-u^2}\diff z\\
         &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}u^{2l}\sqrt{1-u^2}\diff z\,.
     \end{align*}
-    Wenn wir jetzt mit $u=\sqrt{w}$ subtituieren,
+    Wenn wir jetzt mit $u=\sqrt{w}$ subtituieren, \textcolor{red}{gerade Funktion muss noch beim u hin. Satz aufteilen}
     \begin{align*}
         \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}w^{l}\sqrt{1-w}\frac{1}{2\sqrt{w}}\diff w \\
         &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \frac12\int_{-1}^{1}w^{l-\frac12}\sqrt{1-w}\diff w
@@ -148,13 +165,14 @@ immer über die standard M-P-Verteilung gehen können.
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=1}^{r+1} \binom{r}{r-(l-1)} \binom{k-r}{l} \\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=1}^{r+1} \binom{r}{(r+1)-l} \binom{k-r}{l}\,.
     \end{align*}
-    \textcolor{red}{summen untergrenze noch auf null setzen argumentieren} In dieser Form lässt sich die Vandermonde Identität \textcolor{red}{Quelle!} 
+    Wir wollen hier die Vandermonde Identität \textcolor{red}{Quelle!} 
     \begin{align*}
-        \sum_{"o=0}^{"u}\binom{n}{"o}\binom{m}{"u-"o}=\binom{n+m}{"u}
+        \sum_{"o=0}^{"u}\binom{n}{"o}\binom{m}{"u-"o}=\binom{n+m}{"u} \label{eq:vandermonde}
     \end{align*}
-    anwenden. Damit erhalten wir dann
+    nutzen. Dafür lassen wir die Summe von $l=0$ beginnen, da der Summand das Ergebnis nicht ändert. Mit der Identität \refeq{eq:vandermonde} erhalten wir
     \begin{align*}
-        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r}\binom{k}{r+1} y^{r}\\
+        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{r+1} \binom{r}{(r+1)-l} \binom{k-r}{l}\\
+        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r}\binom{k}{r+1} y^{r}\\
         &= \sum_{r=0}^{k-1} \frac1k\frac{r+1}{r+1}\binom{k}{r}\binom{k}{r+1} y^{r} \\
         &= \sum_{r=0}^{k-1} \frac{1}{r+1}\binom{k}{r}\binom{k-1}{r} y^{r}\,.
     \end{align*}

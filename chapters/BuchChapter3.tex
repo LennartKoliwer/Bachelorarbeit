@@ -79,14 +79,16 @@ Damit können wir die Momente explizit bestimmen.
         \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (2\sqrt{y})^{2l} 4y \int_{-1}^{1}u^{2l}\sqrt{1-u^2}\diff z\\
         &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}u^{2l}\sqrt{1-u^2}\diff z\,.
     \end{align*}
-    Wenn wir jetzt mit $u=\sqrt{w}$ subtituieren, \textcolor{red}{gerade Funktion muss noch beim u hin. Satz aufteilen}
+    Hier ist der Integrand eine gerade Funktion für alle $0\leq l$. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen können wir auch zwei mal über das halbe Intervall integrieren. Folglich gilt 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}w^{l}\sqrt{1-w}\frac{1}{2\sqrt{w}}\diff w \\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \frac12\int_{-1}^{1}w^{l-\frac12}\sqrt{1-w}\diff w
-        \intertext{erhalten wir durch Vereinfachen dank eines geraden Integranten}
-        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}\diff w
+        \beta_k = \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} 2\int_{0}^{1}u^{2l}\sqrt{1-u^2}\diff z\,.        
     \end{align*}
-    ein Integral, dass wir mittels Eulerschen Betafunktion \textcolor{red}{Quelle!} lösen können.
+    Wenn wir jetzt mit $u=\sqrt{w}$ subtituieren,
+    \begin{align*}
+        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{0}^{1}w^{l}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
+        &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}\diff w
+    \end{align*}
+    erhalten wir ein Integral, dass wir mittels Eulerschen Betafunktion \textcolor{red}{Quelle!} lösen können.
     Die Eulersche Betafunktion ist durch 
     \[
         \int_{0}^{1}t^{p-1}(1-t)^{q-1}dt \coloneqq \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} 

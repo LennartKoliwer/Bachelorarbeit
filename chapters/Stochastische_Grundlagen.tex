@@ -2,10 +2,60 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-\begin{definition}
-    Sei $\Omega\neq\emptyset$ eine nichtleere Menge und $\mathcal{A}\subset2^\Omega$ ein Mengensystem aus der Potenzmenge von $\Omega$.
+\begin{definition}\cite[10]{Stochastik}\label{def:messraum}
+    Sei $\Omega\neq\emptyset$ eine nichtleere Menge (von Ereignissen) und $\mathcal{A}\subset2^\Omega$ ein Mengensystem aus der Potenzmenge von $\Omega$.
+
+    Mit den Eigenschaften
+    \begin{enumerate}
+        \item $\Omega\in\mathcal{A}$,
+        \item $E\in\mathcal{A} \implies \Omega\setminus E \in \mathcal{A}$
+        \item und $E_1, E_2, \hdots \in \mathcal{A} \implies \displaystyle\bigcup_{i=1}^{\infty}E_i \in \mathcal{A}$
+    \end{enumerate}
+    nennt man $\mathcal{A}$ eine $\sigma$-Algebra und das Paar $\left(\Omega,\mathcal{A}\right)$ einen (Ereignis-)Messraum.
 \end{definition}
 
+\begin{definition}\cite[13]{Stochastik}\label{def:wahrschvert}\label{def:warschraum}
+    Sei $\left(\Omega,\mathcal{A}\right)$ ein Messraum. Sei weiter $\mu\colon \mathcal{A} \to [0,1]$ eine Funktion.
+    Mit den Eigenschaften
+    \begin{enumerate}
+        \item $\mu(\Omega)=1$
+        \item und $E_1, E_2, \hdots \in \mathcal{A}$, $E_i$ paarweise disjunkte Elemente $\implies \mu\left(\displaystyle\bigcup_{i=1}^{\infty}E_i\right) = \displaystyle\sum_{i=1}^{\infty}\mu(E_i)$ 
+    \end{enumerate}
+    ist $\mu$ ein Wahrscheinlichkeitsmaß oder eine Wahrscheinlichkeitsverteilung (Verteilung) auf $\mathcal{A}$. Dann nennt man das Tripel $(\Omega, \mathcal{A}, \mu)$ Wahrscheinlichkeitsraum.
+\end{definition}
+
+\begin{definition}\cite[21]{Stochastik}\label{def:zufallsvar}
+    Seien $(\Omega, \mathcal{A})$ und $(\Omega', \mathcal{A}')$ zwei Messräume. Sei weiter ${\mathcal{Z}\colon \Omega \to \Omega'}$ eine Abbildung mit der folgenden Eigenschaft:
+    \begin{align*}
+        E' \in \mathcal{A}' \implies \mathcal{Z}^{-1}E'\in \mathcal{A}\,.
+    \end{align*}
+    Dann heißt $\mathcal{Z}$ Zufallsvariable von $(\Omega, \mathcal{A})$ nach $(\Omega', \mathcal{A}')$. 
+    
+    Man schreibt auch ${\mathcal{Z}\colon (\Omega, \mathcal{A}) \to (\Omega', \mathcal{A}')}$.
+\end{definition}
+
+\begin{definition}\cite[4]{Stochastik_EW}\label{def:erwartungswert} \textcolor{red}{unzufrieden weil nur $\RR$.}
+    Sei $\mathcal{Z}\colon (\Omega, \mathcal{A}) \to (\RR, \mathscr{B}(\RR))$ eine Zufallsvariable in $(\Omega,\mathcal{A},\mu)$ mit $\mathscr{B}(\RR)$ als borelsche $\sigma$-Algebra. Sei weiter das Bildmaß von $\mu$ bezüglich $\mathcal{Z}$ gleich
+    \begin{align*}
+        B\mapsto\mu_\mathcal{Z}(B)\coloneqq\mu(\mathcal{Z}^{-1}(B)) \quad\text{mit}\quad B\in\mathscr{B}(\RR)\,.
+    \end{align*}
+    Dann ist der Erwartungswert einer reellen Zufallsvariable $\mathcal{Z}$ genau 
+    \begin{align*}
+        \mathbb{E}(\mathcal{Z})=\int \mathcal{Z} \diff\mu = \int_{\Omega}\mathcal{Z}(\omega)\mu(\diff\omega) = \int_{\RR} z \mu_{\mathcal{Z}}(dz)\,.
+    \end{align*}
+\end{definition}
+
+\begin{definition}
+    Varianz
+\end{definition}
+
+\begin{definition}
+    Moment
+\end{definition}
+
+\begin{definition}
+    Kovarianz
+\end{definition}
 
 
 \end{document}

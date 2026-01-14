@@ -2,21 +2,20 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
+
 Dynamic Mode Decomposition, kurz DMD, ist ein datengetriebener Algorithmus, der ursprünglich im Feld der Strömungsdynamik entwickelt wurde. 
-Er dient dazu, anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems zu approximieren. 
-Die Dynamik lässt sich aber nur in kleinem Rahmen prognostizieren.
-Bei längeren Prognosen werden Fehler schnell zu groß um noch nutzen aus der Prognose ziehen zu können.
-Dabei ist DMD gut im Erkennen von Mustern, wie im Falle der Strömungsdynamik z.B. Strömungen oder Verwirbelungen. 
-Ungenau wird DMD aber bei plötzlichen Änderungen des Systems oder wenn die Messdaten fehlerbehaftet sind.
-Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD Algorithmen entwickelt, um z.B. unterschiedliche Schwächen des Algorithmus auszugleichen. \textcolor{red}{viel ungenau erstmal nur orientiereung}
-
-Wir betrachten hier aber nur exact DMD.
+Grundsätzlich dient er zur Analyse dynamischer Systeme mittels Sigulärwertzerlegung großer Datenmatrizen.
+DMD kann anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren. Die Genauigkeit hängt unter anderem davon ab, wie viele Informationen in Form von Messdaten man über das System hat und wie groß die Messfehler also das Rauschen der Daten ist.
+Dabei ist DMD gut im Erkennen von Mustern, wie im Falle der Strömungsdynamik z.B. Verwirbelungen. 
+Ein Problem das beim klassischen DMD auftaucht, ist das die Zeitabstände zwischen den Messdaten einheitlich sein muss, was spätestens, wenn man DMD außerhalb von Simulationen anwenden will, zu Problemen führen wird.
+Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD Algorithmen entwickelt, um zum Beispiel unterschiedliche Schwächen des Algorithmus auszugleichen.
+Wir betrachten hier zur Vereinfachung den exact DMD Algorithmus.
 Diese Variante hat den Vorteil gegenüber des ursprünglichen DMD, dass die Messzeitpunkte keine einheitlichen Zeitabstände benötigen.
-Für jede Messung werden alle Daten der Messpunkte in eine Spalte $x_i$ einer Datenmatrix $X$ eingetragen.
-Wenn man zusätzlich parallel nur um einen Zeitpunkt versetzt misst, erhält man zwei Datenmatrizen, die zwei sich überlappende Zeitintervalle abdecken. Genau $X=(x_1,\dots,x_{k-1})$ und $X'=(x_2,\dots,x_k)$.
-
-Das Ziel von DMD ist es nun einen linearen Operator $A$ zu finden, der das System $X' = AX$ so gut wie möglich beschreibt.
-Diesen Operator bestimmt man mittels Singulärwertzerlegung unserer Datenmatrix $X$. Die Singulärwertzerlegung (SVD) beschreiben wir später nochmal genauer, liefern aber für einen kleinen Überblick eine vereinfachte Beschreibung.
+Für jede Messung werden alle Daten in eine Spalte $x_i$ einer Datenmatrix $X$ eingetragen. 
+Zusätzlich legen wir eine zweite Datenmatrix $X'$ so an, dass wir in $X$ die Messungen $(x_1,\dots,x_{k-1})$ und in $X'$ die Messungen $(x_2,\dots,x_k)$ haben.
+Das Ziel von DMD ist es nun einen linearen Operator $A$ zu finden, welcher das optimale Ergebnis von $$A=\underset{A}{\arg\min}\dabs{X'-AX}_F\,,$$ der das System $X' \approx AX$ so gut wie möglich beschreibt. Hier ist $\dabs{\cdot}_F$ die Frobeniusnorm, welche wir später noch genauer beschreiben werden.
+Diesen Operator bestimmt man mittels Singulärwertzerlegung unserer Datenmatrix $X$. 
+Die Singulärwertzerlegung (SVD) beschreiben wir auch später nochmal genauer, liefern aber für einen kleinen Überblick eine vereinfachte Beschreibung.
 Bei der SVD finden wir für ein $X\in\RR^{n\times m}$ zwei orthogonale Matrizen $U$ und $V$ mit passenden Dimensionen und ${\hat{\Sigma}=\diag(\sigma_1,\dots,\sigma_r)}$ mit $r\leq\min(n,m)$ und $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass
 \[
 	X = U\Sigma V^\top \text{ mit } \Sigma = \begin{pmatrix}

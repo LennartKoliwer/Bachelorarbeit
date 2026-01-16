@@ -45,33 +45,55 @@ Nach dem Eckart-Young-Mirsky-Theorem \textcolor{red}{Quelle!!} lässt sich durch
     \dabs{X_r}_F^2=\sum_{i=1}^{r}\sigma_i^2
 \end{align*}
 zeigen, dass $X_r$ die beste Rang$\,r$-Approximation bezüglich der Frobeniusnorm ist.
+Die Spektralzerlegung von $A$ können wir damit über die viel kleinere Matrix
+\[
+	\tilde{A}=U_r^\top AU_r
+\]
+bestimmen.
 Diese Methode der Dimensionsreduktion für SWZ, ist als ökonomischer SWZ bekannt.
+
 
 %---------------------------------------------------------------------------------------
 
 
+%An diesem Punkt kommt natürlich die Frage auf, ob sich das ganze noch weiter reduzierten lässt, ohne zu viel Information zu verlieren.
 
-In der Realität tauchen beim Messen aber Fehler auf. Das heißt, unsere Singulärwerte sind zu einem Teil echt, aber auch zu einem Teil Messfehler.
+Eine weitere Methode welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho ist das \glqq singular value hard thresholding\grqq\ (SVHD) also eine Rangreduzierung bis alle Singulärwerte über einem definierten Schwellenwert liegen.
+Sie haben herausgefunden, dass
+
+
+Plan: (notation aus paper bis auf $\sigma \to \gamma$)
+\begin{enumerate}
+	\item Rahmenstruktur iid und co
+	\item für noise bekannt und $n\times n$ $\hat{\tau}_*=\frac{4}{\sqrt{3}}\gamma\sqrt{n}$
+	\item noise unbekannt und $n\times m$ oder andersrum maaaaaaaaaan keine ahnung gerade $\to$ $\hat{\tau}_*(\beta,Y)\coloneqq \lambda_*(\beta)\sqrt{n}\hat{\gamma}(Y)=\frac{\lambda_*(\beta)}{\sqrt{\mu_\beta}}y_{med}$
+	\item mit $\omega(\beta)=\frac{\lambda_*(\beta)}{\sqrt{\mu_\beta}}$ dann $\hat{\tau}_*(\beta,Y)=\omega(\beta)y_{med}$
+	\item dann $\mu_\beta$ aus MP 
+	\item warum MP
+	\item was kann MP
+	\item ich mach MP
+\end{enumerate}
+
+
+
+
+
+
+
+\end{document}
+
+Wie oben erwähnt, tauchen in der Realität beim Messen aber Fehler auf. Das heißt, unsere Singulärwerte sind zu einem Teil echt, aber auch zu einem Teil Messfehler.
 Wir definieren die Datenmatrix also durch 
 \[
     X \coloneqq \Xtrue+\gamma \Xnoise
 \]
 einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil.
 
+\textcolor{red}{Überleitung zu MP}
+Bei kleinen Matrizen ist das Rauschen kaum ein Problem aber für \glqq große\grqq\ Matrizen kann der Noiseanteil der Singulärwerte sehr groß werden. 
 
 \textcolor{red}{Grobe Richtung} Im Paper \cite{OHT} von Matan Gavish und David L. Donoho erhalten wir durch \textcolor{red}{...}, dass quadratische $n\times n$ Matrizen ab einem Singulärwert von $\tau=\frac{4}{\sqrt{3}}\gamma\sqrt{n}$ abgeschnitten werden. \textcolor{red}{...}
 
 
-\textcolor{red}{Gavish Donoho weiter ausführen}
 
-
-\textcolor{red}{Überleitung zu MP}
-Bei kleinen Matrizen ist das Rauschen kaum ein Problem aber für \glqq große\grqq\ Matrizen kann der Noiseanteil der Singulärwerte sehr groß werden. 
-
-
-
-\end{document}
-
-
-
-%\textcolor{red}{(}Damit können wir die SVD mit $u_i$ und $v_i$ als linke und rechte Singulärvektoren auch durch $X=\sum_{i=1}^{r}\sigma_iu_iv^\top_i$ beschreiben.\textcolor{red}{) hab ich erstmal eingeführt, um einfacher auf die Notation vom Paper zu verweisen (das ist ja aber noch wip)}
+\textcolor{red}{(}Damit können wir die SVD mit $u_i$ und $v_i$ als linke und rechte Singulärvektoren auch durch $X=\sum_{i=1}^{r}\sigma_iu_iv^\top_i$ beschreiben.\textcolor{red}{) hab ich erstmal eingeführt, um einfacher auf die Notation vom Paper zu verweisen (das ist ja aber noch wip)}

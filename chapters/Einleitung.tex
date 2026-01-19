@@ -2,13 +2,15 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-
+\textcolor{red}{Fehlen noch quellen natürlich}
 Dynamic Mode Decomposition, kurz DMD, ist ein datengetriebener Algorithmus, der ursprünglich im Feld der Strömungsdynamik entwickelt wurde. 
-Grundsätzlich dient er zur Analyse dynamischer Systeme mittels Sigulärwertzerlegung großer Datenmatrizen.
-DMD kann anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren. Die Genauigkeit hängt unter anderem davon ab, wie viele Informationen in Form von Messdaten man über das System hat und wie groß die Messfehler also das Rauschen der Daten ist.
+Grundsätzlich dient er der Analyse dynamischer Systeme mittels Sigulärwertzerlegung von großen Datenmatrizen.
+DMD kann anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren. Die Genauigkeit hängt unter anderem davon ab, wie viele Informationen in Form von Messdaten über das System zur Verfügung stehen und wie groß die Messfehler also das Rauschen der Daten ist.
 Dabei ist DMD gut im Erkennen von Mustern, wie im Falle der Strömungsdynamik z.B. Verwirbelungen. 
-Probleme treten jedoch auf, wenn man DMD außerhalb von Simulationen befindet und echte Messungen analysieren will. Bei Messungen hat man immer ein Rauschen in den Daten, welche das Ergebnis verfälschen und sich Fehler schnell fortpflanzen.
-Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD Algorithmen entwickelt, um zum Beispiel unterschiedliche Schwächen des Algorithmus auszugleichen.
+Probleme treten jedoch auf, wenn man DMD außerhalb von Simulationen verwendet und echte Messungen analysieren will. 
+Bei Messungen hat man immer ein Rauschen in den Daten, welche das Ergebnis verfälschen.
+Dadurch kommt es durch Fehlerfortpflanzung schnell zu größeren Ungenauigkeiten.
+Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD Algorithmen entwickelt, um unterschiedliche Schwächen des Algorithmus auszugleichen.
 Das klassische DMD benötigt Messdaten in einheitlichen Zeitabständen.
 Für jede Messung werden alle Daten in eine Spalte $x_i$ einer Datenmatrix $X$ eingetragen. 
 Zusätzlich legen wir eine zweite Datenmatrix $X'$ so an, dass wir in $X$ die Messungen $(x_1,\dots,x_{k-1})$ und in $X'$ die Messungen $(x_2,\dots,x_k)$ haben.
@@ -33,14 +35,14 @@ Bei der SWZ finden wir für ein $X\in\RR^{n\times m}$ zwei orthogonale Matrizen 
 \]
 gilt.
 Bei der Bestimmung von $A$ wird der Rechenaufwand schnell zu groß, weshalb der DMD Algorithmus eine Dimensionsreduktion durchführt. 
-Damit kann man eine Spektralzerlegung von $A$ zu machen, ohne $A$ direkt zu benutzen. 
+Damit kann man eine Spektralzerlegung von $A$ machen, ohne $A$ direkt zu benutzen. 
 Durch die oben genannte Form der Datenmatrizen kann man direkt sehen, dass $X$ maximal von Rang$\,m$ sein kann. 
 Es gibt also maximal $r\leq m$ Singulärwerte, die nicht Null sind. 
 Reduzieren wir also unser $\Sigma$ aus der SWZ auf eine $r\times r$ große Matrix, und entfernen bis auf die ersten $r$ Spalten alle Spalten von $U$ und $V$, erhalten wir mit den reduzierten Matrizen $U_r$, $\Sigma_r$ und $V_r$,
 \[
 X_r=U_r\Sigma_rV_r^\top=U_r\hat{\Sigma}V_r^\top\,.
 \] 
-Nach dem Eckart-Young-Mirsky-Theorem \textcolor{red}{Quelle!!} lässt sich durch
+Nach dem Eckart-Young-Mirsky-Theorem \textcolor{red}{Quelle!! Vielleicht doch eher MSE nehmen weil gleich wie im paper} lässt sich durch
 \begin{align*}
     \dabs{X_r}_F^2=\sum_{i=1}^{r}\sigma_i^2
 \end{align*}
@@ -58,8 +60,8 @@ Diese Methode der Dimensionsreduktion für SWZ, ist als ökonomischer SWZ bekann
 
 %An diesem Punkt kommt natürlich die Frage auf, ob sich das ganze noch weiter reduzierten lässt, ohne zu viel Information zu verlieren.
 
-Eine weitere Methode welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho ist das \glqq singular value hard thresholding\grqq\ (SVHD) also eine Rangreduzierung bis alle Singulärwerte über einem definierten Schwellenwert liegen.
-Sie haben herausgefunden, dass
+Eine weitere Methode, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). Das ist eine Rangreduzierung bis alle Singulärwerte über einem definierten Schwellenwert liegen.
+Gavish und Donoho haben herausgefunden, dass innerhalb einer bestimmten Rahmenstruktur 
 
 
 Plan: (notation aus paper bis auf $\sigma \to \gamma$)

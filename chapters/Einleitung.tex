@@ -60,14 +60,37 @@ Diese Methode der Dimensionsreduktion für SWZ, ist als ökonomischer SWZ bekann
 
 %An diesem Punkt kommt natürlich die Frage auf, ob sich das ganze noch weiter reduzierten lässt, ohne zu viel Information zu verlieren.
 
-Eine weitere Methode, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). Das ist eine Rangreduzierung bis alle Singulärwerte über einem definierten Schwellenwert liegen.
-Gavish und Donoho haben herausgefunden, dass innerhalb einer bestimmten Rahmenstruktur 
+Eine weitere Methode, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). 
+Das ist eine Rangreduzierung bis alle Singulärwerte über einem definierten Schwellenwert $\tau$ liegen.
+Gavish und Donoho definieren einer Rahmenstruktur, in der die Datenmatrix $X$ durch
+\[
+    X \coloneqq \Xtrue+\gamma \Xnoise
+\]
+beschrieben wird. 
+Wir haben also $X$ in einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil aufgeteilt.
+
+\textcolor{red}{nicht sicher wie detailiert ich die Rahmenstruktur definieren soll oder ob überhaupt.}
+
+Innerhalb dieser Rahmenstruktur haben Gavish und Donoho herausgefunden, dass für bekanntes Rauschen $\gamma$ der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
+\[
+	\tau_*=\lambda_*(y)\gamma\sqrt{n}\quad \text{mit}\quad \lambda_*(y) \coloneqq \sqrt{2(y+1)+\frac{8y}{(y+1)+\sqrt{y^2+14y+1}}}
+\]
+liegt. 
+Bei quadratischen Matrizen reduziert sich $\lambda_*$ sogar auf $\frac{4}{\sqrt{3}}$.
+
+In echten Messungen kommt es aber eher selten vor, dass das Rauschen bekannt ist. 
+Dafür kommt an dieser Stelle die Mar\v{c}enko-Pastur-Verteilung zum einsatz. lalala
+
+
+
+
+
 
 
 Plan: (notation aus paper bis auf $\sigma \to \gamma$)
 \begin{enumerate}
-	\item Rahmenstruktur iid und co
-	\item für noise bekannt und $n\times n$ $\hat{\tau}_*=\frac{4}{\sqrt{3}}\gamma\sqrt{n}$
+	\item Rahmenstruktur iid und co [\textcolor{red}{\checkmark}]
+	\item für noise bekannt und $n\times n$ $\tau_*=\frac{4}{\sqrt{3}}\gamma\sqrt{n}$ [\textcolor{green}{\checkmark}]
 	\item noise unbekannt und $n\times m$ oder andersrum maaaaaaaaaan keine ahnung gerade $\to$ $\hat{\tau}_*(\beta,Y)\coloneqq \lambda_*(\beta)\sqrt{n}\hat{\gamma}(Y)=\frac{\lambda_*(\beta)}{\sqrt{\mu_\beta}}y_{med}$
 	\item mit $\omega(\beta)=\frac{\lambda_*(\beta)}{\sqrt{\mu_\beta}}$ dann $\hat{\tau}_*(\beta,Y)=\omega(\beta)y_{med}$
 	\item dann $\mu_\beta$ aus MP 

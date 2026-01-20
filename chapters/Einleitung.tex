@@ -4,28 +4,31 @@
 
 \textcolor{red}{Fehlen noch quellen natürlich}
 Dynamic Mode Decomposition, kurz DMD, ist ein datengetriebener Algorithmus, der ursprünglich im Feld der Strömungsdynamik entwickelt wurde. 
-Grundsätzlich dient er der Analyse dynamischer Systeme mittels Sigulärwertzerlegung von großen Datenmatrizen.
+Grundsätzlich dient er der Analyse dynamischer Systeme mittels Singulärwert\-zerlegung von großen Datenmatrizen.
 DMD kann anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren. Die Genauigkeit hängt unter anderem davon ab, wie viele Informationen in Form von Messdaten über das System zur Verfügung stehen und wie groß die Messfehler also das Rauschen der Daten ist.
 Dabei ist DMD gut im Erkennen von Mustern, wie im Falle der Strömungsdynamik z.B. Verwirbelungen. 
 Probleme treten jedoch auf, wenn man DMD außerhalb von Simulationen verwendet und echte Messungen analysieren will. 
 Bei Messungen hat man immer ein Rauschen in den Daten, welche das Ergebnis verfälschen.
 Dadurch kommt es durch Fehlerfortpflanzung schnell zu größeren Ungenauigkeiten.
 Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten der DMD Algorithmen entwickelt, um unterschiedliche Schwächen des Algorithmus auszugleichen.
+
 Das klassische DMD benötigt Messdaten in einheitlichen Zeitabständen.
-Für jede Messung werden alle Daten in eine Spalte $x_i$ einer Datenmatrix $X$ eingetragen. 
-Zusätzlich legen wir eine zweite Datenmatrix $X'$ so an, dass wir in $X$ die Messungen $(x_1,\dots,x_{k-1})$ und in $X'$ die Messungen $(x_2,\dots,x_k)$ haben.
-Die Datenmatrizen sind in der Regel $n\times m$ große Matrizen, wobei sie deutlich mehr Zeilen als Spalten haben, also $n\gg m$ gilt. 
-Das Ziel von DMD ist es nun einen linearen Operator $A$ bzw. seine Spektralzerlegung zu finden, welcher das System 
+Für jeden Zeitpunkt $i$ werden die jeweiligen Messdaten in die $i$-te Spalte einer Datenmatrix $X$ eingetragen.
+Zusätzlich legen wir eine zweite Datenmatrix $X'$ so an, dass wir in $X$ die Messungen $(x_1,\dots,x_{k-1})$ und in $X'$ die Messungen $(x_2,\dots,x_{k})$ haben.
+Die Datenmatrizen sind in der Regel $n\times m$ große Matrizen, wobei $n$ die Anzahl der Messdaten zum $i$-ten Zeitpunkt ist und $m=k-1$ stellt die Anzahl der Messungen dar.
+In der Regel haben sie deutlich mehr Zeilen als Spalten also $n\gg m$ gilt.
+Das Ziel von DMD ist es einen linearen Operator $A$ bzw. seine Spektralzerlegung zu finden, für den 
 \[
 	X' \approx AX
 \]
-so gut wie möglich beschreibt. Der dafür am besten passende Operator $A$ lässt sich durch 
+so gut wie möglich gilt. 
+Der dafür am besten passende Operator $A$ lässt sich durch 
 \[
 	A=\underset{A}{\arg\min}\dabs{X'-AX}_F=X'X^\dag
 \] 
-bestimmen. Dabei sind $\dabs{\cdot}_F$ die Frobeniusnorm und $X^\dag$ die Moore-Penrose-Inverse, welche wir später noch genauer beschreiben werden. 
+bestimmen. Dabei sind $\dabs{\cdot}_F$ die Frobeniusnorm und $X^\dag$ die Moore-Penrose-Inverse, welche wir \textcolor{red}{später} noch genauer beschreiben werden. 
 Die Moore-Penrose-Inverse lässt sich dann mittels Singulärwertzerlegung (SWZ) der Datenmatrix $X$ bestimmen. 
-Die SWZ beschreiben wir auch später nochmal genauer, liefern aber für einen kleinen Überblick eine vereinfachte Beschreibung.
+Die SWZ beschreiben wir auch \textcolor{red}{später} nochmal genauer, liefern aber für einen kleinen Überblick eine vereinfachte Beschreibung.
 Bei der SWZ finden wir für ein $X\in\RR^{n\times m}$ zwei orthogonale Matrizen $U$ und $V$ mit passenden Dimensionen und ${\hat{\Sigma}=\diag(\sigma_1,\dots,\sigma_r)}$ mit $r\leq\min(n,m)$ und $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass
 \[
 	X = U\Sigma V^\top \text{ mit } \Sigma = \begin{pmatrix}
@@ -38,7 +41,7 @@ Bei der Bestimmung von $A$ wird der Rechenaufwand schnell zu groß, weshalb der 
 Damit kann man eine Spektralzerlegung von $A$ machen, ohne $A$ direkt zu benutzen. 
 Durch die oben genannte Form der Datenmatrizen kann man direkt sehen, dass $X$ maximal von Rang$\,m$ sein kann. 
 Es gibt also maximal $r\leq m$ Singulärwerte, die nicht Null sind. 
-Reduzieren wir also unser $\Sigma$ aus der SWZ auf eine $r\times r$ große Matrix, und entfernen bis auf die ersten $r$ Spalten alle Spalten von $U$ und $V$, erhalten wir mit den reduzierten Matrizen $U_r$, $\Sigma_r$ und $V_r$,
+Reduzieren wir also unser $\Sigma$ aus der SWZ auf eine $r\times r$ große Matrix also $\hat{\Sigma}$, und entfernen bis auf die ersten $r$ Spalten alle Spalten von $U$ und $V$, erhalten wir mit den reduzierten Matrizen $U_r$, $\Sigma_r$ und $V_r$,
 \[
 X_r=U_r\Sigma_rV_r^\top=U_r\hat{\Sigma}V_r^\top\,.
 \] 
@@ -52,7 +55,7 @@ Die Spektralzerlegung von $A$ können wir damit über die viel kleinere Matrix
 	\tilde{A}=U_r^\top AU_r
 \]
 bestimmen.
-Diese Methode der Dimensionsreduktion für SWZ, ist als ökonomischer SWZ bekannt.
+Diese Methode der Dimensionsreduktion für SWZ ist als ökonomischer SWZ bekannt.
 
 
 %---------------------------------------------------------------------------------------
@@ -61,13 +64,13 @@ Diese Methode der Dimensionsreduktion für SWZ, ist als ökonomischer SWZ bekann
 %An diesem Punkt kommt natürlich die Frage auf, ob sich das ganze noch weiter reduzierten lässt, ohne zu viel Information zu verlieren.
 
 Eine weitere Methode, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). 
-Das ist eine Rangreduzierung bis alle Singulärwerte über einem definierten Schwellenwert $\tau$ liegen.
+Das ist eine Rang\-reduzierung bis alle Singulärwerte über einem definierten Schwellenwert $\tau$ liegen.
 Gavish und Donoho definieren einer Rahmenstruktur, in der die Datenmatrix $X$ durch
 \[
     X \coloneqq \Xtrue+\gamma \Xnoise
 \]
 beschrieben wird. 
-Wir haben also $X$ in einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil aufgeteilt.
+Wir haben also $X$ in einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil aufgeteilt. Die Einträge der Fehlermatrix sind unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $E(\Xnoise)=0$ Varianz $Var(\Xnoise)=1$.
 
 \textcolor{red}{nicht sicher wie detailiert ich die Rahmenstruktur definieren soll oder ob überhaupt.}
 
@@ -78,13 +81,43 @@ Innerhalb dieser Rahmenstruktur haben Gavish und Donoho herausgefunden, dass fü
 liegt. 
 Bei quadratischen Matrizen reduziert sich $\lambda_*$ sogar auf $\frac{4}{\sqrt{3}}$.
 
-In echten Messungen kommt es aber eher selten vor, dass das Rauschen bekannt ist. 
-Dafür kommt an dieser Stelle die Mar\v{c}enko-Pastur-Verteilung zum einsatz. lalala
+\textcolor{red}{ab hier eher ungenau aber wenigstens mal "fertig" formuliert}
+
+Da das Rauschen aber nicht unbedingt bekannt ist, haben Gavish und Donoho für diesen Fall einen Rausch-Schätzer 
+\[
+	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med}}{\sqrt{m\cdot\mu_y}}
+\]
+definiert. Hier ist $\sigma_{med}$ der Median der Singulärwerte von $X$ und $\mu_y$ ist der Median der standard Mar\v{c}enko-Pastur-Verteilung. Also mit $y=\frac{n}{m}$, $a=\left(1-\sqrt{y}\right)^2$, $b=\left(1+\sqrt{y}\right)^2$ und $a\leq\mu_y\leq b$ so, dass
+\[
+	\int_{a}^{\mu_y}\frac{1}{2\pi x y}\sqrt{(b-x)(x-a)}\diff x = \frac12
+\]
+gilt. 
+Mit $\hat{\gamma}$ haben sie dann den Schwellenwert für Singulärwerte durch
+\[
+	\hat{\tau}_*(y,X)\coloneqq \lambda_*(y)\hat{\gamma}\sqrt{n} = \frac{\lambda_*(y)}{\sqrt{\mu_y}}\sigma_{med}
+\]
+definiert. 
+
+Uns interessiert hier am Ende die Mar\v{c}enko-Pastur-Verteilung (MP) im Rahmenbereich der unabhängig und identisch verteilten Zufallsvariablen (uiv).
+Was MP macht, ist anzugeben, wie die Singulärwerte einer Matrix aus uiv Zufallsvariablen verteilt sind.
+In dieser Arbeit werden wir die MP einmal konkret beweisen und zeigen, dass es ein $\mu_y$ gibt, mit dem die Verteilung $\frac12$ ergibt.
 
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
 
 
 Plan: (notation aus paper bis auf $\sigma \to \gamma$)
@@ -100,25 +133,5 @@ Plan: (notation aus paper bis auf $\sigma \to \gamma$)
 \end{enumerate}
 
 
-
-
-
-
-
-\end{document}
-
-Wie oben erwähnt, tauchen in der Realität beim Messen aber Fehler auf. Das heißt, unsere Singulärwerte sind zu einem Teil echt, aber auch zu einem Teil Messfehler.
-Wir definieren die Datenmatrix also durch 
-\[
-    X \coloneqq \Xtrue+\gamma \Xnoise
-\]
-einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil.
-
 \textcolor{red}{Überleitung zu MP}
 Bei kleinen Matrizen ist das Rauschen kaum ein Problem aber für \glqq große\grqq\ Matrizen kann der Noiseanteil der Singulärwerte sehr groß werden. 
-
-\textcolor{red}{Grobe Richtung} Im Paper \cite{OHT} von Matan Gavish und David L. Donoho erhalten wir durch \textcolor{red}{...}, dass quadratische $n\times n$ Matrizen ab einem Singulärwert von $\tau=\frac{4}{\sqrt{3}}\gamma\sqrt{n}$ abgeschnitten werden. \textcolor{red}{...}
-
-
-
-\textcolor{red}{(}Damit können wir die SVD mit $u_i$ und $v_i$ als linke und rechte Singulärvektoren auch durch $X=\sum_{i=1}^{r}\sigma_iu_iv^\top_i$ beschreiben.\textcolor{red}{) hab ich erstmal eingeführt, um einfacher auf die Notation vom Paper zu verweisen (das ist ja aber noch wip)}

@@ -2,15 +2,287 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-%\begin{definition}[Dynamisches System]
-%	Sei $X$ eine Menge, $G$ eine Gruppe, welche durch die Gruppenwirkung $\varphi:G\times X \to X$ auf $X$ wirkt.
-%	Dann bezeichnet $(X,G)$ ein dynamisches System.
-%\end{definition}
-
 
 \section{Dynamic Mode Decomposition (DMD) \cite{BigBook}}
 
+In diesem Kapitel wollen wir noch einmal genauer den DMD Algorithmus erklären. Es ist aber nicht notwendig für das weitere Verstehen dieser Arbeit.
 
+Aus der Einleitung wissen wir, dass die Singulärwertzerlegung und die Frobeniusnorm wichtige Werkzeuge des Algorithmus sind, weshalb wir sie hier einmal konkret definieren.
+
+\begin{definition}[Frobeniusnorm]
+	Sei $X\in\CC^{n\times m}$ eine Matrix und $x_{ij}$ mit $i\in \{1,\dots,n\},$ $j\in \{1,\dots,m\}$. Die Frobeniusnorm ist definiert durch
+	\[
+		||X||_F \coloneqq \sqrt{\sum_{i=1}^{n}\sum_{j=1}^{m}|x_{ij}|^2}\,.
+	\]
+\end{definition}
+
+\begin{lemma}
+	Sei $X\in\CC^{n\times m}$ eine Matrix. Dann gilt
+	\[
+		||X||_F = \sqrt{\tr\left( X^HX\right)}\,.
+	\]
+\end{lemma}
+
+\begin{proof}
+	Sei $x_i$ ein Spaltenvektor von $X$und $\bar{x}_{ij}$ in diesem kapitel das komplex konjugierte. Dann ist
+	\begin{align*}
+		X^HX & =
+		\begin{pmatrix}
+			- & x^{H}_1 & - \\
+			  & \vdots  &   \\
+			- & x^{H}_m & -
+		\end{pmatrix}
+		\begin{pmatrix}
+			|   &       & |   \\
+			x_1 & \dots & x_m \\
+			|   &       & |
+		\end{pmatrix}                                                                                              \\
+		     & = \begin{pmatrix}
+			         \displaystyle\sum_{j=1}^{n}x^{H}_{1j} x_{1j} &        & *                                             \\
+			                                                      & \ddots &                                               \\
+			         *                                            &        & \displaystyle\sum_{j=1}^{n} x^{H}_{mj} x_{mj}
+		         \end{pmatrix}
+		= \begin{pmatrix}
+			  \displaystyle\sum_{j=1}^{n}\overline{x}_{1j} x_{1j} &        & *                                                    \\
+			                                                      & \ddots &                                                      \\
+			  *                                                   &        & \displaystyle\sum_{j=1}^{n} \overline{x}_{mj} x_{mj}
+		  \end{pmatrix}\,.
+	\end{align*}
+
+	Mit \(\overline{x}x = |x|^2\) erhalten wir
+	\begin{align}
+		\tr \left(X^HX\right) = \sum_{i=1}^{m}\sum_{j=1}^{n} \overline{x_{ij}} x_{ij} = \sum_{i=1}^{m}\sum_{j=1}^{n} |x_{ij}|^2 = ||X||_F^2 \,. \label{eq:traceFrob}
+	\end{align}
+\end{proof}
+
+
+Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich unitärer Transformation verwendet, welche wir durch folgendes Lemma zeigen.
+
+\begin{lemma}
+	Sei $X\in\CC^{n\times m}$ eine Matrix und \(U\in\CC^{n\times n}\) und \(V\in\CC^{m\times m}\) unitäre Matrizen. Dann gilt
+	\begin{enumerate}
+		\item \(||X||_F =||X^H||_F\),
+		\item \(||UX||_F =||X||_F\),
+		\item \(||XV||_F =||X||_F\).
+	\end{enumerate}
+\end{lemma}
+\begin{proof}\textcolor{white}{Wackelpudding} %\emph{Beweis.}
+	\begin{enumerate}
+		\item Aus Gleichung \eqref{eq:traceFrob} folgt
+		      \[
+			      ||X||_F^2 = \tr \left(X^HX\right) = \sum_{i=1}^{m}\sum_{j=1}^{n} \overline{x_{ij}} x_{ij} = \sum_{j=1}^{n}\sum_{i=1}^{m} \overline{x_{ij}} x_{ij} = \tr\left(XX^H\right) = ||X^H||_F^2 \,.
+		      \]
+		\item Es ist
+		      \[
+			      ||UX||_F^2 = \tr \left(X^HU^HUX\right) =\tr \left(X^H\mathbb{1}X\right) = \tr \left(X^HX\right) = ||X||_F^2\,.
+		      \]
+		\item Mit 1. und 2. folgt
+		      \[
+			      ||XV||_F = ||V^HX^H||_F = ||X^H||_F = ||X||_F\,. \qedhere
+		      \]%\begin{flushright} $\square$ \end{flushright}
+	\end{enumerate}
+\end{proof}
+
+%------------------------------------------------------------------------------------------------
+
+
+\begin{theorem}[Singulärwertzerlegung \cite{Numerik1}] \label{theo:svd}
+	Sei \(X\in \mathbb{R}^{n\times m} \) eine Matrix und ${r\coloneqq \rang X}$ mit $r\leq \min(n,m)$. Dann existieren orthogonale Matrizen \(U\in\RR^{n\times n}\) und \(V\in\RR^{m\times m}\) und eine Diagonalmatrix \(\hat{\Sigma}=\diag(\sigma_1,\dots,\sigma_r)\in\mathbb{R}^{r\times r}\) mit $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass 
+	\[
+		X = U\Sigma V^\top \text{ mit } \Sigma = \begin{pmatrix}
+			\hat{\Sigma} & 0 \\
+			0            & 0
+		\end{pmatrix} \in \mathbb{R}^{n\times m}
+	\]
+	gilt.
+\end{theorem}
+
+
+Der Beweis des Satzes \ref{theo:svd} folgt etwas später, da dafür noch etwas Vorbereitung benötigt wird.
+\begin{remark}
+	Unter den in Satz \ref{theo:svd} genannten Voraussetzungen, ist $\hat{\Sigma}$ durch $X$ eindeutig bestimmt. Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
+\end{remark}
+
+\begin{lemma}
+	Sei \(X\in \mathbb{R}^{n\times m}\) und $\lambda_i$ die Eigenwerte von $X^\top X$. Dann gilt für die Singulärwerte unter den Voraussetzungen aus Satz \ref{theo:svd} 
+	\[
+		\sigma_i=\sqrt{\lambda_i}\,.
+	\]
+\end{lemma}
+
+\begin{proof}
+	Durch 
+	\begin{align*}
+		X^\top X &= \left(U\Sigma V^\top\right)^\top\left(U\Sigma V^\top\right)\\
+				 &= V\Sigma^\top U^\top U\Sigma V^\top \\
+				 &= V\Sigma^\top \Sigma V^\top
+	\end{align*}
+	ist $X^\top X$ ähnlich zu $\Sigma^\top \Sigma$. Also haben $X^\top X$ und $\Sigma^\top \Sigma$ auch die gleichen Eigenwerte.
+\end{proof}
+
+\begin{remark}
+	Damit gilt für die Diagonalelemente von $\hat{\Sigma}$ aus Satz \ref{theo:svd}, $$\sigma_i=\sqrt{\lambda_i}\,,$$ dass deren Wurzeln gleich der Eigenwerte von \(X^\top X\) sind.
+\end{remark}
+
+\begin{definition}
+	Wir nennen die Diagonalelemente $\sigma_i$ von $\hat{\Sigma}$ \emph{Singulärwerte}.
+\end{definition}
+
+\begin{remark} \label{rem:dimensionenNM}
+	Die aus der Singulärwertzerlegung in \ref{theo:svd} entstehenden Singulärwerte sind invariant bezüglich Transposition vom $X$.
+\end{remark}
+
+\begin{proof}
+	Seien die Voraussetzungen aus Satz \ref{theo:svd} gegeben, dann gilt
+	\begin{align*}
+		X^\top = \left(U\Sigma V^\top\right)^\top = V\Sigma^\top U^\top\,.
+	\end{align*}
+	Da $\Sigma$ nur auf der Hauptdiagonalen Einträge hat und sonst mit Nullen gefüllt ist, erhalten wir
+	\[
+		\diag \Sigma^\top = \{\sigma_1,\sigma_2,\dots,\sigma_m\} =\diag \Sigma
+	\]
+\end{proof}
+
+\begin{lemma}[{\cite[191]{Numerik1}}] \label{lem:diagonal}
+	Sei \(X\in\RR^{n\times n}\) eine symmetrische Matrix. Dann existiert eine orthogonale Matrix \(U\in\RR^{n\times n}\) und eine Diagonalmatrix $D\in\RR^{n\times n}$ so, dass
+	\[
+		U^\top XU = D
+	\]
+	gilt.
+\end{lemma}
+
+\begin{lemma}[{\cite[227]{Numerik1}}] \label{lem:obereDreiecks}
+	Sei \(X\in \mathbb{R}^{n\times m}\) eine Matrix mit \(\rang X = r < \min(n,m)\). Dann existieren orthogonale Matrizen \(U\in\RR^{n\times n}\) und \(V\in\RR^{m\times m}\) sowie eine reguläre obere Dreiecksmatrix $\hat{R}\in\RR^{r\times r}$ so, dass
+	\[
+		U^\top X V=R \text{ mit } R = \begin{pmatrix}
+			\hat{R} & 0 \\
+			0       & 0
+		\end{pmatrix} \in \RR^{n\times m}
+	\]
+	gilt.
+\end{lemma}
+
+%-----------------------------------Beweis--SWZ----------------------------------------
+
+\begin{proof}[Beweis Satz \ref{theo:svd}]
+	Nach Bemerkung \ref{rem:dimensionenNM} nehmen wir o.B.d.A an, dass $m\leq n$ gilt.
+	Zunächst betrachten wir den Fall des vollen Ranges von $X$, also $\rang X = r = m$.
+	Bei vollem Rang ist \(X^\top X\in\mathbb{R}^{m\times m}\) sowohl symmetrisch als auch positiv definit. Die Eigenwerte \(\lambda_i\) von \(X^\top X\) sortieren wir nach ihrer Größe, also
+	\[
+		\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_m > 0\,.
+	\]
+	Mit Lemma \ref{lem:diagonal} finden wir ein orthogonales \(V \in \RR^{m\times m}\), sodass
+	\[
+		V^\top X^\top XV=D=\diag \{\lambda_1, \dots , \lambda_m\} \in \mathbb{R}^{m\times m}\,.
+	\]
+	Weiter definieren wir
+	\[
+		\hat{\Sigma}\coloneqq \diag \{\sigma_1, \dots, \sigma_m\}
+	\]
+	mit \(\sigma_i \coloneqq \sqrt{\lambda_i}\in(0,\infty],\text{ für } i=1,\dots, m\), und setzen
+	\[
+		\hat{U}\coloneqq XV\hat{\Sigma}^{-1}\in\RR^{n\times m}\,.
+	\]
+	Jetzt kann man durch Umformung von
+	\begin{align*}
+		\hat{U}^\top\hat{U} & = \hat{\Sigma}^{-\top}V^\top X^\top XV\hat{\Sigma}^{-1} \\
+		                    & =  \hat{\Sigma}^{-1}D\hat{\Sigma}^{-1}                  \\
+		                    & =  \hat{\Sigma}^{-1}\hat{\Sigma}^{-1}D                  \\
+		                    & =  D^{-1}D                                              \\
+		                    & = \mathbb{1}
+	\end{align*}
+	die Orthonormalität der Spalten von \(\hat{U}\) sehen.\\
+	Da $\hat{U}$ in $\RR^{n\times m}$ mit $m<n$ liegt und aus orthonormalen Spaltenvektoren besteht, finden wir ein \(Z\in\RR^{n\times (n-m)}\), welches $\hat{U}$ so um $n-m$ orthonormale Spaltenvektoren ergänzt, dass
+	\[
+		U = (\hat{U}\ Z)\in\RR^{n\times n}
+	\]
+	eine orthogonale Matrix ist. Es gilt also
+	\begin{align*}
+		Z^\top XV\hat{\Sigma}^{-1} & =Z^\top\hat{U}               \\
+		                           & =0 \in\RR^{(n-m)\times n}\,.
+	\end{align*}
+	Da \(\hat{\Sigma}\hat{\Sigma}^{-1}=\mathbb{1}\) ist, folgt auch direkt
+	\[
+		Z^\top XV=0\,.
+	\]
+	Zusammengetragen haben wir dann
+	\begin{align*}
+		U^\top XV & = \begin{pmatrix}
+			              \hat{U}^\top \\
+			              Z^\top
+		              \end{pmatrix} XV  = \begin{pmatrix}
+			                                  \hat{\Sigma}^{-1}V^\top X^TXV \\
+			                                  Z^\top XV
+		                                  \end{pmatrix} \\
+		          & = \begin{pmatrix}
+			              \hat{\Sigma}^{-1}D \\
+			              0
+		              \end{pmatrix}                                \\
+		          & = \begin{pmatrix}
+			              \hat{\Sigma} \\
+			              0
+		              \end{pmatrix}\,,
+	\end{align*}
+	womit wir den Fall des vollen Ranges bewiesen hätten.
+	\\
+	Seien $\lambda_i$ wie oben definiert wieder die Eigenwerte von $X^\top X$ und sei $X_r\in\RR^{n\times m}$ eine Matrix mit $\rang X_r=r<m$. Nach Lemma \ref{lem:obereDreiecks} gibt es zwei orthognonale Matrizen \(\tilde{U}\in\RR^{n\times n}\) und \(\tilde{V}\in\RR^{m\times m}\), sowie eine obere Dreiecksmatrix $\hat{R}\in\RR^{r\times r}$, sodass
+	\begin{align*}
+		\tilde{U}^\top X_r \tilde{V}=R \text{ mit } R = \begin{pmatrix}
+			                                                \hat{R} & 0 \\
+			                                                0       & 0
+		                                                \end{pmatrix} \in \RR^{n\times m}
+	\end{align*}
+	gilt. Nach obigem Fall mit vollem Rang, wissen wir, dass es orthogonale Matrizen \(U_r\in\RR^{n\times n}\) und \(V_r\in\RR^{r\times r}\), sodass
+	\begin{align*}
+		U_r^\top\begin{pmatrix}
+			        \hat{R} \\
+			        0
+		        \end{pmatrix}V_r = \begin{pmatrix}
+			                           \hat{\Sigma}_r \\
+			                           0
+		                           \end{pmatrix}\in\RR^{n\times r}\,.
+	\end{align*}
+	Dabei ist $\hat{\Sigma}_r \coloneqq \diag \{\sigma_1, \dots, \sigma_r\}$ mit $\sigma_i = \sqrt{\lambda_i}$.
+	Im Folgenden erweitern wir
+	\begin{align*}
+		\begin{pmatrix}
+			\hat{\Sigma}_r \\
+			0
+		\end{pmatrix}\in\RR^{n\times r} \quad\text{zu}\quad\begin{pmatrix}
+			                                                   \hat{\Sigma}_r & 0 \\
+			                                                   0              & 0
+		                                                   \end{pmatrix}=\Sigma \in \RR^{n\times m}
+	\end{align*}
+	und finden eine orthogonale Fortsetzung für $V_r$ zu
+	\begin{align*}
+		\bar{V}_r=\begin{pmatrix}
+			          V_r & 0          \\
+			          0   & \mathbb{1}
+		          \end{pmatrix} \in \RR^{m\times m}\,.
+	\end{align*}
+	Wenn wir uns jetzt die orthogonalen Matrizen
+	\begin{align*}
+		U \coloneqq \tilde{U}U_r\in \RR^{n\times n}
+		\quad\text{und}\quad
+		V \coloneqq \tilde{V}\bar{V}_r\in \RR^{n\times m}
+	\end{align*}
+	definieren, erhalten wir durch
+	\begin{align*}
+		U^\top X_r V & = U_r^\top\tilde{U}X_r\tilde{V}\bar{V}_r \\
+		             & =U_r^\top\begin{pmatrix}
+			                        \hat{R} & 0 \\
+			                        0       & 0
+		                        \end{pmatrix}\bar{V}_r          \\
+		             & =\begin{pmatrix}
+			                \hat{\Sigma}_r & 0 \\
+			                0              & 0
+		                \end{pmatrix} \eqqcolon \Sigma
+	\end{align*}
+	eine erfolgreiche Zerlegung von $X_r$ durch orthogonale Matrizen.
+\end{proof}
+
+%--------------------------------------DMD---------------------------------------------
+Da Wir das jetzt verstanden haben können wir mit DMD anfangen. 
 
 
 Sei nun \(X\in\mathbb{R}^{n\times m}\) der Zustand des Systems zu \(m \) diskreten Zeitpunkten \(t_k =k \Delta t\)  mit \(k\in\NN\) also

@@ -1,7 +1,7 @@
 \documentclass[../Bachelor_LennartKoliwer.tex]{subfiles}
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
-Test
+
 
 
 Sei $X\in\CC^{n\times m}$ eine Matrix dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind und ihr Erwartungswert $0$ mit Varianz $\sigma^2$ ist. Weiter sind $x_k=\left(x_{1k},\dots,x_{nk}\right)$, $\bm{X}=(x_1,\dots,x_m)$ und $\bar{x}=\frac1m\sum_{k=1}^m x_k$. Dann ist die empirische Kovarianzmatrix
@@ -112,7 +112,7 @@ Damit können wir die Momente explizit bestimmen.
         &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{1}{2\pi y} \frac{(k-1)!}{(2l)!(k-1-2l)!}(1+y)^{k-1-2l} (4y)^{l+1} \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!}\,.
     \end{align*}
 
-    Hier lassen sich diverse variablen kürzen, sodass wir 
+    Hier lassen sich diverse Variablen so kürzen, dass wir 
 
     \begin{align*}
         \beta_k = \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{(k-1)!}{l!(l+1)!(k-1-2l)!}y^l(1+y)^{k-1-2l}

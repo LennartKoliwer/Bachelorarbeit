@@ -3,11 +3,40 @@
 \begin{document}
 
 
+Dieses Kapitel basiert auf dem Buch \glqq Spectral analysis of large dimensional random matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
 
-Sei $X\in\CC^{n\times m}$ eine Matrix dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind und ihr Erwartungswert $0$ mit Varianz $\sigma^2$ ist. Weiter sind $x_k=\left(x_{1k},\dots,x_{nk}\right)$, $\bm{X}=(x_1,\dots,x_m)$ und $\bar{x}=\frac1m\sum_{k=1}^m x_k$. Dann ist die empirische Kovarianzmatrix
+Das Ziel dieses Kapitels ist es herauszufinden, woher die Mar\v{c}enko-Pastur-Verteilung kommt und was sie aussagt.
+
+
+
+\section{Vorbereitung}
+
+lalalala
+
+
+\begin{definition}
+    Sei S eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann ist die \emph{empirische Spektralverteilung} durch
+    \begin{align*}\label{eq:ESD}
+        F^S(x)=\frac1p|A| \quad \text{mit } A\coloneqq\{i\leq p \colon \lambda_i \leq x\}
+    \end{align*}
+    definiert.
+\end{definition}
+
+\begin{theorem}
+    
+\end{theorem}
+
+
+
+
+Sei $X$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
+Dabei sind ihre Erwartungswerte  $0$ und ihre Varianz beträgt  $\sigma^2$. 
+Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)$, $\bm{X}=(x_1,\dots,x_n)$ und $\bar{x}=\frac1n\sum_{k=1}^n x_k$. 
+Dann ist die Stichproben Kovarianzmatrix
 \[
-	\bm{S}=\frac{1}{m-1}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H
+	\bm{S}=\frac{1}{m}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H\,.
 \]
+
 
 
 
@@ -50,8 +79,33 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
     \end{align*}
 \end{proof}
 
-Damit können wir die Momente explizit bestimmen.
+Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig durch die Momente ${\beta_x}$ bestimmt werden und wie die Momente explizit bestimmt aussehen.
 %----------------------------------------------------------------------------------
+
+\begin{lemma}[Carlman] \label{lem:Carlman}
+    Sei $\{\beta_k(F)\}_{k\in\NN_0}$ eine Folge von Momenten der Verteilungsfunktion $F$. Ist die \emph{Carlman Bedingung}
+    \begin{align*}
+        \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}}=\infty
+    \end{align*}
+    erfüllt, dann wird die $F$ durch $\{\beta_k\}_{k\in\NN_0}$ eindeutig bestimmt.
+\end{lemma}
+
+Die Eindeutigkeit lässt sich dann mit Lemma \ref{lem:Carlman} zeigen.
+Wir sehen einmal nach Definition \ref{eq:momente}, dass wir $\beta_{2k}$ durch
+\begin{align*}\label{eq:moment_abschätzen}
+    \beta_{2k}  &= \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-x)(x-a)}dx \\
+                &\leq \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-a)(b-a)}dx \\
+                &= \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}(b-a)dx \\
+                &= \frac{1}{4k\pi y}(b^{2k}-a^{2k})(b-a) \\
+                &= \frac{1}{k\pi\sqrt{y}}(b^{2k}-a^{2k}) \\
+                &\leq \frac{1}{k\pi\sqrt{y}}b^{2k} \\
+                &\leq b^{2k} = \left(1+\sqrt{y}\right)^{4k}
+\end{align*}
+abschätzen können. Mit der Abschätzung \ref{eq:moment_abschätzen} und Lemma \ref{lem:Carlman} haben wir durch
+\begin{align*}
+        \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}} \leq \sum_{k=1}^{\infty} \left(1+\sqrt{y}\right)^{2} = \infty
+\end{align*}
+die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten. 
 
 \begin{lemma}
     Die explizite Darstellung der Momente ist 
@@ -174,9 +228,9 @@ Damit können wir die Momente explizit bestimmen.
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=1}^{r+1} \binom{r}{(r+1)-l} \binom{k-r}{l}\,.
     \end{align*}
     Wir wollen hier die Vandermonde Identität \textcolor{red}{Quelle!} 
-    \begin{align*}
+    \begin{align}
         \sum_{"o=0}^{"u}\binom{n}{"o}\binom{m}{"u-"o}=\binom{n+m}{"u} \label{eq:vandermonde}
-    \end{align*}
+    \end{align}
     nutzen. Dafür lassen wir die Summe von $l=0$ beginnen, da der Summand das Ergebnis nicht ändert. Mit der Identität \refeq{eq:vandermonde} erhalten wir
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{r+1} \binom{r}{(r+1)-l} \binom{k-r}{l}\\

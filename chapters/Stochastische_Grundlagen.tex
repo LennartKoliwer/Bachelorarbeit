@@ -57,5 +57,19 @@
     Kovarianz
 \end{definition}
 
+\begin{theorem}[Starkes gesetz der großen Zahlen]\label{theo:StarkeGroßeZahlen}\cite[139]{Stochastik}
+    Seien $\{\mathcal{Z}_i\}_{i\in\NN}$ unabhängige und identisch verteilte Zufallsvariablen und besitzen ein Moment erster Ordnung, dann gilt 
+    \begin{align*}
+        \frac{1}{n}\sum_{i=1}^{n}\mathcal{Z}_i \underset{f.s.}{\overset{n\to\infty}{\longrightarrow}} \mathbb{E}(\mathcal{Z}_1)\,.
+    \end{align*}   
+\end{theorem}
+
+
+\begin{definition}[Lévy-Metrik]\label{def:lévy}\cite[164]{Stochastik}
+    Seien $F_1$ und $F_2$ Wahrscheinlichkeitsmaße auf $(\RR,\mathscr{B})$ mit zugehörigen Verteilungsfunktionen $\textbf{\emph{F}}_1$ und $\textbf{\emph{F}}_2$. Dann ist die \emph{Lévy-Metrik} definiert durch
+    \begin{align*}
+        \mathscr{L}(F_1,F_2)= \inf\{\varepsilon>0 ,\ x\in\RR \colon \textbf{\emph{F}}_1(x-\varepsilon)-\varepsilon\leq \textbf{\emph{F}}_2(x) \leq \textbf{\emph{F}}_1(x+\varepsilon)+\varepsilon\}\,.
+    \end{align*} 
+\end{definition}
 
 \end{document}

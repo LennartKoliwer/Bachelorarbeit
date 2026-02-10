@@ -24,7 +24,7 @@ Aus der Einleitung wissen wir, dass die Singulärwertzerlegung und die Frobenius
 \end{lemma}
 
 \begin{proof}
-	Sei $x_i$ ein Spaltenvektor von $X$und $\bar{x}_{ij}$ in diesem kapitel das komplex konjugierte. Dann ist
+	Sei $x_i$ ein Spaltenvektor von $X$ und $\bar{x}_{ij}$ in diesem kapitel das komplex konjugierte. Dann ist
 	\begin{align*}
 		X^HX & =
 		\begin{pmatrix}
@@ -43,15 +43,15 @@ Aus der Einleitung wissen wir, dass die Singulärwertzerlegung und die Frobenius
 			         *                                            &        & \displaystyle\sum_{j=1}^{n} x^{H}_{mj} x_{mj}
 		         \end{pmatrix}
 		= \begin{pmatrix}
-			  \displaystyle\sum_{j=1}^{n}\overline{x}_{1j} x_{1j} &        & *                                                    \\
+			  \displaystyle\sum_{j=1}^{n}\bar{x}_{1j} x_{1j} &        & *                                                    \\
 			                                                      & \ddots &                                                      \\
-			  *                                                   &        & \displaystyle\sum_{j=1}^{n} \overline{x}_{mj} x_{mj}
+			  *                                                   &        & \displaystyle\sum_{j=1}^{n} \bar{x}_{mj} x_{mj}
 		  \end{pmatrix}\,.
 	\end{align*}
 
-	Mit \(\overline{x}x = |x|^2\) erhalten wir
+	Mit \(\bar{x}x = |x|^2\) erhalten wir
 	\begin{align}
-		\tr \left(X^HX\right) = \sum_{i=1}^{m}\sum_{j=1}^{n} \overline{x_{ij}} x_{ij} = \sum_{i=1}^{m}\sum_{j=1}^{n} |x_{ij}|^2 = ||X||_F^2 \,. \label{eq:traceFrob}
+		\tr \left(X^HX\right) = \sum_{i=1}^{m}\sum_{j=1}^{n} \bar{x}_{ij} x_{ij} = \sum_{i=1}^{m}\sum_{j=1}^{n} |x_{ij}|^2 = ||X||_F^2 \,. \label{eq:traceFrob}
 	\end{align}
 \end{proof}
 
@@ -70,7 +70,7 @@ Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich u
 	\begin{enumerate}
 		\item Aus Gleichung \eqref{eq:traceFrob} folgt
 		      \[
-			      ||X||_F^2 = \tr \left(X^HX\right) = \sum_{i=1}^{m}\sum_{j=1}^{n} \overline{x_{ij}} x_{ij} = \sum_{j=1}^{n}\sum_{i=1}^{m} \overline{x_{ij}} x_{ij} = \tr\left(XX^H\right) = ||X^H||_F^2 \,.
+			      ||X||_F^2 = \tr \left(X^HX\right) = \sum_{i=1}^{m}\sum_{j=1}^{n} \bar{x}_{ij} x_{ij} = \sum_{j=1}^{n}\sum_{i=1}^{m} \bar{x}_{ij} x_{ij} = \tr\left(XX^H\right) = ||X^H||_F^2 \,.
 		      \]
 		\item Es ist
 		      \[

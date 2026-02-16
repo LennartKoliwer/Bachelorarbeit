@@ -14,16 +14,19 @@ Das Ziel dieses Kapitels ist es herauszufinden, woher die Mar\v{c}enko-Pastur-Ve
 lalalala
 
 
-\begin{definition}
+\begin{definition}\label{def:ESD}
     Sei S eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann ist die \emph{empirische Spektralverteilung} durch
-    \begin{align*}\label{eq:ESD}
+    \begin{align*}
         F^S(x)=\frac1p|A| \quad \text{mit } A\coloneqq\{i\leq p \colon \lambda_i \leq x\}
     \end{align*}
     definiert.
 \end{definition}
 
-\begin{theorem}
-    
+\begin{theorem}\label{theo:ESDrang1}
+    Seien $A,B\in\CC^{p\times n}$. Dann gilt 
+    \begin{align*}
+        \dabs{F^{AA^H}-F^{BB^H}}\leq\frac1p\rang(A-B)
+    \end{align*}
 \end{theorem}
 
 
@@ -298,13 +301,53 @@ die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten.
     Nach Lemma \ref{lem:L4} erhalten wir
     \begin{align*}
         \mathscr{L}^4\lr{F^{S_n},F^{\hat{S}_n}} &\leq \frac{2}{np}\tr\lr{XX^H+\hat{X}\hat{X}^H}\tr{\lr{(X-\hat{X})(X-\hat{X})^{H}}} \\
-        &=\lr{\frac{2}{np}\sum_{i,j=1}^{p}x_{ij}x_{ij}^H+\hat{x}_{ij}\hat{x}_{ij}^H}\lr{\frac{1}{np}\sum_{i,j=1}^{p}(x_{ij}-\hat{x}_{ij})(x_{ij}-\hat{x}_{ij})^H} \\
-        &=\lr{\frac{2}{np}\sum_{i,j=1}^{p}|x_{ij}|^2+|\hat{x}_{ij}|^2}\lr{\frac{1}{np}\sum_{i,j=1}^{p}|x_{ij}-\hat{x}_{ij}|^2} \\
-        &\leq \lr{\frac{4}{np}\sum_{i,j=1}^{p}|x_{ij}|^2}\lr{\frac{1}{np}\sum_{i,j=1}^{p}|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} \\
+        &=\lr{\frac{2}{np}\sum_{i,j}x_{ij}x_{ij}^H+\hat{x}_{ij}\hat{x}_{ij}^H}\lr{\frac{1}{np}\sum_{i,j}(x_{ij}-\hat{x}_{ij})(x_{ij}-\hat{x}_{ij})^H} \\
+        &=\lr{\frac{2}{np}\sum_{i,j}|x_{ij}|^2+|\hat{x}_{ij}|^2}\lr{\frac{1}{np}\sum_{i,j}|x_{ij}-\hat{x}_{ij}|^2} \\
+        &\leq \lr{\frac{4}{np}\sum_{i,j}|x_{ij}|^2}\lr{\frac{1}{np}\sum_{i,j}|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} \\
         &\overset{f.s.}{\longrightarrow} 4\mathbb{E}\lr{|x_{ij}|^2}\mathbb{E}\lr{|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} \\
         &\overset{f.s.}{\longrightarrow} 4\mathbb{E}\lr{|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} \\
         &\overset{C\to\infty}{\longrightarrow} 0
     \end{align*}
+
+    lalala nach Satz \ref{theo:ESDrang1}
+    \begin{align*}
+        \dabs{F^{\hat{S}_n}-F^{\tilde{S}_n}} &\leq \frac1p \rang(\hat{X}_n-\tilde{X}_n) \\
+        &= \frac1p \rang(\mathbb{E}(\hat{x}_{11})) \\
+        &= \frac1p
+    \end{align*}
+
+    lalala Sei $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$ wenn $C\to \infty$. Dann gilt wieder mit Lemma \ref{lem:L4}
+    \begin{align*}
+        \mathscr{L}^4\lr{F^{\tilde{S}_n},F^{\tilde{S}_n}} &\leq \frac{2}{n}\tr\lr{\tilde{X}\tilde{X}^H+\frac{1}{\tilde{\sigma}^2}\tilde{X}\tilde{X}^H}\tr{\lr{\lr{1-\frac{1}{\tilde{\sigma}}}^2 \tilde{X}\tilde{X}^H}} \\
+        &= \lr{\frac{2}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H-\frac{2\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}}+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}} \\
+        &= \lr{\frac{2}{np}\sum_{i,j}|\tilde{x}_{ij}|^2+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}|\tilde{x}_{ij}|^2-\frac{2|\tilde{x}_{ij}|^2}{\tilde{\sigma}}+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
+        &= \lr{\frac{2}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2-\tilde{\sigma}2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
+        &= 2\lr{\frac{\tilde{\sigma}^2+1}{np\tilde{\sigma}^2}\sum_{i,j}|\tilde{x}_{ij}|^2}\lr{\frac{(\tilde{\sigma}-1)^2}{np\tilde{\sigma}^2}\sum_{i,j}|\tilde{x}_{ij}|^2} \\
+        &\overset{f.s.}{\longrightarrow} 2\frac{\tilde{\sigma}^2+1}{\tilde{\sigma}^2}\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\frac{(\tilde{\sigma}-1)^2}{\tilde{\sigma}^2}\mathbb{E}\lr{|\tilde{x}_{ij}|^2} \\
+        &\overset{C\to\infty}{\longrightarrow} 0
+    \end{align*}
+    lalalalala wir können sagen $x_{ij}$ ist gleichmäßig durch $C$ beschränkt.
+
+    lalala jetzt teil 2.
+
+    Nach der Moment Methode (S.10) erhalten wir
+    \begin{align*}
+        \beta_k(S_n)&= \int_{-\infty}^{\infty}x^kF^{S_n}\diff x \\
+                    &= \frac{1}{p}\tr\lr{S_n^k} \\
+                    &= \frac{1}{n^kp}\tr\lr{\lr{XX^H}^k}
+    \intertext{lalala Graphen. überleitung muss ich noch schön ausformulieren}
+                    &= \frac{1}{n^kp}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\bar{x}_{i_2j_1}x_{i_2j_2}\bar{x}_{i_3j_2}\cdots x_{i_kj_k}\bar{x}_{i_1j_k} \\
+                    & \coloneqq \frac{1}{n^kp} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} X_{G(\emph{\textbf{i}},\emph{\textbf{j}})}
+    \end{align*}
+    wollen jetzt zeigen, dass 
+    \begin{align*}
+        \mathbb{E}(\beta_k(S_n)) &\coloneqq \frac{1}{n^kp} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\mathbb{E}\lr{X_{G(\emph{\textbf{i}},\emph{\textbf{j}})}}\\
+        &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}}
+        \intertext{und}
+        \text{Var}(\beta_k(S_n)) &\coloneqq \frac{1}{n^kp} \sum_{\emph{\textbf{i}}_1,\emph{\textbf{j}}_1,\emph{\textbf{i}}_2,\emph{\textbf{j}}_2,}\lr{\mathbb{E}\lr{X_{G_1(\emph{\textbf{i}}_1,\emph{\textbf{j}}_1)}X_{G_2(\emph{\textbf{i}}_2,\emph{\textbf{j}}_2)}}-\mathbb{E}\lr{X_{G_1(\emph{\textbf{i}}_1,\emph{\textbf{j}}_1)}}\mathbb{E}\lr{X_{G_2(\emph{\textbf{i}}_2,\emph{\textbf{j}}_2)}}} \\ 
+        &=\mathcal{O}\lr{\frac{1}{p^2}}
+    \end{align*}
+    
 \end{proof}
 
 

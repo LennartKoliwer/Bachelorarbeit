@@ -318,7 +318,7 @@ die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten.
 
     lalala Sei $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$ wenn $C\to \infty$. Dann gilt wieder mit Lemma \ref{lem:L4}
     \begin{align*}
-        \mathscr{L}^4\lr{F^{\tilde{S}_n},F^{\tilde{S}_n}} &\leq \frac{2}{n}\tr\lr{\tilde{X}\tilde{X}^H+\frac{1}{\tilde{\sigma}^2}\tilde{X}\tilde{X}^H}\tr{\lr{\lr{1-\frac{1}{\tilde{\sigma}}}^2 \tilde{X}\tilde{X}^H}} \\
+        \mathscr{L}^4\lr{F^{\tilde{S}_n},F^{\tilde{\sigma}^{-2}\tilde{S}_n}} &\leq \frac{2}{n}\tr\lr{\tilde{X}\tilde{X}^H+\frac{1}{\tilde{\sigma}^2}\tilde{X}\tilde{X}^H}\tr{\lr{\lr{1-\frac{1}{\tilde{\sigma}}}^2 \tilde{X}\tilde{X}^H}} \\
         &= \lr{\frac{2}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H-\frac{2\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}}+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}} \\
         &= \lr{\frac{2}{np}\sum_{i,j}|\tilde{x}_{ij}|^2+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}|\tilde{x}_{ij}|^2-\frac{2|\tilde{x}_{ij}|^2}{\tilde{\sigma}}+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
         &= \lr{\frac{2}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2-\tilde{\sigma}2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
@@ -335,7 +335,8 @@ die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten.
         \beta_k(S_n)&= \int_{-\infty}^{\infty}x^kF^{S_n}\diff x \\
                     &= \frac{1}{p}\tr\lr{S_n^k} \\
                     &= \frac{1}{n^kp}\tr\lr{\lr{XX^H}^k}
-    \intertext{lalala Graphen. überleitung muss ich noch schön ausformulieren}
+    \intertext{lalala Graphen. Überleitung muss ich noch schön ausformulieren.}
+    \intertext{Wir setzen $\emph{\textbf{i}}=(i_1,\dots,i_k)\in [1,p]$ und $\emph{\textbf{j}}=(i_1,\dots,i_k)\in [1,n]$.}
                     &= \frac{1}{n^kp}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\bar{x}_{i_2j_1}x_{i_2j_2}\bar{x}_{i_3j_2}\cdots x_{i_kj_k}\bar{x}_{i_1j_k} \\
                     & \coloneqq \frac{1}{n^kp} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} X_{G(\emph{\textbf{i}},\emph{\textbf{j}})}
     \end{align*}
@@ -347,7 +348,64 @@ die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten.
         \text{Var}(\beta_k(S_n)) &\coloneqq \frac{1}{n^kp} \sum_{\emph{\textbf{i}}_1,\emph{\textbf{j}}_1,\emph{\textbf{i}}_2,\emph{\textbf{j}}_2,}\lr{\mathbb{E}\lr{X_{G_1(\emph{\textbf{i}}_1,\emph{\textbf{j}}_1)}X_{G_2(\emph{\textbf{i}}_2,\emph{\textbf{j}}_2)}}-\mathbb{E}\lr{X_{G_1(\emph{\textbf{i}}_1,\emph{\textbf{j}}_1)}}\mathbb{E}\lr{X_{G_2(\emph{\textbf{i}}_2,\emph{\textbf{j}}_2)}}} \\ 
         &=\mathcal{O}\lr{\frac{1}{p^2}}
     \end{align*}
+    Die $G(\emph{\textbf{i}},\emph{\textbf{j}})$ Graphen lassen sich in drei Kategorien einteilen. Wir bezeichnen $r$ als Anzahl ungleicher \emph{\textbf{i}} Knoten $-1$, $s$ ist als Anzahl ungleicher \emph{\textbf{j}} Knoten und $k$ als die Anzahl der Kanten die auf \emph{\textbf{i}} Knoten zeigen. 
     
+    Die Kategorie $\Delta_1(k,r,s)$  fasst alle Graphen zusammen, die zu jeder Kante von \emph{\textbf{i}} nach \emph{\textbf{j}} genau eine Kante vom gleichen \emph{\textbf{j}} Knoten zum gleichen \emph{\textbf{i}} Knoten haben. Hier gilt $r+s=k$.
+
+    Die Kategorie $\Delta_2(k,r,s)$ beinhaltet alle Graphen, die mindestens eine Kante besitzen, die nicht doppelt belegt ist.
+
+    Und die letzte Kategorie $\Delta_3(k,r,s)$ sind alle Graphen die weder in $\Delta_1(k,r)$ noch in $\Delta_2(k,r,s)$ gehören.
+
+    Für bessere Lesbarkeit schreiben wir nur noch $\Delta_{1,2,3}$.
+    \newline
+
+    Wir haben per definition 
+    \begin{align*}
+        \EE(\beta_k(S_n)) = \frac{1}{n^kp} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{X_{G(\emph{\textbf{i}},\emph{\textbf{j}})}}
+    \end{align*}
+    Teilen wir die Graphen in ihre Kategorien ein, erhalten wir mit Lemma \ref{lem:AnzahlIsomklasse}
+    \begin{align*}
+        \EE(\beta_k(S_n)) = \frac{1}{n^kp} \lr{\overbrace{\sum_{\Delta_1} \alpha\EE\lr{X_{\Delta_1}}}^{W_1\coloneqq}+\overbrace{\sum_{\Delta_2} \alpha\EE\lr{X_{\Delta_2}}}^{W_2\coloneqq}+\overbrace{\sum_{\Delta_3} \alpha\EE\lr{X_{\Delta_3}}}^{W_3\coloneqq}}\,.
+    \end{align*}
+
+    Für $W_1$ erhalten wir nach Lemma \ref{lem:AnzahlIsomklasse} und Lemma \ref{AnzahlKateg1Graphen}
+    \begin{align*}
+        W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}}\EE\lr{X_{\Delta_1}}
+        \intertext{Da jede Kante genau 2 mal belegt ist haben wir $\EE\lr{|x_{\emph{\textbf{i}}\emph{\textbf{j}}}|^2}=1$. Wir können also schreiben}
+        W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \\
+        &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}\frac{p^{r+1}n^{k-r}}{n^k p}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \\
+        &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \\
+        &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}}\,.
+    \end{align*}
+
+    Für $W_2$ können wir sehen, dass 
+    \begin{align*}
+        W_2 = \frac{1}{n^k p}\sum_{\Delta_2} \alpha\EE\lr{X_{\Delta_2}} = 0
+    \end{align*}
+    gilt, da wir den Ertwartungswert auf alle Kanten $x_{ij}$ aufteilen können und es in Kategorie $\Delta_2$ mindestens eine alleinstehende Kante gibt. Es gibt demnach mindestens ein $\omega_i$ in 
+    \begin{align*}
+        \EE\lr{X_{\Delta_2}}= \EE(x_{i_1j_1}^{\omega_1})\EE(x_{i_2j_1}^{\omega_2})\cdots
+    \end{align*}
+    welches gleich $1$ ist, woraus folgt, dass $\EE(x_{i_kj_k}^{1})=0=\EE\lr{X_{\Delta_2}}$ ist.
+
+    \textcolor{red}{(muss ich anders anfangen wegen $\EE(C)$)}
+
+    Und Für $W_3$ wissen wir, dass  gilt und wir wieder mit Lemma \ref{lem:AnzahlIsomklasse} 
+    \begin{align*}
+        W_3 = \frac{1}{n^k p}\sum_{\Delta_3} \alpha\EE\lr{X_{\Delta_3}}
+    \end{align*}
+    erhalten.
+    Weiter oben haben wir gezeigt, dass $x_{ij}$ gleichmäßig durch ein $C>0$ beschränkt ist. Daraus erhalten wir, dass $|X_{G(\emph{\textbf{i}},\emph{\textbf{j}})}|\leq C^{2k}$. Mit Lemma \ref{lem:AnzahlEinezlKantenKateg3} wissen wir, dass die Anzahl an paarweise unterschiedlicher Knoten maximal $k$ betragen kann. Dadurch ist die Anzahl unterschiedlicher $\Delta_3$ Graphen in $\mathcal{O}\lr{n^k}$. Wir haben also
+    \begin{align*}
+        \frac{1}{n^k p}\sum_{\Delta_3} \alpha\lr{X_{\Delta_3}} &= \frac{C^{2k}}{n^k p} \mathcal{O}\lr{n^k} \\
+        &= \mathcal{O}\lr{\frac{1}{p}}\,.
+    \end{align*}
+    Mit allem oben verbunden erhalten wir 
+    \begin{align*}
+        \EE(\beta_k(S_n)) = \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}}
+    \end{align*}
+
+    Jetzt zur Varianz....(morgen)
 \end{proof}
 
 

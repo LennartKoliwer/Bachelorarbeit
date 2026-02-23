@@ -8,46 +8,17 @@ Dieses Kapitel basiert auf dem Buch \glqq Spectral analysis of large dimensional
 Das Ziel dieses Kapitels ist es herauszufinden, woher die Mar\v{c}enko-Pastur-Verteilung kommt und was sie aussagt.
 
 
-
-\section{Vorbereitung}
-
-lalalala
-
-
-\begin{definition}\label{def:ESD}
-    Sei S eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann ist die \emph{empirische Spektralverteilung} durch
-    \begin{align*}
-        F^S(x)=\frac1p|A| \quad \text{mit } A\coloneqq\{i\leq p \colon \lambda_i \leq x\}
-    \end{align*}
-    definiert.
-\end{definition}
-
-\begin{theorem}\label{theo:ESDrang1}
-    Seien $A,B\in\CC^{p\times n}$. Dann gilt 
-    \begin{align*}
-        \dabs{F^{AA^H}-F^{BB^H}}\leq\frac1p\rang(A-B)
-    \end{align*}
-\end{theorem}
-
-
+%---------------------------------------------------------------
 
 
 Sei $X$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
 Dabei sind ihre Erwartungswerte  $0$ und ihre Varianz beträgt  $\sigma^2$. 
 Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)$, $\bm{X}=(x_1,\dots,x_n)$ und $\bar{x}=\frac1n\sum_{k=1}^n x_k$. 
-Dann ist die Stichproben Kovarianzmatrix
-\[
-	\bm{S}=\frac{1}{m}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H\,.
-\]
+Dann ist die Stichproben-Kovarianzmatrix
+\begin{align}
+    \bm{S}=\frac{1}{m}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H \label{eq:StichKovar}
+\end{align}
 
-
-
-
-
-
-
-
-%---------------------------------------------------------------
 
 
 \section{Mar\v{c}enko-Pastur Momente}
@@ -250,20 +221,64 @@ die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten.
 
 
 
-\section{Mar\v{c}enko-Pastur-Verteilung}
+\section{Vorbereitung \textcolor{red}{(text muss noch besser fließen)}}
 
+Da wir uns im Bereich der großen Zufallsmatrizen befinden, verwenden wir für die Spektralanalyse die empirische Spektralverteilung.
 
-
-
-\begin{lemma}\label{lem:L4}
-    Seien $A,B\in\CC^{p\times n}$ und $S=AA^H$, $\bar{S}=BB^H$. 
-    Dann gilt für die Lévy-Metrik aus \ref{def:lévy}
+\begin{definition}\label{def:ESD}
+    Sei S eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann ist die \emph{empirische Spektralverteilung} durch
     \begin{align*}
-        \mathscr{L}^4\lr{F^S,F^{\bar{S}}}\leq \frac{2}{p^2}\tr\lr{AA^H+BB^H}\tr{\lr{(A-B)(A-B)^{H}}}\,.
+        F^S(x)=\frac1p|A| \quad \text{mit } A\coloneqq\{i\leq p \colon \lambda_i \leq x\}
     \end{align*}
-\end{lemma}
+    definiert.
+\end{definition}
+
+Diese Verteilung sagt aus, wie die Singulärwerte einer Zufallsmatrix verteilt sind.
+Was uns interessiert, ist was passiert, wenn die Dimensionen gegen unendlich laufen.
+Dafür verwenden wir die Stichproben-Kovarianzmatrix \eqref{eq:StichKovar} und analysieren ihr Verhalten im unendlich Dimensionalen.
+Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter vereinfachen.
+
+\begin{theorem}\label{theo:ESDrang1}
+    Seien $A,B\in\CC^{p\times n}$. Dann gilt 
+    \begin{align*}
+        \dabs{F^{AA^H}-F^{BB^H}}\leq\frac1p\rang(A-B)\,.
+    \end{align*}
+\end{theorem}
+
+Damit können wir sehen, dass Rang-$1$ Matrizen keinen Einfluss auf die Konvergenz der empirische Spektralverteilung haben. Wir können die Stichproben-Kovarianzmatrix 
+
+\begin{align*}
+    \bm{S}  &=  \frac{1}{m}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H \\
+            &=  \frac{1}{m}\lr{\sum_{k=1}^{m}x_kx_k^H-\sum_{k=1}^{m}x_k\bar{x}^H-\sum_{k=1}^{m}x_k^H\bar{x}+\sum_{k=1}^{m}\bar{x}\bar{x}^H} \\
+            &=  \frac{1}{m}\lr{\sum_{k=1}^{m}x_kx_k^H - m\bar{x}\bar{x}^H}
+\end{align*}
+
+zu 
+
+\begin{align}
+    \bm{S}=\frac{1}{m}\sum_{k=1}^{m}x_kx_k^H \label{eq:StichKovarEinfach}
+\end{align}
+
+vereinfachen, da $\bar{x}\bar{x}^H$ eine Rang-$1$ Matrix ist, welche wir nach Satz \ref{theo:ESDrang1} ignorieren können.
 
 
+Das Ziel dieses Kapitels, ist es zu zeigen, dass die empirische Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert. 
+Im Beweis über die Konvergenz benutzen wir Elemente aus der Graphentheorie, die wir vorher noch einführen wollen. 
+
+Für den Beweis definieren wir uns eine Klasse von gerichteten bipatiten Graphen mit folgenden Eigenschaften.
+
+Seien $\emph{\textbf{i}}=(i_1,\dots,i_k)$ $k$ I-Knoten welche Werte zwischen $0$ und $p$ annehmen können und $\emph{\textbf{j}}=(j_1,\dots,j_k)$ $k$ J-Knoten dessen Werte zwischen $0$ und $n$ liegen. 
+Unterschiedliche I/J-Knoten können den gleichen Wert annehmen. 
+%Für eine vereinfachte Vorstellung setzen wir alle I-Knoten auf eine Linie und alle J-Knoten auf eine zur I-Linie parallele J-Linie.
+Die Kanten laufen von Knoten $i_m$ zu $j_m$ und von $j_m$ zu $i_{m+1}$ mit $m=1,\dots,k$ und der Konvention, dass $i_1=i_{k+1}$ gilt.
+Diese Graphen Bezeichnen wir mit $G(\emph{\textbf{i}},\emph{\textbf{j}})$.
+
+
+
+
+
+
+\section{Mar\v{c}enko-Pastur-Verteilung}
 
 
 \begin{theorem}\label{theo:MPVert}

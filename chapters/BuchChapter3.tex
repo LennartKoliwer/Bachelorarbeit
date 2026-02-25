@@ -10,22 +10,13 @@ Das Ziel dieses Kapitels ist es herauszufinden, woher die Mar\v{c}enko-Pastur-Ve
 
 %---------------------------------------------------------------
 
-
-Sei $X$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
-Dabei sind ihre Erwartungswerte  $0$ und ihre Varianz beträgt  $\sigma^2$. 
-Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)$, $\bm{X}=(x_1,\dots,x_n)$ und $\bar{x}=\frac1n\sum_{k=1}^n x_k$. 
-Dann ist die Stichproben-Kovarianzmatrix
-\begin{align}
-    \bm{S}=\frac{1}{m}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H \label{eq:StichKovar}
-\end{align}
-
-
-
 \section{Mar\v{c}enko-Pastur Momente}
+
+
 Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung $F_y(x)$ ist duch
 \begin{align}
     p_y(x)=\begin{cases*}
-        \frac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
+        \dfrac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
         0\,, & \text{sonst}
     \end{cases*}
 \end{align}
@@ -59,7 +50,7 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
 Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig durch die Momente ${\beta_x}$ bestimmt werden und wie die Momente explizit bestimmt aussehen.
 %----------------------------------------------------------------------------------
 
-\begin{lemma}[Carlman] \label{lem:Carlman}
+\begin{lemma}[Carlman] \cite[509]{SlaySlaySlay} \label{lem:Carlman}
     Sei $\{\beta_k(F)\}_{k\in\NN_0}$ eine Folge von Momenten der Verteilungsfunktion $F$. Ist die \emph{Carlman Bedingung}
     \begin{align*}
         \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}}=\infty
@@ -221,7 +212,16 @@ die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten.
 
 
 
-\section{Vorbereitung \textcolor{red}{(text muss noch besser fließen)}}
+\section{Vorbereitung \textcolor{red}{(Text ist mir noch zu holprig)}}
+
+Sei $X$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
+Dabei sind ihre Erwartungswerte  $0$ und ihre Varianz beträgt  $\sigma^2$. 
+Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)$, $\bm{X}=(x_1,\dots,x_n)$ und $\overline{x}=\frac1n\sum_{k=1}^n x_k$. 
+Dann ist die Stichproben-Kovarianzmatrix
+\begin{align}
+    \bm{S}=\frac{1}{m}\sum_{k=1}^{m}(x_k-\overline{x})(x_k-\overline{x})^H\,. \label{eq:StichKovar}
+\end{align}
+
 
 Da wir uns im Bereich der großen Zufallsmatrizen befinden, verwenden wir für die Spektralanalyse die empirische Spektralverteilung.
 
@@ -248,9 +248,9 @@ Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter ver
 Damit können wir sehen, dass Rang-$1$ Matrizen keinen Einfluss auf die Konvergenz der empirische Spektralverteilung haben. Wir können die Stichproben-Kovarianzmatrix 
 
 \begin{align*}
-    \bm{S}  &=  \frac{1}{m}\sum_{k=1}^{m}(x_k-\bar{x})(x_k-\bar{x})^H \\
-            &=  \frac{1}{m}\lr{\sum_{k=1}^{m}x_kx_k^H-\sum_{k=1}^{m}x_k\bar{x}^H-\sum_{k=1}^{m}x_k^H\bar{x}+\sum_{k=1}^{m}\bar{x}\bar{x}^H} \\
-            &=  \frac{1}{m}\lr{\sum_{k=1}^{m}x_kx_k^H - m\bar{x}\bar{x}^H}
+    \bm{S}  &=  \frac{1}{m}\sum_{k=1}^{m}(x_k-\overline{x})(x_k-\overline{x})^H \\
+            &=  \frac{1}{m}\lr{\sum_{k=1}^{m}x_kx_k^H-\sum_{k=1}^{m}x_k\overline{x}^H-\sum_{k=1}^{m}x_k^H\overline{x}+\sum_{k=1}^{m}\overline{x}\,\overline{x}^H} \\
+            &=  \frac{1}{m}\lr{\sum_{k=1}^{m}x_kx_k^H - m\overline{x}\,\overline{x}^H}
 \end{align*}
 
 zu 
@@ -259,22 +259,53 @@ zu
     \bm{S}=\frac{1}{m}\sum_{k=1}^{m}x_kx_k^H \label{eq:StichKovarEinfach}
 \end{align}
 
-vereinfachen, da $\bar{x}\bar{x}^H$ eine Rang-$1$ Matrix ist, welche wir nach Satz \ref{theo:ESDrang1} ignorieren können.
+vereinfachen, da $\overline{x}\,\overline{x}^H$ eine Rang-$1$ Matrix ist, welche wir nach Satz \ref{theo:ESDrang1} vernachlässigen können.
 
 
 Das Ziel dieses Kapitels, ist es zu zeigen, dass die empirische Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert. 
 Im Beweis über die Konvergenz benutzen wir Elemente aus der Graphentheorie, die wir vorher noch einführen wollen. 
+\newline
 
 Für den Beweis definieren wir uns eine Klasse von gerichteten bipatiten Graphen mit folgenden Eigenschaften.
 
 Seien $\emph{\textbf{i}}=(i_1,\dots,i_k)$ $k$ I-Knoten welche Werte zwischen $0$ und $p$ annehmen können und $\emph{\textbf{j}}=(j_1,\dots,j_k)$ $k$ J-Knoten dessen Werte zwischen $0$ und $n$ liegen. 
-Unterschiedliche I/J-Knoten können den gleichen Wert annehmen. 
-%Für eine vereinfachte Vorstellung setzen wir alle I-Knoten auf eine Linie und alle J-Knoten auf eine zur I-Linie parallele J-Linie.
+Unterschiedliche I/J-Knoten können den gleichen Wert annehmen, also sind sie koinzident. 
 Die Kanten laufen von Knoten $i_m$ zu $j_m$ und von $j_m$ zu $i_{m+1}$ mit $m=1,\dots,k$ und der Konvention, dass $i_1=i_{k+1}$ gilt.
-Diese Graphen Bezeichnen wir mit $G(\emph{\textbf{i}},\emph{\textbf{j}})$.
+Wir bezeichnen $r$ als Anzahl nicht koinzidenter \emph{\textbf{i}} Knoten $-1$, $s$ als Anzahl nicht koinzidenter \emph{\textbf{j}} Knoten und $k$ als die Anzahl der Kanten die auf \emph{\textbf{i}} Knoten zeigen.
+Diese Graphen Bezeichnen wir dann als $\Delta(k,r,s)$.
+Für den Beweis teilen wir die Graphen in drei Kategorien ein.
+ 
+Die Kategorie $\Delta_1(k,r,s)$  fasst alle Graphen zusammen, die zu jeder Kante von \emph{\textbf{i}} nach \emph{\textbf{j}} genau eine Kante vom gleichen \emph{\textbf{j}} Knoten zum gleichen \emph{\textbf{i}} Knoten haben. Hier gilt $r+s=k$.
 
+Die Kategorie $\Delta_2(k,r,s)$ beinhaltet alle Graphen, die mindestens einmal zwischen zwei Knoten genau eine Kante besitzen. Also Graphen die mindestens eine Einzelkante besitzen.
 
+Und die letzte Kategorie $\Delta_3(k,r,s)$ sind alle Graphen die weder in $\Delta_1(k,r)$ noch in $\Delta_2(k,r,s)$ gehören.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=12cm]{Graphen_Beispiel_Platzhalter}
+    \caption*{Beispiel für Graphen}\label{fig:GraphenBsp}
+\end{figure}
+Für bessere Lesbarkeit schreiben wir nur noch $\Delta_{1,2,3}$.
+Wir bezeichnen zwei Graphen als isomorph, wenn wir durch eine geeignete Zuweisung von \emph{\textbf{i}}/\emph{\textbf{j}} Knoten gibt, mit der die Graphen identisch sind. 
+Für diese Graphen haben wir noch ein paar Lemmata.
 
+\begin{lemma}\cite[43]{BaiSilverstein}\label{lem:AnzahlIsomklasse}
+    Die Anzahl der Graphen in jeder Isomorphismenklasse von $\Delta(k,r,s)$ Graphen, mit festen $k$, $r$ und $s$ ist
+    \begin{align*}
+        \alpha = p(p-1)\cdots(p-r)n(n-1)\cdots(n-s+1)=p^{r+1}n^s\lr{1+\mathcal{O}\lr{\frac1n}}\,.
+    \end{align*}
+\end{lemma}
+
+\begin{lemma}\cite[43]{BaiSilverstein}\label{lem:AnzahlNichtKoinzidenterKnotenKateg3}
+    Die Anzahl nicht koinzidenter Knoten von $\Delta_3(k,r,s)$ Graphen also $r+s$ ist kleiner gleich $k$. 
+\end{lemma}
+
+\begin{lemma}\cite[43]{BaiSilverstein}\label{AnzahlKateg1Graphen}
+    Die Anzahl nicht-isomorpher $\Delta_1(k,r,s)$ Graphen für festes k und r beträgt
+    \begin{align*}
+        \frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}\,.
+    \end{align*}
+\end{lemma}
 
 
 
@@ -285,13 +316,16 @@ Diese Graphen Bezeichnen wir mit $G(\emph{\textbf{i}},\emph{\textbf{j}})$.
     Seien $\{x_{ij}\}$ unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. Sei weiter $\frac{p(n)}{n}\overset{n\to\infty}{\longrightarrow}y \in(0,\infty)$. Dann konvergiert $F^S$ fast sicher gegen 
     \begin{align}
     p_y(x)=\begin{cases*}
-        \frac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
+        \dfrac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
         0\,, & \text{sonst}\,.
     \end{cases*}
 \end{align}
 \end{theorem}
 
-\textcolor{red}{lalala work in progress}
+Im folgenden Beweis nehmen wir o.B.d.A an, dass die Varianz $\sigma^2=1$ ist, wir also den Standardfall betrachten. 
+Um die Konvergenz der empirischen Spektralverteilung \ref{def:ESD} gegen die Mar\v{c}enko-Pastur-Verteilung zu zeigen, müssen wir erstmal sicherstellen, dass die Zufallsvariablen $x_{ij}$ die notwendigen Bedingungen erfüllen damit wir die Moment Methode benutzen können. 
+Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit wir keine unendlich großen Eigenwerte haben und entsprechend die Erwartungswerte wieder zentralisieren also auf $0$ setzen und wir Reskalieren um die Varianz zu erhalten.
+
 
 \begin{proof}
     Sei $C\in\RR_+$. Weiter seien 
@@ -310,9 +344,10 @@ Diese Graphen Bezeichnen wir mit $G(\emph{\textbf{i}},\emph{\textbf{j}})$.
         &\quad
         \tilde{S}_n
         = \frac{1}{n} \sum_{i=1}^n \tilde{x}_i \tilde{x}_i^{H}
-        = \frac{1}{n}\tilde{X}_n \tilde{X}_n^{H}
+        = \frac{1}{n}\tilde{X}_n \tilde{X}_n^{H}\,.
     \end{align*}
-    Wir bezeichnen ab hier alle $X_n$ Varianten als $X$ Varianten.
+    Wir bezeichnen ab hier alle $X_n$ als $X$.
+    Mit $\hat{S}_n$ und $\tilde{S}_n$ haben wir die beschränkte und zentralisierte Stichproben Kovarianzmatrix. Im Folgenden wollen wir zeigen, dass sich durch Beschränken und Zentralisieren der Grenzwert nicht ändert.
     Nach Lemma \ref{lem:L4} erhalten wir
     \begin{align*}
         \mathscr{L}^4\lr{F^{S_n},F^{\hat{S}_n}} &\leq \frac{2}{np}\tr\lr{XX^H+\hat{X}\hat{X}^H}\tr{\lr{(X-\hat{X})(X-\hat{X})^{H}}} \\
@@ -323,15 +358,19 @@ Diese Graphen Bezeichnen wir mit $G(\emph{\textbf{i}},\emph{\textbf{j}})$.
         &\overset{f.s.}{\longrightarrow} 4\mathbb{E}\lr{|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} \\
         &\overset{C\to\infty}{\longrightarrow} 0
     \end{align*}
-
-    lalala nach Satz \ref{theo:ESDrang1}
+    Der Abstand der empirischen Spektralverteilung und ihrer beschränkten Version ist also für ein genügend großes $C$ vernachlässigbar klein.
+    Nach Satz \ref{theo:ESDrang1}
     \begin{align*}
         \dabs{F^{\hat{S}_n}-F^{\tilde{S}_n}} &\leq \frac1p \rang(\hat{X}_n-\tilde{X}_n) \\
         &= \frac1p \rang(\mathbb{E}(\hat{x}_{11})) \\
         &= \frac1p
     \end{align*}
+    können wir sehen, dass das Entfernen des Erwartungswertes auch keinen Einfluss auf die Konvergenz hat.
+    
+    Wir haben jetzt die Verteilung so modifiziert, dass die Zufallsvariablen nicht mehr unendlich groß werden können und den Erhalt des Erwartungswertes garantiert ohne die Konvergenz zu beeinträchtigen. 
+    Um die letzte Bedingung, also den erhalt der Varianz, zu erfüllen müssen wir zeigen, dass durch Skalierung von $\tilde{S}_n$ mit $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$, wenn $C\to \infty$ gilt, der Abstand zu $\tilde{S}_n$ wieder vernachlässigbar klein wird.
 
-    lalala Sei $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$ wenn $C\to \infty$. Dann gilt wieder mit Lemma \ref{lem:L4}
+    Es gilt wieder mit Lemma \ref{lem:L4}
     \begin{align*}
         \mathscr{L}^4\lr{F^{\tilde{S}_n},F^{\tilde{\sigma}^{-2}\tilde{S}_n}} &\leq \frac{2}{n}\tr\lr{\tilde{X}\tilde{X}^H+\frac{1}{\tilde{\sigma}^2}\tilde{X}\tilde{X}^H}\tr{\lr{\lr{1-\frac{1}{\tilde{\sigma}}}^2 \tilde{X}\tilde{X}^H}} \\
         &= \lr{\frac{2}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H-\frac{2\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}}+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}} \\
@@ -339,88 +378,106 @@ Diese Graphen Bezeichnen wir mit $G(\emph{\textbf{i}},\emph{\textbf{j}})$.
         &= \lr{\frac{2}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2-\tilde{\sigma}2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
         &= 2\lr{\frac{\tilde{\sigma}^2+1}{np\tilde{\sigma}^2}\sum_{i,j}|\tilde{x}_{ij}|^2}\lr{\frac{(\tilde{\sigma}-1)^2}{np\tilde{\sigma}^2}\sum_{i,j}|\tilde{x}_{ij}|^2} \\
         &\overset{f.s.}{\longrightarrow} 2\frac{\tilde{\sigma}^2+1}{\tilde{\sigma}^2}\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\frac{(\tilde{\sigma}-1)^2}{\tilde{\sigma}^2}\mathbb{E}\lr{|\tilde{x}_{ij}|^2} \\
-        &\overset{C\to\infty}{\longrightarrow} 0
+        &\overset{C\to\infty}{\longrightarrow} 0\,.
     \end{align*}
-    lalalalala wir können sagen $x_{ij}$ ist gleichmäßig durch $C$ beschränkt.
-
-    lalala jetzt teil 2.
-
+    Damit haben wir alle Bedingungen erfüllt. Für einen besseren Überblick verwenden wir weiterhin die Notation von $S_n$ und $X$, meinen aber die modifizierten Matrizen. 
+    Wir haben also eine gleichmäßig durch $C$ beschränkte Zufallsvariable $x_{ij}$ mit Erwartungswert $0$ und Varianz $1$. 
+    
     Nach der Moment Methode (S.10) erhalten wir
     \begin{align*}
         \beta_k(S_n)&= \int_{-\infty}^{\infty}x^kF^{S_n}\diff x \\
                     &= \frac{1}{p}\tr\lr{S_n^k} \\
-                    &= \frac{1}{n^kp}\tr\lr{\lr{XX^H}^k}
-    \intertext{lalala Graphen. Überleitung muss ich noch schön ausformulieren.}
-    \intertext{Wir setzen $\emph{\textbf{i}}=(i_1,\dots,i_k)\in [1,p]$ und $\emph{\textbf{j}}=(i_1,\dots,i_k)\in [1,n]$.}
-                    &= \frac{1}{n^kp}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\bar{x}_{i_2j_1}x_{i_2j_2}\bar{x}_{i_3j_2}\cdots x_{i_kj_k}\bar{x}_{i_1j_k} \\
-                    & \coloneqq \frac{1}{n^kp} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} X_{G(\emph{\textbf{i}},\emph{\textbf{j}})}
+                    &= \frac{1}{pn^k}\tr\lr{\lr{XX^H}^k}\,.    
+    \intertext{Da die Dimensionen von $X$ gegen unendlich laufen, läuft auch die Anzahl der Summanden der Spur gegen unendlich.
+    Wir können die Spur aber auch als}
+            \frac{1}{pn^k}\tr\lr{\lr{XX^H}^k} &= \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\bar{x}_{i_2j_1}x_{i_2j_2}\bar{x}_{i_3j_2}\cdots x_{i_kj_k}\bar{x}_{i_1j_k}
     \end{align*}
-    wollen jetzt zeigen, dass 
+        darstellen. Hier sind $\bar{x}_{ij}$ die Einträge aus $X^H$ und damit komplex konjugiert. 
+        Dabei sind $x_{i_1j_1}\bar{x}_{i_2j_1}\dots$ die Faktoren der einzelnen Summanden der Spur und wir Summieren über alle Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}. 
+        Wenn wir über alle Permutationen summieren, können wir diese als oben definierte Graphen darstellen. Hier stellen $x_{ij}$ die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten dar und $\bar{x}_{ij}$ Kanten von \emph{\textbf{j}}- zu \emph{\textbf{i}}-Knoten. Wir definieren dann
     \begin{align*}
-        \mathbb{E}(\beta_k(S_n)) &\coloneqq \frac{1}{n^kp} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\mathbb{E}\lr{X_{G(\emph{\textbf{i}},\emph{\textbf{j}})}}\\
-        &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}}
-        \intertext{und}
-        \text{Var}(\beta_k(S_n)) &\coloneqq \frac{1}{n^kp} \sum_{\emph{\textbf{i}}_1,\emph{\textbf{j}}_1,\emph{\textbf{i}}_2,\emph{\textbf{j}}_2,}\lr{\mathbb{E}\lr{X_{G_1(\emph{\textbf{i}}_1,\emph{\textbf{j}}_1)}X_{G_2(\emph{\textbf{i}}_2,\emph{\textbf{j}}_2)}}-\mathbb{E}\lr{X_{G_1(\emph{\textbf{i}}_1,\emph{\textbf{j}}_1)}}\mathbb{E}\lr{X_{G_2(\emph{\textbf{i}}_2,\emph{\textbf{j}}_2)}}} \\ 
-        &=\mathcal{O}\lr{\frac{1}{p^2}}
+        \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\bar{x}_{i_2j_1}x_{i_2j_2}\bar{x}_{i_3j_2}\cdots x_{i_kj_k}\bar{x}_{i_1j_k} & \coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} X_{\Delta(k,r,s)}\,.
     \end{align*}
-    Die $G(\emph{\textbf{i}},\emph{\textbf{j}})$ Graphen lassen sich in drei Kategorien einteilen. Wir bezeichnen $r$ als Anzahl ungleicher \emph{\textbf{i}} Knoten $-1$, $s$ ist als Anzahl ungleicher \emph{\textbf{j}} Knoten und $k$ als die Anzahl der Kanten die auf \emph{\textbf{i}} Knoten zeigen. 
+
+    Die Konvergenz lässt sich jetzt zeigen, indem wir zeigen, dass der Erwartungswert $\EE(\beta_k(S_n))$ gleich der Momente der Mar\v{c}enko-Pastur-Verteilung ist und die Varianz gegen null geht.
+    Damit hätten wir eine fast sichere Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung.
     
-    Die Kategorie $\Delta_1(k,r,s)$  fasst alle Graphen zusammen, die zu jeder Kante von \emph{\textbf{i}} nach \emph{\textbf{j}} genau eine Kante vom gleichen \emph{\textbf{j}} Knoten zum gleichen \emph{\textbf{i}} Knoten haben. Hier gilt $r+s=k$.
-
-    Die Kategorie $\Delta_2(k,r,s)$ beinhaltet alle Graphen, die mindestens eine Kante besitzen, die nicht doppelt belegt ist.
-
-    Und die letzte Kategorie $\Delta_3(k,r,s)$ sind alle Graphen die weder in $\Delta_1(k,r)$ noch in $\Delta_2(k,r,s)$ gehören.
-
-    Für bessere Lesbarkeit schreiben wir nur noch $\Delta_{1,2,3}$.
-    \newline
-
-    Wir haben per definition 
+    Fangen wir an mit dem Erwartungswert.
+    Nach Definition gilt
     \begin{align*}
-        \EE(\beta_k(S_n)) = \frac{1}{n^kp} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{X_{G(\emph{\textbf{i}},\emph{\textbf{j}})}}
+        \EE(\beta_k(S_n)) = \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{X_{\Delta(k,r,s)}}\,.
     \end{align*}
     Teilen wir die Graphen in ihre Kategorien ein, erhalten wir mit Lemma \ref{lem:AnzahlIsomklasse}
     \begin{align*}
-        \EE(\beta_k(S_n)) = \frac{1}{n^kp} \lr{\overbrace{\sum_{\Delta_1} \alpha\EE\lr{X_{\Delta_1}}}^{W_1\coloneqq}+\overbrace{\sum_{\Delta_2} \alpha\EE\lr{X_{\Delta_2}}}^{W_2\coloneqq}+\overbrace{\sum_{\Delta_3} \alpha\EE\lr{X_{\Delta_3}}}^{W_3\coloneqq}}\,.
+        \EE(\beta_k(S_n)) = \frac{1}{pn^k} \lr{\overbrace{\sum_{\Delta_1} \alpha\EE\lr{X_{\Delta_1}}}^{W_1\coloneqq}+\overbrace{\sum_{\Delta_2} \alpha\EE\lr{X_{\Delta_2}}}^{W_2\coloneqq}+\overbrace{\sum_{\Delta_3} \alpha\EE\lr{X_{\Delta_3}}}^{W_3\coloneqq}}\,.
     \end{align*}
 
-    Für $W_1$ erhalten wir nach Lemma \ref{lem:AnzahlIsomklasse} und Lemma \ref{AnzahlKateg1Graphen}
-    \begin{align*}
-        W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}}\EE\lr{X_{\Delta_1}}
-        \intertext{Da jede Kante genau 2 mal belegt ist haben wir $\EE\lr{|x_{\emph{\textbf{i}}\emph{\textbf{j}}}|^2}=1$. Wir können also schreiben}
-        W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \\
-        &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}\frac{p^{r+1}n^{k-r}}{n^k p}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \\
-        &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \\
-        &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}}\,.
-    \end{align*}
+    Für $W_1$ erhalten wir nach Lemma \ref{lem:AnzahlIsomklasse} und Lemma \ref{lem:AnzahlNichtKoinzidenterKnotenKateg3}
+    \begin{align}
+            W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}}\EE\lr{X_{\Delta_1}}\nonumber
+        \intertext{Da es zu jeder Kante genau eine Kante in die entgegengesetzte Richtung gibt, gilt $\EE\lr{|x_{\emph{\textbf{i}}\emph{\textbf{j}}}|^2}=1$. Wir können also schreiben}
+            W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \nonumber\\
+            &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}\frac{p^{r+1}n^{k-r}}{n^k p}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \nonumber\\
+        &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r\lr{1+\mathcal{O}\lr{\frac{1}{p}}}\nonumber \\
+            &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}}\label{eq:Delta1}\,.
+    \end{align}
 
     Für $W_2$ können wir sehen, dass 
-    \begin{align*}
-        W_2 = \frac{1}{n^k p}\sum_{\Delta_2} \alpha\EE\lr{X_{\Delta_2}} = 0
-    \end{align*}
-    gilt, da wir den Ertwartungswert auf alle Kanten $x_{ij}$ aufteilen können und es in Kategorie $\Delta_2$ mindestens eine alleinstehende Kante gibt. Es gibt demnach mindestens ein $\omega_i$ in 
+    \begin{align}
+        W_2 = \frac{1}{n^k p}\sum_{\Delta_2} \alpha\EE\lr{X_{\Delta_2}} = 0 \label{eq:Delta2}
+    \end{align}
+    gilt, da wir den Erwartungswert auf Kanten aufteilen können, und es in Kategorie $\Delta_2$ mindestens eine Einzelkante gibt. Es gibt demnach mindestens ein $\omega_i$ in 
     \begin{align*}
         \EE\lr{X_{\Delta_2}}= \EE(x_{i_1j_1}^{\omega_1})\EE(x_{i_2j_1}^{\omega_2})\cdots
     \end{align*}
     welches gleich $1$ ist, woraus folgt, dass $\EE(x_{i_kj_k}^{1})=0=\EE\lr{X_{\Delta_2}}$ ist.
 
-    \textcolor{red}{(muss ich anders anfangen wegen $\EE(C)$)}
-
-    Und Für $W_3$ wissen wir, dass  gilt und wir wieder mit Lemma \ref{lem:AnzahlIsomklasse} 
+    Für $W_3$ erhalten wir wieder mit Lemma \ref{lem:AnzahlIsomklasse}, dass
     \begin{align*}
         W_3 = \frac{1}{n^k p}\sum_{\Delta_3} \alpha\EE\lr{X_{\Delta_3}}
     \end{align*}
-    erhalten.
-    Weiter oben haben wir gezeigt, dass $x_{ij}$ gleichmäßig durch ein $C>0$ beschränkt ist. Daraus erhalten wir, dass $|X_{G(\emph{\textbf{i}},\emph{\textbf{j}})}|\leq C^{2k}$. Mit Lemma \ref{lem:AnzahlEinezlKantenKateg3} wissen wir, dass die Anzahl an paarweise unterschiedlicher Knoten maximal $k$ betragen kann. Dadurch ist die Anzahl unterschiedlicher $\Delta_3$ Graphen in $\mathcal{O}\lr{n^k}$. Wir haben also
+    gilt.
+    Weiter oben haben wir gezeigt, dass $x_{ij}$ gleichmäßig durch ein $C>0$ beschränkt ist. Daraus erhalten wir, dass $|X_{\Delta(k,r,s)}|\leq C^{2k}$ gilt. Mit Lemma \ref{lem:AnzahlEinezlKantenKateg3} wissen wir, dass die Anzahl nicht koinzidenter Knoten maximal $k$ betragen kann. Dadurch ist die Anzahl unterschiedlicher $\Delta_3$ Graphen in $\mathcal{O}\lr{n^k}$. Wir haben also
+    \begin{align}
+        \frac{1}{n^k p}\sum_{\Delta_3} \alpha\lr{X_{\Delta_3}} &= \frac{C^{2k}}{n^k p} \mathcal{O}\lr{n^k} \nonumber\\
+        &= \mathcal{O}\lr{\frac{1}{p}} \label{eq:Delta3}\,.
+    \end{align}
+    Mit \eqref{eq:Delta1}, \eqref{eq:Delta2} und \eqref{eq:Delta3} erhalten wir dann
+    \begin{align}
+        \EE(\beta_k(S_n)) &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}} \nonumber\\
+                        &=\beta_k(y,\sigma^2)+o(1) \label{eq:Erw}
+    \end{align}
+
+    Jetzt fehlt noch die Varianz.
+    Diese ist nach Definition
     \begin{align*}
-        \frac{1}{n^k p}\sum_{\Delta_3} \alpha\lr{X_{\Delta_3}} &= \frac{C^{2k}}{n^k p} \mathcal{O}\lr{n^k} \\
-        &= \mathcal{O}\lr{\frac{1}{p}}\,.
+        \text{Var}(\beta_k(S_n)) &\coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \lr{\EE\lr{X_{\Delta_a(k,r,s)}X_{\Delta_b(k,r,s)}}-\EE\lr{X_{\Delta_a(k,r,s)}}\EE\lr{X_{\Delta_b(k,r,s)}}}\,.
     \end{align*}
-    Mit allem oben verbunden erhalten wir 
+    Dabei sind $\Delta_a$ und $\Delta_b$ verschiedene Permutationen \emph{\textbf{i}} und \emph{\textbf{j}}. Wie für den Erwartungswert suchen wir uns Kategorien, um die Varianz stückweise zu beschreiben.
+
+    Als Erstes betrachten wir alle Graphen $\Delta_a$ und $\Delta_b$ so, dass $\Delta_a$ und $\Delta_b$ unabhängig sind, sich also keine Kanten teilen.
+    Daraus folgt direkt durch Rechenregeln von Erwartungswerten, dass
     \begin{align*}
-        \EE(\beta_k(S_n)) = \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}}
+        \EE\lr{X_{\Delta_a(k,r,s)}X_{\Delta_b(k,r,s)}} = \EE\lr{X_{\Delta_a(k,r,s)}}\EE\lr{X_{\Delta_b(k,r,s)}}
+    \end{align*}
+    gilt. Das heißt, für unabhängige Graphen ist die Varianz gleich $0$.
+
+    Als Nächstes betrachten wir alle Graphen $\Delta_a\cup\Delta_b$, die mindestens eine Einzelkante besitzen. Damit erhalten wir durch $\Delta_2$ Eigenschaften wieder 
+    \begin{align*}
+        \EE\lr{X_{\Delta_a(k,r,s)}X_{\Delta_b(k,r,s)}} = 0 = \EE\lr{X_{\Delta_a(k,r,s)}}\EE\lr{X_{\Delta_b(k,r,s)}}\,.
     \end{align*}
 
-    Jetzt zur Varianz....(morgen)
+    In allen anderen Möglichkeiten haben die Graphen keine Einzelkante und $\Delta_a$ und $\Delta_b$ teilen sich Kanten. Analog zu $W_3$ können wir sagen, dass die Anzahl möglicher Graphen in $\mathcal{O}(n^k)$ liegt. Da wir zwei Graphen haben ist die Anzahl also in $\mathcal{O}(n^{2k})$.
+    Durch die gleichmäßige Beschränkung von $x_{ij}$ durch $C$ können wir die Varianz durch
+    \begin{align}
+        \text{Var}(\beta_k(S_n)) &\leq \frac{1}{p^2n^{2k}}C\mathcal{O}(n^{2k}) \nonumber\\
+        &= \mathcal{O}\lr{\frac{1}{p^2}} \label{eq:Var}
+    \end{align}
+    abschätzen.
+
+    Mit dem Erwartungswert \eqref{eq:Erw} und der Varianz \eqref{eq:Var} können wir darauf schließen, dass die empirische Spektralverteilung fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert. 
+
+
 \end{proof}
 
 
@@ -428,3 +485,14 @@ Diese Graphen Bezeichnen wir mit $G(\emph{\textbf{i}},\emph{\textbf{j}})$.
 
 
 \end{document}
+
+
+
+Ziel:
+    \begin{align*}
+        \EE(\beta_k(S_n)) &\coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{X_{\Delta(k,r,s)}}\\
+        &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}}
+        \intertext{und}
+        \text{Var}(\beta_k(S_n)) &\coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}}_1,\emph{\textbf{j}}_1,\emph{\textbf{i}}_2,\emph{\textbf{j}}_2,}\lr{\EE\lr{X_{G_1(\emph{\textbf{i}}_1,\emph{\textbf{j}}_1)}X_{G_2(\emph{\textbf{i}}_2,\emph{\textbf{j}}_2)}}-\EE\lr{X_{G_1(\emph{\textbf{i}}_1,\emph{\textbf{j}}_1)}}\EE\lr{X_{G_2(\emph{\textbf{i}}_2,\emph{\textbf{j}}_2)}}} \\ 
+        &=\mathcal{O}\lr{\frac{1}{p^2}}
+    \end{align*}

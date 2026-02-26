@@ -2,27 +2,36 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
+Die Mar\v{c}enko-Pastur-Verteilung ist ein Wahrscheinlichkeitsmaß, dass die asymptotische empirische Spektralverteilung der Eigenwerte von großen Stichproben-Kovarianzmatrizen beschreibt.
+Das Ziel dieses Kapitels ist es zu zeigen, dass die empirische Spektralverteilung schwach gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert.
 
 Dieses Kapitel basiert auf dem Buch \glqq Spectral analysis of large dimensional random matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
 
-Das Ziel dieses Kapitels ist es herauszufinden, woher die Mar\v{c}enko-Pastur-Verteilung kommt und was sie aussagt.
+
 
 
 %---------------------------------------------------------------
 
-\section{Mar\v{c}enko-Pastur Momente}
+\section{Mar\v{c}enko-Pastur-Momente}
 
-
-Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung $F_y(x)$ ist duch
+Sei $X$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
+Dabei sind ihre Erwartungswerte $0$ und ihre Varianz beträgt $\sigma^2$. 
+Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)$, $\bm{X}=(x_1,\dots,x_n)$ und $\overline{x}=\frac1n\sum_{k=1}^n x_k$. 
+Dann ist die Stichproben-Kovarianzmatrix
+\begin{align}
+    \bm{S}=\frac{1}{m}\sum_{k=1}^{m}(x_k-\overline{x})(x_k-\overline{x})^H\,. \label{eq:StichKovar}
+\end{align}
+Die Mar\v{c}enko-Pastur-Verteilung $F_y$ ist ein Wahrscheinlichkeitsmaß auf $(\RR,\mathcal{B}(\RR))$. Für $y,\sigma^2\in\RR_+$ und $x\in\RR$ 
+sind \[a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2\] wobei $y=\frac{p}{n}$ das Dimonsions-Stichproben-Verhältnis ist. Die Dichtefunktion Mar\v{c}enko-Pastur-Verteilung ist dann durch
 \begin{align}
     p_y(x)=\begin{cases*}
         \dfrac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
         0\,, & \text{sonst}
     \end{cases*}
 \end{align}
-gegeben. Dabei sind $a=\sigma^2\left(1-\sqrt{y}\right)^2$ und $b=\sigma^2\left(1+\sqrt{y}\right)^2$ jeweils mit $y=\frac{n}{m}$ die Träger der Dichtefunktion. 
-Wenn $\sigma^2=1$ ist, dann sprechen wir von der standard M-P-Verteilung.
-Die k-ten Momente der M-P-Verteilung sind durch
+gegeben. 
+Wenn $\sigma^2=1$ ist, dann sprechen wir von der Standard-M-P-Verteilung.
+Die $k$-ten Momente der M-P-Verteilung sind durch
 \begin{align}
     \beta_k=\beta_k\left(y,\sigma^2\right)\coloneqq\int_{a}^{b}x^kp_y(x)\diff x \label{eq:momente}
 \end{align} 
@@ -35,45 +44,46 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
     \end{align*}
 \end{lemma}
 \begin{proof}
-    Nach Definition \refeq{eq:momente} haben wir
+    Nach Definition \eqref{eq:momente} haben wir 
     \begin{align*}
         \beta_k\left(y,\sigma^2\right)&=\int_{a}^{b}x^kp_y(x)\diff x\\
-        &=\int_{\sigma^2\left(1-\sqrt{y}\right)^2}^{\sigma^2\left(1+\sqrt{y}\right)^2}x^k\frac{1}{2\pi x y \sigma^2}\sqrt{\left(\sigma^2\left(1+\sqrt{y}\right)^2-x\right)\left(x-\sigma^2\left(1-\sqrt{y}\right)^2\right)}\diff x\,.
+        &=\int_{\sigma^2\left(1-\sqrt{y}\right)^2}^{\sigma^2\left(1+\sqrt{y}\right)^2}x^k\frac{1}{2\pi x y \sigma^2}\sqrt{\left(\sigma^2\left(1+\sqrt{y}\right)^2-x\right)\left(x-\sigma^2\left(1-\sqrt{y}\right)^2\right)}\diff x\,. 
         \intertext{Substituieren wir mit $x=u\sigma^2$ erhalten wir}
         \beta_k\left(y,\sigma^2\right)&=\int_{\left(1-\sqrt{y}\right)^2}^{\left(1+\sqrt{y}\right)^2}\left(u\sigma^2\right)^k\frac{1}{2\pi u y \sigma^2}\sqrt{\left(\sigma^2\left(1+\sqrt{y}\right)^2-u\sigma^2\right)\left(u\sigma^2-\sigma^2\left(1-\sqrt{y}\right)^2\right)}\diff u\\
         &=\int_{\left(1-\sqrt{y}\right)^2}^{\left(1+\sqrt{y}\right)^2}u^k\sigma^{2k}\frac{1}{2\pi u y \sigma^2}\sqrt{\sigma^4\left(\left(1+\sqrt{y}\right)^2-u\right)\left(u-\left(1-\sqrt{y}\right)^2\right)}\diff u\\
         &=\sigma^{2k}\int_{\left(1-\sqrt{y}\right)^2}^{\left(1+\sqrt{y}\right)^2}u^k\frac{1}{2\pi u y }\sqrt{\left(\left(1+\sqrt{y}\right)^2-u\right)\left(u-\left(1-\sqrt{y}\right)^2\right)}\diff u\\
         &=\sigma^{2k}\beta_k\left(y,1\right)\,.
     \end{align*}
+    Die Momente lassen sich also durch $\sigma^{2k}$ skaliert über die Standard-M-P-Verteilung beschreiben.
 \end{proof}
 
-Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig durch die Momente ${\beta_x}$ bestimmt werden und wie die Momente explizit bestimmt aussehen.
+Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig durch die Momente ${\beta_x}$ bestimmt wird und wie die Momente explizit bestimmt aussehen.
 %----------------------------------------------------------------------------------
 
-\begin{lemma}[Carlman] \cite[509]{SlaySlaySlay} \label{lem:Carlman}
-    Sei $\{\beta_k(F)\}_{k\in\NN_0}$ eine Folge von Momenten der Verteilungsfunktion $F$. Ist die \emph{Carlman Bedingung}
+\begin{lemma}[Carleman] \cite[509]{BaiSilverstein} \label{lem:Carlman}
+    Sei $\{\beta_k=\beta_k(F)\}_{k\in\NN_0}$ eine Folge von Momenten der Verteilungsfunktion $F$. Ist die \emph{Carleman-Bedingung}
     \begin{align*}
         \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}}=\infty
     \end{align*}
-    erfüllt, dann wird die $F$ durch $\{\beta_k\}_{k\in\NN_0}$ eindeutig bestimmt.
+    erfüllt, dann wird die Verteilung $F$ durch $\{\beta_k\}_{k\in\NN_0}$ eindeutig bestimmt.
 \end{lemma}
 
-Die Eindeutigkeit lässt sich dann mit Lemma \ref{lem:Carlman} zeigen.
+Dass $\beta_k\left(y,\sigma^2\right)$ die Mar\v{c}enko-Pastur-Verteilung eindeutig bestimmt, lässt sich dann mit Lemma \ref{lem:Carlman} zeigen.
 Wir sehen einmal nach Definition \ref{eq:momente}, dass wir $\beta_{2k}$ durch
-\begin{align*}\label{eq:moment_abschätzen}
-    \beta_{2k}  &= \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-x)(x-a)}dx \\
-                &\leq \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-a)(b-a)}dx \\
-                &= \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}(b-a)dx \\
-                &= \frac{1}{4k\pi y}(b^{2k}-a^{2k})(b-a) \\
-                &= \frac{1}{k\pi\sqrt{y}}(b^{2k}-a^{2k}) \\
-                &\leq \frac{1}{k\pi\sqrt{y}}b^{2k} \\
-                &\leq b^{2k} = \left(1+\sqrt{y}\right)^{4k}
-\end{align*}
-abschätzen können. Mit der Abschätzung \ref{eq:moment_abschätzen} und Lemma \ref{lem:Carlman} haben wir durch
+\begin{align}
+    \beta_{2k}  &= \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-x)(x-a)}dx \nonumber\\
+                &\leq \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-a)(b-a)}dx \nonumber\\
+                &= \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}(b-a)dx \nonumber\\
+                &= \frac{1}{4k\pi y}(b^{2k}-a^{2k})(b-a) \nonumber\\
+                &= \frac{1}{k\pi\sqrt{y}}(b^{2k}-a^{2k}) \nonumber\\
+                &\leq \frac{1}{k\pi\sqrt{y}}b^{2k} \nonumber\\
+                &\leq b^{2k} = \left(1+\sqrt{y}\right)^{4k} \label{eq:moment_abschätzen}
+\end{align}
+abschätzen können. Mit der Abschätzung \eqref{eq:moment_abschätzen} und Lemma \ref{lem:Carlman} haben wir durch
 \begin{align*}
         \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}} \leq \sum_{k=1}^{\infty} \left(1+\sqrt{y}\right)^{2} = \infty
 \end{align*}
-die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten. 
+die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-Pastur-Verteilung durch die Momente $\beta_k$ eindeutig bestimmt ist.
 
 \begin{lemma}
     Die explizite Darstellung der Momente ist 
@@ -84,7 +94,7 @@ die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten.
 
 
 \begin{proof}
-    Wir haben nach Definition \refeq{eq:momente}
+    Wir haben nach Definition \eqref{eq:momente}
     \begin{align*}
         \beta_k=\frac{1}{2\pi y}\int_{a}^{b}x^{k-1}\sqrt{(b-x)(x-a)}\diff x\,.
     \end{align*}
@@ -95,113 +105,113 @@ die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten.
     \end{align*}
     Durch Einsetzen des Binomischen Lehrsatzes lässt sich das Integral zu 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}z^l\sqrt{4y-z^2}\diff z \\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l}\int_{-2\sqrt{y}}^{2\sqrt{y}}z^l\sqrt{4y-z^2}\diff z
+        \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell}z^\ell\sqrt{4y-z^2}\diff z \\
+        &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell}\int_{-2\sqrt{y}}^{2\sqrt{y}}z^\ell\sqrt{4y-z^2}\diff z
     \end{align*}
     umformen.
     Um das Integral weiter zu vereinfachen, substituieren wir mit $z=2\sqrt{y}u$ und erhalten 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} \int_{-1}^{1}\left(2\sqrt{y}u\right)^l\sqrt{4y-4yu^2}\diff u \\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{k-1}\binom{k-1}{l}(1+y)^{k-1-l} (2\sqrt{y})^l 4y \int_{-1}^{1}u^l\sqrt{1-u^2}\diff u\,.  
-        \intertext{Hier ist unser Integrand ungerade, sofern $l$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen ist das Integral für alle ungeraden $l$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2l$ statt $l$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt die ungleich $0$ sind. Wir haben also}
-        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (2\sqrt{y})^{2l} 4y \int_{-1}^{1}u^{2l}\sqrt{1-u^2}\diff z\\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{-1}^{1}u^{2l}\sqrt{1-u^2}\diff z\,.
+        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} \int_{-1}^{1}\left(2\sqrt{y}u\right)^\ell\sqrt{4y-4yu^2}\diff u \\
+        &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} (2\sqrt{y})^\ell 4y \int_{-1}^{1}u^\ell\sqrt{1-u^2}\diff u\,.  
+        \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt die ungleich $0$ sind. Wir haben also}
+        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (2\sqrt{y})^{2\ell} 4y \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\\
+        &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\,.
     \end{align*}
-    Hier ist der Integrand eine gerade Funktion für alle $0\leq l$. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen können wir auch zwei mal über das halbe Intervall integrieren. Folglich gilt 
+    Hier ist der Integrand eine gerade Funktion für alle $0\leq \ell$. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen können wir auch zweimal über das halbe Intervall integrieren. Folglich gilt 
     \begin{align*}
-        \beta_k = \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} 2\int_{0}^{1}u^{2l}\sqrt{1-u^2}\diff z\,.        
+        \beta_k = \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} 2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\,.        
     \end{align*}
-    Wenn wir jetzt mit $u=\sqrt{w}$ subtituieren,
+    Wenn wir jetzt mit $u=\sqrt{w}$ substituieren,
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{0}^{1}w^{l}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
-        &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}\diff w
+        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{0}^{1}w^{\ell}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
+        &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w
     \end{align*}
     erhalten wir ein Integral, dass wir mittels Eulerschen Betafunktion \textcolor{red}{Quelle!} lösen können.
     Die Eulersche Betafunktion ist durch 
     \[
-        \int_{0}^{1}t^{p-1}(1-t)^{q-1}dt \coloneqq \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} 
+        \int_{0}^{1}t^{p-1}(1-t)^{q-1}dt = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} 
     \]
-    definiert. Wir können also mit $p=l+\frac12$ und $q=1+\frac12$ das Integral durch die Gammafunktionen 
+    gegeben. Wir können also mit $p=\ell+\frac12$ und $q=1+\frac12$ das Integral durch die Gammafunktionen 
     \begin{align}
-        \int_{0}^{1}w^{l-\frac12}\sqrt{1-w}\diff w &= \frac{\Gamma(l+\frac12)\Gamma(1+\frac12)}{\Gamma(l+2)} \nonumber \\
-        &= \frac{\frac{(2l)!\sqrt{\pi}}{l!4^l}\frac{2!\sqrt{\pi}}{4^l}}{(l+1)!} \nonumber \\
-        &= \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!} \label{eq:gamma}
+        \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w &= \frac{\Gamma(\ell+\frac12)\Gamma(1+\frac12)}{\Gamma(\ell+2)} \nonumber \\
+        &= \frac{\frac{(2\ell)!\sqrt{\pi}}{\ell!4^\ell}\frac{2!\sqrt{\pi}}{4^\ell}}{(\ell+1)!} \nonumber \\
+        &= \frac{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi}{(\ell+1)!} \label{eq:gamma}
     \end{align}
     beschreiben.
     Nach Einsetzen von \refeq{eq:gamma} erhalten wir 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2l}(1+y)^{k-1-2l} (4y)^{l+1} \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!} \\
-        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{1}{2\pi y} \frac{(k-1)!}{(2l)!(k-1-2l)!}(1+y)^{k-1-2l} (4y)^{l+1} \frac{\frac{(2l)!}{l!4^l}\frac12\pi}{(l+1)!}\,.
+        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi}{(\ell+1)!} \\
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{1}{2\pi y} \frac{(k-1)!}{(2\ell)!(k-1-2\ell)!}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi}{(\ell+1)!}\,.
     \end{align*}
 
     Hier lassen sich diverse Variablen so kürzen, dass wir 
 
     \begin{align*}
-        \beta_k = \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{(k-1)!}{l!(l+1)!(k-1-2l)!}y^l(1+y)^{k-1-2l}
+        \beta_k = \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{(k-1)!}{\ell!(\ell+1)!(k-1-2\ell)!}y^\ell(1+y)^{k-1-2\ell}
     \end{align*}
     erhalten.
     Wenn wir den Binomischen Lehrsatz mit 
     \begin{align*}
-        (1+y)^{k-1-2l} &= \sum_{s=0}^{k-1-2l}\binom{k-1-2l}{s}y^s\\
-        &= \sum_{s=0}^{k-1-2l}\frac{(k-1-2l)!}{s!(k-1-2l-s)!}y^s
+        (1+y)^{k-1-2\ell} &= \sum_{s=0}^{k-1-2\ell}\binom{k-1-2\ell}{s}y^s\\
+        &= \sum_{s=0}^{k-1-2\ell}\frac{(k-1-2\ell)!}{s!(k-1-2\ell-s)!}y^s
     \end{align*}
     einsetzen, haben wir 
     \begin{align*}
-        \beta_k &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=0}^{k-1-2l} \frac{(k-1)!}{l!(l+1)!(k-1-2l)!}y^l\frac{(k-1-2l)!}{s!(k-1-2l-s)!}y^s \\
-        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=0}^{k-1-2l} \frac{(k-1)!}{l!(l+1)!s!(k-1-2l-s)!}y^{l+s}\,.
+        \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=0}^{k-1-2\ell} \frac{(k-1)!}{\ell!(\ell+1)!(k-1-2\ell)!}y^\ell\frac{(k-1-2\ell)!}{s!(k-1-2\ell-s)!}y^s \\
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=0}^{k-1-2\ell} \frac{(k-1)!}{\ell!(\ell+1)!s!(k-1-2\ell-s)!}y^{\ell+s}\,.
     \end{align*}
 
-    Jetzt wollen wir den Term wieder vereinfachen. Dafür setzen wir $r=s+l$
+    Jetzt wollen wir den Term wieder vereinfachen. Dafür setzen wir $r=s+\ell$
     \begin{align*}
-        \beta_k &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac{(k-1)!}{l!(l+1)!(r-l)!(k-1-2l-s)!}y^{r}
+        \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac{(k-1)!}{\ell!(\ell+1)!(r-\ell)!(k-1-2\ell-s)!}y^{r}
     \end{align*}
     und erweitern mit zwei Einsen
     \begin{align*}
-        \beta_k &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac{(k-1)!}{l!(l+1)!(r-l)!(k-1-2l-s)!} \frac{r!}{r!}\frac{(k-r)!}{(k-r)!}y^{r} 
+        \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac{(k-1)!}{\ell!(\ell+1)!(r-\ell)!(k-1-2\ell-s)!} \frac{r!}{r!}\frac{(k-r)!}{(k-r)!}y^{r} 
         \\
-        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac{(k-1)!}{r!(k-r)!} \frac{r!}{l!(l-r)!} \frac{(k-r)!}{(k-r-l-1)!(l+1)!} y^{r} 
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac{(k-1)!}{r!(k-r)!} \frac{r!}{\ell!(\ell-r)!} \frac{(k-r)!}{(k-r-\ell-1)!(\ell+1)!} y^{r} 
         \\
-        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac1k\frac{k!}{r!(k-r)!} \frac{r!}{l!(l-r)!} \frac{(k-r)!}{(l+1)!(k-r-(l+1))!} y^{r} 
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac1k\frac{k!}{r!(k-r)!} \frac{r!}{\ell!(\ell-r)!} \frac{(k-r)!}{(\ell+1)!(k-r-(\ell+1))!} y^{r} 
         \\
-        &= \sum_{l=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=l}^{k-1-l} \frac1k\binom{k}{r} \binom{r}{l} \binom{k-r}{l+1} y^{r}\,.
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}\,.
     \end{align*}
-    Für den nächsten Schritt müssen wir die Laufvariablen voneinander unabhängig machen. Momentan haben wir erst das $l$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. Für ein festes aber beliebiges $k$ liegen unsere Laufvariablen in
+    Für den nächsten Schritt müssen wir die Laufvariablen voneinander unabhängig machen. Momentan haben wir erst das $\ell$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. Für ein festes aber beliebiges $k$ liegen unsere Laufvariablen in
     \begin{align*}
-        A = \left\{(l,r)\in\NN^2 \,\middle|\, 0\leq l \leq \left\lfloor\frac{k-1}{2}\right\rfloor,\, l\leq r \leq k-1-l\right\}\,.
+        A = \left\{(\ell,r)\in\NN^2 \,\middle|\, 0\leq \ell \leq \left\lfloor\frac{k-1}{2}\right\rfloor,\, \ell\leq r \leq k-1-\ell\right\}\,.
     \end{align*}
-    Daraus wissen wir, dass \[0\leq l,\, r\leq k-1-l\] gilt, woraus wir \[l\leq k-1-r\] folgern können. Damit erhalten wir 
+    Daraus wissen wir, dass \[0\leq \ell,\, r\leq k-1-\ell\] gilt, woraus wir \[\ell\leq k-1-r\] folgern können. Damit erhalten wir 
     \begin{align*}
-                    &0\leq l\leq r \leq k-1-l\leq k-1 \\
-        \implies    &0\leq r\leq k-1,\, 0\leq l\leq\min(r,k-1-r)
+                    &0\leq \ell\leq r \leq k-1-\ell\leq k-1 \\
+        \implies    &0\leq r\leq k-1,\, 0\leq \ell\leq\min(r,k-1-r)
     \end{align*} 
     damit können wir also die Summen äquivalent über 
     \begin{align}
-        A = \left\{(l,r)\in\NN^2 \,\middle|\, 0\leq r\leq k-1,\, 0\leq l\leq\min(r,k-1-r)\right\} \label{eq:laufvar}
+        A = \left\{(\ell,r)\in\NN^2 \,\middle|\, 0\leq r\leq k-1,\, 0\leq \ell\leq\min(r,k-1-r)\right\} \label{eq:laufvar}
     \end{align}
     laufen lassen.
 
     Wir haben also mit \refeq{eq:laufvar}
     \begin{align*}
-        \beta_k &= \sum_{r=0}^{k-1}\sum_{l=0}^{\min(r,k-1-r)} \frac1k\binom{k}{r} \binom{r}{l} \binom{k-r}{l+1} y^{r}\\
-        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{\min(r,k-1-r)} \binom{r}{l} \binom{k-r}{l+1}\,.
+        \beta_k &= \sum_{r=0}^{k-1}\sum_{\ell=0}^{\min(r,k-1-r)} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}\\
+        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{\min(r,k-1-r)} \binom{r}{\ell} \binom{k-r}{\ell+1}\,.
     \end{align*}
-    Das Minimum können wir noch weiter vereinfachen, da die Summanden gleich $0$ sind, sobald $l>r$ oder $l>k-1-r$ ist. Wenn wir die Summe also bis $r$ laufen lassen, ändern wir nichts am Ergebnis. 
+    Das Minimum können wir noch weiter vereinfachen, da die Summanden gleich $0$ sind, sobald $\ell>r$ oder $\ell>k-1-r$ ist. Wenn wir die Summe also bis $r$ laufen lassen, ändern wir nichts am Ergebnis. 
     \begin{align*}
-        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{r} \binom{r}{l} \binom{k-r}{l+1}\,.
+        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{r} \binom{r}{\ell} \binom{k-r}{\ell+1}\,.
     \end{align*}
     An diesem Punkt müssen wir nur noch die innere Summe vereinfachen. Dafür machen wir einen Indexshift und formen die Binomialkoeffizienten etwas um. Wir haben also
     \begin{align*}
-        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=1}^{r+1} \binom{r}{l-1} \binom{k-r}{l} \\
-        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=1}^{r+1} \binom{r}{r-(l-1)} \binom{k-r}{l} \\
-        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=1}^{r+1} \binom{r}{(r+1)-l} \binom{k-r}{l}\,.
+        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=1}^{r+1} \binom{r}{\ell-1} \binom{k-r}{\ell} \\
+        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=1}^{r+1} \binom{r}{r-(\ell-1)} \binom{k-r}{\ell} \\
+        &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=1}^{r+1} \binom{r}{(r+1)-\ell} \binom{k-r}{\ell}\,.
     \end{align*}
     Wir wollen hier die Vandermonde Identität \textcolor{red}{Quelle!} 
     \begin{align}
         \sum_{"o=0}^{"u}\binom{n}{"o}\binom{m}{"u-"o}=\binom{n+m}{"u} \label{eq:vandermonde}
     \end{align}
-    nutzen. Dafür lassen wir die Summe von $l=0$ beginnen, da der Summand das Ergebnis nicht ändert. Mit der Identität \refeq{eq:vandermonde} erhalten wir
+    nutzen. Dafür lassen wir die Summe von $\ell=0$ beginnen, da der Summand das Ergebnis nicht ändert. Mit der Identität \refeq{eq:vandermonde} erhalten wir
     \begin{align*}
-        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{l=0}^{r+1} \binom{r}{(r+1)-l} \binom{k-r}{l}\\
+        \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{r+1} \binom{r}{(r+1)-\ell} \binom{k-r}{\ell}\\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r}\binom{k}{r+1} y^{r}\\
         &= \sum_{r=0}^{k-1} \frac1k\frac{r+1}{r+1}\binom{k}{r}\binom{k}{r+1} y^{r} \\
         &= \sum_{r=0}^{k-1} \frac{1}{r+1}\binom{k}{r}\binom{k-1}{r} y^{r}\,.
@@ -211,17 +221,15 @@ die Carlman Bedingung erfüllt, womit wir die Eindeutigkeit erhalten.
 
 
 
+%--------------------------------------------------------------------------
 
-\section{Vorbereitung \textcolor{red}{(Text ist mir noch zu holprig)}}
 
-Sei $X$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
-Dabei sind ihre Erwartungswerte  $0$ und ihre Varianz beträgt  $\sigma^2$. 
-Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)$, $\bm{X}=(x_1,\dots,x_n)$ und $\overline{x}=\frac1n\sum_{k=1}^n x_k$. 
-Dann ist die Stichproben-Kovarianzmatrix
-\begin{align}
-    \bm{S}=\frac{1}{m}\sum_{k=1}^{m}(x_k-\overline{x})(x_k-\overline{x})^H\,. \label{eq:StichKovar}
-\end{align}
 
+
+
+
+
+\section{Vorbereitung}
 
 Da wir uns im Bereich der großen Zufallsmatrizen befinden, verwenden wir für die Spektralanalyse die empirische Spektralverteilung.
 
@@ -262,11 +270,11 @@ zu
 vereinfachen, da $\overline{x}\,\overline{x}^H$ eine Rang-$1$ Matrix ist, welche wir nach Satz \ref{theo:ESDrang1} vernachlässigen können.
 
 
-Das Ziel dieses Kapitels, ist es zu zeigen, dass die empirische Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert. 
-Im Beweis über die Konvergenz benutzen wir Elemente aus der Graphentheorie, die wir vorher noch einführen wollen. 
+%Das Ziel dieses Kapitels, ist es zu zeigen, dass die empirische Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert. 
+Im Beweis über die Konvergenz benutzen wir Elemente aus der Graphentheorie, die wir vorher noch einführen wollen.
 \newline
 
-Für den Beweis definieren wir uns eine Klasse von gerichteten bipatiten Graphen mit folgenden Eigenschaften.
+Wir definieren uns also eine Klasse von gerichteten bipatiten Graphen mit folgenden Eigenschaften.
 
 Seien $\emph{\textbf{i}}=(i_1,\dots,i_k)$ $k$ I-Knoten welche Werte zwischen $0$ und $p$ annehmen können und $\emph{\textbf{j}}=(j_1,\dots,j_k)$ $k$ J-Knoten dessen Werte zwischen $0$ und $n$ liegen. 
 Unterschiedliche I/J-Knoten können den gleichen Wert annehmen, also sind sie koinzident. 
@@ -323,7 +331,7 @@ Für diese Graphen haben wir noch ein paar Lemmata.
 \end{theorem}
 
 Im folgenden Beweis nehmen wir o.B.d.A an, dass die Varianz $\sigma^2=1$ ist, wir also den Standardfall betrachten. 
-Um die Konvergenz der empirischen Spektralverteilung \ref{def:ESD} gegen die Mar\v{c}enko-Pastur-Verteilung zu zeigen, müssen wir erstmal sicherstellen, dass die Zufallsvariablen $x_{ij}$ die notwendigen Bedingungen erfüllen damit wir die Moment Methode benutzen können. 
+Um die Konvergenz der empirischen Spektralverteilung \ref{def:ESD} gegen die Mar\v{c}enko-Pastur-Verteilung zu zeigen, müssen wir erstmal sicherstellen, dass die Zufallsvariablen $x_{ij}$ die notwendigen Bedingungen erfüllen damit wir die Momentmethode benutzen können. 
 Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit wir keine unendlich großen Eigenwerte haben und entsprechend die Erwartungswerte wieder zentralisieren also auf $0$ setzen und wir Reskalieren um die Varianz zu erhalten.
 
 
@@ -367,7 +375,7 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
     \end{align*}
     können wir sehen, dass das Entfernen des Erwartungswertes auch keinen Einfluss auf die Konvergenz hat.
     
-    Wir haben jetzt die Verteilung so modifiziert, dass die Zufallsvariablen nicht mehr unendlich groß werden können und den Erhalt des Erwartungswertes garantiert ohne die Konvergenz zu beeinträchtigen. 
+    Wir haben jetzt die Verteilung so modifiziert, dass die Zufallsvariablen nicht mehr unendlich groß werden können und den Erhalt des Erwartungswertes garantiert, ohne die Konvergenz zu beeinträchtigen. 
     Um die letzte Bedingung, also den erhalt der Varianz, zu erfüllen müssen wir zeigen, dass durch Skalierung von $\tilde{S}_n$ mit $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$, wenn $C\to \infty$ gilt, der Abstand zu $\tilde{S}_n$ wieder vernachlässigbar klein wird.
 
     Es gilt wieder mit Lemma \ref{lem:L4}
@@ -383,7 +391,7 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
     Damit haben wir alle Bedingungen erfüllt. Für einen besseren Überblick verwenden wir weiterhin die Notation von $S_n$ und $X$, meinen aber die modifizierten Matrizen. 
     Wir haben also eine gleichmäßig durch $C$ beschränkte Zufallsvariable $x_{ij}$ mit Erwartungswert $0$ und Varianz $1$. 
     
-    Nach der Moment Methode (S.10) erhalten wir
+    Nach der Momentmethode (S.10) erhalten wir
     \begin{align*}
         \beta_k(S_n)&= \int_{-\infty}^{\infty}x^kF^{S_n}\diff x \\
                     &= \frac{1}{p}\tr\lr{S_n^k} \\
@@ -475,9 +483,7 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
     \end{align}
     abschätzen.
 
-    Mit dem Erwartungswert \eqref{eq:Erw} und der Varianz \eqref{eq:Var} können wir darauf schließen, dass die empirische Spektralverteilung fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert. 
-
-
+    Mit dem Erwartungswert \eqref{eq:Erw} und der Varianz \eqref{eq:Var} können wir darauf schließen, dass die empirische Spektralverteilung fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert.
 \end{proof}
 
 

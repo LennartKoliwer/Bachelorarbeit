@@ -39,14 +39,13 @@
       
       {\huge \textbf{\@title}}
 
-      \vspace{.8cm}
       % Subtitle
       \vspace{.8cm}
 
       \IfSubStr{#1}{Vollfach}{{\LARGE Bachelorarbeit zur Erlangung des akademischen Grades\\[1ex]
         Bachelor of Science (B.Sc.) Mathematik}}\par
-      \IfSubStr{#1}{Industrie}{{\LARGE Bachelorarbeit zur Erlangung des akademischen Grades\\[1ex]
-        Bachelor of Science Industriemathematik}}\par
+      \IfSubStr{#1}{Technomathematik}{{\LARGE Bachelorarbeit zur Erlangung des akademischen Grades\\[1ex]
+        Bachelor of Science Technomathematik}}\par
       
       \rule{\textwidth}{1pt}
       

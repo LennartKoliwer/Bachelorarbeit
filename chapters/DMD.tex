@@ -91,7 +91,7 @@ Damit haben wir alles, was wir über die Frobeniusnorm wissen müssen.
 %------------------------------------------------------------------------------------------------
 \section{Singulärwertzerlegung}
 
-\begin{theorem}[Singulärwertzerlegung \cite{Numerik1}] \label{theo:svd}
+\begin{theorem}[Singulärwertzerlegung {\cite[228]{Numerik1}}] \label{theo:svd}
 	Sei \(X\in \mathbb{R}^{p\times n} \) eine Matrix und ${r\coloneqq \rang X}$ mit $r\leq \min(p,n)$.
 	Dann existieren orthogonale Matrizen \(U\in\RR^{p\times p}\) und \(V\in\RR^{n\times n}\) und eine Diagonalmatrix \(\hat{\Sigma}=\diag(\sigma_1,\dots,\sigma_r)\in\mathbb{R}^{r\times r}\) mit $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass 
 	\[
@@ -289,70 +289,101 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 	eine erfolgreiche Zerlegung von $X_r$ durch orthogonale Matrizen.
 \end{proof}
 
+
+
 %----------------------------------DMD-----------------------------
  
 \section{Exact DMD}
 
 
-Sei nun \(X\in\mathbb{R}^{p\times n}\) der Zustand des Systems zu \(m \) diskreten Zeitpunkten \(t_k =k \Delta t\)  mit \(k\in\NN\) also
-\[
+
+% Da unsere Daten ein hochgradig nichtlineares system schaffen versuchen wir durch die erhöhung der dimension unserer datematrizen diese annähernd zu linearisieren.
+
+\textcolor{red}{Ich weiß noch nicht wie ich dafür sorge, dass meine Gleichungen nicht im Zeilenumbruch getrennt werden UND ich den Blocktext beibehalten kann.}
+
+In der Einleitung haben wir grob den DMD Algorithmus erklärt.
+Wir gehen hier jetzt aber auf die \glqq exact DMD\grqq\ Variante ein, da sie im Gegensatz zur ursprünglichen Variante keine einheitlichen Zeitabstände zwischen den Messungen erfordert.
+Exact DMD erlaubt es uns Daten über mehrere Messungen die Zeitlich unterschiedlich auseinanderliegen zusammenzutragen. Zu jeder Messung gehört dann ein Datenpaar $\{x(t_i),x(t_i')\}$ mit $i=1,\dots,n$ und $t'_i=t_i +\Delta t$.
+Fügen wir die Datenpaare in zwei Matrizen \(X,X'\in\mathbb{R}^{p\times n}\) ein, erhalten wir die Zustände des Systems zu \(n \) diskreten Zeitpunkten.
+Wir haben also 
+\begin{align*}
 	X=\begin{pmatrix}
 		|      & |      &       & |      \\
-		x(t_1) & x(t_2) & \dots & x(t_m) \\
+		x(t_1) & x(t_2) & \dots & x(t_n) \\
 		|      & |      &       & |
 	\end{pmatrix}
-\]
-und \(X'\in\mathbb{R}^{p\times n}\) der Zustand mit jedem Punkt einen Zeitschritt weiter mit \(t'_k=t_k +\Delta t\)
-\[
+	\quad \text{und} \quad
 	X'=\begin{pmatrix}
 		|       & |       &       & |       \\
-		x(t'_1) & x(t'_2) & \dots & x(t'_m) \\
+		x(t'_1) & x(t'_2) & \dots & x(t'_n) \\
 		|       & |       &       & |
-	\end{pmatrix}
-\]
-dann versuchen wir die Matrix \(A \) zu finden, der dieses System beschreiben kann und wir mit möglichst geringem Fehler
-\[
-	X' \approx AX
-\]
-bestimmen können.
-Ein ideales \(A\) finden wir durch
-\[
-	A = \underset{A}{\arg\min}||X'-AX||_F = X'X^\dag
-\]
-mit \(X^\dag\) als Pseudoinversen von \(X\). 
-Dabei sind die hier betrachteten Pseudoinversen alle Moore-Penrose-Inverse. Um die zu bestimmen, machen wir eine Singulärwertzerlegung von \(X\).
-Damit erhalten wir wie in \ref{theo:svd} und \ref{theo:moorePenrose}
-\begin{align*}
-	X &=U\Sigma V^\top = U\begin{pmatrix}
-		\hat{\Sigma} & 0 \\
-		0 & 0
-	\end{pmatrix}V^\top 
-	\intertext{und}
-	X^\dag &= V\begin{pmatrix}
-		\hat{\Sigma}^{-1} & 0 \\
-		0 & 0
-	\end{pmatrix}U^\top
+	\end{pmatrix}\,.
 \end{align*}
-so, dass $XX^\dag=\mathbb{1}$ ergibt. Da wir aber häufig mit sehr großen Matrizen arbeiten, liegt es nahe zu versuchen die Dimensionen weitgehend zu reduzieren. \textcolor{red}{Motivation für Paper}. Haben wir ein passendes $r\leq m$ zum Reduzieren gefunden, erhalten wir 
+
+Mit den Vorbereitungen abgeschlossen, gehen wir jetzt auf den Algorithmus ein.
+
+Als Erstes bestimmen wir die Singulärwertzerlegung von $X$ also
 \begin{align*}
-	X &\approx U_r\Sigma_rV_r^\top 
-	\intertext{und}
-	X^\dag &\approx V_r\Sigma_r^{-1}U_r^\top\,.
+	X=U\Sigma V^\top\,.
 \end{align*}
-Dabei sind $U_r\in\RR^{n\times r}$, $\Sigma_r\in\RR^{r\times r}$ und $V_r\in\RR^{m\times r}$.
+Diese wollen wir durch eine geeignete Rangreduzierung verkleinern.
+Wir approximieren also mit $r<n$, $U_r\in\RR^{p\times r}$, $\Sigma_r\in\RR^{r\times r}$ und $V_r\in\RR^{n\times r}$
+\begin{align*}
+	X\approx U_r\Sigma_rV_r^\top\,.
+\end{align*}
+Um den linearen Operator $A$ zu finden, der 
+\begin{align*}
+	X'\approx AX
+\end{align*}
+löst benötigen wir die Pseudoinverse von $X$. Um eine eindeutige Inverse zu bekommen, benutzen wir die Moore-Penrose-Inverse aus dem folgenden Satz.
+\begin{theorem}[Moore-Penrose-Inverse {\cite[230]{Numerik1}}] \label{theo:moorePenrose}
+	Sei $X\in\RR^{p\times n}$ eine Matrix und $U, \hat{\Sigma}$ und $V$ die Matrizen aus der Singulärwertzerlegung in Satz \ref{theo:svd}. Dann existiert genau eine Moore-Penrose-Inverse der Form
+	\begin{align*}
+		X^\dag=V\begin{pmatrix}
+			        \hat{\Sigma}^{-1} & 0 \\
+			        0                 & 0
+		        \end{pmatrix}U^\top \in\RR^{n\times p}\,.
+	\end{align*}
+\end{theorem}
+Wir können $A$ also mit Satz \ref{theo:moorePenrose} durch 
+\begin{align*}
+	A = X'V_r \Sigma_r^{-1} U_r^\top = X'X_r^\dagger
+\end{align*}
+bestimmen.
+Was wir suchen ist jetzt die Spektralzerlegung von $A$.
+Da $A$ aber eine $p\times p$ große Matrix ist, ist das ein zu großer Rechenaufwand. 
+Wir können diesen minimieren, indem wir die Spektralzerlegung von 
+\begin{align*}
+	A_r&=U_r^\top A U_r \\
+	 &= U_r^\top X'X^\dagger_r U_r \\
+	 &= U_r^\top X'V_r\Sigma_r^{-1}
+\end{align*}
+bestimmen.
+Da wir $r$ so gewählt haben, dass alle für uns relevanten Informationen aus der Datenmatrix $X$ behalten werden, können wir die Spektralzerlegung aus der deutlich kleineren $r\times r$ großen Matrix bestimmen.
 
-$A$ würde man also mit
-\begin{align}
-	A\approx X'X^\dag \approx X' V_r\Sigma_r^{-1}U_r^\top
-\end{align}
-näher approximieren können. Da wir aber nicht an ganz $A$ interessiert sind, sondern nur die ersten $r$ Eigenwerte, Projizieren wir $A$ auf \textcolor{red}{die POD modes von $U$}.
-\
+Sei $W$ die Matrix aus Eigenvektoren von $A_r$ und $\Lambda$ eine Diagonalmatrix dessen Einträge die Eigenwerte $\lambda_i$ von $A_r$ sind, dann ist die Spektralzerlegung von $A_r$ genau
+\begin{align*}
+	A_rW=W\Lambda \,.
+\end{align*}
+Die Eigenvektoren $\Phi$ von $A$ können wir dann durch die reduzierten Matrizen 
+\begin{align*}
+	\Phi = X'V_r\Sigma_r^{-1} W
+\end{align*}
+rekonstruieren.
+Dabei sind die Spalten von $\Phi$ die Eigenvektoren zu den Eigenwerten von $A_r$. Das können wir durch
+\begin{align*}
+	A\Phi &= (X'V_r \Sigma_r^{-1} U_r^\top)(X'V_r\Sigma_r^{-1} W) \\
+		  &= X'V_r \Sigma_r^{-1} A_r W \\
+		  &= X'V_r \Sigma_r^{-1} W\Lambda \\
+		  &=\Phi \Lambda
+\end{align*}
+zeigen.
 
 
+% DMD mode ist eigenvektor von $A$
 
-\begin{itemize}
-	\item DMD mode ist eigenvektor von $A$
-	\item 
-\end{itemize}
 
 \end{document}
+
+
+

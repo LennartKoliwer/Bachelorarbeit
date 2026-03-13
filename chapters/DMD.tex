@@ -30,15 +30,11 @@ Die Frobeniusnorm können wir aber auch über die Spur der Matrix beschreiben.
 	\begin{align*}
 		X^HX & =
 		\begin{pmatrix}
-			- & x^{H}_1 & - \\
-			  & \vdots  &   \\
-			- & x^{H}_n & -
-		\end{pmatrix}
+			x_1 & \dots & x_n 
+		\end{pmatrix}^H
 		\begin{pmatrix}
-			|   &       & |   \\
-			x_1 & \dots & x_n \\
-			|   &       & |
-		\end{pmatrix}                                                                                              \\
+			x_1 & \dots & x_n
+		\end{pmatrix} \\
 		     & = \begin{pmatrix}
 			         \displaystyle\sum_{j=1}^{p}x^{H}_{1j} x_{1j} &        & *                                             \\
 			                                                      & \ddots &                                               \\
@@ -296,9 +292,6 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 \section{Exact DMD}
 
 
-
-% Da unsere Daten ein hochgradig nichtlineares system schaffen versuchen wir durch die erhöhung der dimension unserer datematrizen diese annähernd zu linearisieren.
-
 \textcolor{red}{Ich weiß noch nicht wie ich dafür sorge, dass meine Gleichungen nicht im Zeilenumbruch getrennt werden UND ich den Blocktext beibehalten kann.}
 
 In der Einleitung haben wir grob den DMD Algorithmus erklärt.
@@ -323,23 +316,13 @@ Wir haben also
 
 
 
-
-
-\textcolor{red}{Ab hier noch nicht lesen!!!!11!!!11!elf!!!!}
-
-
-
-
-
-
-
 Mit den Vorbereitungen abgeschlossen, gehen wir jetzt auf den Algorithmus ein.
 
 Als Erstes bestimmen wir die Singulärwertzerlegung von $X$ also
 \begin{align*}
 	X=U\Sigma V^\top\,.
 \end{align*}
-Diese wollen wir durch eine geeignete Rangreduzierung verkleinern.
+Um den Rechenaufwand zu minimieren, finden wir eine geeignete Rangreduzierung.
 Wir approximieren also mit $r<n$, $U_r\in\RR^{p\times r}$, $\Sigma_r\in\RR^{r\times r}$ und $V_r\in\RR^{n\times r}$
 \begin{align*}
 	X\approx U_r\Sigma_rV_r^\top\,.
@@ -358,43 +341,40 @@ löst benötigen wir die Pseudoinverse von $X$. Um eine eindeutige Inverse zu be
 		        \end{pmatrix}U^\top \in\RR^{n\times p}\,.
 	\end{align*}
 \end{theorem}
-Wir können $A$ also mit Satz \ref{theo:moorePenrose} durch 
+Mit Satz \ref{theo:moorePenrose} können wir $A$ durch  
 \begin{align*}
 	A = X'V_r \Sigma_r^{-1} U_r^\top = X'X_r^\dagger
 \end{align*}
 bestimmen.
-Was wir suchen ist jetzt die Spektralzerlegung von $A$.
-Da $A$ aber eine $p\times p$ große Matrix ist, ist das ein zu großer Rechenaufwand. 
-Wir können diesen minimieren, indem wir die Spektralzerlegung von 
+Das Ziel ist es die Spektralzerlegung von $A$ zu finden, damit wir analysieren können wie sich das System über die Zeit entwickelt.
+Da $A$ aber eine $p\times p$ große Matrix ist und $p$ schnell sehr groß werden kann, können wir den Rechenaufwand minimieren, indem wir die Spektralzerlegung von einem $A_r$ bestimmen, welches nur noch die für uns relevante Dimension $r$ hat.
+Wir bestimmen $A_r$ durch
 \begin{align*}
 	A_r&=U_r^\top A U_r \\
 	 &= U_r^\top X'X^\dagger_r U_r \\
-	 &= U_r^\top X'V_r\Sigma_r^{-1}
+	 &= U_r^\top X'V_r\Sigma_r^{-1}\,.
 \end{align*}
-bestimmen.
-Da wir $r$ so gewählt haben, dass alle für uns relevanten Informationen aus der Datenmatrix $X$ behalten werden, können wir die Spektralzerlegung aus der deutlich kleineren $r\times r$ großen Matrix bestimmen.
 
 Sei $W$ die Matrix aus Eigenvektoren von $A_r$ und $\Lambda$ eine Diagonalmatrix dessen Einträge die Eigenwerte $\lambda_i$ von $A_r$ sind, dann ist die Spektralzerlegung von $A_r$ genau
 \begin{align*}
 	A_rW=W\Lambda \,.
 \end{align*}
-Die Eigenvektoren $\Phi$ von $A$ können wir dann durch die reduzierten Matrizen 
+Sei $\Phi$ die Matrix, dessen Spalten die Eigenvektoren von $A$ sind. Dann können wir $\Phi$ durch die reduzierten Eigenvektoren $W$ mit 
 \begin{align*}
 	\Phi = X'V_r\Sigma_r^{-1} W
 \end{align*}
 rekonstruieren.
-Dabei sind die Spalten von $\Phi$ die Eigenvektoren zu den Eigenwerten von $A_r$. Das können wir durch
+
+Durch
 \begin{align*}
 	A\Phi &= (X'V_r \Sigma_r^{-1} U_r^\top)(X'V_r\Sigma_r^{-1} W) \\
 		  &= X'V_r \Sigma_r^{-1} A_r W \\
 		  &= X'V_r \Sigma_r^{-1} W\Lambda \\
 		  &=\Phi \Lambda
 \end{align*}
-zeigen.
+kann sehen wir, dass die Spalten von $\Phi$ auch die Eigenvektoren zu den Eigenwerten von $A_r$ sind. Damit können wir also die Spektralzerlegung von $A$ mit der Spektralzerlegung von $A_r$ bestimmen.
 
-
-% DMD mode ist eigenvektor von $A$
-
+\textcolor{red}{Muss noch irgendwas ans Ende.}
 
 \end{document}
 

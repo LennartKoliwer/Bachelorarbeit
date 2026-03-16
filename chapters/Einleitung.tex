@@ -49,7 +49,7 @@ Reduzieren wir also unser $\Sigma$ aus der SWZ auf eine $r\times r$ große Matri
 \[
 X_r=U_r\Sigma_rV_r^\top=U_r\hat{\Sigma}V_r^\top\,.
 \] 
-Nach dem Eckart-Young-Mirsky-Theorem \textcolor{red}{Quelle!! Vielleicht doch eher MSE nehmen weil gleich wie im paper} lässt sich durch
+Nach dem Eckart-Young-Theorem \cite[9]{SlaySlaySlay} lässt sich durch
 \begin{align*}
     \dabs{X_r}_F^2=\sum_{i=1}^{r}\sigma_i^2
 \end{align*}
@@ -65,48 +65,45 @@ Diese Methode der Dimensionsreduktion für SWZ ist als ökonomische SWZ bekannt.
 %---------------------------------------------------------------------------------------
 
 
-%An diesem Punkt kommt natürlich die Frage auf, ob sich das ganze noch weiter reduzierten lässt, ohne zu viel Information zu verlieren.
-
 Eine weitere Methode, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). 
 Das ist eine Rang\-reduzierung bis alle Singulärwerte über einem definierten Schwellenwert $\tau$ liegen.
-Gavish und Donoho definieren einer Rahmenstruktur, in der die Datenmatrix $X$ durch
+Gavish und Donoho definieren eine Rahmenstruktur, in der die Datenmatrix $X$ durch
 \[
     X \coloneqq \Xtrue+\gamma \Xnoise
 \]
 beschrieben wird. 
 Wir haben also $X$ in einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil aufgeteilt. 
-Die Einträge der Fehlermatrix sind unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $E(\Xnoise)=0$ Varianz $Var(\Xnoise)=1$.
+Die Einträge der Fehlermatrix sind dabei unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $\EE(\Xnoise)=0$ Varianz $\var(\Xnoise)=1$.
 
-\textcolor{red}{nicht sicher wie detailiert ich die Rahmenstruktur definieren soll oder ob überhaupt.}
-
-Innerhalb dieser Rahmenstruktur haben Gavish und Donoho herausgefunden, dass für bekanntes Rauschen $\gamma$ der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
+Innerhalb dieser Rahmenstruktur haben Gavish und Donoho herausgefunden, dass für bekanntes Rauschen $\gamma$ und bekantem Dimonsions-Stichproben-Verhältnis $y=\frac{p}{n}$ der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
 \[
 	\tau_*=\lambda_*(y)\gamma\sqrt{n}\quad \text{mit}\quad \lambda_*(y) \coloneqq \sqrt{2(y+1)+\frac{8y}{(y+1)+\sqrt{y^2+14y+1}}}
 \]
 liegt. 
 Bei quadratischen Matrizen reduziert sich $\lambda_*$ sogar auf $\frac{4}{\sqrt{3}}$.
 
-\textcolor{red}{ab hier eher ungenau aber wenigstens mal "fertig" formuliert}
+Wenn das Rauschen aber nicht bekannt ist, muss $\gamma$ geschätzt werden.
+Das Ziel ist es also einen Schwellenwert $\hat{\tau}_*$ zu finden, ab dem davon ausgegangen werden kann, dass die Singulärwerte, die größer oder gleich diesem Schwellenwert sind, nur zu einem vernachlässigbaren Anteil aus Rauschen bestehen.
+Im Zusammenhang mit Singulärwerten von Zufallsmatrizen spielt Mar\v{c}enko-Pastur-Verteilung eine zentrale Rolle.
+Sie sagt aus, wie die quadrierten Singulärwerte von bestimmten Zufallsmatrizen verteilt sind.
 
-Da das Rauschen aber nicht unbedingt bekannt ist, haben Gavish und Donoho für diesen Fall einen Rausch-Schätzer 
+Für unbekantes Rauschen haben Gavish und Donoho dann mit dem Median der Singulärwerte $\sigma_{med}$ von $X$ und dem Median der Mar\v{c}enko-Pastur-Verteilung, den Rausch-Schätzer 
 \[
 	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med}}{\sqrt{m\cdot\mu_y}}
 \]
-definiert. Hier ist $\sigma_{med}$ der Median der Singulärwerte von $X$ und $\mu_y$ ist der Median der standard Mar\v{c}enko-Pastur-Verteilung. 
-Also mit $y=\frac{n}{m}$, $a=\left(1-\sqrt{y}\right)^2$, $b=\left(1+\sqrt{y}\right)^2$ und $a\leq\mu_y\leq b$ so, dass
+definiert. 
+Also mit $a=\left(1-\sqrt{y}\right)^2$, $b=\left(1+\sqrt{y}\right)^2$ und $a\leq\mu_y\leq b$ so, dass
 \[
 	\int_{a}^{\mu_y}\frac{1}{2\pi x y}\sqrt{(b-x)(x-a)}\diff x = \frac12
 \]
-gilt. 
+gilt.
+
 Mit $\hat{\gamma}$ haben sie dann den Schwellenwert für Singulärwerte durch
 \[
-	\hat{\tau}_*(y,X)\coloneqq \lambda_*(y)\hat{\gamma}\sqrt{n} = \frac{\lambda_*(y)}{\sqrt{\mu_y}}\sigma_{med}
+	\hat{\tau}_*(y,X)\coloneqq \lambda_*(y)\hat{\gamma}\sqrt{n} = \lambda_*(y)\frac{\sigma_{med}}{\sqrt{\mu_y}}
 \]
-definiert. 
-
-Uns interessiert hier am Ende die Mar\v{c}enko-Pastur-Verteilung (MP) im Rahmenbereich der unabhängig und identisch verteilten Zufallsvariablen (uiv).
-Was MP macht, ist anzugeben, wie die Singulärwerte einer Matrix aus uiv Zufallsvariablen verteilt sind.
-In dieser Arbeit werden wir die MP einmal konkret beweisen und zeigen, dass es ein $\mu_y$ gibt, mit dem die Verteilung $\frac12$ ergibt.
+definiert.
+In dieser Arbeit konzentrieren wir uns zum einen auf den DMD Algorithmus, und zum anderen auf die Herleitung der Mar\v{c}enko-Pastur-Verteilung, da diese wie gerade beschrieben ein wesentlicher Bestandteil der Dimensionsreduktion ist.
 
 
 

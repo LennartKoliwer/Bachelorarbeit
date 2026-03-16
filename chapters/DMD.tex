@@ -5,11 +5,11 @@
 
 
 
-In diesem Kapitel wollen wir noch einmal genauer den DMD Algorithmus erklären. Es ist aber nicht notwendig für das weitere Verstehen dieser Arbeit.
+In diesem Kapitel wollen wir einmal genauer auf den DMD Algorithmus bzw. die \glqq exact DMD\grqq\ Variante eingehen. 
 
 Aus der Einleitung wissen wir, dass die Singulärwertzerlegung und die Frobeniusnorm wichtige Werkzeuge des Algorithmus sind, weshalb wir sie hier einmal konkret definieren.
 
-\section{Frobeniusnorm}
+\section{Frobeniusnorm}\label{chap:Frobeniusnorm}
 
 \begin{definition}[Frobeniusnorm]
 	Sei $X\in\CC^{p\times n}$ eine Matrix und $x_{ij}$ mit $i\in \{1,\dots,p\},$ $j\in \{1,\dots,n\}$. Die \emph{Frobeniusnorm} ist definiert durch
@@ -85,7 +85,7 @@ Damit haben wir alles, was wir über die Frobeniusnorm wissen müssen.
 
 
 %------------------------------------------------------------------------------------------------
-\section{Singulärwertzerlegung}
+\section{Singulärwertzerlegung}\label{chap:SWZ}
 
 \begin{theorem}[Singulärwertzerlegung {\cite[228]{Numerik1}}] \label{theo:svd}
 	Sei \(X\in \mathbb{R}^{p\times n} \) eine Matrix und ${r\coloneqq \rang X}$ mit $r\leq \min(p,n)$.
@@ -289,13 +289,12 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 
 %----------------------------------DMD-----------------------------
  
-\section{Exact DMD}
-
-
-\textcolor{red}{Ich weiß noch nicht wie ich dafür sorge, dass meine Gleichungen nicht im Zeilenumbruch getrennt werden UND ich den Blocktext beibehalten kann.}
+\section{Exact DMD}\label{chap:exactDMD}
 
 In der Einleitung haben wir grob den DMD Algorithmus erklärt.
 Wir gehen hier jetzt aber auf die \glqq exact DMD\grqq\ Variante ein, da sie im Gegensatz zur ursprünglichen Variante keine einheitlichen Zeitabstände zwischen den Messungen erfordert.
+Dieses Kapitel beruht auf dem Buch \cite{SlaySlaySlay}.
+
 Exact DMD erlaubt es uns Daten über mehrere Messungen die Zeitlich unterschiedlich auseinanderliegen zusammenzutragen. Zu jeder Messung gehört dann ein Datenpaar $\{x(t_i),x(t_i')\}$ mit $i=1,\dots,n$ und $t'_i=t_i +\Delta t$.
 Fügen wir die Datenpaare in zwei Matrizen \(X,X'\in\mathbb{R}^{p\times n}\) ein, erhalten wir die Zustände des Systems zu \(n \) diskreten Zeitpunkten.
 Wir haben also 

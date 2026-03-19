@@ -19,10 +19,13 @@ Dabei sind ihre Erwartungswerte $0$ und ihre Varianz beträgt $\sigma^2$.
 Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)$, $\bm{X}=(x_1,\dots,x_n)$ und $\overline{x}=\frac1n\sum_{k=1}^n x_k$. 
 Dann ist die Stichproben-Kovarianzmatrix
 \begin{align}
-    \bm{S}=\frac{1}{m}\sum_{k=1}^{m}(x_k-\overline{x})(x_k-\overline{x})^H\,. \label{eq:StichKovar}
+    \bm{S}=\frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\,. \label{eq:StichKovar}
 \end{align}
-Die Mar\v{c}enko-Pastur-Verteilung $F_y$ ist ein Wahrscheinlichkeitsmaß auf $(\RR,\mathcal{B}(\RR))$. Für $y,\sigma^2\in\RR_+$ und $x\in\RR$ 
-sind \[a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2\] wobei $y=\frac{p}{n}$ das Dimonsions-Stichproben-Verhältnis ist. Die Dichtefunktion Mar\v{c}enko-Pastur-Verteilung ist dann durch
+Die Mar\v{c}enko-Pastur-Verteilung $F_y$ ist ein Wahrscheinlichkeitsmaß auf $(\RR,\mathcal{B}(\RR))$. Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ 
+sind 
+\[a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2\] 
+wobei $y=\frac{p}{n}$ das Dimonsions-Stichproben-Verhältnis ist. 
+Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung ist dann durch
 \begin{align}
     p_y(x)=\begin{cases*}
         \dfrac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
@@ -60,7 +63,7 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
 Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig durch die Momente ${\beta_x}$ bestimmt wird und wie die Momente explizit bestimmt aussehen.
 %----------------------------------------------------------------------------------
 
-\begin{lemma}[Carleman] \cite[509]{BaiSilverstein} \label{lem:Carlman}
+\begin{lemma}[Carleman {\cite[509]{BaiSilverstein}}]  \label{lem:Carlman}
     Sei $\{\beta_k=\beta_k(F)\}_{k\in\NN_0}$ eine Folge von Momenten der Verteilungsfunktion $F$. Ist die \emph{Carleman-Bedingung}
     \begin{align*}
         \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}}=\infty
@@ -111,13 +114,13 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
     umformen.
     Um das Integral weiter zu vereinfachen, substituieren wir mit $z=2\sqrt{y}u$ und erhalten 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} \int_{-1}^{1}\left(2\sqrt{y}u\right)^\ell\sqrt{4y-4yu^2}\diff u \\
+        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} \int_{-1}^{1}\left(2\sqrt{y}u\right)^\ell\sqrt{4y-4yu^2}2\sqrt{y}\diff u \\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} (2\sqrt{y})^\ell 4y \int_{-1}^{1}u^\ell\sqrt{1-u^2}\diff u\,.  
         \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt die ungleich $0$ sind. Wir haben also}
         \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (2\sqrt{y})^{2\ell} 4y \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\,.
     \end{align*}
-    Hier ist der Integrand eine gerade Funktion für alle $0\leq \ell$. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen können wir auch zweimal über das halbe Intervall integrieren. Folglich gilt 
+    Hier ist der Integrand eine gerade Funktion für alle $0\leq \ell$. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen können wir auch zweimal über das halbe Intervall integrieren. Folglich gilt
     \begin{align*}
         \beta_k = \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} 2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\,.        
     \end{align*}
@@ -134,14 +137,14 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
     gegeben. Wir können also mit $p=\ell+\frac12$ und $q=1+\frac12$ das Integral durch die Gammafunktionen 
     \begin{align}
         \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w &= \frac{\Gamma(\ell+\frac12)\Gamma(1+\frac12)}{\Gamma(\ell+2)} \nonumber \\
-        &= \frac{\frac{(2\ell)!\sqrt{\pi}}{\ell!4^\ell}\frac{2!\sqrt{\pi}}{4^\ell}}{(\ell+1)!} \nonumber \\
-        &= \frac{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi}{(\ell+1)!} \label{eq:gamma}
+        &= \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!\sqrt{\pi}}{\ell!4^\ell}\frac{2!\sqrt{\pi}}{4}} \nonumber \\
+        &= \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi} \label{eq:gamma}
     \end{align}
     beschreiben.
-    Nach Einsetzen von \refeq{eq:gamma} erhalten wir 
+    Nach Einsetzen von \eqref{eq:gamma} erhalten wir 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi}{(\ell+1)!} \\
-        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{1}{2\pi y} \frac{(k-1)!}{(2\ell)!(k-1-2\ell)!}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi}{(\ell+1)!}\,.
+        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi} \\
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{1}{2\pi y} \frac{(k-1)!}{(2\ell)!(k-1-2\ell)!}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi}\,.
     \end{align*}
 
     Hier lassen sich diverse Variablen so kürzen, dass wir 
@@ -163,17 +166,17 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
 
     Jetzt wollen wir den Term wieder vereinfachen. Dafür setzen wir $r=s+\ell$
     \begin{align*}
-        \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac{(k-1)!}{\ell!(\ell+1)!(r-\ell)!(k-1-2\ell-s)!}y^{r}
+        \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac{(k-1)!}{\ell!(\ell+1)!(r-\ell)!(k-1-\ell-r)!}y^{r}
     \end{align*}
     und erweitern mit zwei Einsen
     \begin{align*}
-        \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac{(k-1)!}{\ell!(\ell+1)!(r-\ell)!(k-1-2\ell-s)!} \frac{r!}{r!}\frac{(k-r)!}{(k-r)!}y^{r} 
+        \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac{(k-1)!}{\ell!(\ell+1)!(r-\ell)!(k-1-\ell-r)!} \frac{r!}{r!}\frac{(k-r)!}{(k-r)!}y^{r} 
         \\
-        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac{(k-1)!}{r!(k-r)!} \frac{r!}{\ell!(\ell-r)!} \frac{(k-r)!}{(k-r-\ell-1)!(\ell+1)!} y^{r} 
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac{(k-1)!}{r!(k-r)!} \frac{r!}{\ell!(\ell-r)!} \frac{(k-r)!}{(k-r-\ell-1)!(\ell+1)!} y^{r} 
         \\
-        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac1k\frac{k!}{r!(k-r)!} \frac{r!}{\ell!(\ell-r)!} \frac{(k-r)!}{(\ell+1)!(k-r-(\ell+1))!} y^{r} 
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac1k\frac{k!}{r!(k-r)!} \frac{r!}{\ell!(\ell-r)!} \frac{(k-r)!}{(\ell+1)!(k-r-(\ell+1))!} y^{r} 
         \\
-        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=\ell}^{k-1-\ell} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}\,.
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}\,.
     \end{align*}
     Für den nächsten Schritt müssen wir die Laufvariablen voneinander unabhängig machen. Momentan haben wir erst das $\ell$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. Für ein festes aber beliebiges $k$ liegen unsere Laufvariablen in
     \begin{align*}
@@ -190,7 +193,7 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
     \end{align}
     laufen lassen.
 
-    Wir haben also mit \refeq{eq:laufvar}
+    Wir haben also mit \eqref{eq:laufvar}
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1}\sum_{\ell=0}^{\min(r,k-1-r)} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}\\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{\min(r,k-1-r)} \binom{r}{\ell} \binom{k-r}{\ell+1}\,.
@@ -209,7 +212,7 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
     \begin{align}
         \sum_{"o=0}^{"u}\binom{n}{"o}\binom{m}{"u-"o}=\binom{n+m}{"u} \label{eq:vandermonde}
     \end{align}
-    nutzen. Dafür lassen wir die Summe von $\ell=0$ beginnen, da der Summand das Ergebnis nicht ändert. Mit der Identität \refeq{eq:vandermonde} erhalten wir
+    nutzen. Dafür lassen wir die Summe von $\ell=0$ beginnen, da der Summand das Ergebnis nicht ändert. Mit der Identität \eqref{eq:vandermonde} erhalten wir
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{r+1} \binom{r}{(r+1)-\ell} \binom{k-r}{\ell}\\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r}\binom{k}{r+1} y^{r}\\
@@ -234,7 +237,7 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
 Da wir uns im Bereich der großen Zufallsmatrizen befinden, verwenden wir für die Spektralanalyse die empirische Spektralverteilung.
 
 \begin{definition}\label{def:ESD}
-    Sei S eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann ist die \emph{empirische Spektralverteilung} durch
+    Sei $S$ eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann ist die \emph{empirische Spektralverteilung} durch
     \begin{align*}
         F^S(x)=\frac1p|A| \quad \text{mit } A\coloneqq\{i\leq p \colon \lambda_i \leq x\}
     \end{align*}
@@ -297,18 +300,18 @@ Für bessere Lesbarkeit schreiben wir nur noch $\Delta_{1,2,3}$.
 Wir bezeichnen zwei Graphen als isomorph, wenn wir durch eine geeignete Zuweisung von \emph{\textbf{i}}/\emph{\textbf{j}} Knoten gibt, mit der die Graphen identisch sind. 
 Für diese Graphen haben wir noch ein paar Lemmata.
 
-\begin{lemma}\cite[43]{BaiSilverstein}\label{lem:AnzahlIsomklasse}
+\begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{lem:AnzahlIsomklasse}
     Die Anzahl der Graphen in jeder Isomorphismenklasse von $\Delta(k,r,s)$ Graphen, mit festen $k$, $r$ und $s$ ist
     \begin{align*}
         \alpha = p(p-1)\cdots(p-r)n(n-1)\cdots(n-s+1)=p^{r+1}n^s\lr{1+\mathcal{O}\lr{\frac1n}}\,.
     \end{align*}
 \end{lemma}
 
-\begin{lemma}\cite[43]{BaiSilverstein}\label{lem:AnzahlNichtKoinzidenterKnotenKateg3}
+\begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{lem:AnzahlNichtKoinzidenterKnotenKateg3}
     Die Anzahl nicht koinzidenter Knoten von $\Delta_3(k,r,s)$ Graphen also $r+s$ ist kleiner gleich $k$. 
 \end{lemma}
 
-\begin{lemma}\cite[43]{BaiSilverstein}\label{AnzahlKateg1Graphen}
+\begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{AnzahlKateg1Graphen}
     Die Anzahl nicht-isomorpher $\Delta_1(k,r,s)$ Graphen für festes k und r beträgt
     \begin{align*}
         \frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}\,.

@@ -6,7 +6,7 @@
 Dynamic Mode Decomposition, kurz DMD, ist ein datengetriebener Algorithmus, der ursprünglich im Forschungsgebiet der Strömungsdynamik entwickelt wurde. 
 Grundsätzlich dient er der Analyse von Messdaten eines dynamischen Systems mittels Singulärwert\-zerlegung von großen Datenmatrizen.
 DMD kann anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren. 
-Die Genauigkeit hängt unter anderem davon ab, wie viele Informationen in Form von Messdaten über das System zur Verfügung stehen und wie groß die Messfehler, also das Rauschen der Daten ist.
+Die Genauigkeit hängt unter anderem davon ab, wie viele Informationen in Form von Messdaten über das System zur Verfügung stehen und wie groß die Messfehler, also das Rauschen der Daten, ist.
 Dabei ist DMD gut im Erkennen von Mustern, wie im Falle der Strömungsdynamik z.B. Verwirbelungen. 
 Probleme treten jedoch auf, wenn man DMD außerhalb von Simulationen verwendet und echte Messungen analysieren will. 
 Bei Messungen hat man immer ein Rauschen in den Daten, welche das Ergebnis verfälschen.
@@ -89,7 +89,7 @@ Sie sagt aus, wie die quadrierten Singulärwerte von bestimmten Zufallsmatrizen 
 
 Für unbekantes Rauschen haben Gavish und Donoho dann mit dem Median der Singulärwerte $\sigma_{med}$ von $X$ und dem Median der Mar\v{c}enko-Pastur-Verteilung, den Rausch-Schätzer 
 \[
-	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med}}{\sqrt{m\cdot\mu_y}}
+	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med}}{\sqrt{n\cdot\mu_y}}
 \]
 definiert. 
 Also mit $a=\left(1-\sqrt{y}\right)^2$, $b=\left(1+\sqrt{y}\right)^2$ und $a\leq\mu_y\leq b$ so, dass

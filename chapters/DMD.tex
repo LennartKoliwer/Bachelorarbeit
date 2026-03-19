@@ -97,20 +97,22 @@ Damit haben wir alles, was wir über die Frobeniusnorm wissen müssen.
 		\end{pmatrix} \in \mathbb{R}^{p\times n}
 	\]
 	gilt.
+	Wir nennen die Diagonalelemente von $\Sigma$ Singulärwerte.
 \end{theorem}
 
 
 Der Beweis des Satzes \ref{theo:svd} folgt etwas später, da dafür noch etwas Vorbereitung benötigt wird.
-Wichtig zu erwähnen ist noch, dass unter den in Satz \ref{theo:svd} genannten Voraussetzungen, $\hat{\Sigma}$ durch $X$ eindeutig bestimmt ist. 
+Wichtig zu erwähnen ist noch, dass unter den in Satz \ref{theo:svd} genannten Voraussetzungen, $\hat{\Sigma}$ durch $X$ eindeutig bestimmt ist \cite[229]{Numerik1}.
 Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 
 \begin{lemma}
 	Seien \(X\in \mathbb{R}^{p\times n}\) und $\sigma_i$ die Singulärwerte von $X$ nach den Voraussetzungen aus Satz \ref{theo:svd}. 
 	Seien weiter $\lambda_i$ die Eigenwerte von $X^\top X$. 
 	Dann gilt 
-	\[
-		\sigma_i=\sqrt{\lambda_i}\,.
-	\]
+	\begin{align}
+		\sigma_i=\sqrt{\lambda_i}\,.\label{eq:SWzuEW}
+	\end{align}
+		
 \end{lemma}
 
 \begin{proof}
@@ -120,7 +122,9 @@ Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 				 &= V\Sigma^\top U^\top U\Sigma V^\top \\
 				 &= V\Sigma^\top \Sigma V^\top
 	\end{align*}
-	ist $X^\top X$ ähnlich zu $\Sigma^\top \Sigma$. Also haben $X^\top X$ und $\Sigma^\top \Sigma$ auch die gleichen Eigenwerte.
+	ist $X^\top X$ ähnlich zu $\Sigma^\top \Sigma$. 
+	Also haben $X^\top X$ und $\Sigma^\top \Sigma$ auch die gleichen Eigenwerte.
+	Damit sind auch die Wurzeln der Eigenwerte von $X^\top X$ gleich der Eigenwerte bzw. Singulärwerte von $\Sigma$ wie in \eqref{eq:SWzuEW}.
 \end{proof}
 
 \begin{lemma} \label{lem:InvarinatBzglTansp}
@@ -173,7 +177,7 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 	\[
 		\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_n > 0\,.
 	\]
-	Mit Lemma \ref{lem:diagonal} finden wir ein orthogonales \(V \in \RR^{n\times n}\), sodass
+	Mit Lemma \ref{lem:diagonal} finden wir ein orthogonales \(V \in \RR^{n\times n}\) so, dass
 	\[
 		V^\top X^\top XV=D=\diag \{\lambda_1, \dots , \lambda_n\} \in \mathbb{R}^{n\times n}\,.
 	\]
@@ -228,7 +232,7 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 	\end{align*}
 	womit wir den Fall des vollen Ranges bewiesen hätten.
 	
-	Seien $\lambda_i$ wie oben definiert wieder die Eigenwerte von $X^\top X$ und sei $X_r\in\RR^{p\times n}$ eine Matrix mit $\rang X_r=r<n$. Nach Lemma \ref{lem:obereDreiecks} gibt es zwei orthognonale Matrizen \(\tilde{U}\in\RR^{p\times p}\) und \(\tilde{V}\in\RR^{n\times n}\), sowie eine obere Dreiecksmatrix $\hat{R}\in\RR^{r\times r}$, sodass
+	Seien $\lambda_i$ wie oben definiert wieder die Eigenwerte von $X^\top X$ und sei $X_r\in\RR^{p\times n}$ eine Matrix mit $\rang X_r=r<n$. Nach Lemma \ref{lem:obereDreiecks} gibt es zwei orthognonale Matrizen \(\tilde{U}\in\RR^{p\times p}\) und \(\tilde{V}\in\RR^{n\times n}\), sowie eine obere Dreiecksmatrix $\hat{R}\in\RR^{r\times r}$ so, dass
 	\begin{align*}
 		\tilde{U}^\top X_r \tilde{V}=R \text{ mit } R = \begin{pmatrix}
 			                                                \hat{R} & 0 \\
@@ -236,7 +240,7 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 		                                                \end{pmatrix} \in \RR^{p\times n}
 	\end{align*}
 	gilt. 
-	Nach obigem Fall mit vollem Rang, wissen wir, dass es orthogonale Matrizen \(U_r\in\RR^{p\times p}\) und \(V_r\in\RR^{r\times r}\), sodass
+	Nach obigem Fall mit vollem Rang, wissen wir, dass es orthogonale Matrizen \(U_r\in\RR^{p\times p}\) und \(V_r\in\RR^{r\times r}\)gibt, sodass
 	\begin{align*}
 		U_r^\top\begin{pmatrix}
 			        \hat{R} \\
@@ -244,8 +248,9 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 		        \end{pmatrix}V_r = \begin{pmatrix}
 			                           \hat{\Sigma}_r \\
 			                           0
-		                           \end{pmatrix}\in\RR^{p\times r}\,.
+		                           \end{pmatrix}\in\RR^{p\times r}
 	\end{align*}
+	gilt. \textcolor{red}{...gilt. ...gilt. nicht so schön.}
 	Dabei ist $\hat{\Sigma}_r \coloneqq \diag \{\sigma_1, \dots, \sigma_r\}$ mit $\sigma_i = \sqrt{\lambda_i}$.
 	Im Folgenden erweitern wir
 	\begin{align*}
@@ -268,7 +273,7 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 	\begin{align*}
 		U \coloneqq \tilde{U}U_r\in \RR^{p\times p}
 		\quad\text{und}\quad
-		V \coloneqq \tilde{V}\bar{V}_r\in \RR^{p\times n}
+		V \coloneqq \tilde{V}\bar{V}_r\in \RR^{n\times n}
 	\end{align*}
 	definieren, erhalten wir durch
 	\begin{align*}
@@ -322,10 +327,11 @@ Als Erstes bestimmen wir die Singulärwertzerlegung von $X$ also
 	X=U\Sigma V^\top\,.
 \end{align*}
 Um den Rechenaufwand zu minimieren, finden wir eine geeignete Rangreduzierung.
-Wir approximieren also mit $r<n$, $U_r\in\RR^{p\times r}$, $\Sigma_r\in\RR^{r\times r}$ und $V_r\in\RR^{n\times r}$
+Wir finden also ein$r\in\NN$ mit $r<n$ so, dass wir mit $U_r\in\RR^{p\times r}$, $\Sigma_r\in\RR^{r\times r}$ und $V_r\in\RR^{n\times r}$
 \begin{align*}
-	X\approx U_r\Sigma_rV_r^\top\,.
+	X\approx U_r\Sigma_rV_r^\top \eqqcolon X_r
 \end{align*}
+approximieren.
 Um den linearen Operator $A$ zu finden, der 
 \begin{align*}
 	X'\approx AX

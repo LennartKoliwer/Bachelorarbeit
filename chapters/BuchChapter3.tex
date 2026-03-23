@@ -19,12 +19,13 @@ Dabei sind ihre Erwartungswerte $0$ und ihre Varianz beträgt $\sigma^2$.
 Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)$, $\bm{X}=(x_1,\dots,x_n)$ und $\overline{x}=\frac1n\sum_{k=1}^n x_k$. 
 Dann ist die Stichproben-Kovarianzmatrix
 \begin{align}
-    \bm{S}=\frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\,. \label{eq:StichKovar}
+    S = \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\,. \label{eq:StichKovar}
 \end{align}
-Die Mar\v{c}enko-Pastur-Verteilung $F_y$ ist ein Wahrscheinlichkeitsmaß auf $(\RR,\mathcal{B}(\RR))$. Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ 
+Mit dem Dimonsions-Stichproben-Verhältnis $y=\frac{p}{n}$, ist die Mar\v{c}enko-Pastur-Verteilung $F_y$ ist ein Wahrscheinlichkeitsmaß auf $(\RR,\mathcal{B}(\RR))$. Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ 
 sind 
-\[a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2\] 
-wobei $y=\frac{p}{n}$ das Dimonsions-Stichproben-Verhältnis ist. 
+\[
+    a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2\,.
+\] 
 Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung ist dann durch
 \begin{align}
     p_y(x)=\begin{cases*}
@@ -111,23 +112,25 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
         \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell}z^\ell\sqrt{4y-z^2}\diff z \\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell}\int_{-2\sqrt{y}}^{2\sqrt{y}}z^\ell\sqrt{4y-z^2}\diff z
     \end{align*}
-    umformen.
+    umformen. 
     Um das Integral weiter zu vereinfachen, substituieren wir mit $z=2\sqrt{y}u$ und erhalten 
     \begin{align*}
         \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} \int_{-1}^{1}\left(2\sqrt{y}u\right)^\ell\sqrt{4y-4yu^2}2\sqrt{y}\diff u \\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} (2\sqrt{y})^\ell 4y \int_{-1}^{1}u^\ell\sqrt{1-u^2}\diff u\,.  
-        \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt die ungleich $0$ sind. Wir haben also}
+        \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen, ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt, die ungleich $0$ sind. Wir haben also}
         \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (2\sqrt{y})^{2\ell} 4y \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\,.
     \end{align*}
-    Hier ist der Integrand eine gerade Funktion für alle $0\leq \ell$. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen können wir auch zweimal über das halbe Intervall integrieren. Folglich gilt
+    Hier ist der Integrand eine gerade Funktion. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen können wir auch zweimal über das halbe Intervall integrieren.
+    Zur Übersicht betrachten wir vorerst nur noch das Integral und fügen später wieder alles zusammen.
+    Folglich gilt
     \begin{align*}
-        \beta_k = \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} 2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\,.        
+        (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z = (4y)^{\ell+1} 2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\,.        
     \end{align*}
     Wenn wir jetzt mit $u=\sqrt{w}$ substituieren,
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{0}^{1}w^{\ell}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
-        &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w
+        (4y)^{\ell+1} 2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff z &= (4y)^{\ell+1} \int_{0}^{1}w^{\ell}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
+        &= (4y)^{\ell+1} \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w
     \end{align*}
     erhalten wir ein Integral, dass wir mittels Eulerschen Betafunktion \textcolor{red}{Quelle!} lösen können.
     Die Eulersche Betafunktion ist durch 
@@ -178,7 +181,7 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
         \\
         &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}\,.
     \end{align*}
-    Für den nächsten Schritt müssen wir die Laufvariablen voneinander unabhängig machen. Momentan haben wir erst das $\ell$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. Für ein festes aber beliebiges $k$ liegen unsere Laufvariablen in
+    Für den nächsten Schritt müssen wir die Laufvariablen von $0$ starten lassen. Momentan haben wir erst das $\ell$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. Für ein festes aber beliebiges $k$ liegen unsere Laufvariablen in
     \begin{align*}
         A = \left\{(\ell,r)\in\NN^2 \,\middle|\, 0\leq \ell \leq \left\lfloor\frac{k-1}{2}\right\rfloor,\, \ell\leq r \leq k-1-\ell\right\}\,.
     \end{align*}
@@ -239,7 +242,7 @@ Da wir uns im Bereich der großen Zufallsmatrizen befinden, verwenden wir für d
 \begin{definition}\label{def:ESD}
     Sei $S$ eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann ist die \emph{empirische Spektralverteilung} durch
     \begin{align*}
-        F^S(x)=\frac1p|A| \quad \text{mit } A\coloneqq\{i\leq p \colon \lambda_i \leq x\}
+        F^S(x)=\frac1p|A_x| \quad \text{mit } A_x\coloneqq\{i\leq p \colon \lambda_i \leq x\}
     \end{align*}
     definiert.
 \end{definition}
@@ -252,52 +255,68 @@ Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter ver
 \begin{theorem}\label{theo:ESDrang1}
     Seien $A,B\in\CC^{p\times n}$. Dann gilt 
     \begin{align*}
-        \dabs{F^{AA^H}-F^{BB^H}}\leq\frac1p\rang(A-B)\,.
+        \dabs{F^{AA^H}-F^{BB^H}}_\infty\leq\frac1p\rang(A-B)\,.
     \end{align*}
 \end{theorem}
 
-Damit können wir sehen, dass Rang-$1$ Matrizen keinen Einfluss auf die Konvergenz der empirische Spektralverteilung haben. Wir können die Stichproben-Kovarianzmatrix 
-
+Schreiben wir $S$ als
 \begin{align*}
-    \bm{S}  &=  \frac{1}{m}\sum_{k=1}^{m}(x_k-\overline{x})(x_k-\overline{x})^H \\
-            &=  \frac{1}{m}\lr{\sum_{k=1}^{m}x_kx_k^H-\sum_{k=1}^{m}x_k\overline{x}^H-\sum_{k=1}^{m}x_k^H\overline{x}+\sum_{k=1}^{m}\overline{x}\,\overline{x}^H} \\
-            &=  \frac{1}{m}\lr{\sum_{k=1}^{m}x_kx_k^H - m\overline{x}\,\overline{x}^H}
+    S  &=  \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H \\
+            &=  \frac{1}{n}\lr{\sum_{k=1}^{n}x_kx_k^H-\sum_{k=1}^{n}x_k\overline{x}^H-\sum_{k=1}^{n}x_k^H\overline{x}+\sum_{k=1}^{n}\overline{x}\,\overline{x}^H} \\
+            &=  \frac{1}{n}\lr{\sum_{k=1}^{n}x_kx_k^H - n\overline{x}\,\overline{x}^H}\\
+            &= \frac1n XX^H - \overline{x}\,\overline{x}^H
 \end{align*}
-
-zu 
-
+und beschreiben $\bm{S}$ als
 \begin{align}
-    \bm{S}=\frac{1}{m}\sum_{k=1}^{m}x_kx_k^H \label{eq:StichKovarEinfach}
+    \begin{split}
+        \bm{S}&=\frac{1}{n}\sum_{k=1}^{n}x_kx_k^H\\ 
+    &= \frac1n XX^H 
+    \end{split}\label{eq:StichKovarEinfach}
 \end{align}
+dann können wir durch Satz \ref{theo:ESDrang1} zeigen, der Term $n\overline{x}\,\overline{x}^H$ keinen Einflussauf die Konvergenz der empirische Spektralverteilung hat.
 
-vereinfachen, da $\overline{x}\,\overline{x}^H$ eine Rang-$1$ Matrix ist, welche wir nach Satz \ref{theo:ESDrang1} vernachlässigen können.
+\begin{proof}
+    \begin{align*}
+        \dabs{F^{S}-F^{\bm{S}}}_\infty &\leq \frac1p\rang(X-\overline{x}\,\overline{x}^H-X) \\
+        &= \frac1p\rang(\overline{x}\,\overline{x}^H)\\
+        &= \frac1p
+    \end{align*}
+\end{proof}
 
 
 %Das Ziel dieses Kapitels, ist es zu zeigen, dass die empirische Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert. 
 Im Beweis über die Konvergenz benutzen wir Elemente aus der Graphentheorie, die wir vorher noch einführen wollen.
 \newline
 
-Wir definieren uns also eine Klasse von gerichteten bipatiten Graphen mit folgenden Eigenschaften.
+Wir definieren uns also eine Klasse von gerichteten Graphen mit folgenden Eigenschaften.
 
-Seien $\emph{\textbf{i}}=(i_1,\dots,i_k)$ $k$ I-Knoten welche Werte zwischen $0$ und $p$ annehmen können und $\emph{\textbf{j}}=(j_1,\dots,j_k)$ $k$ J-Knoten dessen Werte zwischen $0$ und $n$ liegen. 
-Unterschiedliche I/J-Knoten können den gleichen Wert annehmen, also sind sie koinzident. 
+Seien $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten mit der Gestalt $\emph{\textbf{i}}=(i_1,\dots,i_k)$ bzw. $\emph{\textbf{j}}=(j_1,\dots,j_k)$.
+Wobei die \emph{\textbf{i}}-Knoten ganzzahlige Werte in $[0,p]$ und \emph{\textbf{j}}-Knoten ganzzahlige Werte in $[0,n]$ annehmen können.
+Unterschiedliche \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten können den gleichen Wert annehmen, also sind sie \emph{koinzident}.
+
+Alle Kanten richten sich nach den folgenden Regeln: 
 Die Kanten laufen von Knoten $i_m$ zu $j_m$ und von $j_m$ zu $i_{m+1}$ mit $m=1,\dots,k$ und der Konvention, dass $i_1=i_{k+1}$ gilt.
-Wir bezeichnen $r$ als Anzahl nicht koinzidenter \emph{\textbf{i}} Knoten $-1$, $s$ als Anzahl nicht koinzidenter \emph{\textbf{j}} Knoten und $k$ als die Anzahl der Kanten die auf \emph{\textbf{i}} Knoten zeigen.
+Sei $\hat{r}$ die Anzahl nicht koinzidenter \emph{\textbf{i}}-Knoten, dann ist $r=\hat{r}-1$ und $s$ die Anzahl nicht koinzidenter \emph{\textbf{j}}-Knoten.
+Da $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten ist, ist $k$ auch die Anzahl an Kanten, die auf \emph{\textbf{i}}-Knoten zeigen.
+
 Diese Graphen Bezeichnen wir dann als $\Delta(k,r,s)$.
 Für den Beweis teilen wir die Graphen in drei Kategorien ein.
- 
-Die Kategorie $\Delta_1(k,r,s)$  fasst alle Graphen zusammen, die zu jeder Kante von \emph{\textbf{i}} nach \emph{\textbf{j}} genau eine Kante vom gleichen \emph{\textbf{j}} Knoten zum gleichen \emph{\textbf{i}} Knoten haben. Hier gilt $r+s=k$.
 
-Die Kategorie $\Delta_2(k,r,s)$ beinhaltet alle Graphen, die mindestens einmal zwischen zwei Knoten genau eine Kante besitzen. Also Graphen die mindestens eine Einzelkante besitzen.
+\begin{description}
+    \item[$\Delta_1(k,r,s)$:] Diese Kategorie fasst alle Graphen zusammen, die zu jeder Kante von \emph{\textbf{i}} nach \emph{\textbf{j}} genau eine Kante vom gleichen \emph{\textbf{j}}-Knoten zum gleichen \emph{\textbf{i}}-Knoten haben. Hier gilt $r+s=k$.
+    \item[$\Delta_2(k,r,s)$:] Diese Kategorie beinhaltet alle Graphen, die mindestens einmal zwischen zwei Knoten genau eine Kante besitzen, also Graphen, die mindestens eine \emph{Einzelkante} besitzen.
+    \item[$\Delta_3(k,r,s)$:] Die letzte Kategorie $\Delta_3(k,r,s)$ sind alle Graphen die weder in $\Delta_1(k,r)$ noch in $\Delta_2(k,r,s)$ gehören.
+\end{description}
 
-Und die letzte Kategorie $\Delta_3(k,r,s)$ sind alle Graphen die weder in $\Delta_1(k,r)$ noch in $\Delta_2(k,r,s)$ gehören.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=12cm]{Graphen_Beispiel_Platzhalter}
     \caption*{Beispiel für Graphen}\label{fig:GraphenBsp}
 \end{figure}
-Für bessere Lesbarkeit schreiben wir nur noch $\Delta_{1,2,3}$.
-Wir bezeichnen zwei Graphen als isomorph, wenn wir durch eine geeignete Zuweisung von \emph{\textbf{i}}/\emph{\textbf{j}} Knoten gibt, mit der die Graphen identisch sind. 
+
+Für bessere Lesbarkeit schreiben wir für die Kategorien $\Delta_{1,2,3}(k,r,s)$ nur noch $\Delta_{1,2,3}$.
+Wir bezeichnen zwei Graphen als isomorph, wenn wir durch eine geeignete Zuweisung von \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten finden, mit der die Graphen identisch sind. 
 Für diese Graphen haben wir noch ein paar Lemmata.
 
 \begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{lem:AnzahlIsomklasse}
@@ -339,22 +358,22 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
 
 
 \begin{proof}
-    Sei $C\in\RR_+$. Weiter seien 
+    Seien $C\in\RR_+$ und $\mathbf{1}$ die Indikatorfunktion auf $\RR$. Weiter seien 
     \begin{align*} 
-        \hat{x}_{ij} = x_{ij}\mathbf{1}(|x_{ij}| \leq C)\,,
+        \hat{x}_{ij} \coloneqq x_{ij}\mathbf{1}(|x_{ij}| \leq C)\,,
         &\quad
-        \tilde{x}_{ij} = \hat{x}_{ij} - \mathbb{E}(\hat{x}_{11}) \\
-        \hat{x}_i =
+        \tilde{x}_{ij} \coloneqq \hat{x}_{ij} - \mathbb{E}(\hat{x}_{11}) \\
+        \hat{x}_i \coloneqq
         \left(\hat{x}_{i1}, \dots, \hat{x}_{ip}\right)^{\top}\,,
         &\quad
-        \tilde{x}_i =
+        \tilde{x}_i \coloneqq
         \left(\tilde{x}_{i1}, \dots, \tilde{x}_{ip}\right)^{\top} \\
         \hat{S}_n
-        = \frac{1}{n} \sum_{i=1}^n \hat{x}_i \hat{x}_i^{H}
+        \coloneqq \frac{1}{n} \sum_{i=1}^n \hat{x}_i \hat{x}_i^{H}
         = \frac{1}{n}\hat{X}_n \hat{X}_n^{H}\,,
         &\quad
         \tilde{S}_n
-        = \frac{1}{n} \sum_{i=1}^n \tilde{x}_i \tilde{x}_i^{H}
+        \coloneqq \frac{1}{n} \sum_{i=1}^n \tilde{x}_i \tilde{x}_i^{H}
         = \frac{1}{n}\tilde{X}_n \tilde{X}_n^{H}\,.
     \end{align*}
     Wir bezeichnen ab hier alle $X_n$ als $X$.
@@ -372,7 +391,7 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
     Der Abstand der empirischen Spektralverteilung und ihrer beschränkten Version ist also für ein genügend großes $C$ vernachlässigbar klein.
     Nach Satz \ref{theo:ESDrang1}
     \begin{align*}
-        \dabs{F^{\hat{S}_n}-F^{\tilde{S}_n}} &\leq \frac1p \rang(\hat{X}_n-\tilde{X}_n) \\
+        \dabs{F^{\hat{S}_n}-F^{\tilde{S}_n}}_\infty &\leq \frac1p \rang(\hat{X}_n-\tilde{X}_n) \\
         &= \frac1p \rang(\mathbb{E}(\hat{x}_{11})) \\
         &= \frac1p
     \end{align*}

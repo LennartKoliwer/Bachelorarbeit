@@ -8,11 +8,18 @@ Das Ziel dieses Kapitels ist es zu zeigen, dass die empirische Spektralverteilun
 Dieses Kapitel basiert auf dem Buch \glqq Spectral analysis of large dimensional random matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
 
 
+\section{Vorbereitung}
 
+Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definieren.
+\begin{definition}\label{def:ESD}
+    Sei $S$ eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann definieren wir durch
+    \begin{align*}
+        F^S(x)=\frac1p|A_x| \quad \text{mit } A_x\coloneqq\{i\leq p \colon \lambda_i \leq x\}
+    \end{align*}
+    die \emph{empirische Spektralverteilung} $F^S$.
+\end{definition}
 
-%---------------------------------------------------------------
-
-\section{Mar\v{c}enko-Pastur-Momente}
+Die Konvergenz betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir immer größere Matrizen betrachten, also $p$ gegen unendlich laufen lassen.
 
 Sei $X$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
 Dabei sind ihre Erwartungswerte $0$ und ihre Varianz beträgt $\sigma^2$. 
@@ -21,6 +28,53 @@ Dann ist die Stichproben-Kovarianzmatrix
 \begin{align}
     S = \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\,. \label{eq:StichKovar}
 \end{align}
+
+
+Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter vereinfachen.
+
+\begin{theorem}\label{theo:ESDrang1}
+    Seien $A,B\in\CC^{p\times n}$. Dann gilt 
+    \begin{align*}
+        \dabs{F^{AA^H}-F^{BB^H}}_\infty\leq\frac1p\rang(A-B)\,.
+    \end{align*}
+\end{theorem}
+
+Schreiben wir $S$ als
+\begin{align*}
+    S  &=  \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H \\
+            &=  \frac{1}{n}\lr{\sum_{k=1}^{n}x_kx_k^H-\sum_{k=1}^{n}x_k\overline{x}^H-\sum_{k=1}^{n}x_k^H\overline{x}+\sum_{k=1}^{n}\overline{x}\,\overline{x}^H} \\
+            &=  \frac{1}{n}\lr{\sum_{k=1}^{n}x_kx_k^H - n\overline{x}\,\overline{x}^H}\\
+            &= \frac1n XX^H - \overline{x}\,\overline{x}^H
+\end{align*}
+und beschreiben $\bm{S}$ durch
+\begin{align}
+    \begin{split}
+        \bm{S}&=\frac{1}{n}\sum_{k=1}^{n}x_kx_k^H\\ 
+    &= \frac1n XX^H\,. 
+    \end{split}\label{eq:StichKovarEinfach}
+\end{align}
+
+Mit Satz \ref{theo:ESDrang1} können wir durch
+
+\begin{align*}
+    \dabs{F^{S}-F^{\bm{S}}}_\infty &\leq \frac1p\rang(X-\overline{x}\
+    \overline{x}^H-X) \\
+    &= \frac1p\rang(\overline{x}\,\overline{x}^H)\\
+    &= \frac1p
+\end{align*}
+
+zeigen, dass $\overline{x}\,\overline{x}^H$ keinen Einfluss auf die Konvergenz von $F^S$ hat.
+Wir verwenden daher die vereinfachte Form $\bm{S}$ für die Stichproben-Kovarianzmatrix.
+
+
+
+
+
+%---------------------------------------------------------------
+
+\section{Mar\v{c}enko-Pastur-Momente}
+
+
 Mit dem Dimonsions-Stichproben-Verhältnis $y=\frac{p}{n}$, ist die Mar\v{c}enko-Pastur-Verteilung $F_y$ ist ein Wahrscheinlichkeitsmaß auf $(\RR,\mathcal{B}(\RR))$. Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ 
 sind 
 \[
@@ -37,14 +91,14 @@ gegeben.
 Wenn $\sigma^2=1$ ist, dann sprechen wir von der Standard-M-P-Verteilung.
 Die $k$-ten Momente der M-P-Verteilung sind durch
 \begin{align}
-    \beta_k=\beta_k\left(y,\sigma^2\right)\coloneqq\int_{a}^{b}x^kp_y(x)\diff x \label{eq:momente}
+    \beta_k\left(y,\sigma^2\right)\coloneqq\int_{a}^{b}x^kp_y(x)\diff x \label{eq:momente}
 \end{align} 
 definiert. 
 Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
 \begin{lemma}
     Für alle $k\geq1$ gilt
     \begin{align*}
-        \beta_k\left(y,\sigma^2\right)=\sigma^{2k}\beta_k\left(y,1\right)\,.
+        \beta_k\left(y,\sigma^2\right)=\sigma^{2k}\beta_k\left(y,1\right)\eqqcolon\beta_k\,.
     \end{align*}
 \end{lemma}
 \begin{proof}
@@ -62,7 +116,11 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
 \end{proof}
 
 Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig durch die Momente ${\beta_x}$ bestimmt wird und wie die Momente explizit bestimmt aussehen.
+
+
 %----------------------------------------------------------------------------------
+
+
 
 \begin{lemma}[Carleman {\cite[509]{BaiSilverstein}}]  \label{lem:Carlman}
     Sei $\{\beta_k=\beta_k(F)\}_{k\in\NN_0}$ eine Folge von Momenten der Verteilungsfunktion $F$. Ist die \emph{Carleman-Bedingung}
@@ -235,56 +293,9 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
 
 
 
-\section{Vorbereitung}
-
-Da wir uns im Bereich der großen Zufallsmatrizen befinden, verwenden wir für die Spektralanalyse die empirische Spektralverteilung.
-
-\begin{definition}\label{def:ESD}
-    Sei $S$ eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann ist die \emph{empirische Spektralverteilung} durch
-    \begin{align*}
-        F^S(x)=\frac1p|A_x| \quad \text{mit } A_x\coloneqq\{i\leq p \colon \lambda_i \leq x\}
-    \end{align*}
-    definiert.
-\end{definition}
-
-Diese Verteilung sagt aus, wie die Singulärwerte einer Zufallsmatrix verteilt sind.
-Was uns interessiert, ist was passiert, wenn die Dimensionen gegen unendlich laufen.
-Dafür verwenden wir die Stichproben-Kovarianzmatrix \eqref{eq:StichKovar} und analysieren ihr Verhalten im unendlich Dimensionalen.
-Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter vereinfachen.
-
-\begin{theorem}\label{theo:ESDrang1}
-    Seien $A,B\in\CC^{p\times n}$. Dann gilt 
-    \begin{align*}
-        \dabs{F^{AA^H}-F^{BB^H}}_\infty\leq\frac1p\rang(A-B)\,.
-    \end{align*}
-\end{theorem}
-
-Schreiben wir $S$ als
-\begin{align*}
-    S  &=  \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H \\
-            &=  \frac{1}{n}\lr{\sum_{k=1}^{n}x_kx_k^H-\sum_{k=1}^{n}x_k\overline{x}^H-\sum_{k=1}^{n}x_k^H\overline{x}+\sum_{k=1}^{n}\overline{x}\,\overline{x}^H} \\
-            &=  \frac{1}{n}\lr{\sum_{k=1}^{n}x_kx_k^H - n\overline{x}\,\overline{x}^H}\\
-            &= \frac1n XX^H - \overline{x}\,\overline{x}^H
-\end{align*}
-und beschreiben $\bm{S}$ als
-\begin{align}
-    \begin{split}
-        \bm{S}&=\frac{1}{n}\sum_{k=1}^{n}x_kx_k^H\\ 
-    &= \frac1n XX^H 
-    \end{split}\label{eq:StichKovarEinfach}
-\end{align}
-dann können wir durch Satz \ref{theo:ESDrang1} zeigen, der Term $n\overline{x}\,\overline{x}^H$ keinen Einflussauf die Konvergenz der empirische Spektralverteilung hat.
-
-\begin{proof}
-    \begin{align*}
-        \dabs{F^{S}-F^{\bm{S}}}_\infty &\leq \frac1p\rang(X-\overline{x}\,\overline{x}^H-X) \\
-        &= \frac1p\rang(\overline{x}\,\overline{x}^H)\\
-        &= \frac1p
-    \end{align*}
-\end{proof}
+\section{Mar\v{c}enko-Pastur-Verteilung}
 
 
-%Das Ziel dieses Kapitels, ist es zu zeigen, dass die empirische Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert. 
 Im Beweis über die Konvergenz benutzen wir Elemente aus der Graphentheorie, die wir vorher noch einführen wollen.
 \newline
 
@@ -339,11 +350,20 @@ Für diese Graphen haben wir noch ein paar Lemmata.
 
 
 
-\section{Mar\v{c}enko-Pastur-Verteilung}
 
+
+%--------------------------------------------------------------
+
+
+
+8
 
 \begin{theorem}\label{theo:MPVert}
-    Seien $\{x_{ij}\}$ unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. Sei weiter $\frac{p(n)}{n}\overset{n\to\infty}{\longrightarrow}y \in(0,\infty)$. Dann konvergiert $F^S$ fast sicher gegen 
+    Seien $\{x_{ij}\}$ unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. Sei weiter $\frac{p}{n}\overset{n\to\infty}{\longrightarrow}y \in(0,\infty)$. Dann konvergiert $F^{S_n}$ mit $n\to\infty$ und 
+    \[
+    a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2
+    \] 
+    fast sicher gegen 
     \begin{align}
     p_y(x)=\begin{cases*}
         \dfrac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\

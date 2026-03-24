@@ -21,18 +21,20 @@ Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definiere
 
 Die Konvergenz betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir immer größere Matrizen betrachten, also $p$ gegen unendlich laufen lassen.
 
-Sei $X$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
-Dabei sind ihre Erwartungswerte $0$ und ihre Varianz beträgt $\sigma^2$. 
-Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)$, $\bm{X}=(x_1,\dots,x_n)$ und $\overline{x}=\frac1n\sum_{k=1}^n x_k$. 
+\textcolor{red}{mehr zu StichKovar?!}
+
+Sei $\bm{X}$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
+Dabei sind ihre Erwartungswerte $0$ und ihre Varianz bezeichnen wir mit $\sigma^2$. 
+Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)^\top$, $\bm{X}=(x_1,\dots,x_n)$ und $\overline{x}=\frac1n\sum_{k=1}^n x_k$. 
 Dann ist die Stichproben-Kovarianzmatrix
 \begin{align}
-    S = \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\,. \label{eq:StichKovar}
+    S = \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\in\RR^{p\times p}\,. \label{eq:StichKovar}
 \end{align}
 
 
 Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter vereinfachen.
 
-\begin{theorem}\label{theo:ESDrang1}
+\begin{theorem}[{\cite[503]{BaiSilverstein}}]\label{theo:ESDrang1}
     Seien $A,B\in\CC^{p\times n}$. Dann gilt 
     \begin{align*}
         \dabs{F^{AA^H}-F^{BB^H}}_\infty\leq\frac1p\rang(A-B)\,.
@@ -72,10 +74,10 @@ Wir verwenden daher die vereinfachte Form $\bm{S}$ für die Stichproben-Kovarian
 
 %---------------------------------------------------------------
 
-\section{Mar\v{c}enko-Pastur-Momente}
+\section{Mar\v{c}enko-Pastur-Momente}\label{kap:MarchenkoPastur}
 
 
-Mit dem Dimonsions-Stichproben-Verhältnis $y=\frac{p}{n}$, ist die Mar\v{c}enko-Pastur-Verteilung $F_y$ ist ein Wahrscheinlichkeitsmaß auf $(\RR,\mathcal{B}(\RR))$. Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ 
+Mit dem Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}$, ist die Mar\v{c}enko-Pastur-Verteilung $F_y$ ist ein Wahrscheinlichkeitsmaß auf $(\RR,\mathcal{B}(\RR))$. Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ 
 sind 
 \[
     a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2\,.
@@ -85,16 +87,16 @@ Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung ist dann durch
     p_y(x)=\begin{cases*}
         \dfrac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
         0\,, & \text{sonst}
-    \end{cases*}
+    \end{cases*}\label{eq:MarchenkoPasturDichte}
 \end{align}
-gegeben. 
+definiert. 
 Wenn $\sigma^2=1$ ist, dann sprechen wir von der Standard-M-P-Verteilung.
 Die $k$-ten Momente der M-P-Verteilung sind durch
 \begin{align}
     \beta_k\left(y,\sigma^2\right)\coloneqq\int_{a}^{b}x^kp_y(x)\diff x \label{eq:momente}
 \end{align} 
 definiert. 
-Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
+Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben, was wir im folgenden Lemma zeigen.
 \begin{lemma}
     Für alle $k\geq1$ gilt
     \begin{align*}
@@ -102,7 +104,7 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
     \end{align*}
 \end{lemma}
 \begin{proof}
-    Nach Definition \eqref{eq:momente} haben wir 
+    Nach \eqref{eq:momente} und \ref{eq:MarchenkoPasturDichte} haben wir 
     \begin{align*}
         \beta_k\left(y,\sigma^2\right)&=\int_{a}^{b}x^kp_y(x)\diff x\\
         &=\int_{\sigma^2\left(1-\sqrt{y}\right)^2}^{\sigma^2\left(1+\sqrt{y}\right)^2}x^k\frac{1}{2\pi x y \sigma^2}\sqrt{\left(\sigma^2\left(1+\sqrt{y}\right)^2-x\right)\left(x-\sigma^2\left(1-\sqrt{y}\right)^2\right)}\diff x\,. 
@@ -115,7 +117,7 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben.
     Die Momente lassen sich also durch $\sigma^{2k}$ skaliert über die Standard-M-P-Verteilung beschreiben.
 \end{proof}
 
-Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig durch die Momente ${\beta_x}$ bestimmt wird und wie die Momente explizit bestimmt aussehen.
+Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig durch die Momente ${\beta_k}$ bestimmt wird und wie die Momente explizit bestimmt aussehen.
 
 
 %----------------------------------------------------------------------------------
@@ -123,15 +125,15 @@ Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig
 
 
 \begin{lemma}[Carleman {\cite[509]{BaiSilverstein}}]  \label{lem:Carlman}
-    Sei $\{\beta_k=\beta_k(F)\}_{k\in\NN_0}$ eine Folge von Momenten der Verteilungsfunktion $F$. Ist die \emph{Carleman-Bedingung}
+    Sei $\{\beta_k=\beta_k(F)\}_{k\in\NN_0}$ die Folge von Momenten der Verteilungsfunktion $F$. Ist die \emph{Carleman-Bedingung}
     \begin{align*}
         \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}}=\infty
     \end{align*}
     erfüllt, dann wird die Verteilung $F$ durch $\{\beta_k\}_{k\in\NN_0}$ eindeutig bestimmt.
 \end{lemma}
 
-Dass $\beta_k\left(y,\sigma^2\right)$ die Mar\v{c}enko-Pastur-Verteilung eindeutig bestimmt, lässt sich dann mit Lemma \ref{lem:Carlman} zeigen.
-Wir sehen einmal nach Definition \ref{eq:momente}, dass wir $\beta_{2k}$ durch
+Dass $\beta_k$ die Mar\v{c}enko-Pastur-Verteilung eindeutig bestimmt, lässt sich dann mit Lemma \ref{lem:Carlman} zeigen.
+Wir sehen einmal nach \eqref{eq:momente} und \eqref{eq:MarchenkoPasturDichte}, dass wir $\beta_{2k}$ durch
 \begin{align}
     \beta_{2k}  &= \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-x)(x-a)}dx \nonumber\\
                 &\leq \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-a)(b-a)}dx \nonumber\\
@@ -156,7 +158,7 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
 
 
 \begin{proof}
-    Wir haben nach Definition \eqref{eq:momente}
+    Wir haben nach \eqref{eq:momente} und \eqref{eq:MarchenkoPasturDichte}
     \begin{align*}
         \beta_k=\frac{1}{2\pi y}\int_{a}^{b}x^{k-1}\sqrt{(b-x)(x-a)}\diff x\,.
     \end{align*}
@@ -176,14 +178,14 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
         \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} \int_{-1}^{1}\left(2\sqrt{y}u\right)^\ell\sqrt{4y-4yu^2}2\sqrt{y}\diff u \\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} (2\sqrt{y})^\ell 4y \int_{-1}^{1}u^\ell\sqrt{1-u^2}\diff u\,.  
         \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen, ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt, die ungleich $0$ sind. Wir haben also}
-        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (2\sqrt{y})^{2\ell} 4y \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\\
-        &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\,.
+        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (2\sqrt{y})^{2\ell} 4y \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\\
+        &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\,.
     \end{align*}
     Hier ist der Integrand eine gerade Funktion. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen können wir auch zweimal über das halbe Intervall integrieren.
     Zur Übersicht betrachten wir vorerst nur noch das Integral und fügen später wieder alles zusammen.
     Folglich gilt
     \begin{align*}
-        (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z = (4y)^{\ell+1} 2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff z\,.        
+        (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z = (4y)^{\ell+1} 2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\,.        
     \end{align*}
     Wenn wir jetzt mit $u=\sqrt{w}$ substituieren,
     \begin{align*}
@@ -356,23 +358,13 @@ Für diese Graphen haben wir noch ein paar Lemmata.
 
 
 
-8
+\textcolor{red}{Einführen}
 
 \begin{theorem}\label{theo:MPVert}
-    Seien $\{x_{ij}\}$ unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. Sei weiter $\frac{p}{n}\overset{n\to\infty}{\longrightarrow}y \in(0,\infty)$. Dann konvergiert $F^{S_n}$ mit $n\to\infty$ und 
-    \[
-    a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2
-    \] 
-    fast sicher gegen 
-    \begin{align}
-    p_y(x)=\begin{cases*}
-        \dfrac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
-        0\,, & \text{sonst}\,.
-    \end{cases*}
-\end{align}
+    Seien $\{x_{ij}\}$ unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. Sei weiter $\frac{p}{n}\overset{n\to\infty}{\longrightarrow}y \in(0,\infty)$. Dann konvergiert $F^{S_n}$ mit $n\to\infty$ und fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung $F_y$ wie sie in Kapitel \ref{kap:MarchenkoPastur} beschrieben wurde.
 \end{theorem}
 
-Im folgenden Beweis nehmen wir o.B.d.A an, dass die Varianz $\sigma^2=1$ ist, wir also den Standardfall betrachten. 
+Im folgenden Beweis nehmen wir mit Lemma \ref{lem:betaUmformung}, o.B.d.A an, dass die Varianz $\sigma^2=1$ ist, wir also den Standardfall betrachten. 
 Um die Konvergenz der empirischen Spektralverteilung \ref{def:ESD} gegen die Mar\v{c}enko-Pastur-Verteilung zu zeigen, müssen wir erstmal sicherstellen, dass die Zufallsvariablen $x_{ij}$ die notwendigen Bedingungen erfüllen damit wir die Momentmethode benutzen können. 
 Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit wir keine unendlich großen Eigenwerte haben und entsprechend die Erwartungswerte wieder zentralisieren also auf $0$ setzen und wir Reskalieren um die Varianz zu erhalten.
 

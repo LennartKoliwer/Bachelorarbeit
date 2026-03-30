@@ -2,7 +2,7 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-\begin{definition}\cite[10]{Stochastik}\label{def:messraum}
+\begin{definition}[{\cite[10]{Stochastik}}]\label{def:messraum}
     Sei $\Omega\neq\emptyset$ eine nichtleere Menge (von Ereignissen) und $\mathcal{A}\subset2^\Omega$ ein Mengensystem aus der Potenzmenge von $\Omega$.
 
     Mit den Eigenschaften
@@ -14,7 +14,7 @@
     nennt man $\mathcal{A}$ eine $\sigma$-Algebra und das Paar $\left(\Omega,\mathcal{A}\right)$ einen (Ereignis-)Messraum.
 \end{definition}
 
-\begin{definition}\cite[13]{Stochastik}\label{def:wahrschvert}\label{def:warschraum}
+\begin{definition}[{\cite[13]{Stochastik}}]\label{def:wahrschvert}\label{def:warschraum}
     Sei $\left(\Omega,\mathcal{A}\right)$ ein Messraum. Sei weiter $\mu\colon \mathcal{A} \to [0,1]$ eine Funktion.
     Mit den Eigenschaften
     \begin{enumerate}
@@ -24,7 +24,7 @@
     ist $\mu$ ein Wahrscheinlichkeitsmaß oder eine Wahrscheinlichkeitsverteilung (Verteilung) auf $\mathcal{A}$. Dann nennt man das Tripel $(\Omega, \mathcal{A}, \mu)$ Wahrscheinlichkeitsraum.
 \end{definition}
 
-\begin{definition}\cite[21]{Stochastik}\label{def:zufallsvar}
+\begin{definition}[{\cite[21]{Stochastik}}]\label{def:zufallsvar}
     Seien $(\Omega, \mathcal{A})$ und $(\Omega', \mathcal{A}')$ zwei Messräume. Sei weiter ${\mathcal{Z}\colon \Omega \to \Omega'}$ eine Abbildung mit der folgenden Eigenschaft:
     \begin{align*}
         E' \in \mathcal{A}' \implies \mathcal{Z}^{-1}E'\in \mathcal{A}\,.
@@ -34,7 +34,7 @@
     Man schreibt auch ${\mathcal{Z}\colon (\Omega, \mathcal{A}) \to (\Omega', \mathcal{A}')}$.
 \end{definition}
 
-\begin{definition}\cite[4]{Stochastik_EW}\label{def:erwartungswert} \textcolor{red}{unzufrieden weil nur $\RR$.}
+\begin{definition}[{\cite[4]{Stochastik_EW}}]\label{def:erwartungswert} \textcolor{red}{unzufrieden weil nur $\RR$.}
     Sei $\mathcal{Z}\colon (\Omega, \mathcal{A}) \to (\RR, \mathscr{B}(\RR))$ eine Zufallsvariable in $(\Omega,\mathcal{A},\mu)$ mit $\mathscr{B}(\RR)$ als borelsche $\sigma$-Algebra. Sei weiter das Bildmaß von $\mu$ bezüglich $\mathcal{Z}$ gleich
     \begin{align*}
         B\mapsto\mu_\mathcal{Z}(B)\coloneqq\mu(\mathcal{Z}^{-1}(B)) \quad\text{mit}\quad B\in\mathscr{B}(\RR)\,.
@@ -57,7 +57,7 @@
     Kovarianz
 \end{definition}
 
-\begin{theorem}[Starkes gesetz der großen Zahlen]\label{theo:StarkeGroßeZahlen}\cite[139]{Stochastik}
+\begin{theorem}[Starkes Gesetz der großen Zahlen {\cite[139]{Stochastik}}]\label{theo:StarkeGroßeZahlen}
     Seien $\{\mathcal{Z}_i\}_{i\in\NN}$ unabhängige und identisch verteilte Zufallsvariablen und besitzen ein Moment erster Ordnung, dann gilt 
     \begin{align*}
         \frac{1}{n}\sum_{i=1}^{n}\mathcal{Z}_i \underset{f.s.}{\overset{n\to\infty}{\longrightarrow}} \mathbb{E}(\mathcal{Z}_1)\,.
@@ -65,7 +65,7 @@
 \end{theorem}
 
 
-\begin{definition}[Lévy-Metrik]\label{def:lévy}\cite[164]{Stochastik}
+\begin{definition}[Lévy-Metrik {\cite[164]{Stochastik}}]\label{def:lévy}
     Seien $F_1$ und $F_2$ Wahrscheinlichkeitsmaße auf $(\RR,\mathscr{B})$ mit zugehörigen Verteilungsfunktionen $\textbf{\emph{F}}_1$ und $\textbf{\emph{F}}_2$. Dann ist die \emph{Lévy-Metrik} definiert durch
     \begin{align*}
         \mathscr{L}(F_1,F_2)= \inf\{\varepsilon>0 ,\ x\in\RR \colon \textbf{\emph{F}}_1(x-\varepsilon)-\varepsilon\leq \textbf{\emph{F}}_2(x) \leq \textbf{\emph{F}}_1(x+\varepsilon)+\varepsilon\}\,.
@@ -73,7 +73,7 @@
 \end{definition}
 
 
-\begin{lemma}\label{lem:L4}
+\begin{lemma}[{\cite[502]{BaiSilverstein}}]\label{lem:L4}
     Seien $A,B\in\CC^{p\times n}$ und $S=AA^H$, $\bar{S}=BB^H$. 
     Dann gilt für die Lévy-Metrik aus \ref{def:lévy}
     \begin{align*}

@@ -298,17 +298,24 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
 \section{Mar\v{c}enko-Pastur-Verteilung}
 
 
-Im Beweis über die Konvergenz benutzen wir Elemente aus der Graphentheorie, die wir vorher noch einführen wollen.
+Im Beweis über die Konvergenz benutzen wir Elemente aus der Graphentheorie und der Stochastik, die wir vorher noch einführen wollen.
 \newline
 
-Wir definieren uns also eine Klasse von gerichteten Graphen mit folgenden Eigenschaften.
+Dafür definieren wir eine Klasse von Graphen mit folgenden Eigenschaften.
 
-Seien $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten mit der Gestalt $\emph{\textbf{i}}=(i_1,\dots,i_k)$ bzw. $\emph{\textbf{j}}=(j_1,\dots,j_k)$.
+
+Sei $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten mit der Gestalt $\emph{\textbf{i}}=(i_1,\dots,i_k)$ bzw. $\emph{\textbf{j}}=(j_1,\dots,j_k)$.
 Wobei die \emph{\textbf{i}}-Knoten ganzzahlige Werte in $[0,p]$ und \emph{\textbf{j}}-Knoten ganzzahlige Werte in $[0,n]$ annehmen können.
-Unterschiedliche \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten können den gleichen Wert annehmen, also sind sie \emph{koinzident}.
+Wenn unterschiedliche \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten den gleichen Wert annehmen, bezeichnen wir sie als \emph{koinzident}.
+Wir betrachten koinzidente Knoten als \emph{einen} Knoten mit mehreren Namen.
+Nehmen zum Beispiel die Knoten $i_2$ und $i_5$ den gleichen Wert $x$ an, haben wir einen Knoten welchen sowohl $i_2$ als auch $i_5$ nennen was für die Eigenschaften der Kanten wichtig wird.
 
 Alle Kanten richten sich nach den folgenden Regeln: 
-Die Kanten laufen von Knoten $i_m$ zu $j_m$ und von $j_m$ zu $i_{m+1}$ mit $m=1,\dots,k$ und der Konvention, dass $i_1=i_{k+1}$ gilt.
+Die Kanten sind gerichtet.
+Es ist also wichtig von wo nach wo sie laufen.
+Sie laufen von Knoten $i_m$ zu $j_m$ und von $j_m$ zu $i_{m+1}$ mit $m=1,\dots,k$ und der Konvention, dass $i_1=i_{k+1}$ gilt.
+Wenn wir also den Graphen zeichnen und bei $i_1$ anfangen sind wir fertig, wenn wir wieder am Startpunkt angelangt sind.
+
 Sei $\hat{r}$ die Anzahl nicht koinzidenter \emph{\textbf{i}}-Knoten, dann ist $r=\hat{r}-1$ und $s$ die Anzahl nicht koinzidenter \emph{\textbf{j}}-Knoten.
 Da $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten ist, ist $k$ auch die Anzahl an Kanten, die auf \emph{\textbf{i}}-Knoten zeigen.
 
@@ -329,8 +336,18 @@ Für den Beweis teilen wir die Graphen in drei Kategorien ein.
 \end{figure}
 
 Für bessere Lesbarkeit schreiben wir für die Kategorien $\Delta_{1,2,3}(k,r,s)$ nur noch $\Delta_{1,2,3}$.
-Wir bezeichnen zwei Graphen als isomorph, wenn wir durch eine geeignete Zuweisung von \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten finden, mit der die Graphen identisch sind. 
-Für diese Graphen haben wir noch ein paar Lemmata.
+Wir bezeichnen zwei Graphen als isomorph, wenn wir für die \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten eine geeignete Zuweisung von Werten finden so, dass die Graphen identisch sind.
+
+Dazu machen wir ein Beispiel.
+
+\begin{center}
+    \emph{Bild mit 3 Graphen. 2 isomorph einer nicht.}
+\end{center}
+
+\textcolor{red}{Graph a) ist isomorph zu b) da wir die Werte von zwei Knoten ändern können und den gleichen.
+Graph c) ist aber nicht isomorph zu a) da wir die indices der Knotennamen tauschen müssten was aber nicht geht da der Knoten fest ist.}
+
+Für die Graphen haben wir noch ein paar Lemmata.
 
 \begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{lem:AnzahlIsomklasse}
     Die Anzahl der Graphen in jeder Isomorphismenklasse von $\Delta(k,r,s)$ Graphen, mit festen $k$, $r$ und $s$ ist
@@ -352,6 +369,38 @@ Für diese Graphen haben wir noch ein paar Lemmata.
 
 
 
+
+%---------------------------------------------------------
+
+
+
+
+Aus der Stochastik benötigen wir einmal das Starke Gesetz der großen Zahlen und eine Metrik für Wahrscheinlichkeitsverteilungen.
+
+\begin{theorem}[Starkes Gesetz der großen Zahlen {\cite[139]{Stochastik}}]\label{theo:StarkeGroßeZahlen}
+    Seien $\{\mathcal{Z}_i\}_{i\in\NN}$ unabhängige und identisch verteilte Zufallsvariablen und besitzen ein Moment erster Ordnung, dann gilt 
+    \begin{align*}
+        \frac{1}{n}\sum_{i=1}^{n}\mathcal{Z}_i \underset{f.s.}{\overset{n\to\infty}{\longrightarrow}} \mathbb{E}(\mathcal{Z}_1)\,.
+    \end{align*}   
+\end{theorem}
+
+
+\begin{definition}[Lévy-Metrik {\cite[164]{Stochastik}}]\label{def:lévy}
+    Seien $F_1$ und $F_2$ Wahrscheinlichkeitsmaße auf $(\RR,\mathscr{B})$ mit $\mathscr{B}(\RR)$ als borelsche $\sigma$-Algebra und zugehörigen Verteilungsfunktionen $\textbf{\emph{F}}_1$ und $\textbf{\emph{F}}_2$. Dann ist die \emph{Lévy-Metrik} definiert durch
+    \begin{align*}
+        \mathscr{L}(F_1,F_2)= \inf\{\varepsilon>0 ,\ x\in\RR \colon \textbf{\emph{F}}_1(x-\varepsilon)-\varepsilon\leq \textbf{\emph{F}}_2(x) \leq \textbf{\emph{F}}_1(x+\varepsilon)+\varepsilon\}\,.
+    \end{align*} 
+\end{definition}
+
+Für den Beweis Benutzen wir dann die Eigenschaft aus dem folgenden Lemma.
+
+\begin{lemma}[{\cite[502]{BaiSilverstein}}]\label{lem:L4}
+    Seien $A,B\in\CC^{p\times n}$ und $S=AA^H$, $\bar{S}=BB^H$. 
+    Dann gilt für die Lévy-Metrik aus \ref{def:lévy}
+    \begin{align*}
+        \mathscr{L}^4\lr{F^S,F^{\bar{S}}}\leq \frac{2}{p^2}\tr\lr{AA^H+BB^H}\tr{\lr{(A-B)(A-B)^{H}}}\,.
+    \end{align*}
+\end{lemma}
 
 
 %--------------------------------------------------------------

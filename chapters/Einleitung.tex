@@ -2,9 +2,12 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-\textcolor{red}{mit Rangreduzierung starten}
 
-Dynamic Mode Decomposition, kurz DMD, ist ein datengetriebener Algorithmus, der ursprünglich im Forschungsgebiet der Strömungsdynamik entwickelt wurde. 
+Bei der Rangreduzierung handelt es sich um das Approximieren einer Matrix durch eine Matrix eines niedrigeren Ranges. 
+Sie ist also ein wichtiges Werkzeug im Umgang mit großen Datenmengen welche als Matrix vorliegen, um Rechenaufwand zu minimieren, der beim Verwenden der Daten aufkommen würde.
+
+Ein Beispiel das wir in dem Zusammenhang betrachten ist der Dynamic Mode Decomposition Algorithmus kurz DMD aus \cite{SlaySlaySlay}.
+DMD ist ein datengetriebener Algorithmus, der ursprünglich im Forschungsgebiet der Strömungsdynamik entwickelt wurde. 
 Grundsätzlich dient er der Analyse von Messdaten eines dynamischen Systems mittels Singulärwert\-zerlegung von großen Datenmatrizen.
 DMD kann anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren. 
 Die Genauigkeit hängt unter anderem davon ab, wie viele Informationen in Form von Messdaten über das System zur Verfügung stehen und wie groß die Messfehler, also das Rauschen der Daten, ist.
@@ -17,16 +20,17 @@ Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten des DMD Algorithmu
 Das klassische DMD benötigt Messdaten aus $k$ Messungen in einheitlichen Zeitabständen.
 Für jeden Zeitpunkt $i$ werden die jeweiligen Messdaten in die $i$-te Spalte einer Datenmatrix $X$ eingetragen.
 Zusätzlich legen wir eine zweite Datenmatrix $X'$ so an, dass wir in $X$ die Messungen $(x_1,\dots,x_{k-1})$ und in $X'$ die Messungen $(x_2,\dots,x_{k})$ haben.
-Die Datenmatrizen sind in der Regel $p\times n$ große Matrizen, wobei $p$ die Dimension des Systems bzw. die Anzahl der Messdaten zum $i$-ten Zeitpunkt ist und $n=k-1$ stellt die Anzahl der Messungen dar.
-In der Regel haben sie deutlich mehr Zeilen als Spalten also $p\gg n$ gilt.
-Normalerweise sind die Systeme, die betrachtet werden hochgradig nicht-linear.
-Durch das Aneinanderreihen der Messdaten in den Datenmatrizen wird die Dimension des Systems erhöht.
+Die Datenmatrizen sind in der Regel $p\times n$ große Matrizen, wobei $p$ die Dimension des Systems bzw. die Anzahl der Messdaten zum $i$-ten Zeitpunkt ist und $n=k-1$ ist die Anzahl der Messungen.
+In der Regel haben die Datenmatrizen deutlich mehr Zeilen als Spalten also gilt $p\gg n$.
+Normalerweise sind die Systeme, die betrachtet werden, hochgradig nicht-linear.
+Durch das Aneinanderreihen der Messdaten in den Datenmatrizen wird die Dimension $p$ des Systems erhöht.
 Dadurch lässt sich das System näherungsweise linear beschreiben.
 Das Ziel von DMD ist es einen linearen Operator $A$ bzw. seine Spektralzerlegung zu finden, für den 
 \[
 	X' \approx AX
 \]
 so gut wie möglich gilt. 
+Der Operator $A$ muss also diagonalisierbar sein.
 Der dafür am besten passende Operator $A$ lässt sich durch 
 \[
 	A=\underset{A}{\arg\min}\dabs{X'-AX}_F=X'X^\dag
@@ -34,7 +38,7 @@ Der dafür am besten passende Operator $A$ lässt sich durch
 bestimmen. Dabei sind $\dabs{\cdot}_F$ die Frobeniusnorm und $X^\dag$ die Moore-Penrose-Inverse, welche wir in Kapitel \ref{chap:Frobeniusnorm} und \ref{chap:exactDMD} noch genauer beschreiben werden. 
 Die Moore-Penrose-Inverse lässt sich dann mittels Singulärwertzerlegung (SWZ) der Datenmatrix $X$ bestimmen. 
 Die SWZ beschreiben wir in Kapitel \ref{chap:SWZ} nochmal genauer, liefern aber für einen kleinen Überblick eine vereinfachte Beschreibung.
-Bei der SWZ finden wir für ein $X\in\RR^{p\times n}$ zwei orthogonale Matrizen $U$ und $V$ mit passenden Dimensionen und ${\hat{\Sigma}=\diag(\sigma_1,\dots,\sigma_r)}$ mit $r\leq\min(p,n)$ und $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass
+Bei der SWZ finden wir für ein $X\in\RR^{p\times n}$ zwei orthogonale Matrizen $U$ und $V$ mit passenden Dimensionen $p\times n$ und ${\hat{\Sigma}=\diag(\sigma_1,\dots,\sigma_r)}$ mit $r\leq\min(p,n)$ und $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass
 \[
 	X = U\Sigma V^\top \text{ mit } \Sigma = \begin{pmatrix}
 		\hat{\Sigma} & 0 \\
@@ -66,8 +70,8 @@ Diese Methode der Dimensionsreduktion für SWZ ist als ökonomische SWZ bekannt.
 %---------------------------------------------------------------------------------------
 
 
-Eine weitere Methode, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). 
-Das ist eine Rang\-reduzierung bis alle Singulärwerte über einem definierten Schwellenwert $\tau$ liegen.
+Eine weitere Methode der Rangreduzierung, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). 
+Das ist eine Rang\-reduzierung für Datenmatrizen bis alle Singulärwerte über einem definierten Schwellenwert $\tau$ liegen.
 Gavish und Donoho definieren eine Rahmenstruktur, in der die Datenmatrix $X$ durch
 \[
     X \coloneqq \Xtrue+\gamma \Xnoise

@@ -105,7 +105,7 @@ Der Beweis des Satzes \ref{theo:svd} folgt etwas später, da dafür noch etwas V
 Wichtig zu erwähnen ist noch, dass unter den in Satz \ref{theo:svd} genannten Voraussetzungen, $\hat{\Sigma}$ durch $X$ eindeutig bestimmt ist \cite[229]{Numerik1}.
 Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 
-\begin{lemma}
+\begin{lemma}\label{lem:EigenwerteSingulärwerte}
 	Seien \(X\in \mathbb{R}^{p\times n}\) und $\sigma_i$ die Singulärwerte von $X$ nach den Voraussetzungen aus Satz \ref{theo:svd}. 
 	Seien weiter $\lambda_i$ die Eigenwerte von $X^\top X$. 
 	Dann gilt 
@@ -170,6 +170,7 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 
 %-----------------------Beweis--SWZ--------------------------------
 
+Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon aus, dass $p>n$ gilt.
 
 \begin{proof}[Beweis Satz \ref{theo:svd}]
 	Zunächst betrachten wir den Fall des vollen Ranges von $X$, also \\ $\rang X = r = n$.
@@ -199,7 +200,7 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 	\end{align*}
 	die Orthonormalität der Spalten von \(\hat{U}\) sehen.
 
-	Da $\hat{U}$ in $\RR^{p\times n}$ mit $n<p$ liegt und aus orthonormalen Spaltenvektoren besteht, finden wir ein \(Z\in\RR^{p\times (p-n)}\), welches $\hat{U}$ so um $p-n$ orthonormale Spaltenvektoren ergänzt, dass
+	Da $\hat{U}$ in $\RR^{p\times n}$ liegt und aus orthonormalen Spaltenvektoren besteht, finden wir ein \(Z\in\RR^{p\times (p-n)}\), welches $\hat{U}$ so um $p-n$ orthonormale Spaltenvektoren ergänzt, dass
 	\[
 		U = (\hat{U}\ Z)\in\RR^{p\times p}
 	\]
@@ -332,7 +333,7 @@ Wir finden also ein$r\in\NN$ mit $r<n$ so, dass wir mit $U_r\in\RR^{p\times r}$,
 	X\approx U_r\Sigma_rV_r^\top \eqqcolon X_r
 \end{align*}
 approximieren.
-Um den linearen Operator $A$ zu finden, der 
+Um den diagonalisierbaren, linearen Operator $A$ zu finden, der 
 \begin{align*}
 	X'\approx AX
 \end{align*}
@@ -379,7 +380,7 @@ Durch
 \end{align*}
 kann sehen wir, dass die Spalten von $\Phi$ auch die Eigenvektoren zu den Eigenwerten von $A_r$ sind. Damit können wir also die Spektralzerlegung von $A$ mit der Spektralzerlegung von $A_r$ bestimmen.
 
-\textcolor{red}{Muss noch irgendwas ans Ende.}
+%\textcolor{red}{Muss noch irgendwas ans Ende.}
 
 \end{document}
 

@@ -72,15 +72,22 @@ Diese Methode der Dimensionsreduktion für SWZ ist als ökonomische SWZ bekannt.
 
 Eine weitere Methode der Rangreduzierung, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). 
 Das ist eine Rang\-reduzierung für Datenmatrizen bis alle Singulärwerte über einem definierten Schwellenwert $\tau$ liegen.
-Gavish und Donoho definieren eine Rahmenstruktur, in der die Datenmatrix $X$ durch
+Gavish und Donoho definieren eine Rahmenstruktur, in der die Datenmatrix $X$ durch durch eine größer werdende Datenmatrix $X_n$ der Form
 \[
-    X \coloneqq \Xtrue+\gamma \Xnoise
+    X_n \coloneqq \Xtrue_n+\gamma \Xnoise_n
 \]
-beschrieben wird. 
-Wir haben also $X$ in einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil aufgeteilt. 
-Die Einträge der Fehlermatrix sind dabei unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $\EE(\Xnoise)=0$ Varianz $\var(\Xnoise)=1$.
+beschrieben wird.
+Dabei gilt für das Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}\in (0,1]$, dass es nicht divergiert.
+Wir haben also $X_n$ in einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil aufgeteilt. 
+Die Einträge der Fehlermatrix sind dabei unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $\EE(\Xnoise_n)=0$ Varianz $\var(\Xnoise_n)=1$.
+Zusätzlich werden die Singulärwerte von $\Xtrue_n$ fixiert.
+Sei $r$ der Rang von $\Xtrue$ und $\sigma_1^{echt},\dots,\sigma_r^{echt}$ ihre Singulärwerte, dann ist die Singulärwertzerlegung von $\Xtrue_n$ für alle $n$ in der Form
+\begin{align}
+	\Xtrue_n = U_n\diag(\sigma_1^{echt},\dots,\sigma_r^{echt},0,\dots,0)V^\top_n \label{eq:Singulärwertzerlegung_Xtrue}
+\end{align}
+mit passenden $U_n$ und $V_n$.
 
-Innerhalb dieser Rahmenstruktur haben Gavish und Donoho herausgefunden, dass für bekanntes Rauschen $\gamma$ und bekantem Dimonsions-Stichproben-Verhältnis $y=\frac{p}{n}$ der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
+Innerhalb dieser Rahmenstruktur haben Gavish und Donoho herausgefunden, dass für bekanntes Rauschen $\gamma$ und bekantem Dimonsions-Stichproben-Verhältnis der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
 \[
 	\tau_*=\lambda_*(y)\gamma\sqrt{n}\quad \text{mit}\quad \lambda_*(y) \coloneqq \sqrt{2(y+1)+\frac{8y}{(y+1)+\sqrt{y^2+14y+1}}}
 \]
@@ -92,9 +99,9 @@ Das Ziel ist es also einen Schwellenwert $\hat{\tau}_*$ zu finden, ab dem davon 
 Im Zusammenhang mit Singulärwerten von Zufallsmatrizen spielt Mar\v{c}enko-Pastur-Verteilung eine zentrale Rolle.
 Sie sagt aus, wie die quadrierten Singulärwerte von bestimmten Zufallsmatrizen verteilt sind.
 
-Für unbekantes Rauschen haben Gavish und Donoho dann mit dem Median der Singulärwerte $\sigma_{med}$ von $X$ und dem Median der Mar\v{c}enko-Pastur-Verteilung, den Rausch-Schätzer 
+Für unbekantes Rauschen haben Gavish und Donoho dann mit dem Median der Singulärwerte $\sigma_{med,n}$ von $X_n$ und dem Median der Mar\v{c}enko-Pastur-Verteilung, den Rausch-Schätzer 
 \[
-	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med}}{\sqrt{n\cdot\mu_y}}
+	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med,n}}{\sqrt{n\cdot\mu_y}}
 \]
 definiert. 
 Also mit $a=\left(1-\sqrt{y}\right)^2$, $b=\left(1+\sqrt{y}\right)^2$ und $a\leq\mu_y\leq b$ so, dass
@@ -105,41 +112,13 @@ gilt.
 
 Mit $\hat{\gamma}$ haben sie dann den Schwellenwert für Singulärwerte durch
 \[
-	\hat{\tau}_*(y,X)\coloneqq \lambda_*(y)\hat{\gamma}\sqrt{n} = \lambda_*(y)\frac{\sigma_{med}}{\sqrt{\mu_y}}
+	\hat{\tau}_*(y,X)\coloneqq \lambda_*(y)\hat{\gamma}\sqrt{n} = \lambda_*(y)\frac{\sigma_{med,n}}{\sqrt{\mu_y}}
 \]
 definiert.
+
 In dieser Arbeit konzentrieren wir uns zum einen auf den DMD Algorithmus, und zum anderen auf die Herleitung der Mar\v{c}enko-Pastur-Verteilung, da diese wie gerade beschrieben ein wesentlicher Bestandteil der Dimensionsreduktion ist.
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 \end{document}
-
-
-Plan: (notation aus paper bis auf $\sigma \to \gamma$)
-\begin{enumerate}
-	\item Rahmenstruktur iid und co [\textcolor{red}{\checkmark}]
-	\item für noise bekannt und $n\times n$ $\tau_*=\frac{4}{\sqrt{3}}\gamma\sqrt{n}$ [\textcolor{green}{\checkmark}]
-	\item noise unbekannt und $n\times m$ oder andersrum maaaaaaaaaan keine ahnung gerade $\to$ $\hat{\tau}_*(\beta,Y)\coloneqq \lambda_*(\beta)\sqrt{n}\hat{\gamma}(Y)=\frac{\lambda_*(\beta)}{\sqrt{\mu_\beta}}y_{med}$
-	\item mit $\omega(\beta)=\frac{\lambda_*(\beta)}{\sqrt{\mu_\beta}}$ dann $\hat{\tau}_*(\beta,Y)=\omega(\beta)y_{med}$
-	\item dann $\mu_\beta$ aus MP 
-	\item warum MP
-	\item was kann MP
-	\item ich mach MP
-\end{enumerate}
-
-
-\textcolor{red}{Überleitung zu MP}
-Bei kleinen Matrizen ist das Rauschen kaum ein Problem aber für \glqq große\grqq\ Matrizen kann der Noiseanteil der Singulärwerte sehr groß werden. 

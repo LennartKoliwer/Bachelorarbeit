@@ -2,35 +2,43 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-Die Mar\v{c}enko-Pastur-Verteilung ist ein Wahrscheinlichkeitsmaß, dass die asymptotische empirische Spektralverteilung der Eigenwerte von großen Stichproben-Kovarianzmatrizen beschreibt.
-Das Ziel dieses Kapitels ist es zu zeigen, dass die empirische Spektralverteilung schwach gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert.
+In Bezug auf die Rangreduzierung sind wir in der Einleitung auf das Paper von Gravish und Donoho \cite{OHT} eingegangen. 
+In dem Paper wird erwähnt, dass in 
+\[X_n \coloneqq \Xtrue_n+\gamma \Xnoise_n\] 
+der durch $\frac{\sigma_{med,n}}{\sqrt{n}}$ normierte Median der Singulärwerte von $X_n$ fast sicher gegen den Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$ konvergiert \cite[11]{OHT}.
 
-Dieses Kapitel basiert auf dem Buch \glqq Spectral analysis of large dimensional random matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
+Um die Notation im Folgenden zu vereinfachen, bezeichnen wir die Rauschmatrix $\Xnoise$ mit $\bm{X}$.
+
+Die Mar\v{c}enko-Pastur-Verteilung beschreibt die asymptotische empirische Spektralverteilung der Eigenwerte von großen Zufallsmatrizen der Form $\frac1n \bm{X}\bm{X}^H$.
+Die genauen Anforderungen an $\bm{X}$ stellen wir im kommenden Unterkapitel.
+
+Ziel dieses Kapitels ist es, die schwache Konvergenz der empirischen Spektralverteilung gegen die Marčenko-Pastur-Verteilung zu zeigen. 
+Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral analysis of large dimensional random matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
 
 
 \section{Vorbereitung}
 
 Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definieren.
 \begin{definition}\label{def:ESD}
-    Sei $S$ eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$ dann definieren wir durch
+    Sei $B$ eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$.
+    Die \emph{empirische Spektralverteilung} von $B$ ist durch die kumulative Verteilungsfunktion 
     \begin{align*}
-        F^S(x)=\frac1p|A_x| \quad \text{mit } A_x\coloneqq\{i\leq p \colon \lambda_i \leq x\}
+        F^B(x) \coloneqq \frac1p|A_x| \quad \text{mit } A_x\coloneqq\left\{i\in \{1,\dots,p\} \colon \lambda_i \leq x\right\}
     \end{align*}
-    die \emph{empirische Spektralverteilung} $F^S$.
+    definiert.
 \end{definition}
 
-Die Konvergenz betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir immer größere Matrizen betrachten, also $p$ gegen unendlich laufen lassen.
 
-\textcolor{red}{mehr zu StichKovar?!}
+Die Konvergenz betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir immer größere Matrizen betrachten, also $p$ gegen unendlich laufen lassen.
 
 Sei $\bm{X}$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
 Dabei sind ihre Erwartungswerte $0$ und ihre Varianz bezeichnen wir mit $\sigma^2$. 
 Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)^\top$, $\bm{X}=(x_1,\dots,x_n)$ und $\overline{x}=\frac1n\sum_{k=1}^n x_k$. 
-Dann ist die Stichproben-Kovarianzmatrix
+Dann ist die durch
 \begin{align}
-    S = \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\in\RR^{p\times p}\,. \label{eq:StichKovar}
+    S = \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\in\RR^{p\times p} \label{eq:StichKovar}
 \end{align}
-
+gegebene Matrix $S$ die Stichproben-Kovarianzmatrix.
 
 Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter vereinfachen.
 
@@ -46,21 +54,21 @@ Schreiben wir $S$ als
     S  &=  \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H \\
             &=  \frac{1}{n}\lr{\sum_{k=1}^{n}x_kx_k^H-\sum_{k=1}^{n}x_k\overline{x}^H-\sum_{k=1}^{n}x_k^H\overline{x}+\sum_{k=1}^{n}\overline{x}\,\overline{x}^H} \\
             &=  \frac{1}{n}\lr{\sum_{k=1}^{n}x_kx_k^H - n\overline{x}\,\overline{x}^H}\\
-            &= \frac1n XX^H - \overline{x}\,\overline{x}^H
+            &= \frac1n \bm{X}\bm{X}^H - \overline{x}\,\overline{x}^H
 \end{align*}
 und beschreiben $\bm{S}$ durch
 \begin{align}
     \begin{split}
         \bm{S}&=\frac{1}{n}\sum_{k=1}^{n}x_kx_k^H\\ 
-    &= \frac1n XX^H\,. 
+    &= \frac1n \bm{X}\bm{X}^H\,. 
     \end{split}\label{eq:StichKovarEinfach}
 \end{align}
 
 Mit Satz \ref{theo:ESDrang1} können wir durch
 
 \begin{align*}
-    \dabs{F^{S}-F^{\bm{S}}}_\infty &\leq \frac1p\rang(X-\overline{x}\
-    \overline{x}^H-X) \\
+    \dabs{F^{S}-F^{\bm{S}}}_\infty &\leq \frac1p\rang(\bm{X}-\overline{x}\
+    \overline{x}^H-\bm{X}) \\
     &= \frac1p\rang(\overline{x}\,\overline{x}^H)\\
     &= \frac1p
 \end{align*}
@@ -77,11 +85,11 @@ Wir verwenden daher die vereinfachte Form $\bm{S}$ für die Stichproben-Kovarian
 \section{Mar\v{c}enko-Pastur-Momente}\label{kap:MarchenkoPastur}
 
 
-Mit dem Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}$, ist die Mar\v{c}enko-Pastur-Verteilung $F_y$ ist ein Wahrscheinlichkeitsmaß auf $(\RR,\mathcal{B}(\RR))$. Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ 
-sind 
+Mit dem Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}$, wird die Mar\v{c}enko-Pastur-Verteilung durch das Wahrscheinlichkeitsmaß $F_y$ auf $(\RR,\mathcal{B}(\RR))$ beschrieben.
+Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ sind 
 \[
     a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2\,.
-\] 
+\]
 Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung ist dann durch
 \begin{align}
     p_y(x)=\begin{cases*}
@@ -90,6 +98,10 @@ Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung ist dann durch
     \end{cases*}\label{eq:MarchenkoPasturDichte}
 \end{align}
 definiert. 
+Die Verteilung ergibt sich dann durch
+\begin{align*}
+    F_y(t)=\int_{a}^{t}p_y(x)\diff x\,.
+\end{align*}
 Wenn $\sigma^2=1$ ist, dann sprechen wir von der Standard-M-P-Verteilung.
 Die $k$-ten Momente der M-P-Verteilung sind durch
 \begin{align}

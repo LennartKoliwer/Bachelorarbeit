@@ -6,11 +6,20 @@ In Bezug auf die Rangreduzierung sind wir in der Einleitung auf das Paper von Gr
 In dem Paper wird erwähnt, dass in 
 \[X_n \coloneqq \Xtrue_n+\gamma \Xnoise_n\] 
 der durch $\frac{\sigma_{med,n}}{\sqrt{n}}$ normierte Median der Singulärwerte von $X_n$ fast sicher gegen den Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$ konvergiert \cite[11]{OHT}.
+Daraus ergibt sich dann, dass der Schwellenwert für die Dimensionsreduktion
+\[
+    \hat{\tau}_*(y,X) = \lambda_*(y)\frac{\sigma_{med,n}}{\sqrt{\mu_y}}
+\]
+fast sicher gegen
+\[
+    \lim_{n\to\infty}\lambda_*(y)\frac{\sigma_{med,n}}{\sqrt{\mu_y}} \overset{f.s.}{=} \lambda_*(y) = \sqrt{2(y+1)+\frac{8y}{(y+1)+\sqrt{y^2+14y+1}}}
+\]
+konvergiert.
 
-Um die Notation im Folgenden zu vereinfachen, bezeichnen wir die Rauschmatrix $\Xnoise$ mit $\bm{X}$.
+Um die Notation im Folgenden zu vereinfachen, bezeichnen wir die Rauschmatrix $\Xnoise_n$ mit $\bm{X}_n$.
 
 Die Mar\v{c}enko-Pastur-Verteilung beschreibt die asymptotische empirische Spektralverteilung der Eigenwerte von großen Zufallsmatrizen der Form $\frac1n \bm{X}\bm{X}^H$.
-Die genauen Anforderungen an $\bm{X}$ stellen wir im kommenden Unterkapitel.
+Die genauen Anforderungen an $\bm{X}$, stellen wir im kommenden Unterkapitel.
 
 Ziel dieses Kapitels ist es, die schwache Konvergenz der empirischen Spektralverteilung gegen die Marčenko-Pastur-Verteilung zu zeigen. 
 Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral analysis of large dimensional random matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
@@ -21,13 +30,17 @@ Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral analysis of larg
 Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definieren.
 \begin{definition}\label{def:ESD}
     Sei $B$ eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$.
-    Die \emph{empirische Spektralverteilung} von $B$ ist durch die kumulative Verteilungsfunktion 
+    Dann ist auf dem Ereignisraum $(\RR,\mathcal{B}(\RR))$ mit $\mathcal{B}(\RR)$ als borelsche $\sigma$-Algebra durch
     \begin{align*}
         F^B(x) \coloneqq \frac1p|A_x| \quad \text{mit } A_x\coloneqq\left\{i\in \{1,\dots,p\} \colon \lambda_i \leq x\right\}
     \end{align*}
-    definiert.
+    die \emph{empirische Spektralverteilung} $F^B\colon\RR\to[0,1]$ definiert. 
+    Ihre Momente sind durch
+    \begin{align*}
+    \beta_k(B)&= \int_{-\infty}^{\infty}x^kF^{B}\diff x = \frac{1}{p}\tr\lr{B^k}
+\end{align*}
+    gegeben.
 \end{definition}
-
 
 Die Konvergenz betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir immer größere Matrizen betrachten, also $p$ gegen unendlich laufen lassen.
 
@@ -39,6 +52,8 @@ Dann ist die durch
     S = \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\in\RR^{p\times p} \label{eq:StichKovar}
 \end{align}
 gegebene Matrix $S$ die Stichproben-Kovarianzmatrix.
+
+\textcolor{red}{mehr zu Stichproben-Kovarianzmatrix?}
 
 Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter vereinfachen.
 
@@ -98,7 +113,7 @@ Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung ist dann durch
     \end{cases*}\label{eq:MarchenkoPasturDichte}
 \end{align}
 definiert. 
-Die Verteilung ergibt sich dann durch
+Die Verteilungsfunktion ergibt sich dann durch
 \begin{align*}
     F_y(t)=\int_{a}^{t}p_y(x)\diff x\,.
 \end{align*}
@@ -344,20 +359,22 @@ Für den Beweis teilen wir die Graphen in drei Kategorien ein.
 \begin{figure}[H]
     \centering
     \includegraphics[width=12cm]{Graphen_Beispiel_Platzhalter}
-    \caption*{Beispiel für Graphen}\label{fig:GraphenBsp}
+    \caption*{Beispiel für Graphen(Platzhalter)}\label{fig:GraphenBsp}
 \end{figure}
 
 Für bessere Lesbarkeit schreiben wir für die Kategorien $\Delta_{1,2,3}(k,r,s)$ nur noch $\Delta_{1,2,3}$.
 Wir bezeichnen zwei Graphen als isomorph, wenn wir für die \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten eine geeignete Zuweisung von Werten finden so, dass die Graphen identisch sind.
 
-Dazu machen wir ein Beispiel.
+Dazu machen wir ein Beispiel:
 
-\begin{center}
-    \emph{Bild mit 3 Graphen. 2 isomorph einer nicht.}
-\end{center}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=15cm]{Platzhalter_zwei.jpg}
+    \caption*{Platzhalter}\label{fig:GraphenBsp}
+\end{figure}
 
-\textcolor{red}{Graph a) ist isomorph zu b) da wir die Werte von zwei Knoten ändern können und den gleichen.
-Graph c) ist aber nicht isomorph zu a) da wir die indices der Knotennamen tauschen müssten was aber nicht geht da der Knoten fest ist.}
+Graph a) ist isomorph zu b), da wir die Werte von zwei Knoten ändern können und einen identischen Graphen erhalten.
+Graph c) ist aber nicht isomorph zu a) da wir zusätzlich noch die Indices der Knotennamen tauschen müssten was aber nicht geht da der Knoten fest ist.
 
 Für die Graphen haben wir noch ein paar Lemmata.
 
@@ -418,16 +435,18 @@ Für den Beweis Benutzen wir dann die Eigenschaft aus dem folgenden Lemma.
 %--------------------------------------------------------------
 
 
-
-\textcolor{red}{Einführen}
+Kommen wir nun zum Satz über die Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung.
 
 \begin{theorem}\label{theo:MPVert}
     Seien $\{x_{ij}\}$ unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. Sei weiter $\frac{p}{n}\overset{n\to\infty}{\longrightarrow}y \in(0,\infty)$. Dann konvergiert $F^{S_n}$ mit $n\to\infty$ und fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung $F_y$ wie sie in Kapitel \ref{kap:MarchenkoPastur} beschrieben wurde.
 \end{theorem}
 
 Im folgenden Beweis nehmen wir mit Lemma \ref{lem:betaUmformung}, o.B.d.A an, dass die Varianz $\sigma^2=1$ ist, wir also den Standardfall betrachten. 
-Um die Konvergenz der empirischen Spektralverteilung \ref{def:ESD} gegen die Mar\v{c}enko-Pastur-Verteilung zu zeigen, müssen wir erstmal sicherstellen, dass die Zufallsvariablen $x_{ij}$ die notwendigen Bedingungen erfüllen damit wir die Momentmethode benutzen können. 
-Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit wir keine unendlich großen Eigenwerte haben und entsprechend die Erwartungswerte wieder zentralisieren also auf $0$ setzen und wir Reskalieren um die Varianz zu erhalten.
+Wir zeigen die Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung mithilfe der Momentmethode.
+Die Momentmethode verlangt aber, dass die Momente jeder Ordnung der Verteilung endlich sind.
+Um das garantieren zu können, müssen wir erstmal dafür sorgen, dass die Zufallsvariablen $\{x_{ij}\}$ nicht unendlich groß werden können.
+Dafür können wir die Zufallsvariablen gleichmäßig beschränken.
+Entsprechend müssen wir dann die Erwartungswerte  zentralisieren also auf $0$ setzen und um die Varianz zu erhalten, müssen wir sie Reskalieren.
 
 
 \begin{proof}
@@ -441,19 +460,19 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
         &\quad
         \tilde{x}_i \coloneqq
         \left(\tilde{x}_{i1}, \dots, \tilde{x}_{ip}\right)^{\top} \\
-        \hat{S}_n
+        \hat{\bm{S}}_n
         \coloneqq \frac{1}{n} \sum_{i=1}^n \hat{x}_i \hat{x}_i^{H}
-        = \frac{1}{n}\hat{X}_n \hat{X}_n^{H}\,,
+        = \frac{1}{n}\hat{\bm{X}}_n \hat{\bm{X}}_n^{H}\,,
         &\quad
-        \tilde{S}_n
+        \tilde{\bm{S}}_n
         \coloneqq \frac{1}{n} \sum_{i=1}^n \tilde{x}_i \tilde{x}_i^{H}
-        = \frac{1}{n}\tilde{X}_n \tilde{X}_n^{H}\,.
+        = \frac{1}{n}\tilde{\bm{X}}_n \tilde{\bm{X}}_n^{H}\,.
     \end{align*}
-    Wir bezeichnen ab hier alle $X_n$ als $X$.
-    Mit $\hat{S}_n$ und $\tilde{S}_n$ haben wir die beschränkte und zentralisierte Stichproben Kovarianzmatrix. Im Folgenden wollen wir zeigen, dass sich durch Beschränken und Zentralisieren der Grenzwert nicht ändert.
+    Wir bezeichnen ab hier alle $\bm{X}_n$ als $\bm{X}$.
+    Mit $\hat{\bm{S}}_n$ und $\tilde{\bm{S}}_n$ haben wir die beschränkte und zentralisierte Stichproben Kovarianzmatrix. Im Folgenden wollen wir zeigen, dass sich durch Beschränken und Zentralisieren der Grenzwert nicht ändert.
     Nach Lemma \ref{lem:L4} erhalten wir
     \begin{align*}
-        \mathscr{L}^4\lr{F^{S_n},F^{\hat{S}_n}} &\leq \frac{2}{np}\tr\lr{XX^H+\hat{X}\hat{X}^H}\tr{\lr{(X-\hat{X})(X-\hat{X})^{H}}} \\
+        \mathscr{L}^4\lr{F^{\bm{S}},F^{\hat{\bm{S}}_n}} &\leq \frac{2}{np}\tr\lr{\bm{X}\bm{X}^H+\hat{\bm{X}}\hat{\bm{X}}^H}\tr{\lr{(\bm{X}-\hat{\bm{X}})(\bm{X}-\hat{\bm{X}})^{H}}} \\
         &=\lr{\frac{2}{np}\sum_{i,j}x_{ij}x_{ij}^H+\hat{x}_{ij}\hat{x}_{ij}^H}\lr{\frac{1}{np}\sum_{i,j}(x_{ij}-\hat{x}_{ij})(x_{ij}-\hat{x}_{ij})^H} \\
         &=\lr{\frac{2}{np}\sum_{i,j}|x_{ij}|^2+|\hat{x}_{ij}|^2}\lr{\frac{1}{np}\sum_{i,j}|x_{ij}-\hat{x}_{ij}|^2} \\
         &\leq \lr{\frac{4}{np}\sum_{i,j}|x_{ij}|^2}\lr{\frac{1}{np}\sum_{i,j}|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} \\
@@ -464,18 +483,18 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
     Der Abstand der empirischen Spektralverteilung und ihrer beschränkten Version ist also für ein genügend großes $C$ vernachlässigbar klein.
     Nach Satz \ref{theo:ESDrang1}
     \begin{align*}
-        \dabs{F^{\hat{S}_n}-F^{\tilde{S}_n}}_\infty &\leq \frac1p \rang(\hat{X}_n-\tilde{X}_n) \\
+        \dabs{F^{\hat{\bm{S}}_n}-F^{\tilde{\bm{S}}_n}}_\infty &\leq \frac1p \rang(\hat{\bm{X}}-\tilde{\bm{X}}) \\
         &= \frac1p \rang(\mathbb{E}(\hat{x}_{11})) \\
         &= \frac1p
     \end{align*}
-    können wir sehen, dass das Entfernen des Erwartungswertes auch keinen Einfluss auf die Konvergenz hat.
+    können wir sehen, dass das Entfernen des Erwartungswertes, also die Zentralisierung der Zufallsvariablen, auch keinen Einfluss auf die Konvergenz hat.
     
     Wir haben jetzt die Verteilung so modifiziert, dass die Zufallsvariablen nicht mehr unendlich groß werden können und den Erhalt des Erwartungswertes garantiert, ohne die Konvergenz zu beeinträchtigen. 
-    Um die letzte Bedingung, also den erhalt der Varianz, zu erfüllen müssen wir zeigen, dass durch Skalierung von $\tilde{S}_n$ mit $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$, wenn $C\to \infty$ gilt, der Abstand zu $\tilde{S}_n$ wieder vernachlässigbar klein wird.
+    Um die letzte Bedingung, also den erhalt der Varianz, zu erfüllen müssen wir zeigen, dass durch Skalierung von $\tilde{\bm{S}}_n$ mit $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$, wenn $C\to \infty$ gilt, der Abstand zu $\tilde{\bm{S}}_n$ wieder vernachlässigbar klein wird.
 
     Es gilt wieder mit Lemma \ref{lem:L4}
     \begin{align*}
-        \mathscr{L}^4\lr{F^{\tilde{S}_n},F^{\tilde{\sigma}^{-2}\tilde{S}_n}} &\leq \frac{2}{n}\tr\lr{\tilde{X}\tilde{X}^H+\frac{1}{\tilde{\sigma}^2}\tilde{X}\tilde{X}^H}\tr{\lr{\lr{1-\frac{1}{\tilde{\sigma}}}^2 \tilde{X}\tilde{X}^H}} \\
+        \mathscr{L}^4\lr{F^{\tilde{\bm{S}}_n},F^{\tilde{\sigma}^{-2}\tilde{\bm{S}}_n}} &\leq \frac{2}{n}\tr\lr{\tilde{\bm{X}}\tilde{\bm{X}}^H+\frac{1}{\tilde{\sigma}^2}\tilde{\bm{X}}\tilde{\bm{X}}^H}\tr{\lr{\lr{1-\frac{1}{\tilde{\sigma}}}^2 \tilde{\bm{X}}\tilde{\bm{X}}^H}} \\
         &= \lr{\frac{2}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H-\frac{2\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}}+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}} \\
         &= \lr{\frac{2}{np}\sum_{i,j}|\tilde{x}_{ij}|^2+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}|\tilde{x}_{ij}|^2-\frac{2|\tilde{x}_{ij}|^2}{\tilde{\sigma}}+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
         &= \lr{\frac{2}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2-\tilde{\sigma}2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
@@ -483,41 +502,44 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
         &\overset{f.s.}{\longrightarrow} 2\frac{\tilde{\sigma}^2+1}{\tilde{\sigma}^2}\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\frac{(\tilde{\sigma}-1)^2}{\tilde{\sigma}^2}\mathbb{E}\lr{|\tilde{x}_{ij}|^2} \\
         &\overset{C\to\infty}{\longrightarrow} 0\,.
     \end{align*}
-    Damit haben wir alle Bedingungen erfüllt. Für einen besseren Überblick verwenden wir weiterhin die Notation von $S_n$ und $X$, meinen aber die modifizierten Matrizen. 
+    Damit haben wir die Endlichkeit der Momente aller Ordnungen garantiert. Für einen besseren Überblick verwenden wir weiterhin die Notation von $\bm{S}_n$ und $\bm{X}$, meinen aber die modifizierten Matrizen. 
     Wir haben also eine gleichmäßig durch $C$ beschränkte Zufallsvariable $x_{ij}$ mit Erwartungswert $0$ und Varianz $1$. 
     
-    Nach der Momentmethode (S.10) erhalten wir
+    Nach Definition \ref{def:ESD} erhalten wir 
     \begin{align*}
-        \beta_k(S_n)&= \int_{-\infty}^{\infty}x^kF^{S_n}\diff x \\
-                    &= \frac{1}{p}\tr\lr{S_n^k} \\
-                    &= \frac{1}{pn^k}\tr\lr{\lr{XX^H}^k}\,.    
-    \intertext{Da die Dimensionen von $X$ gegen unendlich laufen, läuft auch die Anzahl der Summanden der Spur gegen unendlich.
-    Wir können die Spur aber auch als}
-            \frac{1}{pn^k}\tr\lr{\lr{XX^H}^k} &= \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\bar{x}_{i_2j_1}x_{i_2j_2}\bar{x}_{i_3j_2}\cdots x_{i_kj_k}\bar{x}_{i_1j_k}
+        \beta_k(\bm{S}_n)&= \int_{-\infty}^{\infty}x^kF^{\bm{S}_n}\diff x \\
+                    &= \frac{1}{p}\tr\lr{\bm{S}_n^k} \\
+                    &= \frac{1}{pn^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k}    
     \end{align*}
-        darstellen. Hier sind $\bar{x}_{ij}$ die Einträge aus $X^H$ und damit komplex konjugiert. 
+    für die Momente der empirischen Spektralverteilung. Da die Dimensionen $p\times n$ von $\bm{X}$ gegen unendlich laufen, läuft auch die Anzahl der Summanden der Spur gegen unendlich.
+    Wir können die Spur aber auch als
+    \begin{align*}
+            \frac{1}{pn^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k} &= \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\bar{x}_{i_2j_1}x_{i_2j_2}\bar{x}_{i_3j_2}\cdots x_{i_kj_k}\bar{x}_{i_1j_k}
+    \end{align*}
+        darstellen. Hier sind $\bar{x}_{ij}$ die Einträge aus $\bm{X}^H$ und damit komplex konjugiert. 
         Dabei sind $x_{i_1j_1}\bar{x}_{i_2j_1}\dots$ die Faktoren der einzelnen Summanden der Spur und wir Summieren über alle Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}. 
         Wenn wir über alle Permutationen summieren, können wir diese als oben definierte Graphen darstellen. Hier stellen $x_{ij}$ die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten dar und $\bar{x}_{ij}$ Kanten von \emph{\textbf{j}}- zu \emph{\textbf{i}}-Knoten. Wir definieren dann
     \begin{align*}
-        \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\bar{x}_{i_2j_1}x_{i_2j_2}\bar{x}_{i_3j_2}\cdots x_{i_kj_k}\bar{x}_{i_1j_k} & \coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} X_{\Delta(k,r,s)}\,.
+        \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\bar{x}_{i_2j_1}x_{i_2j_2}\bar{x}_{i_3j_2}\cdots x_{i_kj_k}\bar{x}_{i_1j_k} & \coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \bm{X}_{\Delta(k,r,s)}\,.
     \end{align*}
 
-    Die Konvergenz lässt sich jetzt zeigen, indem wir zeigen, dass der Erwartungswert $\EE(\beta_k(S_n))$ gleich der Momente der Mar\v{c}enko-Pastur-Verteilung ist und die Varianz gegen null geht.
-    Damit hätten wir eine fast sichere Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung.
+    Nach der Momentmethode (S.507) konvergiert die empirische Spektralverteilung schwach gegen die Mar\v{c}enko-Pastur-Verteilung, wenn die Momente der empirische Spektralverteilung gegen die der Mar\v{c}enko-Pastur-Verteilung konvergieren.
+    Das zeigen wir, indem wir den Erwartungswert und die Varianz der Momente der empirische Spektralverteilung bestimmen.
+    Sie konvergieren, wenn der Erwartungswert $\EE(\beta_k(\bm{S}_n))$ gegen die Momente der Mar\v{c}enko-Pastur-Verteilung läuft und die Varianz gegen null geht.
     
     Fangen wir an mit dem Erwartungswert.
     Nach Definition gilt
     \begin{align*}
-        \EE(\beta_k(S_n)) = \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{X_{\Delta(k,r,s)}}\,.
+        \EE(\beta_k(S_n)) = \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{\bm{X}_{\Delta(k,r,s)}}\,.
     \end{align*}
     Teilen wir die Graphen in ihre Kategorien ein, erhalten wir mit Lemma \ref{lem:AnzahlIsomklasse}
     \begin{align*}
-        \EE(\beta_k(S_n)) = \frac{1}{pn^k} \lr{\overbrace{\sum_{\Delta_1} \alpha\EE\lr{X_{\Delta_1}}}^{W_1\coloneqq}+\overbrace{\sum_{\Delta_2} \alpha\EE\lr{X_{\Delta_2}}}^{W_2\coloneqq}+\overbrace{\sum_{\Delta_3} \alpha\EE\lr{X_{\Delta_3}}}^{W_3\coloneqq}}\,.
+        \EE(\beta_k(S_n)) = \frac{1}{pn^k} \lr{\overbrace{\sum_{\Delta_1} \alpha\EE\lr{\bm{X}_{\Delta_1}}}^{W_1\coloneqq}+\overbrace{\sum_{\Delta_2} \alpha\EE\lr{\bm{X}_{\Delta_2}}}^{W_2\coloneqq}+\overbrace{\sum_{\Delta_3} \alpha\EE\lr{\bm{X}_{\Delta_3}}}^{W_3\coloneqq}}\,.
     \end{align*}
 
     Für $W_1$ erhalten wir nach Lemma \ref{lem:AnzahlIsomklasse} und Lemma \ref{lem:AnzahlNichtKoinzidenterKnotenKateg3}
     \begin{align}
-            W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}}\EE\lr{X_{\Delta_1}}\nonumber
+            W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}}\EE\lr{\bm{X}_{\Delta_1}}\nonumber
         \intertext{Da es zu jeder Kante genau eine Kante in die entgegengesetzte Richtung gibt, gilt $\EE\lr{|x_{\emph{\textbf{i}}\emph{\textbf{j}}}|^2}=1$. Wir können also schreiben}
             W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \nonumber\\
             &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}\frac{p^{r+1}n^{k-r}}{n^k p}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \nonumber\\
@@ -527,22 +549,22 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
 
     Für $W_2$ können wir sehen, dass 
     \begin{align}
-        W_2 = \frac{1}{n^k p}\sum_{\Delta_2} \alpha\EE\lr{X_{\Delta_2}} = 0 \label{eq:Delta2}
+        W_2 = \frac{1}{n^k p}\sum_{\Delta_2} \alpha\EE\lr{\bm{X}_{\Delta_2}} = 0 \label{eq:Delta2}
     \end{align}
     gilt, da wir den Erwartungswert auf Kanten aufteilen können, und es in Kategorie $\Delta_2$ mindestens eine Einzelkante gibt. Es gibt demnach mindestens ein $\omega_i$ in 
     \begin{align*}
-        \EE\lr{X_{\Delta_2}}= \EE(x_{i_1j_1}^{\omega_1})\EE(x_{i_2j_1}^{\omega_2})\cdots
+        \EE\lr{\bm{X}_{\Delta_2}}= \EE(x_{i_1j_1}^{\omega_1})\EE(x_{i_2j_1}^{\omega_2})\cdots
     \end{align*}
-    welches gleich $1$ ist, woraus folgt, dass $\EE(x_{i_kj_k}^{1})=0=\EE\lr{X_{\Delta_2}}$ ist.
+    welches gleich $1$ ist, woraus folgt, dass $\EE(x_{i_kj_k}^{1})=0=\EE\lr{\bm{X}_{\Delta_2}}$ ist.
 
     Für $W_3$ erhalten wir wieder mit Lemma \ref{lem:AnzahlIsomklasse}, dass
     \begin{align*}
-        W_3 = \frac{1}{n^k p}\sum_{\Delta_3} \alpha\EE\lr{X_{\Delta_3}}
+        W_3 = \frac{1}{n^k p}\sum_{\Delta_3} \alpha\EE\lr{\bm{X}_{\Delta_3}}
     \end{align*}
     gilt.
     Weiter oben haben wir gezeigt, dass $x_{ij}$ gleichmäßig durch ein $C>0$ beschränkt ist. Daraus erhalten wir, dass $|X_{\Delta(k,r,s)}|\leq C^{2k}$ gilt. Mit Lemma \ref{lem:AnzahlEinezlKantenKateg3} wissen wir, dass die Anzahl nicht koinzidenter Knoten maximal $k$ betragen kann. Dadurch ist die Anzahl unterschiedlicher $\Delta_3$ Graphen in $\mathcal{O}\lr{n^k}$. Wir haben also
     \begin{align}
-        \frac{1}{n^k p}\sum_{\Delta_3} \alpha\lr{X_{\Delta_3}} &= \frac{C^{2k}}{n^k p} \mathcal{O}\lr{n^k} \nonumber\\
+        \frac{1}{n^k p}\sum_{\Delta_3} \alpha\lr{\bm{X}_{\Delta_3}} &= \frac{C^{2k}}{n^k p} \mathcal{O}\lr{n^k} \nonumber\\
         &= \mathcal{O}\lr{\frac{1}{p}} \label{eq:Delta3}\,.
     \end{align}
     Mit \eqref{eq:Delta1}, \eqref{eq:Delta2} und \eqref{eq:Delta3} erhalten wir dann
@@ -554,20 +576,20 @@ Dafür müssen wir einmal die Zufallsvariablen gleichmäßig beschränken, damit
     Jetzt fehlt noch die Varianz.
     Diese ist nach Definition
     \begin{align*}
-        \text{Var}(\beta_k(S_n)) &\coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \lr{\EE\lr{X_{\Delta_a(k,r,s)}X_{\Delta_b(k,r,s)}}-\EE\lr{X_{\Delta_a(k,r,s)}}\EE\lr{X_{\Delta_b(k,r,s)}}}\,.
+        \text{Var}(\beta_k(S_n)) &\coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \lr{\EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}}-\EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}}\,.
     \end{align*}
     Dabei sind $\Delta_a$ und $\Delta_b$ verschiedene Permutationen \emph{\textbf{i}} und \emph{\textbf{j}}. Wie für den Erwartungswert suchen wir uns Kategorien, um die Varianz stückweise zu beschreiben.
 
     Als Erstes betrachten wir alle Graphen $\Delta_a$ und $\Delta_b$ so, dass $\Delta_a$ und $\Delta_b$ unabhängig sind, sich also keine Kanten teilen.
     Daraus folgt direkt durch Rechenregeln von Erwartungswerten, dass
     \begin{align*}
-        \EE\lr{X_{\Delta_a(k,r,s)}X_{\Delta_b(k,r,s)}} = \EE\lr{X_{\Delta_a(k,r,s)}}\EE\lr{X_{\Delta_b(k,r,s)}}
+        \EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}} = \EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}
     \end{align*}
     gilt. Das heißt, für unabhängige Graphen ist die Varianz gleich $0$.
 
     Als Nächstes betrachten wir alle Graphen $\Delta_a\cup\Delta_b$, die mindestens eine Einzelkante besitzen. Damit erhalten wir durch $\Delta_2$ Eigenschaften wieder 
     \begin{align*}
-        \EE\lr{X_{\Delta_a(k,r,s)}X_{\Delta_b(k,r,s)}} = 0 = \EE\lr{X_{\Delta_a(k,r,s)}}\EE\lr{X_{\Delta_b(k,r,s)}}\,.
+        \EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}} = 0 = \EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}\,.
     \end{align*}
 
     In allen anderen Möglichkeiten haben die Graphen keine Einzelkante und $\Delta_a$ und $\Delta_b$ teilen sich Kanten. Analog zu $W_3$ können wir sagen, dass die Anzahl möglicher Graphen in $\mathcal{O}(n^k)$ liegt. Da wir zwei Graphen haben ist die Anzahl also in $\mathcal{O}(n^{2k})$.

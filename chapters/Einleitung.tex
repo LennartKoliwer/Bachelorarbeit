@@ -47,6 +47,7 @@ Bei der SWZ finden wir für ein $X\in\RR^{p\times n}$ zwei orthogonale Matrizen 
 \]
 gilt.
 Bei der Bestimmung von $A$ wird der Rechenaufwand schnell zu groß, weshalb der DMD Algorithmus eine Dimensionsreduktion durchführt. 
+Die Dimensionsreduktion ist dabei eine Methode, die Dimension einer Matrix auf zum Beispiel ihren Rang zu reduzieren.
 Damit kann man eine Spektralzerlegung von $A$ machen, ohne $A$ direkt zu benutzen. 
 Durch die oben genannte Form der Datenmatrizen kann man direkt sehen, dass $X$ maximal von Rang$\,n$ sein kann. 
 Es gibt also maximal $r\leq n$ Singulärwerte, die nicht Null sind. 
@@ -81,7 +82,7 @@ Dabei gilt für das Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}\in (0,1]$,
 Wir haben also $X_n$ in einen echten Teil und einem durch $\gamma$ skalierten Fehleranteil aufgeteilt. 
 Die Einträge der Fehlermatrix sind dabei unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $\EE(\Xnoise_n)=0$ Varianz $\var(\Xnoise_n)=1$.
 Zusätzlich werden die Singulärwerte von $\Xtrue_n$ fixiert.
-Sei $r$ der Rang von $\Xtrue$ und $\sigma_1^{echt},\dots,\sigma_r^{echt}$ ihre Singulärwerte, dann ist die Singulärwertzerlegung von $\Xtrue_n$ für alle $n$ in der Form
+Sei also $r$ der Rang von $\Xtrue$ und $\sigma_1^{echt},\dots,\sigma_r^{echt}$ ihre Singulärwerte, dann ist die Singulärwertzerlegung von $\Xtrue_n$ für alle $n$ in der Form
 \begin{align}
 	\Xtrue_n = U_n\diag(\sigma_1^{echt},\dots,\sigma_r^{echt},0,\dots,0)V^\top_n \label{eq:Singulärwertzerlegung_Xtrue}
 \end{align}

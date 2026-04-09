@@ -124,7 +124,7 @@ Die $k$-ten Momente der M-P-Verteilung sind durch
 \end{align} 
 definiert. 
 Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben, was wir im folgenden Lemma zeigen.
-\begin{lemma}
+\begin{lemma}\label{lem:betaUmformung}
     Für alle $k\geq1$ gilt
     \begin{align*}
         \beta_k\left(y,\sigma^2\right)=\sigma^{2k}\beta_k\left(y,1\right)\eqqcolon\beta_k\,.
@@ -160,7 +160,7 @@ Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig
 \end{lemma}
 
 Dass $\beta_k$ die Mar\v{c}enko-Pastur-Verteilung eindeutig bestimmt, lässt sich dann mit Lemma \ref{lem:Carlman} zeigen.
-Wir sehen einmal nach \eqref{eq:momente} und \eqref{eq:MarchenkoPasturDichte}, dass wir $\beta_{2k}$ durch
+Wir sehen einmal nach \eqref{eq:MarchenkoPasturDichte} und \eqref{eq:momente}, dass wir $\beta_{2k}$ durch
 \begin{align}
     \beta_{2k}  &= \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-x)(x-a)}dx \nonumber\\
                 &\leq \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-a)(b-a)}dx \nonumber\\
@@ -170,9 +170,9 @@ Wir sehen einmal nach \eqref{eq:momente} und \eqref{eq:MarchenkoPasturDichte}, d
                 &\leq \frac{1}{k\pi\sqrt{y}}b^{2k} \nonumber\\
                 &\leq b^{2k} = \left(1+\sqrt{y}\right)^{4k} \label{eq:moment_abschätzen}
 \end{align}
-abschätzen können. Mit der Abschätzung \eqref{eq:moment_abschätzen} und Lemma \ref{lem:Carlman} haben wir durch
+abschätzen können. Mit Lemma \ref{lem:Carlman} und der Abschätzung \eqref{eq:moment_abschätzen} haben wir durch
 \begin{align*}
-        \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}} \leq \sum_{k=1}^{\infty} \left(1+\sqrt{y}\right)^{2} = \infty
+        \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}} \geq \sum_{k=1}^{\infty} \left(1+\sqrt{y}\right)^{-2} = \infty
 \end{align*}
 die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-Pastur-Verteilung durch die Momente $\beta_k$ eindeutig bestimmt ist.
 

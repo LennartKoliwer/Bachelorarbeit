@@ -5,20 +5,20 @@
 
 
 
-In diesem Kapitel wollen wir einmal genauer auf den DMD Algorithmus bzw. die \glqq exact DMD\grqq\ Variante eingehen. 
+In diesem Kapitel wollen wir genauer auf den DMD Algorithmus beziehungsweise. die \glqq exact DMD\grqq\ Variante eingehen. 
 
-Aus der Einleitung wissen wir, dass die Singulärwertzerlegung und die Frobeniusnorm wichtige Werkzeuge des Algorithmus sind, weshalb wir sie hier einmal konkret definieren.
+Aus der Einleitung wissen wir, dass die Singulärwertzerlegung und die Frobeniusnorm wichtige Werkzeuge des Algorithmus sind, weshalb wir sie hier konkret definieren.
 
 \section{Frobeniusnorm}\label{chap:Frobeniusnorm}
 
 \begin{definition}[Frobeniusnorm]
-	Sei $X\in\CC^{p\times n}$ eine Matrix und $x_{ij}$ mit $i\in \{1,\dots,p\},$ $j\in \{1,\dots,n\}$. Die \emph{Frobeniusnorm} ist definiert durch
+	Sei $X\in\CC^{p\times n}$ eine Matrix und $x_{ij}$ mit $i\in \{1,\dots,p\},$ $j\in \{1,\dots,n\}$ ihre Einträge. Die \emph{Frobeniusnorm} von $X$ ist definiert durch
 	\[
 		||X||_F \coloneqq \sqrt{\sum_{i=1}^{p}\sum_{j=1}^{n}|x_{ij}|^2}\,.
 	\]
 \end{definition}
 Die Frobeniusnorm können wir aber auch über die Spur der Matrix beschreiben.
-\begin{lemma}
+\begin{lemma}\label{lem:FrobTrace}
 	Sei $X\in\CC^{p\times n}$ eine Matrix. Dann gilt
 	\[
 		||X||_F = \sqrt{\tr\left( X^HX\right)}\,.
@@ -26,19 +26,19 @@ Die Frobeniusnorm können wir aber auch über die Spur der Matrix beschreiben.
 \end{lemma}
 
 \begin{proof}
-	Sei $x_i$ ein Spaltenvektor von $X$ und $\bar{x}_{ij}$ das komplex Konjugierte. Dann ist
+	Sei $x_i$ der $i$-te Spaltenvektor von $X$ und $\bar{x}_{ij}$ das komplex Konjugierte von $x_{ij}$. Dann ist
 	\begin{align*}
 		X^HX & =
 		\begin{pmatrix}
-			x_1 & \dots & x_n 
+			x_1 & \cdots & x_n 
 		\end{pmatrix}^H
 		\begin{pmatrix}
-			x_1 & \dots & x_n
+			x_1 & \cdots & x_n
 		\end{pmatrix} \\
 		     & = \begin{pmatrix}
-			         \displaystyle\sum_{j=1}^{p}x^{H}_{1j} x_{1j} &        & *                                             \\
+			         \displaystyle\sum_{j=1}^{p}\langle x^{H}_{1}, x_{1}\rangle &        & *                                             \\
 			                                                      & \ddots &                                               \\
-			         *                                            &        & \displaystyle\sum_{j=1}^{p} x^{H}_{nj} x_{nj}
+			         *                                            &        & \displaystyle\sum_{j=1}^{p} \langle x^{H}_{p}, x_{p}\rangle
 		         \end{pmatrix}
 		= \begin{pmatrix}
 			  \displaystyle\sum_{j=1}^{p}\bar{x}_{1j} x_{1j} &        & *                                                    \\
@@ -66,7 +66,7 @@ Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich u
 \end{lemma}
 \begin{proof}\textcolor{white}{Wackelpudding} %\emph{Beweis.}
 	\begin{enumerate}
-		\item Aus Gleichung \eqref{eq:traceFrob} folgt
+		\item Aus Lemma \ref{lem:FrobTrace} folgt
 		      \[
 			      ||X||_F^2 = \tr \left(X^HX\right) = \sum_{i=1}^{n}\sum_{j=1}^{p} \bar{x}_{ij} x_{ij} = \sum_{j=1}^{p}\sum_{i=1}^{n} \bar{x}_{ij} x_{ij} = \tr\left(XX^H\right) = ||X^H||_F^2 \,.
 		      \]
@@ -81,7 +81,6 @@ Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich u
 	\end{enumerate}
 \end{proof}
 
-Damit haben wir alles, was wir über die Frobeniusnorm wissen müssen.
 
 
 %------------------------------------------------------------------------------------------------
@@ -91,7 +90,7 @@ Damit haben wir alles, was wir über die Frobeniusnorm wissen müssen.
 	Sei \(X\in \mathbb{R}^{p\times n} \) eine Matrix und ${r\coloneqq \rang X}$ mit $r\leq \min(p,n)$.
 	Dann existieren orthogonale Matrizen \(U\in\RR^{p\times p}\) und \(V\in\RR^{n\times n}\) und eine Diagonalmatrix \(\hat{\Sigma}=\diag(\sigma_1,\dots,\sigma_r)\in\mathbb{R}^{r\times r}\) mit $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass 
 	\[
-		X = U\Sigma V^\top \text{ mit } \Sigma = \begin{pmatrix}
+		X = U\Sigma V^\top \quad\text{mit}\quad \Sigma = \begin{pmatrix}
 			\hat{\Sigma} & 0 \\
 			0            & 0
 		\end{pmatrix} \in \mathbb{R}^{p\times n}
@@ -116,7 +115,7 @@ Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 \end{lemma}
 
 \begin{proof}
-	Durch 
+	Mit $U$ und $V$ aus Satz \ref{theo:svd} ist durch 
 	\begin{align*}
 		X^\top X &= \left(U\Sigma V^\top\right)^\top\left(U\Sigma V^\top\right)\\
 				 &= V\Sigma^\top U^\top U\Sigma V^\top \\
@@ -124,7 +123,7 @@ Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 	\end{align*}
 	ist $X^\top X$ ähnlich zu $\Sigma^\top \Sigma$. 
 	Also haben $X^\top X$ und $\Sigma^\top \Sigma$ auch die gleichen Eigenwerte.
-	Damit sind auch die Wurzeln der Eigenwerte von $X^\top X$ gleich der Eigenwerte bzw. Singulärwerte von $\Sigma$ wie in \eqref{eq:SWzuEW}.
+	Damit sind auch die Wurzeln der Eigenwerte von $X^\top X$ gleich der Eigenwerte beziehungsweise Singulärwerte von $\Sigma$.
 \end{proof}
 
 \begin{lemma} \label{lem:InvarinatBzglTansp}
@@ -142,7 +141,7 @@ Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 	\]
 \end{proof}
 
-Den Beweis von Satz \ref{theo:svd} teilen wir in zwei Teile ein. Wir betrachten dafür einmal die Singulärwertzerlegung für den Fall, dass $X$ vollen Rang besitzt und einmal für den rangreduzierten Fall.
+Den Beweis von Satz \ref{theo:svd} teilen wir auf. Wir betrachten dafür zum Einen die Singulärwertzerlegung für den Fall, dass $X$ vollen Rang besitzt und zum Anderen für den rangreduzierten Fall.
 Für den vollen Rang benutzen wir das folgende Lemma.
 
 \begin{lemma}[{\cite[191]{Numerik1}}] \label{lem:diagonal}
@@ -159,7 +158,7 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 \begin{lemma}[{\cite[227]{Numerik1}}] \label{lem:obereDreiecks}
 	Sei \(X\in \mathbb{R}^{p\times n}\) eine Matrix mit \(\rang X = r < n \leq p\). Dann existieren orthogonale Matrizen \(U\in\RR^{p\times p}\) und \(V\in\RR^{n\times n}\) sowie eine reguläre obere Dreiecksmatrix $\hat{R}\in\RR^{r\times r}$ so, dass
 	\[
-		U^\top X V=R \text{ mit } R = \begin{pmatrix}
+		U^\top X V=R \quad\text{mit}\quad R = \begin{pmatrix}
 			\hat{R} & 0 \\
 			0       & 0
 		\end{pmatrix} \in \RR^{p\times n}
@@ -170,9 +169,11 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 
 %-----------------------Beweis--SWZ--------------------------------
 
-Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon aus, dass $p>n$ gilt.
+\textcolor{red}{nochmal?}
 
-\begin{proof}[Beweis Satz \ref{theo:svd}]
+Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon aus, dass $n<p$ gilt.
+
+\begin{proof}[Beweis von Satz \ref{theo:svd}]
 	Zunächst betrachten wir den Fall des vollen Ranges von $X$, also \\ $\rang X = r = n$.
 	Bei vollem Rang ist \(X^\top X\in\mathbb{R}^{n\times n}\) sowohl symmetrisch als auch positiv definit. Die Eigenwerte \(\lambda_i\) von \(X^\top X\) sortieren wir nach ihrer Größe, also
 	\[
@@ -180,13 +181,13 @@ Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon a
 	\]
 	Mit Lemma \ref{lem:diagonal} finden wir ein orthogonales \(V \in \RR^{n\times n}\) so, dass
 	\[
-		V^\top X^\top XV=D=\diag \{\lambda_1, \dots , \lambda_n\} \in \mathbb{R}^{n\times n}\,.
+		V^\top X^\top XV=D=\diag (\lambda_1, \dots , \lambda_n) \in \mathbb{R}^{n\times n}\,.
 	\]
 	Weiter definieren wir
 	\[
-		\hat{\Sigma}\coloneqq \diag \{\sigma_1, \dots, \sigma_n\}
+		\hat{\Sigma}\coloneqq \diag (\sigma_1, \dots, \sigma_n)
 	\]
-	mit \(\sigma_i \coloneqq \sqrt{\lambda_i}\in(0,\infty],\text{ für } i=1,\dots, n\), und setzen
+	mit \(\sigma_i \coloneqq \sqrt{\lambda_i}\in(0,\infty),\text{ für } i=1,\dots, n\), und setzen
 	\[
 		\hat{U}\coloneqq XV\hat{\Sigma}^{-1}\in\RR^{p\times n}\,.
 	\]
@@ -241,7 +242,7 @@ Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon a
 		                                                \end{pmatrix} \in \RR^{p\times n}
 	\end{align*}
 	gilt. 
-	Nach obigem Fall mit vollem Rang, wissen wir, dass es orthogonale Matrizen \(U_r\in\RR^{p\times p}\) und \(V_r\in\RR^{r\times r}\)gibt, sodass
+	Nach obigem Fall mit vollem Rang, wissen wir, dass es orthogonale Matrizen \(U_r\in\RR^{p\times p}\) und \(V_r\in\RR^{r\times r}\) mit
 	\begin{align*}
 		U_r^\top\begin{pmatrix}
 			        \hat{R} \\
@@ -251,8 +252,8 @@ Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon a
 			                           0
 		                           \end{pmatrix}\in\RR^{p\times r}
 	\end{align*}
-	gilt. \textcolor{red}{...gilt. ...gilt. nicht so schön.}
-	Dabei ist $\hat{\Sigma}_r \coloneqq \diag \{\sigma_1, \dots, \sigma_r\}$ mit $\sigma_i = \sqrt{\lambda_i}$.
+	gibt.
+	Dabei ist $\hat{\Sigma}_r \coloneqq \diag (\sigma_1, \dots, \sigma_r)$ mit $\sigma_i = \sqrt{\lambda_i}$.
 	Im Folgenden erweitern wir
 	\begin{align*}
 		\begin{pmatrix}
@@ -298,12 +299,13 @@ Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon a
 \section{Exact DMD}\label{chap:exactDMD}
 
 In der Einleitung haben wir grob den DMD Algorithmus erklärt.
-Wir gehen hier jetzt aber auf die \glqq exact DMD\grqq\ Variante ein, da sie im Gegensatz zur ursprünglichen Variante keine einheitlichen Zeitabstände zwischen den Messungen erfordert.
-Dieses Kapitel beruht auf dem Buch \cite{SlaySlaySlay}.
+Wir gehen hier jetzt aber auf die \glqq Exact DMD\grqq\ Variante ein, da sie im Gegensatz zur ursprünglichen Variante keine einheitlichen Zeitabstände zwischen den Messungen erfordert.
+Dieses Kapitel beruht auf dem Buch \glqq Data-Driven Science and Engineering\grqq\ \cite{SlaySlaySlay}.
 
-Exact DMD erlaubt es uns Daten über mehrere Messungen die Zeitlich unterschiedlich auseinanderliegen zusammenzutragen. Zu jeder Messung gehört dann ein Datenpaar $\{x(t_i),x(t_i')\}$ mit $i=1,\dots,n$ und $t'_i=t_i +\Delta t$.
+Exact DMD erlaubt es uns Daten über mehrere Messungen die zeitlich unterschiedlich auseinanderliegen zusammenzutragen. Zu jeder Messung gehört dann ein Datenpaar $\{x(t_i),x(t_i')\}$ mit $i=1,\dots,n$ und $t'_i=t_i +\Delta t$.
+Dabei ist $x$ die Messung zum Zeitpunkt $t_i$ beziehungsweise $t'_i$.
 Fügen wir die Datenpaare in zwei Matrizen \(X,X'\in\mathbb{R}^{p\times n}\) ein, erhalten wir die Zustände des Systems zu \(n \) diskreten Zeitpunkten.
-Wir haben also 
+Wir erhalten also 
 \begin{align*}
 	X=\begin{pmatrix}
 		|      & |      &       & |      \\
@@ -328,7 +330,7 @@ Als Erstes bestimmen wir die Singulärwertzerlegung von $X$ also
 	X=U\Sigma V^\top\,.
 \end{align*}
 Um den Rechenaufwand zu minimieren, finden wir eine geeignete Rangreduzierung.
-Wir finden also ein$r\in\NN$ mit $r<n$ so, dass wir mit $U_r\in\RR^{p\times r}$, $\Sigma_r\in\RR^{r\times r}$ und $V_r\in\RR^{n\times r}$
+Wir finden also ein $r\in\NN$ mit $r<n$ so, dass wir mit $U_r\in\RR^{p\times r}$, $\Sigma_r\in\RR^{r\times r}$ und $V_r\in\RR^{n\times r}$
 \begin{align*}
 	X\approx U_r\Sigma_rV_r^\top \eqqcolon X_r
 \end{align*}
@@ -352,20 +354,22 @@ Mit Satz \ref{theo:moorePenrose} können wir $A$ durch
 	A = X'V_r \Sigma_r^{-1} U_r^\top = X'X_r^\dagger
 \end{align*}
 bestimmen.
-Das Ziel ist es die Spektralzerlegung von $A$ zu finden, damit wir analysieren können wie sich das System über die Zeit entwickelt.
-Da $A$ aber eine $p\times p$ große Matrix ist und $p$ schnell sehr groß werden kann, können wir den Rechenaufwand minimieren, indem wir die Spektralzerlegung von einem $A_r$ bestimmen, welches nur noch die für uns relevante Dimension $r$ hat.
+Das Ziel ist es, die Spektralzerlegung von $A$ zu finden, damit wir analysieren können wie sich das System mit der Zeit entwickelt.
+Da $A$ aber eine $p\times p$ Matrix ist und $p$ schnell sehr groß wird, können wir den Rechenaufwand minimieren, indem wir die Spektralzerlegung von einem $A_r\in\RR^{r\times r}$ bestimmen, welches nur noch die für uns relevante Dimension $r$ hat.
 Wir bestimmen $A_r$ durch
-\begin{align*}
+\begin{align}
+	\begin{split}\label{eq:A_r}
 	A_r&=U_r^\top A U_r \\
 	 &= U_r^\top X'X^\dagger_r U_r \\
 	 &= U_r^\top X'V_r\Sigma_r^{-1}\,.
-\end{align*}
+	\end{split}
+\end{align}
 
-Sei $W$ die Matrix aus Eigenvektoren von $A_r$ und $\Lambda$ eine Diagonalmatrix dessen Einträge die Eigenwerte $\lambda_i$ von $A_r$ sind, dann ist die Spektralzerlegung von $A_r$ genau
-\begin{align*}
+Sei $W\in\RR^{r\times r}$ die Matrix aus Eigenvektoren von $A_r$ und $\Lambda\in\RR^{r\times r}$ eine Diagonalmatrix dessen Einträge die Eigenwerte $\lambda_i$ der zugehörigen Eigenvektoren von $A_r$ sind, dann ist die Spektralzerlegung von $A_r$ genau
+\begin{align}\label{eq:A_rW}
 	A_rW=W\Lambda \,.
-\end{align*}
-Sei $\Phi$ die Matrix, dessen Spalten die Eigenvektoren von $A$ sind. Dann können wir $\Phi$ durch die reduzierten Eigenvektoren $W$ mit 
+\end{align}
+Sei $\Phi\in\RR^{p\times p}$ die Matrix, dessen Spalten die Eigenvektoren von $A$ sind. Dann können wir $\Phi$ durch die reduzierten Eigenvektoren $W$ mit 
 \begin{align*}
 	\Phi = X'V_r\Sigma_r^{-1} W
 \end{align*}
@@ -373,12 +377,12 @@ rekonstruieren.
 
 Durch
 \begin{align*}
-	A\Phi &= (X'V_r \Sigma_r^{-1} U_r^\top)(X'V_r\Sigma_r^{-1} W) \\
-		  &= X'V_r \Sigma_r^{-1} A_r W \\
-		  &= X'V_r \Sigma_r^{-1} W\Lambda \\
-		  &=\Phi \Lambda
+	A\Phi&\ = (X'V_r \Sigma_r^{-1} U_r^\top)(X'V_r\Sigma_r^{-1} W) \\
+		  &\overset{\eqref{eq:A_r}}{=} X'V_r \Sigma_r^{-1} A_r W \\
+		  &\overset{\eqref{eq:A_rW}}{=} X'V_r \Sigma_r^{-1} W\Lambda \\
+		  &\ =\Phi \Lambda
 \end{align*}
-kann sehen wir, dass die Spalten von $\Phi$ auch die Eigenvektoren zu den Eigenwerten von $A_r$ sind. Damit können wir also die Spektralzerlegung von $A$ mit der Spektralzerlegung von $A_r$ bestimmen.
+können wir sehen, dass die Spalten von $\Phi$ auch die Eigenvektoren zu den Eigenwerten von $A_r$ sind. Damit können wir also die Spektralzerlegung von $A$ mit der Spektralzerlegung von $A_r$ bestimmen.
 
 %\textcolor{red}{Muss noch irgendwas ans Ende.}
 

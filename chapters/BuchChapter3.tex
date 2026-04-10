@@ -5,31 +5,32 @@
 In Bezug auf die Rangreduzierung sind wir in der Einleitung auf das Paper von Gravish und Donoho \cite{OHT} eingegangen. 
 In dem Paper wird erwähnt, dass in 
 \[X_n \coloneqq \Xtrue_n+\gamma \Xnoise_n\] 
-der durch $\frac{\sigma_{med,n}}{\sqrt{n}}$ normierte Median der Singulärwerte von $X_n$ fast sicher gegen den Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$ konvergiert \cite[11]{OHT}.
+der durch $\frac{\sigma_{\text{med},n}}{\sqrt{n}}$ normierte Median der Singulärwerte von $X_n$ fast sicher gegen den Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$ konvergiert \cite[11]{OHT}.
 Daraus ergibt sich dann, dass der Schwellenwert für die Dimensionsreduktion
 \[
-    \hat{\tau}_*(y,X) = \lambda_*(y)\frac{\sigma_{med,n}}{\sqrt{\mu_y}}
+    \hat{\tau}_*(y,X) = \lambda_*(y)\frac{\sigma_{\text{med},n}}{\sqrt{\mu_y}}
 \]
 fast sicher gegen
 \[
-    \lim_{n\to\infty}\lambda_*(y)\frac{\sigma_{med,n}}{\sqrt{\mu_y}} \overset{f.s.}{=} \lambda_*(y) = \sqrt{2(y+1)+\frac{8y}{(y+1)+\sqrt{y^2+14y+1}}}
+    \lim_{n\to\infty}\lambda_*(y)\frac{\sigma_{\text{med},n}}{\sqrt{\mu_y}} \overset{\text{f.s.}}{=} \lambda_*(y) = \sqrt{2(y+1)+\frac{8y}{(y+1)+\sqrt{y^2+14y+1}}}
 \]
 konvergiert.
 
 Um die Notation im Folgenden zu vereinfachen, bezeichnen wir die Rauschmatrix $\Xnoise_n$ mit $\bm{X}_n$.
 
-Die Mar\v{c}enko-Pastur-Verteilung beschreibt die asymptotische empirische Spektralverteilung der Eigenwerte von großen Zufallsmatrizen der Form $\frac1n \bm{X}\bm{X}^H$.
+Die Mar\v{c}enko-Pastur-Verteilung (kurz M-P-Verteilung) beschreibt die asymptotische Verteilung der Eigenwerte von großen Zufallsmatrizen der Form $\frac1n \bm{X}\bm{X}^H$.
 Die genauen Anforderungen an $\bm{X}$, stellen wir im kommenden Unterkapitel.
+Eine Wahrscheinlichkeitsverteilung, die angibt wie die Eigenwerte einer Matrix verteilt sind, ist die empirische Spektralverteilung.
 
 Ziel dieses Kapitels ist es, die schwache Konvergenz der empirischen Spektralverteilung gegen die Marčenko-Pastur-Verteilung zu zeigen. 
-Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral analysis of large dimensional random matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
+Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral Analysis of Large Dimensional Random Matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
 
 
 \section{Vorbereitung}
 
 Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definieren.
 \begin{definition}\label{def:ESD}
-    Sei $B$ eine ${p\times p}$ große hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$.
+    Sei $B$ eine ${p\times p}$ hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$.
     Dann ist auf dem Ereignisraum $(\RR,\mathcal{B}(\RR))$ mit $\mathcal{B}(\RR)$ als borelsche $\sigma$-Algebra durch
     \begin{align*}
         F^B(x) \coloneqq \frac1p|A_x| \quad \text{mit } A_x\coloneqq\left\{i\in \{1,\dots,p\} \colon \lambda_i \leq x\right\}
@@ -37,21 +38,21 @@ Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definiere
     die \emph{empirische Spektralverteilung} $F^B\colon\RR\to[0,1]$ definiert. 
     Ihre Momente sind durch
     \begin{align*}
-    \beta_k(B)&= \int_{-\infty}^{\infty}x^kF^{B}\diff x = \frac{1}{p}\tr\lr{B^k}
+    \beta_k(B)&= \int_{-\infty}^{\infty}x^kF^{B}(x)\diff x = \frac{1}{p}\tr\lr{B^k}
 \end{align*}
     gegeben.
 \end{definition}
 
-Die Konvergenz betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir immer größere Matrizen betrachten, also $p$ gegen unendlich laufen lassen.
+Die Konvergenz der empirischen Spektralverteilung betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir immer größere Matrizen betrachten, also $p$ gegen unendlich laufen lassen.
 
-Sei $\bm{X}$ eine ${p\times n}$ große Matrix, dessen Elemente unabhängig und identisch verteilte Zufallsvariablen sind. 
+Sei $\bm{X}$ eine ${p\times n}$ Matrix, dessen Elemente unabhängig und identisch verteilte komplexe Zufallsvariablen sind. 
 Dabei sind ihre Erwartungswerte $0$ und ihre Varianz bezeichnen wir mit $\sigma^2$. 
 Weiter sind $x_k=\left(x_{1k},\dots,x_{pk}\right)^\top$, $\bm{X}=(x_1,\dots,x_n)$ und $\overline{x}=\frac1n\sum_{k=1}^n x_k$. 
 Dann ist die durch
 \begin{align}
     S = \frac{1}{n}\sum_{k=1}^{n}(x_k-\overline{x})(x_k-\overline{x})^H\in\RR^{p\times p} \label{eq:StichKovar}
 \end{align}
-gegebene Matrix $S$ die Stichproben-Kovarianzmatrix.
+gegebene Matrix $S$ die \emph{Stichproben-Kovarianzmatrix}.
 
 \textcolor{red}{mehr zu Stichproben-Kovarianzmatrix?}
 
@@ -100,10 +101,10 @@ Wir verwenden daher die vereinfachte Form $\bm{S}$ für die Stichproben-Kovarian
 \section{Mar\v{c}enko-Pastur-Momente}\label{kap:MarchenkoPastur}
 
 
-Mit dem Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}$, wird die Mar\v{c}enko-Pastur-Verteilung durch das Wahrscheinlichkeitsmaß $F_y$ auf $(\RR,\mathcal{B}(\RR))$ beschrieben.
+Mit dem Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}$ wird die Mar\v{c}enko-Pastur-Verteilung durch das Wahrscheinlichkeitsmaß $F_y$ auf $(\RR,\mathcal{B}(\RR))$ beschrieben.
 Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ sind 
 \[
-    a=\sigma^2\left(1-\sqrt{y}\right)^2\text{  und  }b=\sigma^2\left(1+\sqrt{y}\right)^2\,.
+    a=\sigma^2\left(1-\sqrt{y}\right)^2\quad\text{und}\quad b=\sigma^2\left(1+\sqrt{y}\right)^2\,.
 \]
 Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung ist dann durch
 \begin{align}
@@ -131,11 +132,11 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben,
     \end{align*}
 \end{lemma}
 \begin{proof}
-    Nach \eqref{eq:momente} und \ref{eq:MarchenkoPasturDichte} haben wir 
+    Nach \ref{eq:MarchenkoPasturDichte} und \eqref{eq:momente} haben wir 
     \begin{align*}
         \beta_k\left(y,\sigma^2\right)&=\int_{a}^{b}x^kp_y(x)\diff x\\
         &=\int_{\sigma^2\left(1-\sqrt{y}\right)^2}^{\sigma^2\left(1+\sqrt{y}\right)^2}x^k\frac{1}{2\pi x y \sigma^2}\sqrt{\left(\sigma^2\left(1+\sqrt{y}\right)^2-x\right)\left(x-\sigma^2\left(1-\sqrt{y}\right)^2\right)}\diff x\,. 
-        \intertext{Substituieren wir mit $x=u\sigma^2$ erhalten wir}
+        \intertext{Substituieren wir $x$ mit $u\sigma^2$ erhalten wir}
         \beta_k\left(y,\sigma^2\right)&=\int_{\left(1-\sqrt{y}\right)^2}^{\left(1+\sqrt{y}\right)^2}\left(u\sigma^2\right)^k\frac{1}{2\pi u y \sigma^2}\sqrt{\left(\sigma^2\left(1+\sqrt{y}\right)^2-u\sigma^2\right)\left(u\sigma^2-\sigma^2\left(1-\sqrt{y}\right)^2\right)}\diff u\\
         &=\int_{\left(1-\sqrt{y}\right)^2}^{\left(1+\sqrt{y}\right)^2}u^k\sigma^{2k}\frac{1}{2\pi u y \sigma^2}\sqrt{\sigma^4\left(\left(1+\sqrt{y}\right)^2-u\right)\left(u-\left(1-\sqrt{y}\right)^2\right)}\diff u\\
         &=\sigma^{2k}\int_{\left(1-\sqrt{y}\right)^2}^{\left(1+\sqrt{y}\right)^2}u^k\frac{1}{2\pi u y }\sqrt{\left(\left(1+\sqrt{y}\right)^2-u\right)\left(u-\left(1-\sqrt{y}\right)^2\right)}\diff u\\
@@ -185,11 +186,11 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
 
 
 \begin{proof}
-    Wir haben nach \eqref{eq:momente} und \eqref{eq:MarchenkoPasturDichte}
+    Nach \eqref{eq:MarchenkoPasturDichte} und \eqref{eq:momente} gilt
     \begin{align*}
         \beta_k=\frac{1}{2\pi y}\int_{a}^{b}x^{k-1}\sqrt{(b-x)(x-a)}\diff x\,.
     \end{align*}
-    Substituieren wir mit $x=1+y+z$ und setzen $a$ und $b$ ein, erhalten wir
+    Substituieren wir $x$ mit $1+y+z$ und setzen $\left(1-\sqrt{y}\right)^2$ für $a$ und $\left(1+\sqrt{y}\right)^2$ für $b$ ein, erhalten wir
     \begin{align*}
         \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{\left(\left(1+\sqrt{y}\right)^2-1-y-z\right)\left(1+y+z-\left(1-\sqrt{y}\right)^2\right)}\diff z \\
         &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{4y-z^2}\diff z\,.
@@ -200,24 +201,24 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell}\int_{-2\sqrt{y}}^{2\sqrt{y}}z^\ell\sqrt{4y-z^2}\diff z
     \end{align*}
     umformen. 
-    Um das Integral weiter zu vereinfachen, substituieren wir mit $z=2\sqrt{y}u$ und erhalten 
+    Um das Integral weiter zu vereinfachen, substituieren wir $z$ mit $2\sqrt{y}u$ und erhalten 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} \int_{-1}^{1}\left(2\sqrt{y}u\right)^\ell\sqrt{4y-4yu^2}2\sqrt{y}\diff u \\
+        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} \int_{-1}^{1}2\sqrt{y}\left(2\sqrt{y}u\right)^\ell\sqrt{4y-4yu^2}\diff u \\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} (2\sqrt{y})^\ell 4y \int_{-1}^{1}u^\ell\sqrt{1-u^2}\diff u\,.  
-        \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen, ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir können also jeden zweiten Summanden überspringen. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt, die ungleich $0$ sind. Wir haben also}
+        \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen, ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt, die ungleich $0$ sind. Wir haben also}
         \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (2\sqrt{y})^{2\ell} 4y \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\,.
     \end{align*}
-    Hier ist der Integrand eine gerade Funktion. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen können wir auch zweimal über das halbe Intervall integrieren.
+    Da die Integralgrenzen symmetrisch um den Nullpunkt liegen und der Integrand gerade ist, können wir zweimal über das halbe Intervall integrieren.
     Zur Übersicht betrachten wir vorerst nur noch das Integral und fügen später wieder alles zusammen.
     Folglich gilt
     \begin{align*}
-        (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff z = (4y)^{\ell+1} 2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\,.        
+        \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u =  2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\,.        
     \end{align*}
-    Wenn wir jetzt mit $u=\sqrt{w}$ substituieren,
+    Wenn wir jetzt $u$ mit $\sqrt{w}$ substituieren,
     \begin{align*}
-        (4y)^{\ell+1} 2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff z &= (4y)^{\ell+1} \int_{0}^{1}w^{\ell}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
-        &= (4y)^{\ell+1} \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w
+         2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff u &=  \int_{0}^{1}w^{\ell}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
+        &=  \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w
     \end{align*}
     erhalten wir ein Integral, dass wir mittels Eulerschen Betafunktion \textcolor{red}{Quelle!} lösen können.
     Die Eulersche Betafunktion ist durch 
@@ -228,21 +229,20 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
     \begin{align}
         \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w &= \frac{\Gamma(\ell+\frac12)\Gamma(1+\frac12)}{\Gamma(\ell+2)} \nonumber \\
         &= \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!\sqrt{\pi}}{\ell!4^\ell}\frac{2!\sqrt{\pi}}{4}} \nonumber \\
-        &= \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi} \label{eq:gamma}
+        &= \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{2\ell!4^\ell}\pi} \label{eq:gamma}
     \end{align}
     beschreiben.
-    Nach Einsetzen von \eqref{eq:gamma} erhalten wir 
+    Nach Einsetzen von \eqref{eq:gamma} in die wieder zusammengefügte Gleichung, erhalten wir 
     \begin{align*}
-        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi} \\
-        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{1}{2\pi y} \frac{(k-1)!}{(2\ell)!(k-1-2\ell)!}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{\ell!4^\ell}\frac12\pi}\,.
+        \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{2\ell!4^\ell}\pi} \\
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{1}{2\pi y} \frac{(k-1)!}{(2\ell)!(k-1-2\ell)!}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{2\ell!4^\ell}\pi}\,.
     \end{align*}
 
-    Hier lassen sich diverse Variablen so kürzen, dass wir 
+    Nach dem Kürzen der Brüche, erhalten wir 
 
     \begin{align*}
-        \beta_k = \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{(k-1)!}{\ell!(\ell+1)!(k-1-2\ell)!}y^\ell(1+y)^{k-1-2\ell}
+        \beta_k = \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{(k-1)!}{\ell!(\ell+1)!(k-1-2\ell)!}y^\ell(1+y)^{k-1-2\ell}\,.
     \end{align*}
-    erhalten.
     Wenn wir den Binomischen Lehrsatz mit 
     \begin{align*}
         (1+y)^{k-1-2\ell} &= \sum_{s=0}^{k-1-2\ell}\binom{k-1-2\ell}{s}y^s\\
@@ -262,7 +262,7 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
     \begin{align*}
         \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac{(k-1)!}{\ell!(\ell+1)!(r-\ell)!(k-1-\ell-r)!} \frac{r!}{r!}\frac{(k-r)!}{(k-r)!}y^{r} 
         \\
-        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac{(k-1)!}{r!(k-r)!} \frac{r!}{\ell!(\ell-r)!} \frac{(k-r)!}{(k-r-\ell-1)!(\ell+1)!} y^{r} 
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac{(k-1)!}{r!(k-r)!} \frac{r!}{\ell!(r-\ell)!} \frac{(k-r)!}{(k-r-\ell-1)!(\ell+1)!} y^{r} 
         \\
         &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac1k\frac{k!}{r!(k-r)!} \frac{r!}{\ell!(\ell-r)!} \frac{(k-r)!}{(\ell+1)!(k-r-(\ell+1))!} y^{r} 
         \\
@@ -275,7 +275,7 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
     Daraus wissen wir, dass \[0\leq \ell,\, r\leq k-1-\ell\] gilt, woraus wir \[\ell\leq k-1-r\] folgern können. Damit erhalten wir 
     \begin{align*}
                     &0\leq \ell\leq r \leq k-1-\ell\leq k-1 \\
-        \implies    &0\leq r\leq k-1,\, 0\leq \ell\leq\min(r,k-1-r)
+        \implies    &0\leq r\leq k-1,\,\quad 0\leq \ell\leq\min(r,k-1-r)
     \end{align*} 
     damit können wir also die Summen äquivalent über 
     \begin{align}
@@ -283,26 +283,30 @@ die Carleman-Bedingung erfüllt, womit wir gezeigt haben, dass die Mar\v{c}enko-
     \end{align}
     laufen lassen.
 
-    Wir haben also mit \eqref{eq:laufvar}
+    Wir erhalten also mit \eqref{eq:laufvar}
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1}\sum_{\ell=0}^{\min(r,k-1-r)} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}\\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{\min(r,k-1-r)} \binom{r}{\ell} \binom{k-r}{\ell+1}\,.
     \end{align*}
-    Das Minimum können wir noch weiter vereinfachen, da die Summanden gleich $0$ sind, sobald $\ell>r$ oder $\ell>k-1-r$ ist. Wenn wir die Summe also bis $r$ laufen lassen, ändern wir nichts am Ergebnis. 
+    Das Minimum können wir noch weiter vereinfachen, da die Summanden gleich $0$ sind, sobald $\ell>r$ oder $\ell>k-1-r$ ist. 
+    Wenn wir die Summe also bis $r$ laufen lassen, ändern wir nichts am Ergebnis. 
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{r} \binom{r}{\ell} \binom{k-r}{\ell+1}\,.
     \end{align*}
-    An diesem Punkt müssen wir nur noch die innere Summe vereinfachen. Dafür machen wir einen Indexshift und formen die Binomialkoeffizienten etwas um. Wir haben also
+    An diesem Punkt müssen wir nur noch die innere Summe vereinfachen. 
+    Dafür machen wir eine Indexverschiebung und formen die Binomialkoeffizienten um. 
+    Wir haben also
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=1}^{r+1} \binom{r}{\ell-1} \binom{k-r}{\ell} \\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=1}^{r+1} \binom{r}{r-(\ell-1)} \binom{k-r}{\ell} \\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=1}^{r+1} \binom{r}{(r+1)-\ell} \binom{k-r}{\ell}\,.
     \end{align*}
-    Wir wollen hier die Vandermonde Identität \textcolor{red}{Quelle!} 
+    Hier nutzen wir die Vandermonde Identität \textcolor{red}{Quelle!} 
     \begin{align}
         \sum_{"o=0}^{"u}\binom{n}{"o}\binom{m}{"u-"o}=\binom{n+m}{"u} \label{eq:vandermonde}
-    \end{align}
-    nutzen. Dafür lassen wir die Summe von $\ell=0$ beginnen, da der Summand das Ergebnis nicht ändert. Mit der Identität \eqref{eq:vandermonde} erhalten wir
+    \end{align} 
+    Dafür lassen wir die Summe von $\ell=0$ beginnen, da der zusätzliche Summand das Ergebnis nicht ändert. 
+    Mit der Identität \eqref{eq:vandermonde} erhalten wir
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{r+1} \binom{r}{(r+1)-\ell} \binom{k-r}{\ell}\\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r}\binom{k}{r+1} y^{r}\\

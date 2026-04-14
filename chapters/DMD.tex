@@ -26,7 +26,7 @@ Die Frobeniusnorm können wir aber auch über die Spur der Matrix beschreiben.
 \end{lemma}
 
 \begin{proof}
-	Sei $x_i$ der $i$-te Spaltenvektor von $X$ und $\bar{x}_{ij}$ das komplex Konjugierte von $x_{ij}$. Dann ist
+	Sei $x_i$ der $i$-te Spaltenvektor von $X$ und $\overline{x}_{ij}$ das komplex Konjugierte von $x_{ij}$. Dann ist
 	\begin{align*}
 		X^HX & =
 		\begin{pmatrix}
@@ -41,15 +41,15 @@ Die Frobeniusnorm können wir aber auch über die Spur der Matrix beschreiben.
 			         *                                            &        & \displaystyle\sum_{j=1}^{p} \langle x^{H}_{p}, x_{p}\rangle
 		         \end{pmatrix}
 		= \begin{pmatrix}
-			  \displaystyle\sum_{j=1}^{p}\bar{x}_{1j} x_{1j} &        & *                                                    \\
+			  \displaystyle\sum_{j=1}^{p}\overline{x}_{1j} x_{1j} &        & *                                                    \\
 			                                                      & \ddots &                                                      \\
-			  *                                                   &        & \displaystyle\sum_{j=1}^{p} \bar{x}_{nj} x_{nj}
+			  *                                                   &        & \displaystyle\sum_{j=1}^{p} \overline{x}_{nj} x_{nj}
 		  \end{pmatrix}\,.
 	\end{align*}
 
-	Mit \(\bar{x}x = |x|^2\) erhalten wir
+	Mit \(\overline{x}x = |x|^2\) erhalten wir
 	\begin{align}
-		\tr \left(X^HX\right) = \sum_{i=1}^{n}\sum_{j=1}^{p} \bar{x}_{ij} x_{ij} = \sum_{i=1}^{n}\sum_{j=1}^{p} |x_{ij}|^2 = ||X||_F^2 \,. \label{eq:traceFrob}
+		\tr \left(X^HX\right) = \sum_{i=1}^{n}\sum_{j=1}^{p} \overline{x}_{ij} x_{ij} = \sum_{i=1}^{n}\sum_{j=1}^{p} |x_{ij}|^2 = ||X||_F^2 \,. \label{eq:traceFrob}
 	\end{align}
 \end{proof}
 
@@ -68,7 +68,7 @@ Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich u
 	\begin{enumerate}
 		\item Aus Lemma \ref{lem:FrobTrace} folgt
 		      \[
-			      ||X||_F^2 = \tr \left(X^HX\right) = \sum_{i=1}^{n}\sum_{j=1}^{p} \bar{x}_{ij} x_{ij} = \sum_{j=1}^{p}\sum_{i=1}^{n} \bar{x}_{ij} x_{ij} = \tr\left(XX^H\right) = ||X^H||_F^2 \,.
+			      ||X||_F^2 = \tr \left(X^HX\right) = \sum_{i=1}^{n}\sum_{j=1}^{p} \overline{x}_{ij} x_{ij} = \sum_{j=1}^{p}\sum_{i=1}^{n} \overline{x}_{ij} x_{ij} = \tr\left(XX^H\right) = ||X^H||_F^2 \,.
 		      \]
 		\item Es ist
 		      \[
@@ -266,7 +266,7 @@ Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon a
 	\end{align*}
 	und finden eine orthogonale Fortsetzung für $V_r$ zu
 	\begin{align*}
-		\bar{V}_r=\begin{pmatrix}
+		\overline{V}_r=\begin{pmatrix}
 			          V_r & 0          \\
 			          0   & \mathbb{1}
 		          \end{pmatrix} \in \RR^{n\times n}\,.
@@ -275,15 +275,15 @@ Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon a
 	\begin{align*}
 		U \coloneqq \tilde{U}U_r\in \RR^{p\times p}
 		\quad\text{und}\quad
-		V \coloneqq \tilde{V}\bar{V}_r\in \RR^{n\times n}
+		V \coloneqq \tilde{V}\overline{V}_r\in \RR^{n\times n}
 	\end{align*}
 	definieren, erhalten wir durch
 	\begin{align*}
-		U^\top X_r V & = U_r^\top\tilde{U}X_r\tilde{V}\bar{V}_r \\
+		U^\top X_r V & = U_r^\top\tilde{U}X_r\tilde{V}\overline{V}_r \\
 		             & =U_r^\top\begin{pmatrix}
 			                        \hat{R} & 0 \\
 			                        0       & 0
-		                        \end{pmatrix}\bar{V}_r          \\
+		                        \end{pmatrix}\overline{V}_r          \\
 		             & =\begin{pmatrix}
 			                \hat{\Sigma}_r & 0 \\
 			                0              & 0
@@ -377,10 +377,10 @@ rekonstruieren.
 
 Durch
 \begin{align*}
-	A\Phi&\ = (X'V_r \Sigma_r^{-1} U_r^\top)(X'V_r\Sigma_r^{-1} W) \\
-		  &\overset{\eqref{eq:A_r}}{=} X'V_r \Sigma_r^{-1} A_r W \\
-		  &\overset{\eqref{eq:A_rW}}{=} X'V_r \Sigma_r^{-1} W\Lambda \\
-		  &\ =\Phi \Lambda
+	A\Phi &= (X'V_r \Sigma_r^{-1} U_r^\top)(X'V_r\Sigma_r^{-1} W) \\
+		  \overset{\eqref{eq:A_r}}&{=} X'V_r \Sigma_r^{-1} A_r W \\
+		  \overset{\eqref{eq:A_rW}}&{=} X'V_r \Sigma_r^{-1} W\Lambda \\
+		  &=\Phi \Lambda
 \end{align*}
 können wir sehen, dass die Spalten von $\Phi$ auch die Eigenvektoren zu den Eigenwerten von $A_r$ sind. Damit können wir also die Spektralzerlegung von $A$ mit der Spektralzerlegung von $A_r$ bestimmen.
 

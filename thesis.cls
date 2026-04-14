@@ -11,6 +11,7 @@
 \ProcessOptions\relax
 \LoadClass[11pt,a4paper,twoside,open=right,\@language,listof=totoc,bibliography=totoc]{scrbook}
 \let\tmptitle\titlepage
+
 \newcommand{\@email}{\empty}
 \newcommand{\email}[1]{\renewcommand{\@email}{#1}}
 %Titelseite
@@ -178,6 +179,8 @@
 \RequirePackage{scrlayer-scrpage}
 \pagestyle{plain.scrheadings}
 % \DeclareNameAlias{default}{last-first}
+
+\RequirePackage{aligned-overset}
 
 \RequirePackage{subfiles}
 % Kein Einschub

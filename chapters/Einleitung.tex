@@ -73,20 +73,20 @@ Diese Methode der Dimensionsreduktion für SWZ ist als \emph{ökonomische SWZ} b
 
 Eine weitere Methode der Rangreduzierung, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). 
 Dies ist eine Rang\-reduzierung für Datenmatrizen, in der alle Singulärwerte, die unter einem definierten Schwellenwert $\tau$ liegen auf $0$ gesetzt werden und die Dimensionen wie bei der ökonomischen SWZ angepasst werden.
-Gavish und Donoho definieren eine Rahmenstruktur, in der die Datenmatrix $X$ durch eine in der Dimension werdende Datenmatrix $X_n$ der Form
+Gavish und Donoho definieren eine Rahmenstruktur, in der statt der Datenmatrix $X$ eine Folge an Datenmatrix $\{X_\eta\}_{\eta\in\NN}$ der Form
 \[
-    X_n \coloneqq \Xtrue_n+\gamma \Xnoise_n
+    X_\eta \coloneqq \Xtrue_\eta+\gamma \Xnoise_\eta
 \]
-beschrieben wird.
+betrachtet wird, für die mit $\eta\to\infty$ die Dimensionen $p$ und $n$ gegen unendlich laufen.
 Dabei gilt für das Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}\in (0,1]$, dass es nicht divergiert.
-Wir haben also $X_n$ in einen echten Teil und einem durch $\gamma\in\RR$ skalierten Fehleranteil aufgeteilt. 
-Die Einträge der Fehlermatrix sind dabei unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $\EE(\Xnoise_n)=0$ und Varianz $\var(\Xnoise_n)=1$.
-Zusätzlich werden die Singulärwerte von $\Xtrue_n$ fixiert.
-Sei also $r$ der Rang von $\Xtrue$ und $\sigma_1^{\text{echt}},\dots,\sigma_r^{\text{echt}}$ ihre Singulärwerte, dann ist die Singulärwertzerlegung von $\Xtrue_n$ für alle $n$ von der Form
+Wir haben also $X_\eta$ in einen echten Teil und einem durch $\gamma\in\RR$ skalierten Fehleranteil aufgeteilt. 
+Die Einträge der Fehlermatrix sind dabei unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $\EE(\Xnoise_\eta)=0$ und Varianz $\var(\Xnoise_\eta)=1$.
+Zusätzlich werden die Singulärwerte von $\Xtrue_\eta$ fixiert.
+Sei also $r$ der Rang von $\Xtrue$ und $\sigma_1^{\text{echt}},\dots,\sigma_r^{\text{echt}}$ ihre Singulärwerte, dann ist die Singulärwertzerlegung von $\Xtrue_\eta$ für alle $\eta$ von der Form
 \begin{align}
-	\Xtrue_n = U_n\diag(\sigma_1^{\text{echt}},\dots,\sigma_r^{\text{echt}},0,\dots,0)V^\top_n \label{eq:Singulärwertzerlegung_Xtrue}
+	\Xtrue_\eta = U_\eta\diag(\sigma_1^{\text{echt}},\dots,\sigma_r^{\text{echt}},0,\dots,0)V^\top_\eta \label{eq:Singulärwertzerlegung_Xtrue}
 \end{align}
-mit passenden $U_n$ und $V_n$.
+mit passenden $U_\eta$ und $V_\eta$.
 
 Innerhalb dieser Rahmenstruktur haben Gavish und Donoho herausgefunden, dass für bekanntes Rauschen $\gamma$ und bekantem Dimonsions-Stichproben-Verhältnis, der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
 \[
@@ -100,9 +100,9 @@ Das Ziel ist es also einen Schwellenwert $\hat{\tau}_*$ zu finden, ab dem davon 
 Im Zusammenhang mit Singulärwerten von Zufallsmatrizen spielt die Mar\v{c}enko-Pastur-Verteilung eine zentrale Rolle.
 Sie sagt aus, wie die quadrierten Singulärwerte von bestimmten Zufallsmatrizen verteilt sind.
 
-Für unbekantes Rauschen haben Gavish und Donoho dann mit dem Median der Singulärwerte $\sigma_{\text{med},n}$ von $X_n$ und dem Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$, den Rausch-Schätzer 
+Für unbekantes Rauschen haben Gavish und Donoho dann mit dem Median der Singulärwerte $\sigma_{\text{med},\eta}$ von $X_\eta$ und dem Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$, den Rausch-Schätzer 
 \[
-	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med,n}}{\sqrt{n\mu_y}}
+	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med,\eta}}{\sqrt{n\mu_y}}
 \]
 definiert. 
 Also mit $a=\left(1-\sqrt{y}\right)^2$, $b=\left(1+\sqrt{y}\right)^2$ und $a\leq\mu_y\leq b$ so, dass
@@ -113,7 +113,7 @@ gilt.
 
 Mit $\hat{\gamma}$ haben Gavish und Donoho dann den Schwellenwert für Singulärwerte durch
 \[
-	\hat{\tau}_*(y,X)\coloneqq \lambda_*(y)\hat{\gamma}(X)\sqrt{n} = \lambda_*(y)\frac{\sigma_{med,n}}{\sqrt{\mu_y}}
+	\hat{\tau}_*(y,X)\coloneqq \lambda_*(y)\hat{\gamma}(X)\sqrt{n} = \lambda_*(y)\frac{\sigma_{med,\eta}}{\sqrt{\mu_y}}
 \]
 definiert.
 

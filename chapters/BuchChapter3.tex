@@ -580,18 +580,18 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
         \beta_k(\bm{S}_\eta)&= \int_{-\infty}^{\infty}x^k\diff F^{\bm{S}_\eta}(x) \\
                     &= \frac{1}{p}\tr\lr{\bm{S}_\eta^k} \\
                     &= \frac{1}{pn^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k}    \\
-                    &= \frac{1}{pn^k}\sum_{i=1}^p\sum_{j=1}^n x_{ij}\overline{x}_{ij}
+                    &= \frac{1}{pn^k}\sum_{i=1}^p\sum_{j=1}^n (x_{ij}\overline{x}_{ij})^k
     \end{align*}
     für die Momente der empirischen Spektralverteilung. Da die Dimensionen $p$ und $n$ von $\bm{X}$ gegen unendlich laufen, läuft auch die Anzahl der Summanden der Spur gegen unendlich.
 
     Hier verwenden wir die oben eingeführte Klasse von Graphen.
-    Wir können die Spur nämlich mit $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ und $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$ durch
+    Wir können die Spur nämlich mit $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ und $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$, wobei die Elemente von $\emph{\textbf{i}}$ in $\{1,\dots,p\}$ und $\emph{\textbf{j}}$ in $\{1,\dots,n\}$ liegen, durch 
     \begin{align*}
             \frac{1}{pn^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k} &= \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k}
     \end{align*}
-    beschreiben. Dabei gilt $|\emph{\textbf{i}}|=p$ und $|\emph{\textbf{j}}|=n$.
+    beschreiben.
     Hier sind $x_{i_1j_1}\overline{x}_{i_2j_1}\dots$ die Faktoren der einzelnen Summanden der Spur und wir Summieren über alle Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}.
-    Die Zufallsvariablen $x_{ij}$ stellen die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten und $\overline{x}_{ij}$ Kanten von \emph{\textbf{j}}- zu \emph{\textbf{i}}-Knoten dar. 
+    Die Zufallsvariablen $x_{\emph{\textbf{i}}\emph{\textbf{j}}}$ stellen die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten und $\overline{x}_{\emph{\textbf{i}}\emph{\textbf{j}}}$ Kanten von \emph{\textbf{j}}- zu \emph{\textbf{i}}-Knoten dar. 
     Wir definieren dann
     \begin{align*}
         \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k} & \coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \bm{X}_{\Delta(k,r,s)}\,.
@@ -602,7 +602,7 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
     Sie konvergieren, wenn der Erwartungswert $\EE(\beta_k(\bm{S}_\eta))$ gegen die Momente der Mar\v{c}enko-Pastur-Verteilung läuft und die Varianz gegen null geht.
     
     Fangen wir an mit dem Erwartungswert.
-    Nach Definition gilt
+    Es gilt
     \begin{align*}
         \EE(\beta_k(S_n)) = \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{\bm{X}_{\Delta(k,r,s)}}\,.
     \end{align*}
@@ -611,7 +611,7 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
         \EE(\beta_k(S_n)) = \frac{1}{pn^k} \lr{\overbrace{\sum_{\Delta_1} \alpha\EE\lr{\bm{X}_{\Delta_1}}}^{W_1\coloneqq}+\overbrace{\sum_{\Delta_2} \alpha\EE\lr{\bm{X}_{\Delta_2}}}^{W_2\coloneqq}+\overbrace{\sum_{\Delta_3} \alpha\EE\lr{\bm{X}_{\Delta_3}}}^{W_3\coloneqq}}\,.
     \end{align*}
 
-    Für $W_1$ erhalten wir nach Lemma \ref{lem:AnzahlIsomklasse} und Lemma \ref{lem:AnzahlNichtKoinzidenterKnotenKateg3}
+    Für $W_1$ erhalten wir mit $s=k-r$ und nach Lemma \ref{lem:AnzahlIsomklasse} und Lemma \ref{lem:AnzahlNichtKoinzidenterKnotenKateg3}
     \begin{align}
             W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}}\EE\lr{\bm{X}_{\Delta_1}}\nonumber
         \intertext{Da es zu jeder Kante genau eine Kante in die entgegengesetzte Richtung gibt, gilt $\EE\lr{|x_{\emph{\textbf{i}}\emph{\textbf{j}}}|^2}=1$. Wir können also schreiben}
@@ -651,7 +651,7 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
     \end{align}
 
     Jetzt fehlt noch die Varianz.
-    Diese ist nach Definition
+    Für diese gilt
     \begin{align*}
         \text{Var}(\beta_k(S_n)) &\coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \lr{\EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}}-\EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}}\,.
     \end{align*}

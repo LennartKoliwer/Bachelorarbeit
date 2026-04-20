@@ -2,7 +2,7 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-In Bezug auf die Rangreduzierung sind wir in der Einleitung auf das Paper von Gravish und Donoho \cite{OHT} eingegangen. 
+In Bezug auf die Rangreduzierung sind wir in der Einleitung auf das Paper von Gavish und Donoho \cite{OHT} eingegangen. 
 In dem Paper wird erwähnt, dass in 
 \[X_\eta \coloneqq \Xtrue_\eta+\gamma \Xnoise_\eta\] 
 der durch $\frac{\sigma_{\text{med},\eta}}{\sqrt{n}}$ normierte Median der Singulärwerte von $X_n$ fast sicher gegen den Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$ konvergiert \cite[11]{OHT}.
@@ -26,7 +26,7 @@ Ziel dieses Kapitels ist es, die schwache Konvergenz der empirischen Spektralver
 Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral Analysis of Large Dimensional Random Matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
 
 
-\section{Vorbereitung}
+\section{Grundlagen}
 
 Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definieren.
 \begin{definition}\cite[4, 10]{BaiSilverstein}\label{def:ESD}
@@ -118,7 +118,7 @@ Für den Konvergenzfall betrachten wir entsprechend
 
 %---------------------------------------------------------------
 
-\section{Mar\v{c}enko-Pastur-Momente}\label{kap:MarchenkoPastur}
+\section{Mar\v{c}enko-Pastur-Verteilung}\label{kap:MarchenkoPastur}
 
 
 Mit dem Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}$ wird die Mar\v{c}enko-Pastur-Verteilung durch das Wahrscheinlichkeitsmaß $F_y$ auf $(\RR,\mathcal{B}(\RR))$ beschrieben.
@@ -354,7 +354,7 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
 
 
 
-\section{Mar\v{c}enko-Pastur-Verteilung}
+\section{Hilfsmittel für den Konvergenzbeweis}
 
 
 Im Beweis über die Konvergenz der empirischen Spektralverteilung benutzen wir Elemente aus der Graphentheorie und der Stochastik, die wir vorher noch einführen.
@@ -642,9 +642,9 @@ Für den Beweis Benutzen wir dann die Eigenschaft aus dem folgenden Lemma.
 
 
 
+\section{Konvergenzsatz und Beweis}
 
-
-%Kommen wir nun zum Satz über die Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung.
+Kommen wir nun zum Satz über die Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung.
 
 \begin{theorem}\label{theo:MPVert}
     Seien $\{\bm{X}_\eta\}$ eine Folge an $p_\eta\times n_\eta$ Zufallsmatrizen wie in Definition \ref{def:Zufallsmatrix} beschrieben und ihre Einträge $\{x_{ij}\}$ mit $i=1,\dots,p_\eta$ und $j=1,\dots,n_\eta$ unabhängig und identisch verteilte komplexe Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. 

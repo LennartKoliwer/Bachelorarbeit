@@ -3,10 +3,10 @@
 \begin{document}
 
 
-Bei der Rangreduzierung handelt es sich um das Approximieren einer Matrix durch eine andere Matrix eines niedrigeren Ranges. 
-Sie ist ein wichtiges Werkzeug im Umgang mit großen Datenmengen welche als Matrix vorliegen, um den Rechenaufwand, bei dem Verarbeiten der Daten aufkommt, zu minimieren.
+Bei der Rangreduzierung handelt es sich um eine Methode eine Matrix durch eine andere Matrix eines niedrigeren Ranges zu approximieren. 
+Sie ist ein wichtiges Werkzeug im Umgang mit großen Datenmengen welche als Matrix vorliegen, um den Rechenaufwand, der bei dem Verarbeiten der Daten aufkommt, zu minimieren.
 
-Ein Beispiel das wir in diesem Zusammenhang betrachten ist der Dynamic Mode Decomposition Algorithmus kurz DMD aus \cite{SlaySlaySlay}.
+Ein Beispiel, dass wir in diesem Zusammenhang betrachten, ist der Dynamic Mode Decomposition Algorithmus, kurz DMD, aus dem Buch \glqq Data-Driven Science and Engineering\grqq\ \cite{SlaySlaySlay}.
 DMD ist ein datengetriebener Algorithmus, der ursprünglich im Forschungsgebiet der Strömungsdynamik entwickelt wurde. 
 Grundsätzlich dient der Algorithmus der Analyse von Messdaten eines dynamischen Systems mittels Singulärwert\-zerlegung von großen Datenmatrizen.
 DMD kann anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren. 
@@ -17,14 +17,14 @@ Bei echten Messungen hat man immer ein Rauschen in den Daten, welches das Ergebn
 Dadurch kommt es durch Fehlerfortpflanzung schnell zu größeren Ungenauigkeiten.
 Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten des DMD Algorithmus entwickelt, um unterschiedliche Schwächen des Algorithmus auszugleichen.
 
+
 Das klassische DMD benötigt Messdaten aus $k$ Messungen in einheitlichen Zeitabständen.
-Für jeden Zeitpunkt $i$ werden die jeweiligen Messdaten in die $i$-te Spalte einer Datenmatrix $X$ eingetragen.
+Für die ersten $k-1$ Messungen werden die Daten zum Zeitpunkt $i$ in die $i$-te Spalte einer Datenmatrix $X$ eingetragen.
 Zusätzlich legen wir eine zweite Datenmatrix $X'$ so an, dass wir in $X$ die Messungen $(x_1,\dots,x_{k-1})$ und in $X'$ die Messungen $(x_2,\dots,x_{k})$ sammeln.
 Bei den Datenmatrizen handelt es sich um $p\times n$ Matrizen, wobei $p$ die Dimension des Systems bzw. die Anzahl der Messdaten zum $i$-ten Zeitpunkt ist und $n=k-1$ ist die Anzahl der Messungen.
 In der Regel haben die Datenmatrizen deutlich mehr Zeilen als Spalten also gilt $p\gg n$.
 Häufig sind die Systeme, die betrachtet werden, hochgradig nicht-linear.
-Durch das Aneinanderreihen der Messdaten in den Datenmatrizen wird die Dimension $p$ des Systems erhöht.
-Dadurch lässt sich das System näherungsweise linear beschreiben.
+Basierend auf, unter anderem, dem Satz von Hartman-Grobman können wir aber nichtlineare Systeme nähreungsweise linear analysiren. % Seite 258 (284)
 Das Ziel von DMD ist es einen linearen Operator $A$ bzw. seine Spektralzerlegung zu finden, für den 
 \[
 	X' \approx AX
@@ -51,7 +51,7 @@ Als Dimensionsreduktion bezeichnen wir eine Methode, bei der die Dimension einer
 Damit kann man eine Spektralzerlegung von $A$ machen, ohne $A$ direkt zu benutzen. 
 Durch die oben genannte Form der Datenmatrizen kann man direkt sehen, dass $X$ maximal von Rang $n$ sein kann. 
 Es gibt also maximal $r\leq n$ Singulärwerte, die nicht Null sind. 
-Reduzieren wir also unser $\Sigma$ aus der SWZ auf eine $r\times r$ große Matrix also $\hat{\Sigma}$ und entfernen alle Spalten außer die ersten $r$ von $U$ und $V$, erhalten wir mit den reduzierten Matrizen $U_r$, $\Sigma_r$ und $V_r$,
+Reduzieren wir also unser $\Sigma$ aus der SWZ auf eine $r\times r$ große Matrix, also $\hat{\Sigma}$, und entfernen alle Spalten außer die ersten $r$ von $U$ und $V$, erhalten wir mit den reduzierten Matrizen $U_r$, $\Sigma_r$ und $V_r$
 \[
 X_r=U_r\Sigma_rV_r^\top=U_r\hat{\Sigma}V_r^\top\,.
 \] 
@@ -71,8 +71,8 @@ Diese Methode der Dimensionsreduktion für SWZ ist als \emph{ökonomische SWZ} b
 %---------------------------------------------------------------------------------------
 
 
-Eine weitere Methode der Rangreduzierung, welche im Paper \cite{OHT} von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD). 
-Dies ist eine Rang\-reduzierung für Datenmatrizen, in der alle Singulärwerte, die unter einem definierten Schwellenwert $\tau$ liegen auf $0$ gesetzt werden und die Dimensionen wie bei der ökonomischen SWZ angepasst werden.
+Eine weitere Methode der Rangreduzierung, welche im Paper von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD) \cite{OHT}. 
+Dies ist eine Rang\-reduzierung für Datenmatrizen, in der alle Singulärwerte, die unter einem definierten Schwellenwert $\tau$ liegen, auf $0$ gesetzt werden und die Dimensionen wie bei der ökonomischen SWZ angepasst werden.
 Gavish und Donoho definieren eine Rahmenstruktur, in der statt der Datenmatrix $X$ eine Folge an Datenmatrix $\{X_\eta\}_{\eta\in\NN}$ der Form
 \[
     X_\eta \coloneqq \Xtrue_\eta+\gamma \Xnoise_\eta
@@ -88,7 +88,7 @@ Sei also $r$ der Rang von $\Xtrue$ und $\sigma_1^{\text{echt}},\dots,\sigma_r^{\
 \end{align}
 mit passenden $U_\eta$ und $V_\eta$.
 
-Innerhalb dieser Rahmenstruktur haben Gavish und Donoho herausgefunden, dass für bekanntes Rauschen $\gamma$ und bekantem Dimonsions-Stichproben-Verhältnis, der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
+Gavish und Donoho haben nummerisch herausgefunden, dass innerhalb der Rahmenstruktur für bekanntes Rauschen $\gamma$ und bekanntem Dimensions-Stichproben-Verhältnis, der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
 \[
 	\tau_*=\lambda_*(y)\gamma\sqrt{n}\quad \text{mit}\quad \lambda_*(y) \coloneqq \sqrt{2(y+1)+\frac{8y}{(y+1)+\sqrt{y^2+14y+1}}}
 \]
@@ -100,7 +100,7 @@ Das Ziel ist es also einen Schwellenwert $\hat{\tau}_*$ zu finden, ab dem davon 
 Im Zusammenhang mit Singulärwerten von Zufallsmatrizen spielt die Mar\v{c}enko-Pastur-Verteilung eine zentrale Rolle.
 Sie sagt aus, wie die quadrierten Singulärwerte von bestimmten Zufallsmatrizen verteilt sind.
 
-Für unbekantes Rauschen haben Gavish und Donoho dann mit dem Median der Singulärwerte $\sigma_{\text{med},\eta}$ von $X_\eta$ und dem Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$, den Rausch-Schätzer 
+Für unbekantes Rauschen haben Gavish und Donoho mit dem Median der Singulärwerte $\sigma_{\text{med},\eta}$ von $X_\eta$ und dem Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$, den Rausch-Schätzer 
 \[
 	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med,\eta}}{\sqrt{n\mu_y}}
 \]
@@ -117,7 +117,7 @@ Mit $\hat{\gamma}$ haben Gavish und Donoho dann den Schwellenwert für Singulär
 \]
 definiert.
 
-In dieser Arbeit konzentrieren wir uns zum Einen auf den DMD Algorithmus, und zum Anderen auf die Herleitung der Mar\v{c}enko-Pastur-Verteilung, da diese wie gerade beschrieben ein wesentlicher Bestandteil der Dimensionsreduktion ist.
+In dieser Arbeit konzentrieren wir uns zum einen auf den DMD Algorithmus, und zum anderen auf die Herleitung der Mar\v{c}enko-Pastur-Verteilung, da diese wie gerade beschrieben ein wesentlicher Bestandteil der Dimensionsreduktion ist.
 
 
 

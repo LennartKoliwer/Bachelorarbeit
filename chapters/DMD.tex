@@ -17,7 +17,7 @@ Aus der Einleitung wissen wir, dass die Singulärwertzerlegung und die Frobenius
 		||X||_F \coloneqq \sqrt{\sum_{i=1}^{p}\sum_{j=1}^{n}|x_{ij}|^2}\,.
 	\]
 \end{definition}
-Die Frobeniusnorm können wir aber auch über die Spur der Matrix beschreiben.
+Eine weitere Möglichkeit die Frobeniusnorm zu definieren, ist über die Spur einer Matrix.
 \begin{lemma}\label{lem:FrobTrace}
 	Sei $X\in\CC^{p\times n}$ eine Matrix. Dann gilt
 	\[
@@ -36,9 +36,9 @@ Die Frobeniusnorm können wir aber auch über die Spur der Matrix beschreiben.
 			x_1 & \cdots & x_n
 		\end{pmatrix} \\
 		     & = \begin{pmatrix}
-			         \displaystyle\sum_{j=1}^{p}\langle x^{H}_{1}, x_{1}\rangle &        & *                                             \\
+			         \langle x_{1}, x_{1}\rangle &        & *                                             \\
 			                                                      & \ddots &                                               \\
-			         *                                            &        & \displaystyle\sum_{j=1}^{p} \langle x^{H}_{p}, x_{p}\rangle
+			         *                                            &        & \langle x_{p}, x_{p}\rangle
 		         \end{pmatrix}
 		= \begin{pmatrix}
 			  \displaystyle\sum_{j=1}^{p}\overline{x}_{1j} x_{1j} &        & *                                                    \\
@@ -96,16 +96,15 @@ Die Frobeniusnorm wird im weiteren Verlauf aufgrund ihrer Invarianz bezüglich u
 		\end{pmatrix} \in \mathbb{R}^{p\times n}
 	\]
 	gilt.
-	Wir nennen die Diagonalelemente von $\Sigma$ Singulärwerte.
+	Wir nennen die Diagonalelemente von $\hat{\Sigma}$ Singulärwerte.
 \end{theorem}
 
-
-Der Beweis des Satzes \ref{theo:svd} folgt etwas später, da dafür noch etwas Vorbereitung benötigt wird.
+Der Beweis des Satzes \ref{theo:svd} folgt später, da dafür noch die folgenden Lemmata benötigt werden.
 Wichtig zu erwähnen ist noch, dass unter den in Satz \ref{theo:svd} genannten Voraussetzungen, $\hat{\Sigma}$ durch $X$ eindeutig bestimmt ist \cite[229]{Numerik1}.
 Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 
 \begin{lemma}\label{lem:EigenwerteSingulärwerte}
-	Seien \(X\in \mathbb{R}^{p\times n}\) und $\sigma_i$ die Singulärwerte von $X$ nach den Voraussetzungen aus Satz \ref{theo:svd}. 
+	Seien \(X\in \mathbb{R}^{p\times n}\) und $\sigma_i\in(0,\infty)$ die Singulärwerte von $X$ mit den Voraussetzungen aus Satz \ref{theo:svd}. 
 	Seien weiter $\lambda_i$ die Eigenwerte von $X^\top X$. 
 	Dann gilt 
 	\begin{align}
@@ -115,13 +114,13 @@ Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 \end{lemma}
 
 \begin{proof}
-	Mit $U$ und $V$ aus Satz \ref{theo:svd} ist durch 
+	Mit $U$ und $V$ aus Satz \ref{theo:svd} wird durch 
 	\begin{align*}
 		X^\top X &= \left(U\Sigma V^\top\right)^\top\left(U\Sigma V^\top\right)\\
 				 &= V\Sigma^\top U^\top U\Sigma V^\top \\
 				 &= V\Sigma^\top \Sigma V^\top
 	\end{align*}
-	ist $X^\top X$ ähnlich zu $\Sigma^\top \Sigma$. 
+	deutlich, dass $X^\top X$ ähnlich zu $\Sigma^\top \Sigma$ ist. 
 	Also haben $X^\top X$ und $\Sigma^\top \Sigma$ auch die gleichen Eigenwerte.
 	Damit sind auch die Wurzeln der Eigenwerte von $X^\top X$ gleich der Eigenwerte beziehungsweise Singulärwerte von $\Sigma$.
 \end{proof}
@@ -141,7 +140,7 @@ Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 	\]
 \end{proof}
 
-Den Beweis von Satz \ref{theo:svd} teilen wir auf. Wir betrachten dafür zum Einen die Singulärwertzerlegung für den Fall, dass $X$ vollen Rang besitzt und zum Anderen für den rangreduzierten Fall.
+Den Beweis von Satz \ref{theo:svd} teilen wir auf. Wir betrachten dafür zum einen die Singulärwertzerlegung für den Fall, dass $X$ vollen Rang besitzt und zum anderen für den rangreduzierten Fall.
 Für den vollen Rang benutzen wir das folgende Lemma.
 
 \begin{lemma}[{\cite[191]{Numerik1}}] \label{lem:diagonal}
@@ -152,8 +151,8 @@ Für den vollen Rang benutzen wir das folgende Lemma.
 	gilt.
 \end{lemma}
 
-Für den rangreduzierten Fall brauchen wir aber das folgende Lemma.
-Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\leq p$ gilt.
+Für den rangreduzierten Fall brauchen wir das folgende Lemma.
+%Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} ohne Beschränkung der Allgemeinheit an, dass $n\leq p$ gilt.
 
 \begin{lemma}[{\cite[227]{Numerik1}}] \label{lem:obereDreiecks}
 	Sei \(X\in \mathbb{R}^{p\times n}\) eine Matrix mit \(\rang X = r < n \leq p\). Dann existieren orthogonale Matrizen \(U\in\RR^{p\times p}\) und \(V\in\RR^{n\times n}\) sowie eine reguläre obere Dreiecksmatrix $\hat{R}\in\RR^{r\times r}$ so, dass
@@ -169,9 +168,8 @@ Dafür nehmen wir nach Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A an, dass $n\le
 
 %-----------------------Beweis--SWZ--------------------------------
 
-\textcolor{red}{nochmal?}
 
-Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon aus, dass $n<p$ gilt.
+Für den Beweis der Singulärwertzerlegung, gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} ohne Beschränkung der Allgemeinheit an, dass $n<p$ gilt.
 
 \begin{proof}[Beweis von Satz \ref{theo:svd}]
 	Zunächst betrachten wir den Fall des vollen Ranges von $X$, also \\ $\rang X = r = n$.
@@ -210,7 +208,7 @@ Für den Beweis gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} o.B.d.A davon a
 		Z^\top XV\hat{\Sigma}^{-1} & =Z^\top\hat{U}               \\
 		                           & =0 \in\RR^{(p-n)\times p}\,.
 	\end{align*}
-	Da \(\hat{\Sigma}\hat{\Sigma}^{-1}=\mathbb{1}\) ist, folgt auch direkt
+	Da \(\hat{\Sigma}^{-1}\hat{\Sigma}=\mathbb{1}\) ist, folgt auch direkt
 	\[
 		Z^\top XV=0\,.
 	\]
@@ -302,7 +300,8 @@ In der Einleitung haben wir grob den DMD Algorithmus erklärt.
 Wir gehen hier jetzt aber auf die \glqq Exact DMD\grqq\ Variante ein, da sie im Gegensatz zur ursprünglichen Variante keine einheitlichen Zeitabstände zwischen den Messungen erfordert.
 Dieses Kapitel beruht auf dem Buch \glqq Data-Driven Science and Engineering\grqq\ \cite{SlaySlaySlay}.
 
-Exact DMD erlaubt es uns Daten über mehrere Messungen die zeitlich unterschiedlich auseinanderliegen zusammenzutragen. Zu jeder Messung gehört dann ein Datenpaar $\{x(t_i),x(t_i')\}$ mit $i=1,\dots,n$ und $t'_i=t_i +\Delta t$.
+Exact DMD erlaubt es uns Daten über mehrere Messungen, die zeitlich unterschiedlich auseinanderliegen, zusammenzutragen. 
+Zu jeder Messung gehört dann ein Datenpaar $\{x(t_i),x(t_i')\}$ mit $i=1,\dots,n$ und $t'_i=t_i +\Delta t$.
 Dabei ist $x$ die Messung zum Zeitpunkt $t_i$ beziehungsweise $t'_i$.
 Fügen wir die Datenpaare in zwei Matrizen \(X,X'\in\mathbb{R}^{p\times n}\) ein, erhalten wir die Zustände des Systems zu \(n \) diskreten Zeitpunkten.
 Wir erhalten also 
@@ -325,7 +324,7 @@ Wir erhalten also
 
 Mit den Vorbereitungen abgeschlossen, gehen wir jetzt auf den Algorithmus ein.
 
-Als Erstes bestimmen wir die Singulärwertzerlegung von $X$ also
+Als Erstes bestimmen wir die Singulärwertzerlegung von $X$, also
 \begin{align*}
 	X=U\Sigma V^\top\,.
 \end{align*}
@@ -339,7 +338,7 @@ Um den diagonalisierbaren, linearen Operator $A$ zu finden, der
 \begin{align*}
 	X'\approx AX
 \end{align*}
-löst benötigen wir die Pseudoinverse von $X$. Um eine eindeutige Inverse zu bekommen, benutzen wir die Moore-Penrose-Inverse aus dem folgenden Satz.
+löst, benötigen wir die Pseudoinverse von $X$. Um eine eindeutige Inverse zu bekommen, benutzen wir die Moore-Penrose-Inverse aus dem folgenden Satz.
 \begin{theorem}[Moore-Penrose-Inverse {\cite[230]{Numerik1}}] \label{theo:moorePenrose}
 	Sei $X\in\RR^{p\times n}$ eine Matrix und $U, \hat{\Sigma}$ und $V$ die Matrizen aus der Singulärwertzerlegung in Satz \ref{theo:svd}. Dann existiert genau eine Moore-Penrose-Inverse der Form
 	\begin{align*}
@@ -354,7 +353,7 @@ Mit Satz \ref{theo:moorePenrose} können wir $A$ durch
 	A = X'V_r \Sigma_r^{-1} U_r^\top = X'X_r^\dagger
 \end{align*}
 bestimmen.
-Das Ziel ist es, die Spektralzerlegung von $A$ zu finden, damit wir analysieren können wie sich das System mit der Zeit entwickelt.
+Das Ziel ist es, die Spektralzerlegung von $A$ zu finden, damit wir analysieren können, wie sich das System mit der Zeit entwickelt.
 Da $A$ aber eine $p\times p$ Matrix ist und $p$ schnell sehr groß wird, können wir den Rechenaufwand minimieren, indem wir die Spektralzerlegung von einem $A_r\in\RR^{r\times r}$ bestimmen, welches nur noch die für uns relevante Dimension $r$ hat.
 Wir bestimmen $A_r$ durch
 \begin{align}
@@ -365,7 +364,7 @@ Wir bestimmen $A_r$ durch
 	\end{split}
 \end{align}
 
-Sei $W\in\RR^{r\times r}$ die Matrix aus Eigenvektoren von $A_r$ und $\Lambda\in\RR^{r\times r}$ eine Diagonalmatrix dessen Einträge die Eigenwerte $\lambda_i$ der zugehörigen Eigenvektoren von $A_r$ sind, dann ist die Spektralzerlegung von $A_r$ genau
+Sei $W\in\RR^{r\times r}$ die Matrix aus Eigenvektoren von $A_r$ und $\Lambda\in\RR^{r\times r}$ eine Diagonalmatrix, dessen Einträge die Eigenwerte $\lambda_i$ der zugehörigen Eigenvektoren von $A_r$ sind, dann ist die Spektralzerlegung von $A_r$ genau
 \begin{align}\label{eq:A_rW}
 	A_rW=W\Lambda \,.
 \end{align}

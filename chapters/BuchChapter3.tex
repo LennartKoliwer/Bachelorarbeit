@@ -388,21 +388,174 @@ Für den Beweis teilen wir die Graphen in drei Kategorien ein.
 \end{description}
 
 
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=12cm]{Graphen_Beispiel_Platzhalter}
+%    \caption*{Beispiel für Graphen(Platzhalter)}\label{fig:GraphenBsp}
+%\end{figure}
+
+
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=12cm]{Graphen_Beispiel_Platzhalter}
-    \caption*{Beispiel für Graphen(Platzhalter)}\label{fig:GraphenBsp}
+        \centering
+            \begin{tikzpicture}
+
+                \Text[x=1, y=0.8]{$\Delta_1(k=5,r=2,s=3)$}
+
+                \Vertex[x=0 ,   y=0    ,size=.2, color=black, label={$i_1=i_6$}, position=180]{A}
+                \Vertex[x=2 ,   y=0    ,size=.2, color=black, label={$j_1=j_5$}, position=0]{B}
+                \Vertex[x=0 ,   y=-1.5   ,size=.2, color=black, label={$i_2=i_5$}, position=180]{C}
+                \Vertex[x=2 ,   y=-1.5   ,size=.2, color=black, label={$j_2=j_4$}, position=0]{D}
+                \Vertex[x=0 ,   y=-3   ,size=.2, color=black, label={$i_3=i_4$}, position=180]{E}
+                \Vertex[x=2 ,   y=-3   ,size=.2, color=black, label=$j_3$, position=0]{F}
+                
+                \Edge[lw=1pt, position=above, Direct, bend=10](A)(B)
+                \Edge[lw=1pt, position=above, Direct, bend=10](B)(A)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](B)(C)
+                \Edge[lw=1pt, position=above, Direct, bend=10](C)(B)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](C)(D)
+                \Edge[lw=1pt, position=above, Direct, bend=10](D)(C)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](D)(E)
+                \Edge[lw=1pt, position=above, Direct, bend=10](E)(D)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](E)(F)
+                \Edge[lw=1pt, position=above, Direct, bend=10](F)(E)
+
+
+
+                \Text[x=5.85, y=0.8]{$\Delta_2(k=3,r=2,s=2)$}
+
+                \Vertex[x=4.8 ,   y=0    ,size=.2, color=black, label={$i_1=i_4$}, position=180]{A}
+                \Vertex[x=6.8 ,   y=0    ,size=.2, color=black, label={$j_1$}, position=0]{B}
+                \Vertex[x=4.8 ,   y=-1.5   ,size=.2, color=black, label={$i_2$}, position=180]{C}
+                \Vertex[x=6.8 ,   y=-1.5   ,size=.2, color=black, label={$j_2=j_3$}, position=0]{D}
+                \Vertex[x=4.8 ,   y=-3   ,size=.2, color=black, label={$i_3$}, position=180]{E}
+                
+                
+                \Edge[lw=1pt, position=above, Direct](A)(B)
+
+                \Edge[lw=1pt, position=above, Direct](B)(C)
+
+                \Edge[lw=1pt, position=above, Direct](C)(D)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](D)(E)
+                \Edge[lw=1pt, position=above, Direct, bend=10](E)(D)
+
+                \Edge[lw=1pt, position=above, Direct](D)(A)
+
+              
+
+
+                \Text[x=10.5, y=0.8]{$\Delta_3(k=2,r=0,s=1)$}
+
+                \Vertex[x=9.6 ,   y=-.75    ,size=.2, color=black, label={$i_1=i_6$}, position=180]{A}
+                \Vertex[x=11.6 ,   y=-.75    ,size=.2, color=black, label={$j_1=j_5$}, position=0]{B}
+                
+                \Edge[lw=1pt, position=above, Direct, bend=10](A)(B)
+                \Edge[lw=1pt, position=above, Direct, bend=10](B)(A)
+
+                \Edge[lw=1pt, position=above, Direct, bend=40](B)(A)
+                \Edge[lw=1pt, position=above, Direct, bend=40](A)(B) 
+            \end{tikzpicture}
+        \caption{Beispiel für Graphen}
 \end{figure}
+
+
 
 Für bessere Lesbarkeit schreiben wir für die Kategorien $\Delta_{1,2,3}(k,r,s)$ nur noch $\Delta_{1,2,3}$.
 Wir bezeichnen zwei Graphen als isomorph, wenn wir für die \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten eine geeignete Zuweisung von Werten finden so, dass die Graphen identisch sind.
 
 Dazu machen wir ein Beispiel:
 
+%\begin{figure}[H]
+%    \centering
+%    \includegraphics[width=15cm]{Platzhalter_zwei.jpg}
+%    \caption*{Platzhalter}\label{fig:GraphenBsp}
+%\end{figure}
+
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=15cm]{Platzhalter_zwei.jpg}
-    \caption*{Platzhalter}\label{fig:GraphenBsp}
+        \centering
+            \begin{tikzpicture}
+
+                \Text[x=1, y=0.8]{a)}
+
+                \Vertex[x=0 ,   y=0    ,size=.2, color=black, label={$i_1=i_5=1$}, position=180]{A}
+                \Vertex[x=2 ,   y=0    ,size=.2, color=black, label={$j_1=1$}, position=0]{B}
+                \Vertex[x=0 ,   y=-1.5   ,size=.2, color=black, label={$i_2=i_3=2$}, position=180]{C}
+                \Vertex[x=2 ,   y=-1.5   ,size=.2, color=black, label={$j_2=2$}, position=0]{D}
+                \Vertex[x=0 ,   y=-3   ,size=.2, color=black, label={$i_4=3$}, position=180]{E}
+                \Vertex[x=2 ,   y=-3   ,size=.2, color=black, label={$j_3=j_4=3$}, position=0]{F}
+                
+                \Edge[lw=1pt, position=above, Direct](A)(B)
+
+                \Edge[lw=1pt, position=above, Direct](B)(C)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](C)(D)
+                \Edge[lw=1pt, position=above, Direct, bend=10](D)(C)
+
+                \Edge[lw=1pt, position=above, Direct](C)(F)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](F)(E)
+                \Edge[lw=1pt, position=above, Direct, bend=10](E)(F)
+
+                \Edge[lw=1pt, position=above, Direct](F)(A)
+
+
+
+                \Text[x=6.8, y=0.8]{b)}
+
+                \Vertex[x=5.8 ,   y=0    ,size=.2, color=black, label={$i_1=i_5=1$}, position=180]{A}
+                \Vertex[x=7.8 ,   y=0    ,size=.2, color=black, label={$j_1=1$}, position=0]{B}
+                \Vertex[x=5.8 ,   y=-1.5   ,size=.2, color=black, label={$i_2=i_3=2$}, position=180]{C}
+                \Vertex[x=7.8 ,   y=-1.5   ,size=.2, color=black, label={$j_2=2$}, position=0]{D}
+                \Vertex[x=5.8 ,   y=-3   ,size=.2, color=black, label={$i_4=\textcolor{red}{4}$}, position=180]{E}
+                \Vertex[x=7.8 ,   y=-3   ,size=.2, color=black, label={$j_3=j_4=\textcolor{red}{7}$}, position=0]{F}
+                
+                \Edge[lw=1pt, position=above, Direct](A)(B)
+
+                \Edge[lw=1pt, position=above, Direct](B)(C)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](C)(D)
+                \Edge[lw=1pt, position=above, Direct, bend=10](D)(C)
+
+                \Edge[lw=1pt, position=above, Direct](C)(F)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](F)(E)
+                \Edge[lw=1pt, position=above, Direct, bend=10](E)(F)
+
+                \Edge[lw=1pt, position=above, Direct](F)(A)
+
+              
+
+
+                \Text[x=3.9, y=-4.2]{c)}
+
+                \Vertex[x=2.9 ,   y=-5    ,size=.2, color=black, label={$i_1=i_5=1$}, position=180]{A}
+                \Vertex[x=4.9 ,   y=-5    ,size=.2, color=black, label={$j_1=1$}, position=0]{B}
+                \Vertex[x=2.9 ,   y=-6.5   ,size=.2, color=black, label={$i_2=\textcolor{red}{i_4}=2$}, position=180]{C}
+                \Vertex[x=4.9 ,   y=-6.5   ,size=.2, color=black, label={$j_2=2$}, position=0]{D}
+                \Vertex[x=2.9 ,   y=-8   ,size=.2, color=black, label={$\textcolor{red}{i_3}=\textcolor{red}{4}$}, position=180]{E}
+                \Vertex[x=4.9 ,   y=-8   ,size=.2, color=black, label={$j_3=j_4=\textcolor{red}{7}$}, position=0]{F}
+                
+                \Edge[lw=1pt, position=above, Direct](A)(B)
+
+                \Edge[lw=1pt, position=above, Direct](B)(C)
+
+                \Edge[lw=1pt, position=above, Direct](C)(D)
+
+                \Edge[lw=1pt, position=above, Direct](D)(E)
+                
+                \Edge[lw=1pt, position=above, Direct](E)(F)
+                
+                \Edge[lw=1pt, position=above, Direct, bend=10](F)(C)
+                \Edge[lw=1pt, position=above, Direct, bend=10](C)(F)                
+
+                \Edge[lw=1pt, position=above, Direct](F)(A)
+
+            \end{tikzpicture}
+        \caption{Beispiel für Graphen}
 \end{figure}
 
 Graph a) ist isomorph zu b), da wir die Werte von zwei Knoten ändern können und einen identischen Graphen erhalten.
@@ -497,7 +650,7 @@ Für den Beweis Benutzen wir dann die Eigenschaft aus dem folgenden Lemma.
     Seien $\{\bm{X}_\eta\}$ eine Folge an $p_\eta\times n_\eta$ Zufallsmatrizen wie in Definition \ref{def:Zufallsmatrix} beschrieben und ihre Einträge $\{x_{ij}\}$ mit $i=1,\dots,p_\eta$ und $j=1,\dots,n_\eta$ unabhängig und identisch verteilte komplexe Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. 
     Sei weiter $p_\eta$ und $n_\eta$ monoton mit $\eta$ steigend und $\displaystyle\lim_{\eta\to\infty}\frac{p_\eta}{n_\eta}=y \in(0,\infty)$.
     
-    Dann konvergiert die empirische Spektralverteilung der Stichproben-Kovarianzmatrix $F^{\bm{S}_\eta}$ mit $n\to\infty$ fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung $F_y$ wie sie in Kapitel \ref{kap:MarchenkoPastur} beschrieben wurde.
+    Dann konvergiert die empirische Spektralverteilung der Stichproben-Kovarianzmatrix $F^{\bm{S}_\eta}$ mit $\eta\to\infty$ fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung $F_y$ wie sie in Kapitel \ref{kap:MarchenkoPastur} beschrieben wurde.
 \end{theorem}
 
 Im folgenden Beweis nehmen wir mit Lemma \ref{lem:betaUmformung} ohne Beschränkung der Allgemeinheit an, dass die Varianz $\sigma^2=1$ ist, wir also den Standardfall betrachten.
@@ -579,10 +732,11 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
     \begin{align*}
         \beta_k(\bm{S}_\eta)&= \int_{-\infty}^{\infty}x^k\diff F^{\bm{S}_\eta}(x) \\
                     &= \frac{1}{p}\tr\lr{\bm{S}_\eta^k} \\
-                    &= \frac{1}{pn^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k}    \\
-                    &= \frac{1}{pn^k}\sum_{i=1}^p\sum_{j=1}^n (x_{ij}\overline{x}_{ij})^k
+                    &= \frac{1}{pn^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k}    %\\
+                    %&= \frac{1}{pn^k}\sum_{i=1}^p\sum_{j=1}^n (x_{ij}\overline{x}_{ij})^k
     \end{align*}
-    für die Momente der empirischen Spektralverteilung. Da die Dimensionen $p$ und $n$ von $\bm{X}$ gegen unendlich laufen, läuft auch die Anzahl der Summanden der Spur gegen unendlich.
+    für die Momente der empirischen Spektralverteilung. 
+    %Da die Dimensionen $p$ und $n$ von $\bm{X}$ gegen unendlich laufen, läuft auch die Anzahl der Summanden der Spur gegen unendlich.
 
     Hier verwenden wir die oben eingeführte Klasse von Graphen.
     Wir können die Spur nämlich mit $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ und $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$, wobei die Elemente von $\emph{\textbf{i}}$ in $\{1,\dots,p\}$ und $\emph{\textbf{j}}$ in $\{1,\dots,n\}$ liegen, durch 
@@ -590,8 +744,8 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
             \frac{1}{pn^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k} &= \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k}
     \end{align*}
     beschreiben.
-    Hier sind $x_{i_1j_1}\overline{x}_{i_2j_1}\dots$ die Faktoren der einzelnen Summanden der Spur und wir Summieren über alle Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}.
-    Die Zufallsvariablen $x_{\emph{\textbf{i}}\emph{\textbf{j}}}$ stellen die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten und $\overline{x}_{\emph{\textbf{i}}\emph{\textbf{j}}}$ Kanten von \emph{\textbf{j}}- zu \emph{\textbf{i}}-Knoten dar. 
+    Dabei sind $x_{i_1j_1}\overline{x}_{i_2j_1}\dots$ die Faktoren der einzelnen Summanden der Spur und wir Summieren über alle Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}.
+    Die Zufallsvariablen $x_{\emph{\textbf{i}}\emph{\textbf{j}}}$ stellen die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten und $\overline{x}_{\emph{\textbf{i}}\emph{\textbf{j}}}$ Kanten von \emph{\textbf{j}}- zu \emph{\textbf{i}}-Knoten dar.
     Wir definieren dann
     \begin{align*}
         \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k} & \coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \bm{X}_{\Delta(k,r,s)}\,.

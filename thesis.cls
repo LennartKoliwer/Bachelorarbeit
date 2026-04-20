@@ -160,8 +160,8 @@
 \RequirePackage{mathrsfs}
 \RequirePackage{mwe}
 \RequirePackage{tikz}
-\RequirePackage{tikz}
-    \usetikzlibrary{matrix}
+%%\RequirePackage{tkz-graph}
+\RequirePackage{tikz-network}
 \RequirePackage[hidelinks]{hyperref}
 \RequirePackage{geometry}
 \hypersetup{

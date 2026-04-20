@@ -2,6 +2,79 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
+
+\begin{figure}[h]
+        \centering
+            \begin{tikzpicture}
+
+                \Text[x=1.2, y=0.8]{$\Delta_1(k=5,r=2,s=3)$}
+
+                \Vertex[x=0 ,   y=0    ,size=.2, color=black, label={$i_1=i_6$}, position=180]{A}
+                \Vertex[x=2.5 ,   y=0    ,size=.2, color=black, label={$j_1=j_5$}, position=0]{B}
+                \Vertex[x=0 ,   y=-2   ,size=.2, color=black, label={$i_2=i_5$}, position=180]{C}
+                \Vertex[x=2.5 ,   y=-2   ,size=.2, color=black, label={$j_2=j_4$}, position=0]{D}
+                \Vertex[x=0 ,   y=-4   ,size=.2, color=black, label={$i_3=i_4$}, position=180]{E}
+                \Vertex[x=2.5 ,   y=-4   ,size=.2, color=black, label=$j_3$, position=0]{F}
+                
+                \Edge[lw=1pt, position=above, Direct, bend=10](A)(B)
+                \Edge[lw=1pt, position=above, Direct, bend=10](B)(A)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](B)(C)
+                \Edge[lw=1pt, position=above, Direct, bend=10](C)(B)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](C)(D)
+                \Edge[lw=1pt, position=above, Direct, bend=10](D)(C)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](D)(E)
+                \Edge[lw=1pt, position=above, Direct, bend=10](E)(D)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](E)(F)
+                \Edge[lw=1pt, position=above, Direct, bend=10](F)(E)
+
+
+
+                \Text[x=6.7, y=0.8]{$\Delta_2(k=3,r=2,s=2)$}
+
+                \Vertex[x=5.2 ,   y=0    ,size=.2, color=black, label={$i_1=i_4$}, position=180]{A}
+                \Vertex[x=8.2 ,   y=0    ,size=.2, color=black, label={$j_1$}, position=0]{B}
+                \Vertex[x=5.2 ,   y=-2   ,size=.2, color=black, label={$i_2$}, position=180]{C}
+                \Vertex[x=8.2 ,   y=-2   ,size=.2, color=black, label={$j_2=j_3$}, position=0]{D}
+                \Vertex[x=5.2 ,   y=-4   ,size=.2, color=black, label={$i_3$}, position=180]{E}
+                
+                
+                \Edge[lw=1pt, position=above, Direct](A)(B)
+
+                \Edge[lw=1pt, position=above, Direct](B)(C)
+
+                \Edge[lw=1pt, position=above, Direct](C)(D)
+
+                \Edge[lw=1pt, position=above, Direct, bend=10](D)(E)
+                \Edge[lw=1pt, position=above, Direct, bend=10](E)(D)
+
+                \Edge[lw=1pt, position=above, Direct](D)(A)
+
+              
+
+
+                \Text[x=12.3, y=0.8]{$\Delta_3(k=2,r=0,s=1)$}
+
+                \Vertex[x=10.9 ,   y=-1    ,size=.2, color=black, label={$i_1=i_6$}, position=180]{A}
+                \Vertex[x=13.9 ,   y=-1    ,size=.2, color=black, label={$j_1=j_5$}, position=0]{B}
+                
+                \Edge[lw=1pt, position=above, Direct, bend=10](A)(B)
+                \Edge[lw=1pt, position=above, Direct, bend=10](B)(A)
+
+                \Edge[lw=1pt, position=above, Direct, bend=40](B)(A)
+                \Edge[lw=1pt, position=above, Direct, bend=40](A)(B) 
+            \end{tikzpicture}
+        \caption{Test}
+\end{figure}
+
+
+\end{document}
+
+
+
 \begin{definition}[{\cite[10]{Stochastik}}]\label{def:messraum}
     Sei $\Omega\neq\emptyset$ eine nichtleere Menge (von Ereignissen) und $\mathcal{A}\subset2^\Omega$ ein Mengensystem aus der Potenzmenge von $\Omega$.
 
@@ -81,5 +154,3 @@
     \end{align*}
 \end{lemma}
 
-
-\end{document}

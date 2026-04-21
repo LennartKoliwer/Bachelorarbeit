@@ -2,10 +2,13 @@
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 
-In Bezug auf die Rangreduzierung sind wir in der Einleitung auf das Paper von Gavish und Donoho \cite{OHT} eingegangen. 
+In Bezug auf die Rangreduzierung sind wir in der Einleitung auf das Paper von Gavish und Donoho eingegangen \cite{OHT}.
+Wir erinnern uns an die gegebene Rahmenstruktur. Es galt für $\eta\to\infty$ und $X_\eta\in\KK^{p_\eta\times n_\eta}$, dass das Dimensions-Stichproben-Verhältnis ${y=\frac{p_\eta}{n_\eta}\in (0,1]}$ nicht divergiert.
 In dem Paper wird erwähnt, dass in 
-\[X_\eta \coloneqq \Xtrue_\eta+\gamma \Xnoise_\eta\] 
-der durch $\frac{\sigma_{\text{med},\eta}}{\sqrt{n}}$ normierte Median der Singulärwerte von $X_n$ fast sicher gegen den Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$ konvergiert \cite[11]{OHT}.
+\[
+    X_\eta \coloneqq \Xtrue_\eta+\gamma \Xnoise_\eta
+\] 
+der durch $\frac{\sigma_{\text{med},\eta}}{\sqrt{n_\eta}}$ normierte Median der Singulärwerte von $X_\eta$ fast sicher gegen den Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$ konvergiert \cite[11]{OHT}.
 Daraus ergibt sich dann, dass der Schwellenwert für die Dimensionsreduktion
 \[
     \hat{\tau}_*(y,X) = \lambda_*(y)\frac{\sigma_{\text{med},\eta}}{\sqrt{\mu_y}}
@@ -18,54 +21,54 @@ konvergiert.
 
 Um die Notation im Folgenden zu vereinfachen, bezeichnen wir die Rauschmatrix $\Xnoise_\eta$ mit $\bm{X}_\eta$.
 
-Die Mar\v{c}enko-Pastur-Verteilung (kurz M-P-Verteilung) beschreibt die asymptotische Verteilung der Eigenwerte von großen Zufallsmatrizen der Form $\frac1n \bm{X}_\eta\bm{X}_\eta^H$.
-Die genauen Anforderungen an $\bm{X}_\eta$, stellen wir im kommenden Unterkapitel.
+Die Mar\v{c}enko-Pastur-Verteilung (kurz M-P-Verteilung) beschreibt die asymptotische Verteilung der Eigenwerte von großen Zufallsmatrizen der Form $\frac{1}{n_\eta} \bm{X}_\eta\bm{X}_\eta^H$.
+Die genauen Anforderungen an $\bm{X}_\eta$ stellen wir im kommenden Unterkapitel \ref{chap:Grundlagen} vor.
 Eine Wahrscheinlichkeitsverteilung, die angibt wie die Eigenwerte einer Matrix verteilt sind, ist die empirische Spektralverteilung.
 
 Ziel dieses Kapitels ist es, die schwache Konvergenz der empirischen Spektralverteilung gegen die Marčenko-Pastur-Verteilung zu zeigen. 
 Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral Analysis of Large Dimensional Random Matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
 
 
-\section{Grundlagen}
+\section{Grundlagen}\label{chap:Grundlagen}
 
 Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definieren.
 \begin{definition}\cite[4, 10]{BaiSilverstein}\label{def:ESD}
-    Sei $B$ eine ${p\times p}$ hermitische Matrix mit Eigenwerten $\lambda_i$ mit $i=1,\dots,p$.
+    Sei $B$ eine ${p\times p}$ hermitische Matrix mit Eigenwerten $\lambda_i$ und $i=1,\dots,p$.
     Dann ist auf dem Ereignisraum $(\RR,\mathcal{B}(\RR))$ mit $\mathcal{B}(\RR)$ als borelsche $\sigma$-Algebra durch
     \begin{align*}
         F^B(x) \coloneqq \frac1p|A_x| \quad \text{mit } A_x\coloneqq\left\{i\in \{1,\dots,p\} \colon \lambda_i \leq x\right\}
     \end{align*}
     die \emph{empirische Spektralverteilung} $F^B\colon\RR\to[0,1]$ definiert. 
-    Ihre $k$-ten Momente sind durch
+    Ihre \emph{$k$-ten Momente} sind durch
     \begin{align*}
     \beta_k(B)&= \int_{-\infty}^{\infty}x^k\diff F^{B}(x) = \frac{1}{p}\tr\lr{B^k}
 \end{align*}
     gegeben.
 \end{definition}
 
-Die Konvergenz der empirischen Spektralverteilung betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir immer größere Matrizen betrachten, also $p$ und $n$ gegen unendlich laufen lassen.
+%Die Konvergenz der empirischen Spektralverteilung betrachten wir in dem Sinne, dass wir die Verteilung einer mit $\eta\to\infty$ größer werdenden $p_\eta\times n_\eta$ Matrix betrachten.
+%Dabei gilt wieder, dass ${y=\frac{p_\eta}{n_\eta}\in (0,1]}$ nicht divergiert.
+Die Konvergenz der empirischen Spektralverteilung betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir eine Folge an Matrizen betrachten, deren Dimensionen $p$ und $n$ gegen unendlich laufen.
 
 \begin{definition}\label{def:Zufallsmatrix}
     Sei $\bm{X}$ eine ${p\times n}$ Matrix, dessen Elemente unabhängig und identisch verteilte komplexe Zufallsvariablen sind. 
     Dabei sind ihre Erwartungswerte $0$ und ihre Varianz bezeichnen wir mit $\sigma^2$. 
-    Weiter sind $x_m=\left(x_{1m},\dots,x_{pm}\right)^\top$, $\bm{X}=(x_1,\dots,x_n)$ und $\bar{x}=\frac1n\sum_{m=1}^n x_m$.
+    Weiter sind $x_m=\left(x_{1m},\dots,x_{pm}\right)^\top$ und $\bm{X}=(x_1,\dots,x_n)$.
 \end{definition}
 
-Für die Folge an Zufallsmatrizen $\{\bm{X}_\eta\}$ laufen also $p$ und $n$ so gegen unendlich, dass das Dimeniosn-Stichproben-Verhältnis
+Für die Folge an Zufallsmatrizen $\{\bm{X}_\eta\}$ laufen also $p$ und $n$ so gegen unendlich, dass das Verhältnis
 \[
-    \lim_{\eta\to\infty} \frac{p_\eta}{n_\eta} = y\in (0,\infty)
+    \lim_{\eta\to\infty} \frac{p_\eta}{n_\eta} = y
 \]
 nicht divergiert.
 
 \begin{definition}
-    Wir bezeichnen die durch
+    Wir bezeichnen mit $\bar{x}=\frac1n\sum_{m=1}^n x_m$, die durch
     \begin{align}
         S = \frac{1}{n}\sum_{m=1}^{n}(x_m-\bar{x})(x_m-\bar{x})^H\in\RR^{p\times p} \label{eq:StichKovar}
     \end{align}
     gegebene Matrix $S$ als \emph{Stichproben-Kovarianzmatrix}.
 \end{definition}
-
-\textcolor{red}{mehr zu Stichproben-Kovarianzmatrix?}
 
 Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter vereinfachen.
 
@@ -76,32 +79,29 @@ Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter ver
     \end{align*}
 \end{theorem}
 
-Schreiben wir $S$ als
+Formen wir $S$ zu
 \begin{align*}
     S  &=  \frac{1}{n}\sum_{m=1}^{n}(x_m-\bar{x})(x_m-\bar{x})^H \\
             &=  \frac{1}{n}\lr{\sum_{m=1}^{n}x_mx_m^H-\sum_{m=1}^{n}x_m\bar{x}^H-\sum_{m=1}^{n}x_m^H\bar{x}+\sum_{m=1}^{n}\bar{x}\,\bar{x}^H} \\
             &=  \frac{1}{n}\lr{\sum_{m=1}^{n}x_mx_m^H - n\bar{x}\,\bar{x}^H}\\
             &= \frac1n \bm{X}\bm{X}^H - \bar{x}\,\bar{x}^H
 \end{align*}
-und beschreiben $\bm{S}$ durch
+um und definieren $\bm{S}$ durch
 \begin{align}
     \begin{split}
-        \bm{S}&=\frac{1}{n}\sum_{m=1}^{n}x_mx_m^H\\ 
-    &= \frac1n \bm{X}\bm{X}^H\,. 
+        \bm{S}&\coloneqq\frac{1}{n}\sum_{m=1}^{n}x_mx_m^H\\ 
+    &= \frac1n \bm{X}\bm{X}^H\,,
     \end{split}\label{eq:StichKovarEinfach}
 \end{align}
-
-
-    Mit Satz \ref{theo:ESDrang1} können wir durch
-
+dann können wir mit Satz \ref{theo:ESDrang1} durch 
 \begin{align*}
-    \dabs{F^{S}-F^{\bm{S}}}_\infty &\leq \frac1p\rang(\bm{X}-\bar{x}\
-    \bar{x}^H-\bm{X}) \\
-    &= \frac1p\rang(\bar{x}\,\bar{x}^H)\\
+    \dabs{F^{S}-F^{\bm{S}}}_\infty &\leq \frac1p\rang\lr{\frac{1}{\sqrt{n}}\bm{X}-\bar{x}\
+    \bar{x}^H-\frac{1}{\sqrt{n}}\bm{X}} \\
+    &= \frac1p\rang\lr{\bar{x}\,\bar{x}^H}\\
     &= \frac1p
 \end{align*}
-
 zeigen, dass $\bar{x}\,\bar{x}^H$ keinen Einfluss auf die Konvergenz von $F^S$ hat.
+
 \begin{remark}
 Wir verwenden daher die vereinfachte Form $\bm{S}$ für die Stichproben-Kovarianzmatrix.
 Für den Konvergenzfall betrachten wir entsprechend 
@@ -121,7 +121,7 @@ Für den Konvergenzfall betrachten wir entsprechend
 \section{Mar\v{c}enko-Pastur-Verteilung}\label{kap:MarchenkoPastur}
 
 
-Mit dem Dimensions-Stichproben-Verhältnis $y=\frac{p}{n}$ wird die Mar\v{c}enko-Pastur-Verteilung durch das Wahrscheinlichkeitsmaß $F_y$ auf $(\RR,\mathcal{B}(\RR))$ beschrieben.
+Mit dem Verhältnis $y=\frac{p}{n}$ wird die Mar\v{c}enko-Pastur-Verteilung durch das Wahrscheinlichkeitsmaß $F_y$ auf $(\RR,\mathcal{B}(\RR))$ beschrieben.
 Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ sind 
 \[
     a=\sigma^2\left(1-\sqrt{y}\right)^2\quad\text{und}\quad b=\sigma^2\left(1+\sqrt{y}\right)^2\,.
@@ -133,7 +133,7 @@ Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung ist dann durch
         0\,, & \text{sonst}
     \end{cases*}\label{eq:MarchenkoPasturDichte}
 \end{align}
-definiert. 
+definiert, wobei sie mit $y>1$ den im Ursprung den Wert $1-\frac{1}{y}$ annimmt. 
 Die Verteilungsfunktion ergibt sich dann durch
 \begin{align*}
     F_y(t)=\int_{a}^{t}p_y(x)\diff x\,.
@@ -180,12 +180,12 @@ Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig
     erfüllt, dann wird die Verteilung $F$ durch $\{\beta_k\}_{k\in\NN_0}$ eindeutig bestimmt.
 \end{lemma}
 
-\begin{lemma}
+\begin{lemma}\label{lem:CarlemanErfüllt}
     Die Momente $\beta_k$ der Mar\v{c}enko-Pastur-Verteilung erfüllen die Carleman-Bedingung.
 \end{lemma}
 
 \begin{proof}
-    Wir sehen einmal nach \eqref{eq:MarchenkoPasturDichte} und \eqref{eq:momente}, dass wir $\beta_{2k}$ durch
+    Mit \eqref{eq:MarchenkoPasturDichte} und \eqref{eq:momente} können wir sehen, dass wir $\beta_{2k}$ durch
     \begin{align}
         \beta_{2k}  &= \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-x)(x-a)}dx \nonumber\\
                 &\leq \frac{1}{2\pi y}\int_{a}^{b}x^{2k-1}\sqrt{(b-a)(b-a)}dx \nonumber\\
@@ -233,7 +233,7 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
     \begin{align*}
         \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} \int_{-1}^{1}2\sqrt{y}\left(2\sqrt{y}u\right)^\ell\sqrt{4y-4yu^2}\diff u \\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} (2\sqrt{y})^\ell 4y \int_{-1}^{1}u^\ell\sqrt{1-u^2}\diff u\,.  
-        \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen, ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Dafür lassen wir die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt, die ungleich $0$ sind. Wir haben also}
+        \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen, ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir lassen also die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt, die ungleich $0$ sind. Wir haben also}
         \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (2\sqrt{y})^{2\ell} 4y \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\,.
     \end{align*}
@@ -248,7 +248,7 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
          2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff u &=  \int_{0}^{1}w^{\ell}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
         &=  \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w
     \end{align*}
-    erhalten wir ein Integral, dass wir mittels Eulerschen Betafunktion \cite[19]{Beta} lösen können.
+    erhalten wir ein Integral, dass wir mittels Eulerschen Betafunktion lösen können \cite[19]{Beta}.
     Die Eulersche Betafunktion ist durch 
     \[
         \int_{0}^{1}t^{p-1}(1-t)^{q-1}dt = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} 
@@ -266,7 +266,7 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
         &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{1}{2\pi y} \frac{(k-1)!}{(2\ell)!(k-1-2\ell)!}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!}{2\ell!4^\ell}\pi}\,.
     \end{align*}
 
-    Nach dem Kürzen der Brüche, erhalten wir 
+    Nach dem Kürzen der Brüche erhalten wir 
 
     \begin{align*}
         \beta_k = \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{(k-1)!}{\ell!(\ell+1)!(k-1-2\ell)!}y^\ell(1+y)^{k-1-2\ell}\,.
@@ -282,11 +282,11 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
         &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{s=0}^{k-1-2\ell} \frac{(k-1)!}{\ell!(\ell+1)!s!(k-1-2\ell-s)!}y^{\ell+s}\,.
     \end{align*}
 
-    Jetzt wollen wir den Term wieder vereinfachen. Dafür setzen wir $s=r-\ell$
+    Jetzt wollen wir den Term wieder vereinfachen. Dafür setzen wir $s=r-\ell$, wodurch wir
     \begin{align*}
         \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac{(k-1)!}{\ell!(\ell+1)!(r-\ell)!(k-1-\ell-r)!}y^{r}
     \end{align*}
-    und erweitern mit zwei Einsen
+    erhalten und erweitern mit zwei Einsen, wodurch
     \begin{align*}
         \beta_k &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac{(k-1)!}{\ell!(\ell+1)!(r-\ell)!(k-1-\ell-r)!} \frac{r!}{r!}\frac{(k-r)!}{(k-r)!}y^{r} 
         \\
@@ -294,46 +294,60 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
         \\
         &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac1k\frac{k!}{r!(k-r)!} \frac{r!}{\ell!(r-\ell)!} \frac{(k-r)!}{(\ell+1)!(k-r-(\ell+1))!} y^{r} 
         \\
-        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}\,.
+        &= \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\sum_{r=\ell}^{k-1-\ell} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}
     \end{align*}
-    Für den nächsten Schritt müssen wir die Laufvariablen von $0$ starten lassen. Momentan haben wir erst das $\ell$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. Für ein festes aber beliebiges $k$ liegen unsere Laufvariablen in
+    gilt.
+    Für den nächsten Schritt müssen wir die Laufvariablen von $0$ starten lassen. 
+    Momentan haben wir erst das $\ell$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. 
+    Für ein festes aber beliebiges $k$ liegen unsere Laufvariablen in
     \begin{align*}
         A = \left\{(\ell,r)\in\NN^2 \,\middle|\, 0\leq \ell \leq \left\lfloor\frac{k-1}{2}\right\rfloor,\, \ell\leq r \leq k-1-\ell\right\}\,.
     \end{align*}
-    Daraus wissen wir, dass \[0\leq \ell,\, r\leq k-1-\ell\] gilt, woraus wir \[\ell\leq k-1-r\] folgern können. Damit erhalten wir 
+    Daraus wissen wir, dass 
+    \[
+        0\leq \ell\quad\text{und}\quad r\leq k-1-\ell
+    \] 
+    gilt, woraus wir 
+    \[
+        \ell\leq k-1-r
+    \]
+    folgern können. 
+    Damit erhalten wir 
     \begin{align*}
                     &0\leq \ell\leq r \leq k-1-\ell\leq k-1 \\
-        \implies    &0\leq r\leq k-1,\,\quad 0\leq \ell\leq\min(r,k-1-r)
+        \implies    &0\leq r\leq k-1,\,\quad 0\leq \ell\leq\min(r,k-1-r)\,.
     \end{align*} 
-    damit können wir also die Summen äquivalent über 
+    Folglich können wir die Summen äquivalent über 
     \begin{align}
         A = \left\{(\ell,r)\in\NN^2 \,\middle|\, 0\leq r\leq k-1,\, 0\leq \ell\leq\min(r,k-1-r)\right\} \label{eq:laufvar}
     \end{align}
     laufen lassen.
 
-    Wir erhalten also mit \eqref{eq:laufvar}
+    Wir erhalten mit \eqref{eq:laufvar}
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1}\sum_{\ell=0}^{\min(r,k-1-r)} \frac1k\binom{k}{r} \binom{r}{\ell} \binom{k-r}{\ell+1} y^{r}\\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{\min(r,k-1-r)} \binom{r}{\ell} \binom{k-r}{\ell+1}\,.
     \end{align*}
     Das Minimum können wir noch weiter vereinfachen, da die Summanden gleich $0$ sind, sobald $\ell>r$ oder $\ell>k-1-r$ ist. 
-    Wenn wir die Summe also bis $r$ laufen lassen, ändern wir nichts am Ergebnis. 
+    Wenn wir die Summe also bis $r$ laufen lassen, ändern wir nichts am Ergebnis, wodurch wir den $k$-ten Moment schreiben können als
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{r} \binom{r}{\ell} \binom{k-r}{\ell+1}\,.
     \end{align*}
     An diesem Punkt müssen wir nur noch die innere Summe vereinfachen. 
     Dafür machen wir eine Indexverschiebung und formen die Binomialkoeffizienten um. 
-    Wir haben also
+    Wir haben
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=1}^{r+1} \binom{r}{\ell-1} \binom{k-r}{\ell} \\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=1}^{r+1} \binom{r}{r-(\ell-1)} \binom{k-r}{\ell} \\
         &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=1}^{r+1} \binom{r}{(r+1)-\ell} \binom{k-r}{\ell}\,.
     \end{align*}
-    Hier nutzen wir die Vandermonde Identität \cite[16]{Diskrete}
+    Hier nutzen wir die Vandermonde Identität \cite[16]{Diskrete}.
+    Diese ist durch
     \begin{align}
-        \sum_{"o=0}^{"u}\binom{n}{"o}\binom{m}{"u-"o}=\binom{n+m}{"u} \label{eq:vandermonde}\,.
+        \sum_{"o=0}^{"u}\binom{n}{"o}\binom{m}{"u-"o}=\binom{n+m}{"u} \label{eq:vandermonde}
     \end{align} 
-    Dafür lassen wir die Summe von $\ell=0$ beginnen, da der zusätzliche Summand das Ergebnis nicht ändert. 
+    gegeben.
+    Um die Vandermonde Identität nutzen zu können, lassen wir die Summe von $\ell=0$ beginnen, da der zusätzliche Summand das Ergebnis nicht ändert. 
     Mit der Identität \eqref{eq:vandermonde} erhalten wir
     \begin{align*}
         \beta_k &= \sum_{r=0}^{k-1} \frac1k\binom{k}{r} y^{r}\sum_{\ell=0}^{r+1} \binom{r}{(r+1)-\ell} \binom{k-r}{\ell}\\
@@ -364,12 +378,13 @@ Wir weisen den Kanten also eine Richtung zu.
 
 Die Graphen haben die folgenden Eigenschaften.
 
-Sei $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten mit der Gestalt $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ beziehungsweise $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$.
-Wobei die \emph{\textbf{i}}-Knoten Werte in $\{0,\dots,p\}$ und \emph{\textbf{j}}-Knoten Werte in $\{0,\dots,n\}$ annehmen können.
+Sei $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten mit der Gestalt $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ beziehungsweise $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$, wobei die \emph{\textbf{i}}-Knoten Werte in $\{0,\dots,p\}$ und \emph{\textbf{j}}-Knoten Werte in $\{0,\dots,n\}$ annehmen können.
 Wenn unterschiedliche \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten den gleichen Wert annehmen, bezeichnen wir sie als \emph{koinzident}.
 Wir betrachten koinzidente Knoten als \emph{einen} Knoten mit mehreren Namen.
-Nehmen zum Beispiel für die Knoten $i_2$ und $i_5$ den gleichen Wert $x$ an, haben wir einen Knoten, welchen wir sowohl $i_2$ als auch $i_5$ nennen was für die Eigenschaften der Kanten wichtig wird.
-Zusätzlich gilt, wenn zum Beispiel alle \emph{\textbf{i}}-Knoten den Wert $p$ und alle \emph{\textbf{j}}-Knoten den Wert $n$ annehmen, dass wie entsprechend $2k$ Kanten zwischen den zwei Knoten gibt, da wir je $k$ koinzidente \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten haben.
+
+Nehmen zum Beispiel für die Knoten $i_2$ und $i_5$ den gleichen Wert $x$ an, haben wir einen Knoten, welchen wir sowohl $i_2$ als auch $i_5$ nennen, was für die Eigenschaften der Kanten wichtig wird.
+
+Zusätzlich gilt, wenn beispielsweise alle \emph{\textbf{i}}-Knoten den Wert $p$ und alle \emph{\textbf{j}}-Knoten den Wert $n$ annehmen, dass es entsprechend $2k$ Kanten zwischen den zwei Knoten gibt, da wir je $k$ koinzidente \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten haben.
 
 Alle Kanten unterliegen den folgenden Regeln.
 Die Kanten laufen von Knoten $i_m$ zu $j_m$ und von $j_m$ zu $i_{m+1}$ mit $m=1,\dots,k$ und der Konvention, dass es einen weiteren Knoten $i_{k+1}$ gibt, der den Graphen abschließt und für den $i_{k+1}=i_1$ gilt.
@@ -378,10 +393,10 @@ Die Kanten laufen von Knoten $i_m$ zu $j_m$ und von $j_m$ zu $i_{m+1}$ mit $m=1,
 Sei $\hat{r}$ die Anzahl nicht koinzidenter \emph{\textbf{i}}-Knoten, dann ist $r=\hat{r}-1$ und $s$ die Anzahl nicht koinzidenter \emph{\textbf{j}}-Knoten.
 Da $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten ist, ist $k$ auch die Anzahl an Kanten, die auf \emph{\textbf{i}}-Knoten zeigen.
 
-Diese Graphen Bezeichnen wir dann als $\Delta(k,r,s)$.
+Diese Graphen bezeichnen wir dann als $\Delta(k,r,s)$.
 Für den Beweis teilen wir die Graphen in drei Kategorien ein.
 
-\begin{description}
+\begin{description}\label{descr:GraphenKategorien}
     \item[$\Delta_1(k,r,s)$:] Diese Kategorie fasst alle Graphen zusammen, die zu jeder Kante von \emph{\textbf{i}} nach \emph{\textbf{j}} genau eine Kante vom gleichen \emph{\textbf{j}}-Knoten zum gleichen \emph{\textbf{i}}-Knoten haben. Hier gilt $r+s=k$.
     \item[$\Delta_2(k,r,s)$:] Diese Kategorie beinhaltet alle Graphen, die mindestens einmal zwischen zwei Knoten genau eine Kante besitzen, also Graphen, die mindestens eine \emph{Einzelkante} besitzen.
     \item[$\Delta_3(k,r,s)$:] Die letzte Kategorie $\Delta_3(k,r,s)$ sind alle Graphen die weder in $\Delta_1(k,r)$ noch in $\Delta_2(k,r,s)$ gehören.
@@ -464,10 +479,12 @@ Für den Beweis teilen wir die Graphen in drei Kategorien ein.
 
 
 
-Für bessere Lesbarkeit schreiben wir für die Kategorien $\Delta_{1,2,3}(k,r,s)$ nur noch $\Delta_{1,2,3}$.
+Für bessere Lesbarkeit schreiben wir für die Kategorien $\Delta_{i}(k,r,s)$ nur noch $\Delta_{i}$, wobei $i\in{1,2,3}$.
 Wir bezeichnen zwei Graphen als isomorph, wenn wir für die \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten eine geeignete Zuweisung von Werten finden so, dass die Graphen identisch sind.
 
-Dazu machen wir ein Beispiel:
+\begin{example}
+    
+
 
 %\begin{figure}[H]
 %    \centering
@@ -559,19 +576,19 @@ Dazu machen wir ein Beispiel:
 \end{figure}
 
 Graph a) ist isomorph zu b), da wir die Werte von zwei Knoten ändern können und einen identischen Graphen erhalten.
-Graph c) ist aber nicht isomorph zu a) da wir zusätzlich noch die Indices der Knotennamen tauschen müssten was aber nicht geht da der Knoten fest ist.
-
+Graph c) ist aber nicht isomorph zu a) da wir zusätzlich noch die Indizes der Knotennamen tauschen müssten was aber nicht geht, da der Knoten fest ist.
+\end{example}
 Für die Graphen haben wir noch ein paar Lemmata.
 
 \begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{lem:AnzahlIsomklasse}
-    Die Anzahl der Graphen in jeder Isomorphismenklasse von $\Delta(k,r,s)$ Graphen, mit festen $k$, $r$ und $s$ ist
+    Die Anzahl der Graphen in jeder Isomorphismenklasse von $\Delta(k,r,s)$ Graphen, mit festen $k$, $r$ und $s$, ist
     \begin{align*}
         \alpha = p(p-1)\cdots(p-r)n(n-1)\cdots(n-s+1)=p^{r+1}n^s\lr{1+\mathcal{O}\lr{\frac1n}}\,.
     \end{align*}
 \end{lemma}
 
 \begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{lem:AnzahlNichtKoinzidenterKnotenKateg3}
-    Die Anzahl nicht koinzidenter Knoten von $\Delta_3(k,r,s)$ Graphen also $r+s$ ist kleiner gleich $k$. 
+    Die Anzahl nicht koinzidenter Knoten von $\Delta_3(k,r,s)$ Graphen, also $r+s$, ist kleiner gleich $k$. 
 \end{lemma}
 
 \begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{AnzahlKateg1Graphen}
@@ -592,7 +609,7 @@ Für die Graphen haben wir noch ein paar Lemmata.
 Aus der Stochastik benötigen wir einmal das Starke Gesetz der großen Zahlen und eine Metrik für Wahrscheinlichkeitsverteilungen.
 
 \begin{theorem}[Starkes Gesetz der großen Zahlen {\cite[139]{Stochastik}}]\label{theo:StarkeGroßeZahlen}
-    Seien $\{\mathcal{Z}_i\}_{i\in\NN}$ unabhängige und identisch verteilte Zufallsvariablen und besitzen ein Moment erster Ordnung, dann gilt 
+    Seien $\{\mathcal{Z}_i\}_{i\in\NN}$ unabhängige und identisch verteilte Zufallsvariablen, die einen Moment erster Ordnung besitzen, dann gilt 
     \begin{align*}
         \frac{1}{n}\sum_{i=1}^{n}\mathcal{Z}_i \underset{\text{f.s.}}{\overset{n\to\infty}{\longrightarrow}} \mathbb{E}(\mathcal{Z}_1)\,.
     \end{align*}   
@@ -600,13 +617,14 @@ Aus der Stochastik benötigen wir einmal das Starke Gesetz der großen Zahlen un
 
 
 \begin{definition}[Lévy-Metrik {\cite[164]{Stochastik}}]\label{def:lévy}
-    Seien $F_1$ und $F_2$ Wahrscheinlichkeitsmaße auf $(\RR,\mathscr{B}(\RR))$ und zugehörigen Verteilungsfunktionen $\textbf{\emph{F}}_1$ und $\textbf{\emph{F}}_2$. Dann ist die \emph{Lévy-Metrik} definiert durch
+    Seien $F_1$ und $F_2$ Wahrscheinlichkeitsmaße auf $(\RR,\mathscr{B}(\RR))$ mit zugehörigen Verteilungsfunktionen $\textbf{\emph{F}}_1$ und $\textbf{\emph{F}}_2$. 
+    Dann ist die \emph{Lévy-Metrik} definiert durch
     \begin{align*}
         \mathscr{L}(F_1,F_2)= \inf\{\varepsilon>0 ,\ x\in\RR \colon \textbf{\emph{F}}_1(x-\varepsilon)-\varepsilon\leq \textbf{\emph{F}}_2(x) \leq \textbf{\emph{F}}_1(x+\varepsilon)+\varepsilon\}\,.
     \end{align*} 
 \end{definition}
 
-Für den Beweis Benutzen wir dann die Eigenschaft aus dem folgenden Lemma.
+Für den Beweis benutzen wir die Eigenschaft aus dem folgenden Lemma.
 
 \begin{lemma}[{\cite[502]{BaiSilverstein}}]\label{lem:L4}
     Seien $A,B\in\CC^{p\times n}$ und $S=AA^H$, $\bar{S}=BB^H$. 
@@ -648,16 +666,17 @@ Kommen wir nun zum Satz über die Konvergenz der empirischen Spektralverteilung 
 
 \begin{theorem}\label{theo:MPVert}
     Seien $\{\bm{X}_\eta\}$ eine Folge an $p_\eta\times n_\eta$ Zufallsmatrizen wie in Definition \ref{def:Zufallsmatrix} beschrieben und ihre Einträge $\{x_{ij}\}$ mit $i=1,\dots,p_\eta$ und $j=1,\dots,n_\eta$ unabhängig und identisch verteilte komplexe Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. 
-    Sei weiter $p_\eta$ und $n_\eta$ monoton mit $\eta$ steigend und $\displaystyle\lim_{\eta\to\infty}\frac{p_\eta}{n_\eta}=y \in(0,\infty)$.
+    Sei weiter $p_\eta$ und $n_\eta$ monoton steigend mit $\eta$ und $\displaystyle\lim_{\eta\to\infty}\frac{p_\eta}{n_\eta}=y \in(0,\infty)$.
     
     Dann konvergiert die empirische Spektralverteilung der Stichproben-Kovarianzmatrix $F^{\bm{S}_\eta}$ mit $\eta\to\infty$ fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung $F_y$ wie sie in Kapitel \ref{kap:MarchenkoPastur} beschrieben wurde.
 \end{theorem}
 
 Im folgenden Beweis nehmen wir mit Lemma \ref{lem:betaUmformung} ohne Beschränkung der Allgemeinheit an, dass die Varianz $\sigma^2=1$ ist, wir also den Standardfall betrachten.
 
-Wir zeigen die schwache Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung mithilfe der Momentmethode.
+Wir zeigen die schwache Konvergenz der empirischen Spektralverteilung gegen die Mar\-\v{c}enko-Pastur-Verteilung mithilfe der Momentmethode.
+
 Nach der Momentmethode konvergiert eine Folge an Wahrscheinlichkeitsverteilung $\{F_n\}$, wenn ihre Momente $\beta_{n,k}$ jeder Ordnung $k\geq0$ endlich sind und gegen einen Grenzwert $\beta_k$ konvergieren, schwach gegen eine Wahrscheinlichkeitsverteilung die eindeutig von ihren Momenten $\beta_k$ bestimmt sein muss \cite[507]{BaiSilverstein}.
-Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen, haben wir bereits mit Lemma ... gezeigt.
+Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Carleman-Bedingung \ref{lem:Carlman} und damit die Eindeutigkeit erfüllen.
 
 \begin{proof}
     Die Momentmethode verlangt, dass die Momente jeder Ordnung der Verteilung endlich sind.
@@ -668,20 +687,20 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
         \hat{x}_{ij} &\coloneqq x_{ij}\mathbf{1}(|x_{ij}| \leq C)\,,
         \\
         \hat{x}_i &\coloneqq
-        \left(\hat{x}_{i1}, \dots, \hat{x}_{ip}\right)^{\top}\,,
+        \left(\hat{x}_{i1}, \dots, \hat{x}_{ip_\eta}\right)^{\top}\,,
         \\
         \hat{\bm{S}}_\eta
-        &\coloneqq \frac{1}{n} \sum_{i=1}^n \hat{x}_i \hat{x}_i^{H}
-        = \frac{1}{n}\hat{\bm{X}}_\eta \hat{\bm{X}}_\eta^{H}\,.
+        &\coloneqq \frac{1}{n_\eta} \sum_{i=1}^{n_\eta} \hat{x}_i \hat{x}_i^{H}
+        = \frac{1}{n_\eta}\hat{\bm{X}}_\eta \hat{\bm{X}}_\eta^{H}\,.
     \end{align*}
     Da das Beschränken die Erwartungswerte verändert hat, müssen wir $\hat{x}_{ij}$ noch zentralisieren, indem wir die Erwartungswerte von den Zufallsvariablen abziehen.
-    Wir erhalten für die Zentralisierten Zufallsvariablen und die entsprechende Stichproben-Kovarianzmatrix erhalten wir durch
+    Für die zentralisierten Zufallsvariablen und die entsprechende Stichproben-Kovarianzmatrix erhalten wir
     \begin{align*} 
-        \tilde{x}_{ij}&\coloneqq \hat{x}_{ij} - \mathbb{E}(\hat{x}_{11}) \\
+        \tilde{x}_{ij}&\coloneqq \hat{x}_{ij} - \mathbb{E}(\hat{x}_{11})\,, \\
         \tilde{x}_i&\coloneqq
-        \left(\tilde{x}_{i1}, \dots, \tilde{x}_{ip}\right)^{\top} \\
-        \tilde{\bm{S}}_\eta&\coloneqq \frac{1}{n} \sum_{i=1}^n \tilde{x}_i \tilde{x}_i^{H}
-        = \frac{1}{n}\tilde{\bm{X}}_\eta \tilde{\bm{X}}_\eta^{H}\,.
+        \left(\tilde{x}_{i1}, \dots, \tilde{x}_{ip_\eta}\right)^{\top}\,, \\
+        \tilde{\bm{S}}_\eta&\coloneqq \frac{1}{n_\eta} \sum_{i=1}^{n_\eta} \tilde{x}_i \tilde{x}_i^{H}
+        = \frac{1}{n_\eta}\tilde{\bm{X}}_\eta \tilde{\bm{X}}_\eta^{H}\,.
     \end{align*}
     Wir bezeichnen ab hier alle $\bm{X}_\eta$ als $\bm{X}$.
     Mit $\hat{\bm{S}}_\eta$ und $\tilde{\bm{S}}_\eta$ haben wir die beschränkte und zentralisierte Stichproben Kovarianzmatrix. 
@@ -689,39 +708,39 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
     Im Folgenden wollen wir zeigen, dass sich durch das Beschränken und Zentralisieren der Grenzwert nicht ändert.
     Nach Lemma \ref{lem:L4} erhalten wir
     \begin{align*}
-        \mathscr{L}^4\lr{F^{\bm{S}},F^{\hat{\bm{S}}_\eta}} &\leq \frac{2}{np}\tr\lr{\bm{X}\bm{X}^H+\hat{\bm{X}}\hat{\bm{X}}^H}\tr{\lr{(\bm{X}-\hat{\bm{X}})(\bm{X}-\hat{\bm{X}})^{H}}} 
+        \mathscr{L}^4\lr{F^{\bm{S}},F^{\hat{\bm{S}}_\eta}} &\leq \frac{2}{n_\eta p_\eta}\tr\lr{\bm{X}\bm{X}^H+\hat{\bm{X}}\hat{\bm{X}}^H}\tr{\lr{(\bm{X}-\hat{\bm{X}})(\bm{X}-\hat{\bm{X}})^{H}}} 
         \\
-        &=\lr{\frac{2}{np}\sum_{i,j}x_{ij}\overline{x}_{ij}+\hat{x}_{ij}\overline{\hat{x}}_{ij}}\lr{\frac{1}{np}\sum_{i,j}(x_{ij}-\hat{x}_{ij})\overline{(x_{ij}-\hat{x}_{ij})}} 
+        &=\lr{\frac{2}{n_\eta p_\eta}\sum_{i,j}x_{ij}\overline{x}_{ij}+\hat{x}_{ij}\overline{\hat{x}}_{ij}}\lr{\frac{1}{n_\eta p_\eta}\sum_{i,j}(x_{ij}-\hat{x}_{ij})\overline{(x_{ij}-\hat{x}_{ij})}} 
         \\
-        &=\lr{\frac{2}{np}\sum_{i,j}|x_{ij}|^2+|\hat{x}_{ij}|^2}\lr{\frac{1}{np}\sum_{i,j}|x_{ij}-\hat{x}_{ij}|^2} 
+        &=\lr{\frac{2}{n_\eta p_\eta}\sum_{i,j}|x_{ij}|^2+|\hat{x}_{ij}|^2}\lr{\frac{1}{n_\eta p_\eta}\sum_{i,j}|x_{ij}-\hat{x}_{ij}|^2} 
         \\
-        &\leq \lr{\frac{4}{np}\sum_{i,j}|x_{ij}|^2}\lr{\frac{1}{np}\sum_{i,j}|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} 
+        &\leq \lr{\frac{4}{n_\eta p_\eta}\sum_{i,j}|x_{ij}|^2}\lr{\frac{1}{n_\eta p_\eta}\sum_{i,j}|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} 
         \\
         \overset{\text{\eqref{theo:StarkeGroßeZahlen} f.s.}}&{\longrightarrow} 4\mathbb{E}\lr{|x_{ij}|^2}\mathbb{E}\lr{|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} \\
         \overset{\text{f.s.}}&{\longrightarrow} 4\mathbb{E}\lr{|x_{ij}|^2\mathbf{1}(|x_{ij}| > C)} \\
         \overset{C\to\infty}&{\longrightarrow} 0\,.
     \end{align*}
     Der Abstand der empirischen Spektralverteilung und ihrer beschränkten Version ist also für ein hinreichend großes $C$ vernachlässigbar klein.
-    Nach Satz \ref{theo:ESDrang1}
+    Nach Satz \ref{theo:ESDrang1} können wir durch
     \begin{align*}
-        \dabs{F^{\hat{\bm{S}}_\eta}-F^{\tilde{\bm{S}}_\eta}}_\infty &\leq \frac1p \rang(\hat{\bm{X}}-\tilde{\bm{X}}) \\
-        &= \frac1p \rang(\mathbb{E}(\hat{x}_{11})) \\
-        &= \frac1p
+        \dabs{F^{\hat{\bm{S}}_\eta}-F^{\tilde{\bm{S}}_\eta}}_\infty &\leq \frac{1}{p_\eta} \rang(\hat{\bm{X}}-\tilde{\bm{X}}) \\
+        &= \frac{1}{p_\eta} \rang(\mathbb{E}(\hat{x}_{11})) \\
+        &= \frac{1}{p_\eta}
     \end{align*}
-    können wir sehen, dass das Entfernen des Erwartungswertes, also die Zentralisierung der Zufallsvariablen, auch keinen Einfluss auf die Konvergenz hat.
+    sehen, dass das Entfernen des Erwartungswertes, also die Zentralisierung der Zufallsvariablen, auch keinen Einfluss auf die Konvergenz hat.
     
-    Wir haben jetzt die Verteilung so modifiziert, dass die Zufallsvariablen nicht mehr unendlich groß werden können und den Erhalt des Erwartungswertes garantiert, ohne die Konvergenz zu beeinträchtigen. 
+    Die Verteilung wurde jetzt so modifiziert, dass die Zufallsvariablen nicht mehr unendlich groß werden können und den Erhalt des Erwartungswertes garantiert, ohne die Konvergenz zu beeinträchtigen. 
     
     Wir müssen aber noch dafür sorgen, dass die Varianz erhalten bleibt.
     Dafür müssen wir zeigen, dass durch Skalierung von $\tilde{\bm{S}}_\eta$ mit $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$, wenn $C\to \infty$ gilt, der Abstand zu $\tilde{\bm{S}}_\eta$ wieder vernachlässigbar klein wird.
 
     Es gilt wieder mit Lemma \ref{lem:L4}
     \begin{align*}
-        \mathscr{L}^4\lr{F^{\tilde{\bm{S}}_\eta},F^{\tilde{\sigma}^{-2}\tilde{\bm{S}}_\eta}} &\leq \frac{2}{n}\tr\lr{\tilde{\bm{X}}\tilde{\bm{X}}^H+\frac{1}{\tilde{\sigma}^2}\tilde{\bm{X}}\tilde{\bm{X}}^H}\tr{\lr{\lr{1-\frac{1}{\tilde{\sigma}}}^2 \tilde{\bm{X}}\tilde{\bm{X}}^H}} \\
-        &= \lr{\frac{2}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H-\frac{2\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}}+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}} \\
-        &= \lr{\frac{2}{np}\sum_{i,j}|\tilde{x}_{ij}|^2+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}|\tilde{x}_{ij}|^2-\frac{2|\tilde{x}_{ij}|^2}{\tilde{\sigma}}+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
-        &= \lr{\frac{2}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2-\tilde{\sigma}2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
-        &= 2\lr{\frac{\tilde{\sigma}^2+1}{np\tilde{\sigma}^2}\sum_{i,j}|\tilde{x}_{ij}|^2}\lr{\frac{(\tilde{\sigma}-1)^2}{np\tilde{\sigma}^2}\sum_{i,j}|\tilde{x}_{ij}|^2} \\
+        \mathscr{L}^4\lr{F^{\tilde{\bm{S}}_\eta},F^{\tilde{\sigma}^{-2}\tilde{\bm{S}}_\eta}} &\leq \frac{2}{n_\eta}\tr\lr{\tilde{\bm{X}}\tilde{\bm{X}}^H+\frac{1}{\tilde{\sigma}^2}\tilde{\bm{X}}\tilde{\bm{X}}^H}\tr{\lr{\lr{1-\frac{1}{\tilde{\sigma}}}^2 \tilde{\bm{X}}\tilde{\bm{X}}^H}} \\
+        &= \lr{\frac{2}{n_\eta p_\eta}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}}\lr{\frac{1}{n_\eta p_\eta}\sum_{i,j}\tilde{x}_{ij}\tilde{x}_{ij}^H-\frac{2\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}}+\frac{\tilde{x}_{ij}\tilde{x}_{ij}^H}{\tilde{\sigma}^2}} \\
+        &= \lr{\frac{2}{n_\eta p_\eta}\sum_{i,j}|\tilde{x}_{ij}|^2+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{np}\sum_{i,j}|\tilde{x}_{ij}|^2-\frac{2|\tilde{x}_{ij}|^2}{\tilde{\sigma}}+\frac{|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
+        &= \lr{\frac{2}{n_\eta p_\eta}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}}\lr{\frac{1}{n_\eta p_\eta}\sum_{i,j}\frac{\tilde{\sigma}^2|\tilde{x}_{ij}|^2-\tilde{\sigma}2|\tilde{x}_{ij}|^2+|\tilde{x}_{ij}|^2}{\tilde{\sigma}^2}} \\
+        &= 2\lr{\frac{\tilde{\sigma}^2+1}{n_\eta p_\eta\tilde{\sigma}^2}\sum_{i,j}|\tilde{x}_{ij}|^2}\lr{\frac{(\tilde{\sigma}-1)^2}{n_\eta p_\eta\tilde{\sigma}^2}\sum_{i,j}|\tilde{x}_{ij}|^2} \\
         &\overset{\text{f.s.}}{\longrightarrow} 2\frac{\tilde{\sigma}^2+1}{\tilde{\sigma}^2}\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\frac{(\tilde{\sigma}-1)^2}{\tilde{\sigma}^2}\mathbb{E}\lr{|\tilde{x}_{ij}|^2} \\
         &\overset{C\to\infty}{\longrightarrow} 0\,.
     \end{align*}
@@ -730,64 +749,69 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
     
     Nach Definition \ref{def:ESD} erhalten wir 
     \begin{align*}
-        \beta_k(\bm{S}_\eta)&= \int_{-\infty}^{\infty}x^k\diff F^{\bm{S}_\eta}(x) \\
-                    &= \frac{1}{p}\tr\lr{\bm{S}_\eta^k} \\
-                    &= \frac{1}{pn^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k}    %\\
+        \beta_{\eta,k}(\bm{S}_\eta)&= \int_{-\infty}^{\infty}x^k\diff F^{\bm{S}_\eta}(x) \\
+                    &= \frac{1}{p_\eta}\tr\lr{\bm{S}_\eta^k} \\
+                    &= \frac{1}{p_\eta n_\eta^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k}    %\\
                     %&= \frac{1}{pn^k}\sum_{i=1}^p\sum_{j=1}^n (x_{ij}\overline{x}_{ij})^k
     \end{align*}
     für die Momente der empirischen Spektralverteilung. 
     %Da die Dimensionen $p$ und $n$ von $\bm{X}$ gegen unendlich laufen, läuft auch die Anzahl der Summanden der Spur gegen unendlich.
 
     Hier verwenden wir die oben eingeführte Klasse von Graphen.
-    Wir können die Spur nämlich mit $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ und $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$, wobei die Elemente von $\emph{\textbf{i}}$ in $\{1,\dots,p\}$ und $\emph{\textbf{j}}$ in $\{1,\dots,n\}$ liegen, durch 
+    Wir können die Spur nämlich mit $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ und $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$, wobei die Elemente von $\emph{\textbf{i}}$ in $\{1,\dots,p_\eta\}$ und $\emph{\textbf{j}}$ in $\{1,\dots,n_\eta\}$ liegen, durch 
     \begin{align*}
-            \frac{1}{pn^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k} &= \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k}
+            \frac{1}{p_\eta n_\eta^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k} &= \frac{1}{p_\eta n_\eta^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k}
     \end{align*}
     beschreiben.
-    Dabei sind $x_{i_1j_1}\overline{x}_{i_2j_1}\dots$ die Faktoren der einzelnen Summanden der Spur und wir Summieren über alle Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}.
-    Die Zufallsvariablen $x_{\emph{\textbf{i}}\emph{\textbf{j}}}$ stellen die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten und $\overline{x}_{\emph{\textbf{i}}\emph{\textbf{j}}}$ Kanten von \emph{\textbf{j}}- zu \emph{\textbf{i}}-Knoten dar.
+    Dabei sind $x_{i_1j_1}\overline{x}_{i_2j_1}\dots$ die Produkte der einzelnen Summanden der Spur und wir summieren über alle Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}.
+    Die Zufallsvariablen $x_{\emph{\textbf{i}}\emph{\textbf{j}}}$ stellen die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten und $\overline{x}_{\emph{\textbf{i}}\emph{\textbf{j}}}$ Kanten von \emph{\textbf{j}}-Knoten zu \emph{\textbf{i}}-Knoten dar.
     Wir definieren dann
     \begin{align*}
-        \frac{1}{pn^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k} & \coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \bm{X}_{\Delta(k,r,s)}\,.
+        \frac{1}{p_\eta n_\eta^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k} & \eqqcolon \frac{1}{p_\eta n_\eta^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \bm{X}_{\Delta(k,r,s)}\,.
     \end{align*}
 
-    Nach der Momentmethode konvergiert die empirische Spektralverteilung schwach gegen die Mar\v{c}enko-Pastur-Verteilung, wenn die Momente der empirische Spektralverteilung gegen die der Mar\v{c}enko-Pastur-Verteilung konvergieren.
+    Nach der Momentmethode konvergiert die empirische Spektralverteilung schwach gegen die Mar\v{c}enko-Pastur-Verteilung, wenn die Momente der empirische Spektralverteilung gegen die Momente der Mar\v{c}enko-Pastur-Verteilung konvergieren.
     Das zeigen wir, indem wir den Erwartungswert und die Varianz der Momente der empirische Spektralverteilung bestimmen.
     Sie konvergieren, wenn der Erwartungswert $\EE(\beta_k(\bm{S}_\eta))$ gegen die Momente der Mar\v{c}enko-Pastur-Verteilung läuft und die Varianz gegen null geht.
     
     Fangen wir an mit dem Erwartungswert.
     Es gilt
     \begin{align*}
-        \EE(\beta_k(S_n)) = \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{\bm{X}_{\Delta(k,r,s)}}\,.
+        \EE(\beta_k(\bm{S}_\eta)) = \frac{1}{p_\eta n_\eta^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{\bm{X}_{\Delta(k,r,s)}}\,.
     \end{align*}
-    Teilen wir die Graphen in ihre Kategorien ein, erhalten wir mit Lemma \ref{lem:AnzahlIsomklasse}
+    Teilen wir die Graphen in ihre Kategorien, wie in Kapitel Hilfsmittel für den Konvergenzbeweis \ref{descr:GraphenKategorien} beschrieben, ein, erhalten wir mit Lemma \ref{lem:AnzahlIsomklasse}
     \begin{align*}
-        \EE(\beta_k(S_n)) = \frac{1}{pn^k} \lr{\overbrace{\sum_{\Delta_1} \alpha\EE\lr{\bm{X}_{\Delta_1}}}^{W_1\coloneqq}+\overbrace{\sum_{\Delta_2} \alpha\EE\lr{\bm{X}_{\Delta_2}}}^{W_2\coloneqq}+\overbrace{\sum_{\Delta_3} \alpha\EE\lr{\bm{X}_{\Delta_3}}}^{W_3\coloneqq}}\,.
+        \EE(\beta_k(\bm{S}_\eta)) = \frac{1}{p_\eta n_\eta^k} \lr{\overbrace{\sum_{\Delta_1} \alpha\EE\lr{\bm{X}_{\Delta_1}}}^{W_1\coloneqq}+\overbrace{\sum_{\Delta_2} \alpha\EE\lr{\bm{X}_{\Delta_2}}}^{W_2\coloneqq}+\overbrace{\sum_{\Delta_3} \alpha\EE\lr{\bm{X}_{\Delta_3}}}^{W_3\coloneqq}}\,.
     \end{align*}
 
     Für $W_1$ erhalten wir mit $s=k-r$ und nach Lemma \ref{lem:AnzahlIsomklasse} und Lemma \ref{lem:AnzahlNichtKoinzidenterKnotenKateg3}
     \begin{align}
-            W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}}\EE\lr{\bm{X}_{\Delta_1}}\nonumber
-        \intertext{Da es zu jeder Kante genau eine Kante in die entgegengesetzte Richtung gibt, gilt $\EE\lr{|x_{\emph{\textbf{i}}\emph{\textbf{j}}}|^2}=1$. Wir können also schreiben}
-            W_1 &= \frac{1}{n^k p}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p^{r+1}n^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \nonumber\\
-            &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}\frac{p^{r+1}n^{k-r}}{n^k p}\lr{1+\mathcal{O}\lr{\frac{1}{p}}} \nonumber\\
-        &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r\lr{1+\mathcal{O}\lr{\frac{1}{p}}}\nonumber \\
-            &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}}\label{eq:Delta1}\,.
+            W_1 &= \frac{1}{n_\eta^k p_\eta}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p_\eta^{r+1}n_\eta^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p_\eta}}}\EE\lr{\bm{X}_{\Delta_1}}\nonumber\,.
+        \intertext{Da es zu jeder Kante genau eine Kante in die entgegengesetzte Richtung gibt, gilt $\EE\lr{|x_{\emph{\textbf{i}}\emph{\textbf{j}}}|^2}=1$. Wir können $W_1$ also schreiben als}
+            W_1 &= \frac{1}{n_\eta^k p_\eta}\sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}p_\eta^{r+1}n_\eta^{k-r}\lr{1+\mathcal{O}\lr{\frac{1}{p_\eta}}} \nonumber\\
+            &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}\frac{p_\eta^{r+1}n_\eta^{k-r}}{n_\eta^k p_\eta}\lr{1+\mathcal{O}\lr{\frac{1}{p_\eta}}} \nonumber\\
+        &= \sum_{\Delta_1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r\lr{1+\mathcal{O}\lr{\frac{1}{p_\eta}}}\nonumber \\
+            &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p_\eta}}\label{eq:Delta1}\,.
     \end{align}
 
-    Für $W_2$ können wir sehen, dass 
-    \begin{align}
-        W_2 = \frac{1}{n^k p}\sum_{\Delta_2} \alpha\EE\lr{\bm{X}_{\Delta_2}} = 0 \label{eq:Delta2}
-    \end{align}
-    gilt, da wir den Erwartungswert auf Kanten aufteilen können, und es in Kategorie $\Delta_2$ mindestens eine Einzelkante gibt. Es gibt demnach mindestens ein $\omega_i$ in 
+    Für $W_2$ können wir den Erwartungswert in
     \begin{align*}
-        \EE\lr{\bm{X}_{\Delta_2}}= \EE(x_{i_1j_1}^{\omega_1})\EE(x_{i_2j_1}^{\omega_2})\cdots
+        W_2 = \frac{1}{n_\eta^k p_\eta}\sum_{\Delta_2} \alpha\EE\lr{\bm{X}_{\Delta_2}}
     \end{align*}
-    welches gleich $1$ ist, woraus folgt, dass $\EE(x_{i_kj_k}^{1})=0=\EE\lr{\bm{X}_{\Delta_2}}$ ist.
+    aufteilen.
+    Da sich $\Delta_2$-Graphen dadurch auszeichnen, dass sie mindestens eine Einzelkante besitzen, existiert mindestens ein Exponent $\omega_i\in\NN$ in 
+    \begin{align*}
+        \EE\lr{\bm{X}_{\Delta_2}}= \EE(x_{i_1j_1}^{\omega_1})\EE(x_{i_2j_1}^{\omega_2})\dots
+    \end{align*}
+    welches gleich $1$ ist. Da der Erwartungswert der Zufallsvariablen $x_{i_mj_m}$ gleich $0$ ist, folgt daraus, dass $\EE(x_{i_mj_m}^{1})=0=\EE\lr{\bm{X}_{\Delta_2}}$ gilt.
+    Für $W_2$ ergibt sich dann
+    \begin{align}
+        W_2 = \frac{1}{n_\eta^k p_\eta}\sum_{\Delta_2} \alpha\EE\lr{\bm{X}_{\Delta_2}} = 0 \,.\label{eq:Delta2}
+    \end{align}
 
     Für $W_3$ erhalten wir wieder mit Lemma \ref{lem:AnzahlIsomklasse}, dass
     \begin{align*}
-        W_3 = \frac{1}{n^k p}\sum_{\Delta_3} \alpha\EE\lr{\bm{X}_{\Delta_3}}
+        W_3 = \frac{1}{n_\eta^k p_\eta}\sum_{\Delta_3} \alpha\EE\lr{\bm{X}_{\Delta_3}}
     \end{align*}
     gilt.
     Weiter oben haben wir gezeigt, dass $x_{ij}$ gleichmäßig durch ein $C>0$ beschränkt ist. 
@@ -795,21 +819,23 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
     Mit Lemma \ref{lem:AnzahlNichtKoinzidenterKnotenKateg3} wissen wir, dass die Anzahl nicht koinzidenter Knoten maximal $k$ betragen kann. 
     Dadurch ist die Anzahl unterschiedlicher $\Delta_3$ Graphen in $\mathcal{O}\lr{n^k}$. Wir haben also
     \begin{align}
-        \frac{1}{n^k p}\sum_{\Delta_3} \alpha\lr{\bm{X}_{\Delta_3}} &= \frac{C^{2k}}{n^k p} \mathcal{O}\lr{n^k} \nonumber\\
-        &= \mathcal{O}\lr{\frac{1}{p}} \label{eq:Delta3}\,.
+        \frac{1}{n_\eta^k p_\eta}\sum_{\Delta_3} \alpha\lr{\bm{X}_{\Delta_3}} &= \frac{C^{2k}}{n_\eta^k p_\eta} \mathcal{O}\lr{n_\eta^k} \nonumber\\
+        &= \mathcal{O}\lr{\frac{1}{p_\eta}}\,. \label{eq:Delta3}
     \end{align}
     Mit \eqref{eq:Delta1}, \eqref{eq:Delta2} und \eqref{eq:Delta3} erhalten wir dann
     \begin{align}
-        \EE(\beta_k(S_n)) &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p}} \nonumber\\
-                        &=\beta_k(y,\sigma^2)+o(1) \label{eq:Erw}
+        \EE(\beta_k(\bm{S}_\eta)) &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p_\eta}} \nonumber\\
+                        &=\beta_k(y,\sigma^2)+o(1)\,. \label{eq:Erw}
     \end{align}
+    Der Erwartungswert der Momente konvergiert folglich gegen die Momente der Mar\v{c}enko-Pastur-Verteilung plus einen vernachlässigbar kleinen Term, da $p_\eta$ gegen unendlich läuft.
 
     Jetzt fehlt noch die Varianz.
     Für diese gilt
     \begin{align*}
-        \text{Var}(\beta_k(S_n)) &\coloneqq \frac{1}{pn^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \lr{\EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}}-\EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}}\,.
+        \text{Var}(\beta_k(\bm{S}_\eta)) &\coloneqq \frac{1}{p_\eta n_\eta^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \lr{\EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}}-\EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}}\,.
     \end{align*}
-    Dabei sind $\Delta_a$ und $\Delta_b$ verschiedene Permutationen \emph{\textbf{i}} und \emph{\textbf{j}}. Wie für den Erwartungswert suchen wir uns Kategorien, um die Varianz stückweise zu beschreiben.
+    Dabei sind $\Delta_a$ und $\Delta_b$ zwei Graphen mit unterschiedlichen Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}. 
+    Wie für den Erwartungswert suchen wir uns Kategorien, um die Varianz stückweise zu beschreiben.
 
     Als Erstes betrachten wir alle Graphen $\Delta_a$ und $\Delta_b$ so, dass $\Delta_a$ und $\Delta_b$ unabhängig sind, sich also keine Kanten teilen.
     Daraus folgt direkt durch Rechenregeln von Erwartungswerten, dass
@@ -818,18 +844,22 @@ Dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Eindeutigkeit erfüllen,
     \end{align*}
     gilt. Das heißt, für unabhängige Graphen ist die Varianz gleich $0$.
 
-    Als Nächstes betrachten wir alle Graphen $\Delta_a\cup\Delta_b$, die mindestens eine Einzelkante besitzen. Damit erhalten wir durch $\Delta_2$ Eigenschaften wieder 
+    Als Nächstes betrachten wir alle Graphen $\Delta_a$ und $ \Delta_b$, die mindestens eine Einzelkante besitzen. 
+    Damit erhalten wir wie in \eqref{eq:Delta2} wieder 
     \begin{align*}
         \EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}} = 0 = \EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}\,.
     \end{align*}
 
-    In allen anderen Möglichkeiten haben die Graphen keine Einzelkante und $\Delta_a$ und $\Delta_b$ teilen sich Kanten. Analog zu $W_3$ können wir sagen, dass die Anzahl möglicher Graphen in $\mathcal{O}(n^k)$ liegt. Da wir zwei Graphen haben ist die Anzahl also in $\mathcal{O}(n^{2k})$.
+    In allen anderen Möglichkeiten haben die Graphen keine Einzelkante und $\Delta_a$ und $\Delta_b$ teilen sich Kanten.
+    Analog zu $W_3$ können wir sagen, dass die Anzahl möglicher Graphen in $\mathcal{O}(n_\eta^k)$ liegt. 
+    Da wir zwei Graphen $\Delta_a$ und $\Delta_b$ betrachten, liegt die Anzahl möglicher Graphen in $\mathcal{O}(n_\eta^{2k})$.
     Durch die gleichmäßige Beschränkung von $x_{ij}$ durch $C$ können wir die Varianz durch
     \begin{align}
-        \text{Var}(\beta_k(S_n)) &\leq \frac{1}{p^2n^{2k}}C\mathcal{O}(n^{2k}) \nonumber\\
-        &= \mathcal{O}\lr{\frac{1}{p^2}} \label{eq:Var}
+        \text{Var}(\beta_k(\bm{S}_\eta)) &\leq \frac{1}{p_\eta^2n_\eta^{2k}}C\mathcal{O}(n_\eta^{2k}) \nonumber\\
+        &= \mathcal{O}\lr{\frac{1}{p_\eta^2}} \label{eq:Var}
     \end{align}
     abschätzen.
+    Da $p_\eta$ gegen unendlich läuft, wird die Varianz vernachlässigbar klein.
 
     Mit dem Erwartungswert \eqref{eq:Erw} und der Varianz \eqref{eq:Var} können wir darauf schließen, dass die empirische Spektralverteilung fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert.
 \end{proof}

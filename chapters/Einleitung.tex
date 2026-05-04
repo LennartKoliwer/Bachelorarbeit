@@ -3,10 +3,10 @@
 \begin{document}
 
 
-Bei der Rangreduzierung handelt es sich um eine Methode eine Matrix durch eine andere Matrix eines niedrigeren Ranges zu approximieren. 
-Sie ist ein wichtiges Werkzeug im Umgang mit großen Datenmengen welche als Matrix vorliegen, um den Rechenaufwand, der bei dem Verarbeiten der Daten aufkommt, zu minimieren.
+Bei der Rangreduzierung handelt es sich um eine Methode, eine Matrix durch eine andere Matrix eines niedrigeren Ranges zu approximieren. 
+Sie ist ein wichtiges Werkzeug im Umgang mit großen Datenmengen, welche als Matrix vorliegen, um den Rechenaufwand, der bei dem Verarbeiten der Daten aufkommt, zu minimieren.
 
-Ein Beispiel, dass wir in diesem Zusammenhang betrachten, ist der Dynamic Mode Decomposition Algorithmus, kurz DMD, aus dem Buch \glqq Data-Driven Science and Engineering\grqq\ \cite{SlaySlaySlay}.
+Ein Beispiel, das wir in diesem Zusammenhang betrachten, ist der Dynamic Mode Decomposition Algorithmus, kurz DMD, aus dem Buch \glqq Data-Driven Science and Engineering\grqq\ \cite{SlaySlaySlay}.
 DMD ist ein datengetriebener Algorithmus, der ursprünglich im Forschungsgebiet der Strömungsdynamik entwickelt wurde. 
 Grundsätzlich dient der Algorithmus der Analyse von Messdaten eines dynamischen Systems mittels Singulärwert\-zerlegung von großen Datenmatrizen.
 DMD kann anhand von Messdaten mehrerer Zeitpunkte die Dynamik eines Systems approximieren. 
@@ -21,36 +21,36 @@ Im Laufe der letzten Jahre wurden eine Vielzahl von Varianten des DMD Algorithmu
 Das klassische DMD benötigt Messdaten aus $k$ Messungen in einheitlichen Zeitabständen.
 Für die ersten $k-1$ Messungen werden die Daten zum Zeitpunkt $i$ in die $i$-te Spalte einer Datenmatrix $X$ eingetragen.
 Zusätzlich legen wir eine zweite Datenmatrix $X'$ so an, dass wir in $X$ die Messungen $(x_1,\dots,x_{k-1})$ und in $X'$ die Messungen $(x_2,\dots,x_{k})$ sammeln.
-Bei den Datenmatrizen handelt es sich um $p\times n$ Matrizen, wobei $p$ die Dimension des Systems bzw. die Anzahl der Messdaten zum $i$-ten Zeitpunkt ist und $n=k-1$ ist die Anzahl der Messungen.
-In der Regel haben die Datenmatrizen deutlich mehr Zeilen als Spalten also gilt $p\gg n$.
-Häufig sind die Systeme, die betrachtet werden, hochgradig nicht-linear.
-Basierend auf, unter anderem, dem Satz von Hartman-Grobman können wir aber nichtlineare Systeme nähreungsweise linear analysiren. % Seite 258 (284)
-Das Ziel von DMD ist es einen linearen Operator $A$ bzw. seine Spektralzerlegung zu finden, für den 
+Bei den Datenmatrizen handelt es sich um $p\times n$ Matrizen, wobei $p$ die Dimension des Systems beziehungsweise die Anzahl der Messdaten zum $i$-ten Zeitpunkt und $n=k-1$ die Anzahl der Messungen ist.
+In der Regel haben die Datenmatrizen deutlich mehr Zeilen als Spalten, also gilt $p\gg n$.
+Häufig sind die betrachteten Systeme hochgradig nicht-linear.
+Basierend auf, unter anderem, dem Satz von Hartman--Grobman können wir aber nicht-lineare Systeme näherungsweise linear analysieren. % Seite 258 (284)
+Das Ziel von DMD ist es, einen linearen Operator $A$ bzw. seine Spektralzerlegung zu finden, für den 
 \[
-	X' \approx AX
+    X' \approx AX
 \]
 so gut wie möglich gilt. 
 Der Operator $A$ muss diagonalisierbar sein.
 Der dafür am besten passende Operator $A$ lässt sich durch 
 \[
-	A=\underset{A\in\text{GL}(p,\RR)}{\arg\min}\dabs{X'-AX}_F=X'X^\dag
+    A=\underset{A\in\text{GL}(p,\RR)}{\arg\min}\dabs{X'-AX}_F=X'X^\dag
 \] 
-bestimmen. Dabei sind $\dabs{\cdot}_F$ die Frobeniusnorm und $X^\dag$ die Moore-Penrose-Inverse, welche wir in Kapitel \ref{chap:Frobeniusnorm} und \ref{chap:exactDMD} noch genauer beschreiben werden. 
-Die Moore-Penrose-Inverse lässt sich dann mittels Singulärwertzerlegung (SWZ) der Datenmatrix $X$ bestimmen. 
-Die SWZ beschreiben wir in Kapitel \ref{chap:SWZ} nochmal genauer, liefern aber für einen ersten Überblick eine vereinfachte Beschreibung.
+bestimmen. Dabei sind $\dabs{\cdot}_F$ die Frobeniusnorm und $X^\dag$ die Moore--Penrose--Inverse, welche wir in den Kapiteln \ref{chap:Frobeniusnorm} und \ref{chap:exactDMD} noch genauer beschreiben werden. 
+Die Moore--Penrose--Inverse lässt sich dann mittels Singulärwertzerlegung (SWZ) der Datenmatrix $X$ bestimmen. 
+Die SWZ beschreiben wir in Kapitel \ref{chap:SWZ} noch einmal genauer, liefern aber für einen ersten Überblick eine vereinfachte Beschreibung.
 Bei der SWZ finden wir für eine Matrix $X\in\RR^{p\times n}$ zwei orthogonale Matrizen $U\in\RR^{p\times p}$ und $V\in\RR^{n\times n}$  und ${\hat{\Sigma}=\diag(\sigma_1,\dots,\sigma_r)}$ mit $r\leq\min(p,n)$ und $\sigma_1 \geq \sigma_2 \geq \dots \geq \sigma_r > 0$ so, dass
 \[
-	X = U\Sigma V^\top \quad\text{mit}\quad \Sigma = \begin{pmatrix}
-		\hat{\Sigma} & 0 \\
-		0            & 0
-	\end{pmatrix} \in \mathbb{R}^{p\times n}
+    X = U\Sigma V^\top \quad\text{mit}\quad \Sigma = \begin{pmatrix}
+        \hat{\Sigma} & 0 \\
+        0            & 0
+    \end{pmatrix} \in \mathbb{R}^{p\times n}
 \]
 gilt.
 Bei der Bestimmung von $A$ wird der Rechenaufwand schnell zu groß, weshalb der DMD Algorithmus eine Dimensionsreduktion durchführt. 
 Als Dimensionsreduktion bezeichnen wir eine Methode, bei der die Dimension einer Matrix, beispielsweise auf ihren Rang, reduziert wird.
 Damit kann man eine Spektralzerlegung von $A$ machen, ohne $A$ direkt zu benutzen. 
 Durch die oben genannte Form der Datenmatrizen kann man direkt sehen, dass $X$ maximal von Rang $n$ sein kann. 
-Es gibt also maximal $r\leq n$ Singulärwerte, die nicht Null sind. 
+Es gibt also maximal $r\leq n$ Singulärwerte, die nicht null sind. 
 Reduzieren wir also unser $\Sigma$ aus der SWZ auf eine $r\times r$ große Matrix, also $\hat{\Sigma}$, und entfernen alle Spalten außer die ersten $r$ von $U$ und $V$, erhalten wir mit den reduzierten Matrizen $U_r$, $\Sigma_r$ und $V_r$
 \[
 X_r=U_r\Sigma_rV_r^\top=U_r\hat{\Sigma}V_r^\top\,.
@@ -62,7 +62,7 @@ Nach dem Eckart-Young-Theorem \cite[9]{SlaySlaySlay} lässt sich durch
 zeigen, dass $X_r$ die beste Rang$\,r$-Approximation von $X$ bezüglich der Frobeniusnorm ist.
 Die Spektralzerlegung von $A$ können wir damit über die kleinere Matrix
 \[
-	\tilde{A}=U_r^\top AU_r
+    \tilde{A}=U_r^\top AU_r
 \]
 bestimmen.
 Diese Methode der Dimensionsreduktion für SWZ ist als \emph{ökonomische SWZ} bekannt.
@@ -72,7 +72,7 @@ Diese Methode der Dimensionsreduktion für SWZ ist als \emph{ökonomische SWZ} b
 
 
 Eine weitere Methode der Rangreduzierung, welche im Paper von Matan Gavish und David L. Donoho behandelt wird, ist das \glqq singular value hard thresholding\grqq\ (SVHD) \cite{OHT}. 
-Dies ist eine Rang\-reduzierung für Datenmatrizen, in der alle Singulärwerte, die unter einem definierten Schwellenwert $\tau$ liegen, auf $0$ gesetzt werden und die Dimensionen wie bei der ökonomischen SWZ angepasst werden.
+Dies ist eine Rang\-reduzierung für Datenmatrizen, in der alle Singulärwerte, die unter einem definierten Schwellenwert $\tau$ liegen, auf $0$ gesetzt und die Dimensionen wie bei der ökonomischen SWZ angepasst werden.
 Gavish und Donoho definieren eine Rahmenstruktur, in der statt der Datenmatrix $X$ eine Folge an Datenmatrizen ${\{X_\eta\}_{\eta\in\NN}\in \KK^{p_\eta\times n_\eta}}$ der Form
 \[
     X_\eta \coloneqq \Xtrue_\eta+\gamma \Xnoise_\eta 
@@ -80,45 +80,45 @@ Gavish und Donoho definieren eine Rahmenstruktur, in der statt der Datenmatrix $
 betrachtet wird, für die mit $\eta\to\infty$ die Dimensionen $p_\eta$ und $n_\eta$ gegen unendlich laufen.
 Dabei gilt für das Dimensions-Stichproben-Verhältnis $y=\frac{p_\eta}{n_\eta}\in (0,1]$, dass es nicht divergiert.
 Zudem ist $\KK$ je nach Anwendungsbereich $\CC$ oder $\RR$.
-Wir haben also $X_\eta$ in einen echten Teil und einem durch $\gamma\in\RR$ skalierten Fehleranteil aufgeteilt. 
+Wir haben also $X_\eta$ in einen echten Teil und einen durch $\gamma\in\RR$ skalierten Fehleranteil aufgeteilt. 
 Die Einträge der Fehlermatrix sind dabei unabhängig und identisch verteilte Zufallsvariablen mit Erwartungswert $\EE(\Xnoise_\eta)=0$ und Varianz $\var(\Xnoise_\eta)=1$.
 Zusätzlich werden die Singulärwerte von $\Xtrue_\eta$ fixiert.
 Sei also $r$ der Rang von $\Xtrue$ und $\sigma_1^{\text{echt}},\dots,\sigma_r^{\text{echt}}$ ihre Singulärwerte, dann ist die Singulärwertzerlegung von $\Xtrue_\eta$ für alle $\eta$ von der Form
 \begin{align}
-	\Xtrue_\eta = U_\eta\diag(\sigma_1^{\text{echt}},\dots,\sigma_r^{\text{echt}},0,\dots,0)V^\top_\eta \label{eq:Singulärwertzerlegung_Xtrue}
+    \Xtrue_\eta = U_\eta\diag(\sigma_1^{\text{echt}},\dots,\sigma_r^{\text{echt}},0,\dots,0)V^\top_\eta \label{eq:Singulärwertzerlegung_Xtrue}
 \end{align}
 mit $U_\eta\in\KK^{p_\eta\times p_\eta}$ und $V_\eta\in\KK^{n_\eta\times n_\eta}$.
 
-Gavish und Donoho haben nummerisch herausgefunden, dass innerhalb der Rahmenstruktur für bekanntes Rauschen $\gamma$ und bekanntem Dimensions-Stichproben-Verhältnis, der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
+Gavish und Donoho haben numerisch herausgefunden, dass innerhalb der Rahmenstruktur für bekanntes Rauschen $\gamma$ und bekanntem Dimensions-Stichproben-Verhältnis, der optimale Schwellenwert $\tau_*$ für Singulärwerte bei
 \[
-	\tau_*=\lambda_*(y)\gamma\sqrt{n_\eta}\quad \text{mit}\quad \lambda_*(y) \coloneqq \sqrt{2(y+1)+\frac{8y}{(y+1)+\sqrt{y^2+14y+1}}}
+    \tau_*=\lambda_*(y)\gamma\sqrt{n_\eta}\quad \text{mit}\quad \lambda_*(y) \coloneqq \sqrt{2(y+1)+\frac{8y}{(y+1)+\sqrt{y^2+14y+1}}}
 \]
 liegt. 
 Bei quadratischen Matrizen ist $\lambda_*=\frac{4}{\sqrt{3}}$.
 
 Wenn das Rauschen aber nicht bekannt ist, muss $\gamma$ geschätzt werden.
-Das Ziel ist es also einen Schwellenwert $\hat{\tau}_*$ zu finden, ab dem davon ausgegangen werden kann, dass die Singulärwerte, die größer oder gleich diesem Schwellenwert sind, nur zu einem vernachlässigbaren Anteil aus Rauschen bestehen.
-Im Zusammenhang mit Singulärwerten von Zufallsmatrizen spielt die Mar\v{c}enko-Pastur-Verteilung eine zentrale Rolle.
+Das Ziel ist es also, einen Schwellenwert $\hat{\tau}_*$ zu finden, ab dem davon ausgegangen werden kann, dass die Singulärwerte, die größer oder gleich diesem Schwellenwert sind, nur zu einem vernachlässigbaren Anteil aus Rauschen bestehen.
+Im Zusammenhang mit Singulärwerten von Zufallsmatrizen spielt die Mar\v{c}enko--Pastur--Verteilung eine zentrale Rolle.
 Sie sagt aus, wie die quadrierten Singulärwerte von bestimmten Zufallsmatrizen verteilt sind.
 
-Für unbekanntes Rauschen haben Gavish und Donoho mit dem Median der Singulärwerte $\sigma_{\text{med},\eta}$ von $X_\eta$ und dem Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$, den Rausch-Schätzer 
+Für unbekanntes Rauschen haben Gavish und Donoho mit dem Median der Singulärwerte $\sigma_{\text{med},\eta}$ von $X_\eta$ und dem Median der Mar\v{c}enko--Pastur--Verteilung $\mu_y$, den Rausch-Schätzer 
 \[
-	\hat{\gamma}(X) \coloneqq \frac{\sigma_{med,\eta}}{\sqrt{n_\eta\mu_y}}
+    \hat{\gamma}(X) \coloneqq \frac{\sigma_{med,\eta}}{\sqrt{n_\eta\mu_y}}
 \]
 definiert. 
 Also mit $a=\left(1-\sqrt{y}\right)^2$, $b=\left(1+\sqrt{y}\right)^2$ und $a\leq\mu_y\leq b$ so, dass
 \[
-	\int_{a}^{\mu_y}\frac{1}{2\pi x y}\sqrt{(b-x)(x-a)}\diff x = \frac12
+    \int_{a}^{\mu_y}\frac{1}{2\pi x y}\sqrt{(b-x)(x-a)}\diff x = \frac12
 \]
 gilt.
 
 Mit $\hat{\gamma}$ haben Gavish und Donoho dann den Schwellenwert für Singulärwerte durch
 \[
-	\hat{\tau}_*(y,X)\coloneqq \lambda_*(y)\hat{\gamma}(X)\sqrt{n_\eta} = \lambda_*(y)\frac{\sigma_{med,\eta}}{\sqrt{\mu_y}}
+    \hat{\tau}_*(y,X)\coloneqq \lambda_*(y)\hat{\gamma}(X)\sqrt{n_\eta} = \lambda_*(y)\frac{\sigma_{med,\eta}}{\sqrt{\mu_y}}
 \]
 definiert.
 
-In dieser Arbeit konzentrieren wir uns zum einen auf den DMD Algorithmus, und zum anderen auf die Herleitung der Mar\v{c}enko-Pastur-Verteilung, da diese wie gerade beschrieben ein wesentlicher Bestandteil der Dimensionsreduktion ist.
+In dieser Arbeit konzentrieren wir uns zum einen auf den DMD Algorithmus, und zum anderen auf die Herleitung der Mar\v{c}enko--Pastur--Verteilung, da diese, wie gerade beschrieben, ein wesentlicher Bestandteil der Dimensionsreduktion ist.
 
 
 

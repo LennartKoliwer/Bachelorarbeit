@@ -8,7 +8,7 @@ In dem Paper wird erwähnt, dass in
 \[
     X_\eta \coloneqq \Xtrue_\eta+\gamma \Xnoise_\eta
 \] 
-der durch $\frac{\sigma_{\text{med},\eta}}{\sqrt{n_\eta}}$ normierte Median der Singulärwerte von $X_\eta$ fast sicher gegen den Median der Mar\v{c}enko-Pastur-Verteilung $\mu_y$ konvergiert \cite[11]{OHT}.
+der durch $\frac{\sigma_{\text{med},\eta}}{\sqrt{n_\eta}}$ normierte Median der Singulärwerte von $X_\eta$ fast sicher gegen den Median der Mar\v{c}enko--Pastur--Verteilung $\mu_y$ konvergiert \cite[11]{OHT}.
 Daraus ergibt sich dann, dass der Schwellenwert für die Dimensionsreduktion
 \[
     \hat{\tau}_*(y,X) = \lambda_*(y)\frac{\sigma_{\text{med},\eta}}{\sqrt{\mu_y}}
@@ -21,9 +21,9 @@ konvergiert.
 
 Um die Notation im Folgenden zu vereinfachen, bezeichnen wir die Rauschmatrix $\Xnoise_\eta$ mit $\bm{X}_\eta$.
 
-Die Mar\v{c}enko-Pastur-Verteilung (kurz M-P-Verteilung) beschreibt die asymptotische Verteilung der Eigenwerte von großen Zufallsmatrizen der Form $\frac{1}{n_\eta} \bm{X}_\eta\bm{X}_\eta^H$.
+Die Mar\v{c}enko--Pastur--Verteilung (kurz M-P-Verteilung) beschreibt die asymptotische Verteilung der Eigenwerte von großen Zufallsmatrizen der Form $\frac{1}{n_\eta} \bm{X}_\eta\bm{X}_\eta^H$.
 Die genauen Anforderungen an $\bm{X}_\eta$ stellen wir im kommenden Unterkapitel \ref{chap:Grundlagen} vor.
-Eine Wahrscheinlichkeitsverteilung, die angibt wie die Eigenwerte einer Matrix verteilt sind, ist die empirische Spektralverteilung.
+Eine Wahrscheinlichkeitsverteilung, die angibt, wie die Eigenwerte einer Matrix verteilt sind, ist die empirische Spektralverteilung.
 
 Ziel dieses Kapitels ist es, die schwache Konvergenz der empirischen Spektralverteilung gegen die Marčenko-Pastur-Verteilung zu zeigen. 
 Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral Analysis of Large Dimensional Random Matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
@@ -31,7 +31,7 @@ Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral Analysis of Larg
 
 \section{Grundlagen}\label{chap:Grundlagen}
 
-Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definieren.
+Wir beginnen damit, die empirische Spektralverteilung einmal konkret zu definieren.
 \begin{definition}\cite[4, 10]{BaiSilverstein}\label{def:ESD}
     Sei $B$ eine ${p\times p}$ hermitische Matrix mit Eigenwerten $\lambda_i$ und $i=1,\dots,p$.
     Dann ist auf dem Ereignisraum $(\RR,\mathcal{B}(\RR))$ mit $\mathcal{B}(\RR)$ als borelsche $\sigma$-Algebra durch
@@ -51,7 +51,7 @@ Wir beginnen damit die empirische Spektralverteilung einmal konkret zu definiere
 Die Konvergenz der empirischen Spektralverteilung betrachten wir in dem Sinne, dass wir analysieren, wie sich die Verteilung verhält, wenn wir eine Folge an Matrizen betrachten, deren Dimensionen $p$ und $n$ gegen unendlich laufen.
 
 \begin{definition}\label{def:Zufallsmatrix}
-    Sei $\bm{X}$ eine ${p\times n}$ Matrix, dessen Elemente unabhängig und identisch verteilte komplexe Zufallsvariablen sind. 
+    Sei $\bm{X}$ eine ${p\times n}$ Matrix, deren Elemente unabhängig und identisch verteilte komplexe Zufallsvariablen sind. 
     Dabei sind ihre Erwartungswerte $0$ und ihre Varianz bezeichnen wir mit $\sigma^2$. 
     Weiter sind $x_m=\left(x_{1m},\dots,x_{pm}\right)^\top$ und $\bm{X}=(x_1,\dots,x_n)$.
 \end{definition}
@@ -118,22 +118,22 @@ Für den Konvergenzfall betrachten wir entsprechend
 
 %---------------------------------------------------------------
 
-\section{Mar\v{c}enko-Pastur-Verteilung}\label{kap:MarchenkoPastur}
+\section{Mar\v{c}enko--Pastur--Verteilung}\label{kap:MarchenkoPastur}
 
 
-Mit dem Verhältnis $y=\frac{p}{n}$ wird die Mar\v{c}enko-Pastur-Verteilung durch das Wahrscheinlichkeitsmaß $F_y$ auf $(\RR,\mathcal{B}(\RR))$ beschrieben.
+Mit dem Verhältnis $y=\frac{p}{n}$ wird die Mar\v{c}enko--Pastur--Verteilung durch das Wahrscheinlichkeitsmaß $F_y$ auf $(\RR,\mathcal{B}(\RR))$ beschrieben.
 Für $y,\sigma^2\in(0,\infty)$ und $x\in\RR$ sind 
 \[
     a=\sigma^2\left(1-\sqrt{y}\right)^2\quad\text{und}\quad b=\sigma^2\left(1+\sqrt{y}\right)^2\,.
 \]
-Die Dichtefunktion der Mar\v{c}enko-Pastur-Verteilung ist dann durch
+Die Dichtefunktion der Mar\v{c}enko--Pastur--Verteilung ist dann durch
 \begin{align}
     p_y(x)=\begin{cases*}
         \dfrac{1}{2\pi x y \sigma^2}\sqrt{(b-x)(x-a)}\,, & wenn $a\leq x\leq b$ \\
         0\,, & \text{sonst}
     \end{cases*}\label{eq:MarchenkoPasturDichte}
 \end{align}
-definiert, wobei sie mit $y>1$ den im Ursprung den Wert $1-\frac{1}{y}$ annimmt. 
+definiert, wobei sie mit $y>1$ im Ursprung den Wert $1-\frac{1}{y}$ annimmt. 
 Die Verteilungsfunktion ergibt sich dann durch
 \begin{align*}
     F_y(t)=\int_{a}^{t}p_y(x)\diff x\,.
@@ -165,7 +165,7 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben,
     Die Momente lassen sich also durch $\sigma^{2k}$ skaliert über die Standard-M-P-Verteilung beschreiben.
 \end{proof}
 
-Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig durch die Momente ${\beta_k}$ bestimmt wird und wie die Momente explizit bestimmt aussehen.
+Damit können wir dann zeigen, dass die Mar\v{c}enko--Pastur--Verteilung eindeutig durch die Momente ${\beta_k}$ bestimmt wird und wie die Momente explizit bestimmt aussehen.
 
 
 %----------------------------------------------------------------------------------
@@ -181,7 +181,7 @@ Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig
 \end{lemma}
 
 \begin{lemma}\label{lem:CarlemanErfüllt}
-    Die Momente $\beta_k$ der Mar\v{c}enko-Pastur-Verteilung erfüllen die Carleman-Bedingung.
+    Die Momente $\beta_k$ der Mar\v{c}enko--Pastur--Verteilung erfüllen die Carleman-Bedingung.
 \end{lemma}
 
 \begin{proof}
@@ -202,11 +202,11 @@ Damit können wir dann zeigen, dass die Mar\v{c}enko-Pastur-Verteilung eindeutig
     die Carleman-Bedingung erfüllt.
 \end{proof}
 
-Damit haben wir gezeigt, dass die Mar\v{c}enko-Pastur-Verteilung durch die Momente $\beta_k$ eindeutig bestimmt ist.
-Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
+Damit haben wir gezeigt, dass die Mar\v{c}enko--Pastur--Verteilung durch die Momente $\beta_k$ eindeutig bestimmt ist.
+Die explizite Darstellung der Momente zeigen wir im folgenden Lemma.
 
 \begin{lemma}
-    Die Momente $k$-ter Ordnung der Mar\v{c}enko-Pastur-Verteilung haben die Form 
+    Die Momente $k$-ter Ordnung der Mar\v{c}enko--Pastur--Verteilung haben die Form 
     \begin{align}
         \beta_k = \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r\,.
     \end{align}
@@ -223,7 +223,7 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
         \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{\left(\left(1+\sqrt{y}\right)^2-1-y-z\right)\left(1+y+z-\left(1-\sqrt{y}\right)^2\right)}\diff z \\
         &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}(1+y+z)^{k-1}\sqrt{4y-z^2}\diff z\,.
     \end{align*}
-    Durch Einsetzen des Binomischen Lehrsatzes lässt sich das Integral zu 
+    Durch Einsetzen des binomischen Lehrsatzes lässt sich das Integral zu 
     \begin{align*}
         \beta_k &= \frac{1}{2\pi y}\int_{-2\sqrt{y}}^{2\sqrt{y}}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell}z^\ell\sqrt{4y-z^2}\diff z \\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell}\int_{-2\sqrt{y}}^{2\sqrt{y}}z^\ell\sqrt{4y-z^2}\diff z
@@ -233,7 +233,7 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
     \begin{align*}
         \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} \int_{-1}^{1}2\sqrt{y}\left(2\sqrt{y}u\right)^\ell\sqrt{4y-4yu^2}\diff u \\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{k-1}\binom{k-1}{\ell}(1+y)^{k-1-\ell} (2\sqrt{y})^\ell 4y \int_{-1}^{1}u^\ell\sqrt{1-u^2}\diff u\,.  
-        \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen, ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir lassen also die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt, die ungleich $0$ sind. Wir haben also}
+        \intertext{Hier ist unser Integrand ungerade, sofern $\ell$ ungerade ist. Da die Integralgrenzen symmetrisch um den Nullpunkt liegen, ist das Integral für alle ungeraden $\ell$ gleich $0$. Dadurch ist jeder zweite Summand $0$. Wir lassen also die Summe bis zur Hälfte von $k-1$ laufen und summieren über $2\ell$ statt über $\ell$. Für den Fall, dass $k-1$ ungerade ist, runden wir ab, weil es dann nur $\frac{k-2}{2}$ Summanden gibt, die ungleich $0$ sind. Wir haben also}
         \beta_k &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (2\sqrt{y})^{2\ell} 4y \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\\
         &= \frac{1}{2\pi y}\sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor}\binom{k-1}{2\ell}(1+y)^{k-1-2\ell} (4y)^{\ell+1} \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\,.
     \end{align*}
@@ -248,7 +248,7 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
          2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff u &=  \int_{0}^{1}w^{\ell}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
         &=  \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w
     \end{align*}
-    erhalten wir ein Integral, dass wir mittels Eulerschen Betafunktion lösen können \cite[19]{Beta}.
+    erhalten wir ein Integral, das wir mittels Eulerscher Betafunktion lösen können \cite[19]{Beta}.
     Die Eulersche Betafunktion ist durch 
     \[
         \int_{0}^{1}t^{p-1}(1-t)^{q-1}dt = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} 
@@ -271,7 +271,7 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
     \begin{align*}
         \beta_k = \sum_{\ell=0}^{\left\lfloor\frac{k-1}{2}\right\rfloor} \frac{(k-1)!}{\ell!(\ell+1)!(k-1-2\ell)!}y^\ell(1+y)^{k-1-2\ell}\,.
     \end{align*}
-    Wenn wir den Binomischen Lehrsatz mit 
+    Wenn wir den binomischen Lehrsatz mit 
     \begin{align*}
         (1+y)^{k-1-2\ell} &= \sum_{s=0}^{k-1-2\ell}\binom{k-1-2\ell}{s}y^s\\
         &= \sum_{s=0}^{k-1-2\ell}\frac{(k-1-2\ell)!}{s!(k-1-2\ell-s)!}y^s
@@ -299,7 +299,7 @@ Die explizite Darstellung der Momente zeigen wir im Folgenden Lemma.
     gilt.
     Für den nächsten Schritt müssen wir die Laufvariablen von $0$ starten lassen. 
     Momentan haben wir erst das $\ell$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. 
-    Für ein festes aber beliebiges $k$ liegen unsere Laufvariablen in
+    Für ein festes, aber beliebiges $k$ liegen unsere Laufvariablen in
     \begin{align*}
         A = \left\{(\ell,r)\in\NN^2 \,\middle|\, 0\leq \ell \leq \left\lfloor\frac{k-1}{2}\right\rfloor,\, \ell\leq r \leq k-1-\ell\right\}\,.
     \end{align*}
@@ -378,11 +378,13 @@ Wir weisen den Kanten also eine Richtung zu.
 
 Die Graphen haben die folgenden Eigenschaften.
 
-Sei $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten mit der Gestalt $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ beziehungsweise $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$, wobei die \emph{\textbf{i}}-Knoten Werte in $\{0,\dots,p\}$ und \emph{\textbf{j}}-Knoten Werte in $\{0,\dots,n\}$ annehmen können.
+Die Knotenmenge der Graphen ist in \emph{\textbf{i}}-Knoten und \emph{\textbf{i}}-Knoten unterteilt.
+Sei $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten mit der Gestalt $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ beziehungsweise $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$.
+Dabei nehmen \emph{\textbf{i}}-Knoten Werte in $\{0,\dots,p\}$ und \emph{\textbf{j}}-Knoten Werte in $\{0,\dots,n\}$ an.
 Wenn unterschiedliche \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten den gleichen Wert annehmen, bezeichnen wir sie als \emph{koinzident}.
 Wir betrachten koinzidente Knoten als \emph{einen} Knoten mit mehreren Namen.
 
-Nehmen zum Beispiel für die Knoten $i_2$ und $i_5$ den gleichen Wert $x$ an, haben wir einen Knoten, welchen wir sowohl $i_2$ als auch $i_5$ nennen, was für die Eigenschaften der Kanten wichtig wird.
+Nehmen wir zum Beispiel für die Knoten $i_2$ und $i_5$ den gleichen Wert $x$ an, haben wir einen Knoten, welchen wir sowohl $i_2$ als auch $i_5$ nennen, was für die Eigenschaften der Kanten wichtig wird.
 
 Zusätzlich gilt, wenn beispielsweise alle \emph{\textbf{i}}-Knoten den Wert $p$ und alle \emph{\textbf{j}}-Knoten den Wert $n$ annehmen, dass es entsprechend $2k$ Kanten zwischen den zwei Knoten gibt, da wir je $k$ koinzidente \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten haben.
 
@@ -398,16 +400,10 @@ Für den Beweis teilen wir die Graphen in drei Kategorien ein.
 
 \begin{description}\label{descr:GraphenKategorien}
     \item[$\Delta_1(k,r,s)$:] Diese Kategorie fasst alle Graphen zusammen, die zu jeder Kante von \emph{\textbf{i}} nach \emph{\textbf{j}} genau eine Kante vom gleichen \emph{\textbf{j}}-Knoten zum gleichen \emph{\textbf{i}}-Knoten haben. Hier gilt $r+s=k$.
-    \item[$\Delta_2(k,r,s)$:] Diese Kategorie beinhaltet alle Graphen, die mindestens einmal zwischen zwei Knoten genau eine Kante besitzen, also Graphen, die mindestens eine \emph{Einzelkante} besitzen.
+    \item[$\Delta_2(k,r,s)$:] Diese Kategorie beinhaltet alle Graphen, die zwischen zwei Knoten mindestens einmal genau eine Kante besitzen, also Graphen, die mindestens eine \emph{Einzelkante} besitzen.
     \item[$\Delta_3(k,r,s)$:] Die letzte Kategorie $\Delta_3(k,r,s)$ sind alle Graphen die weder in $\Delta_1(k,r)$ noch in $\Delta_2(k,r,s)$ gehören.
 \end{description}
 
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=12cm]{Graphen_Beispiel_Platzhalter}
-%    \caption*{Beispiel für Graphen(Platzhalter)}\label{fig:GraphenBsp}
-%\end{figure}
 
 
 \begin{figure}[H]
@@ -485,12 +481,6 @@ Wir bezeichnen zwei Graphen als isomorph, wenn wir für die \emph{\textbf{i}}/\e
 \begin{example}
     
 
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[width=15cm]{Platzhalter_zwei.jpg}
-%    \caption*{Platzhalter}\label{fig:GraphenBsp}
-%\end{figure}
 
 \begin{figure}[H]
         \centering
@@ -576,12 +566,12 @@ Wir bezeichnen zwei Graphen als isomorph, wenn wir für die \emph{\textbf{i}}/\e
 \end{figure}
 
 Graph a) ist isomorph zu b), da wir die Werte von zwei Knoten ändern können und einen identischen Graphen erhalten.
-Graph c) ist aber nicht isomorph zu a) da wir zusätzlich noch die Indizes der Knotennamen tauschen müssten was aber nicht geht, da der Knoten fest ist.
+Graph c) ist aber nicht isomorph zu a), da wir zusätzlich noch die Indizes der Knotennamen tauschen müssten, was aber nicht geht, da der Knoten fest ist.
 \end{example}
 Für die Graphen haben wir noch ein paar Lemmata.
 
 \begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{lem:AnzahlIsomklasse}
-    Die Anzahl der Graphen in jeder Isomorphismenklasse von $\Delta(k,r,s)$ Graphen, mit festen $k$, $r$ und $s$, ist
+    Die Anzahl der Graphen in jeder Isomorphieklasse von $\Delta(k,r,s)$ Graphen, mit festen $k$, $r$ und $s$, ist
     \begin{align*}
         \alpha = p(p-1)\cdots(p-r)n(n-1)\cdots(n-s+1)=p^{r+1}n^s\lr{1+\mathcal{O}\lr{\frac1n}}\,.
     \end{align*}
@@ -606,7 +596,7 @@ Für die Graphen haben wir noch ein paar Lemmata.
 
 
 
-Aus der Stochastik benötigen wir einmal das Starke Gesetz der großen Zahlen und eine Metrik für Wahrscheinlichkeitsverteilungen.
+Aus der Stochastik benötigen wir einmal das starke Gesetz der großen Zahlen und eine Metrik für Wahrscheinlichkeitsverteilungen.
 
 \begin{theorem}[Starkes Gesetz der großen Zahlen {\cite[139]{Stochastik}}]\label{theo:StarkeGroßeZahlen}
     Seien $\{\mathcal{Z}_i\}_{i\in\NN}$ unabhängige und identisch verteilte Zufallsvariablen, die einen Moment erster Ordnung besitzen, dann gilt 
@@ -662,21 +652,21 @@ Für den Beweis benutzen wir die Eigenschaft aus dem folgenden Lemma.
 
 \section{Konvergenzsatz und Beweis}
 
-Kommen wir nun zum Satz über die Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko-Pastur-Verteilung.
+Kommen wir nun zum Satz über die Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko--Pastur--Verteilung.
 
 \begin{theorem}\label{theo:MPVert}
     Seien $\{\bm{X}_\eta\}$ eine Folge an $p_\eta\times n_\eta$ Zufallsmatrizen wie in Definition \ref{def:Zufallsmatrix} beschrieben und ihre Einträge $\{x_{ij}\}$ mit $i=1,\dots,p_\eta$ und $j=1,\dots,n_\eta$ unabhängig und identisch verteilte komplexe Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. 
     Sei weiter $p_\eta$ und $n_\eta$ monoton steigend mit $\eta$ und $\displaystyle\lim_{\eta\to\infty}\frac{p_\eta}{n_\eta}=y \in(0,\infty)$.
     
-    Dann konvergiert die empirische Spektralverteilung der Stichproben-Kovarianzmatrix $F^{\bm{S}_\eta}$ mit $\eta\to\infty$ fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung $F_y$ wie sie in Kapitel \ref{kap:MarchenkoPastur} beschrieben wurde.
+    Dann konvergiert die empirische Spektralverteilung der Stichproben-Kovarianzmatrix $F^{\bm{S}_\eta}$ mit $\eta\to\infty$ fast sicher gegen die Mar\v{c}enko--Pastur--Verteilung $F_y$, wie sie in Kapitel \ref{kap:MarchenkoPastur} beschrieben wurde.
 \end{theorem}
 
 Im folgenden Beweis nehmen wir mit Lemma \ref{lem:betaUmformung} ohne Beschränkung der Allgemeinheit an, dass die Varianz $\sigma^2=1$ ist, wir also den Standardfall betrachten.
 
 Wir zeigen die schwache Konvergenz der empirischen Spektralverteilung gegen die Mar\-\v{c}enko-Pastur-Verteilung mithilfe der Momentmethode.
 
-Nach der Momentmethode konvergiert eine Folge an Wahrscheinlichkeitsverteilung $\{F_n\}$, wenn ihre Momente $\beta_{n,k}$ jeder Ordnung $k\geq0$ endlich sind und gegen einen Grenzwert $\beta_k$ konvergieren, schwach gegen eine Wahrscheinlichkeitsverteilung die eindeutig von ihren Momenten $\beta_k$ bestimmt sein muss \cite[507]{BaiSilverstein}.
-Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, dass die Momente der Mar\v{c}enko-Pastur-Verteilung die Carleman-Bedingung \ref{lem:Carlman} und damit die Eindeutigkeit erfüllen.
+Nach der Momentmethode konvergiert eine Folge an Wahrscheinlichkeitsverteilungen $\{F_n\}$, wenn ihre Momente $\beta_{n,k}$ jeder Ordnung $k\geq0$ endlich sind und gegen einen Grenzwert $\beta_k$ konvergieren, schwach gegen eine Wahrscheinlichkeitsverteilung, die eindeutig von ihren Momenten $\beta_k$ bestimmt sein muss \cite[507]{BaiSilverstein}.
+Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, dass die Momente der Mar\v{c}enko--Pastur--Verteilung die Carleman-Bedingung \ref{lem:Carlman} und damit die Eindeutigkeit erfüllen.
 
 \begin{proof}
     Die Momentmethode verlangt, dass die Momente jeder Ordnung der Verteilung endlich sind.
@@ -755,8 +745,7 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
                     %&= \frac{1}{pn^k}\sum_{i=1}^p\sum_{j=1}^n (x_{ij}\overline{x}_{ij})^k
     \end{align*}
     für die Momente der empirischen Spektralverteilung. 
-    %Da die Dimensionen $p$ und $n$ von $\bm{X}$ gegen unendlich laufen, läuft auch die Anzahl der Summanden der Spur gegen unendlich.
-
+    
     Hier verwenden wir die oben eingeführte Klasse von Graphen.
     Wir können die Spur nämlich mit $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ und $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$, wobei die Elemente von $\emph{\textbf{i}}$ in $\{1,\dots,p_\eta\}$ und $\emph{\textbf{j}}$ in $\{1,\dots,n_\eta\}$ liegen, durch 
     \begin{align*}
@@ -770,9 +759,9 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
         \frac{1}{p_\eta n_\eta^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k} & \eqqcolon \frac{1}{p_\eta n_\eta^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \bm{X}_{\Delta(k,r,s)}\,.
     \end{align*}
 
-    Nach der Momentmethode konvergiert die empirische Spektralverteilung schwach gegen die Mar\v{c}enko-Pastur-Verteilung, wenn die Momente der empirische Spektralverteilung gegen die Momente der Mar\v{c}enko-Pastur-Verteilung konvergieren.
-    Das zeigen wir, indem wir den Erwartungswert und die Varianz der Momente der empirische Spektralverteilung bestimmen.
-    Sie konvergieren, wenn der Erwartungswert $\EE(\beta_k(\bm{S}_\eta))$ gegen die Momente der Mar\v{c}enko-Pastur-Verteilung läuft und die Varianz gegen null geht.
+    Nach der Momentmethode konvergiert die empirische Spektralverteilung schwach gegen die Mar\v{c}enko--Pastur--Verteilung, wenn die Momente der empirischen Spektralverteilung gegen die Momente der Mar\v{c}enko--Pastur--Verteilung konvergieren.
+    Das zeigen wir, indem wir den Erwartungswert und die Varianz der Momente der empirischen Spektralverteilung bestimmen.
+    Sie konvergieren, wenn der Erwartungswert $\EE(\beta_k(\bm{S}_\eta))$ gegen die Momente der Mar\v{c}enko--Pastur--Verteilung läuft und die Varianz gegen null geht.
     
     Fangen wir an mit dem Erwartungswert.
     Es gilt
@@ -827,7 +816,7 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
         \EE(\beta_k(\bm{S}_\eta)) &= \sum_{r=0}^{k-1}\frac{1}{r+1}\binom{k}{r}\binom{k-1}{r}y^r+\mathcal{O}\lr{\frac{1}{p_\eta}} \nonumber\\
                         &=\beta_k(y,\sigma^2)+o(1)\,. \label{eq:Erw}
     \end{align}
-    Der Erwartungswert der Momente konvergiert folglich gegen die Momente der Mar\v{c}enko-Pastur-Verteilung plus einen vernachlässigbar kleinen Term, da $p_\eta$ gegen unendlich läuft.
+    Der Erwartungswert der Momente konvergiert folglich gegen die Momente der Mar\v{c}enko--Pastur--Verteilung plus einen vernachlässigbar kleinen Term, da $p_\eta$ gegen unendlich läuft.
 
     Jetzt fehlt noch die Varianz.
     Für diese gilt
@@ -861,7 +850,7 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
     abschätzen.
     Da $p_\eta$ gegen unendlich läuft, wird die Varianz vernachlässigbar klein.
 
-    Mit dem Erwartungswert \eqref{eq:Erw} und der Varianz \eqref{eq:Var} können wir darauf schließen, dass die empirische Spektralverteilung fast sicher gegen die Mar\v{c}enko-Pastur-Verteilung konvergiert.
+    Mit dem Erwartungswert \eqref{eq:Erw} und der Varianz \eqref{eq:Var} können wir darauf schließen, dass die empirische Spektralverteilung fast sicher gegen die Mar\v{c}enko--Pastur--Verteilung konvergiert.
 \end{proof}
 
 

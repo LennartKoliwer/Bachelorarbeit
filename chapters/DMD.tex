@@ -5,7 +5,7 @@
 
 
 
-In diesem Kapitel wollen wir genauer auf den DMD Algorithmus beziehungsweise. die \glqq exact DMD\grqq\ Variante eingehen. 
+In diesem Kapitel wollen wir genauer auf den DMD Algorithmus beziehungsweise die \glqq exact DMD\grqq\ Variante eingehen. 
 
 Aus der Einleitung wissen wir, dass die Singulärwertzerlegung und die Frobeniusnorm wichtige Werkzeuge des Algorithmus sind, weshalb wir sie hier konkret definieren.
 
@@ -17,7 +17,7 @@ Aus der Einleitung wissen wir, dass die Singulärwertzerlegung und die Frobenius
 		||X||_F \coloneqq \sqrt{\sum_{i=1}^{p}\sum_{j=1}^{n}|x_{ij}|^2}\,.
 	\]
 \end{definition}
-Eine weitere Möglichkeit die Frobeniusnorm zu definieren, ist über die Spur einer Matrix.
+	Eine weitere Möglichkeit, die Frobeniusnorm zu definieren, ist über die Spur einer Matrix.
 \begin{lemma}\label{lem:FrobTrace}
 	Sei $X\in\CC^{p\times n}$ eine Matrix. Dann gilt
 	\[
@@ -122,11 +122,11 @@ Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 	\end{align*}
 	deutlich, dass $X^\top X$ ähnlich zu $\Sigma^\top \Sigma$ ist. 
 	Also haben $X^\top X$ und $\Sigma^\top \Sigma$ auch die gleichen Eigenwerte.
-	Damit sind auch die Wurzeln der Eigenwerte von $X^\top X$ gleich der Eigenwerte beziehungsweise Singulärwerte von $\Sigma$.
+	Damit sind auch die Wurzeln der Eigenwerte von $X^\top X$ gleich den Eigenwerten beziehungsweise Singulärwerten von $\Sigma$.
 \end{proof}
 
 \begin{lemma} \label{lem:InvarinatBzglTansp}
-	Die aus der Singulärwertzerlegung in \ref{theo:svd} entstehenden Singulärwerte sind invariant bezüglich Transposition vom $X$.
+	Die aus der Singulärwertzerlegung in \ref{theo:svd} entstehenden Singulärwerte sind invariant bezüglich der Transposition von $X$.
 \end{lemma}
 
 \begin{proof}
@@ -169,7 +169,7 @@ Für den rangreduzierten Fall brauchen wir das folgende Lemma.
 %-----------------------Beweis--SWZ--------------------------------
 
 
-Für den Beweis der Singulärwertzerlegung, gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} ohne Beschränkung der Allgemeinheit an, dass $n<p$ gilt.
+Für den Beweis der Singulärwertzerlegung, gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} ohne Beschränkung der Allgemeinheit davon aus, dass $n<p$ gilt.
 
 \begin{proof}[Beweis von Satz \ref{theo:svd}]
 	Zunächst betrachten wir den Fall des vollen Ranges von $X$, also \\ $\rang X = r = n$.
@@ -232,7 +232,7 @@ Für den Beweis der Singulärwertzerlegung, gehen wir mit Lemma \ref{lem:Invarin
 	\end{align*}
 	womit wir den Fall des vollen Ranges bewiesen hätten.
 	
-	Seien $\lambda_i$ wie oben definiert wieder die Eigenwerte von $X^\top X$ und sei $X_r\in\RR^{p\times n}$ eine Matrix mit $\rang X_r=r<n$. Nach Lemma \ref{lem:obereDreiecks} gibt es zwei orthognonale Matrizen \(\tilde{U}\in\RR^{p\times p}\) und \(\tilde{V}\in\RR^{n\times n}\), sowie eine obere Dreiecksmatrix $\hat{R}\in\RR^{r\times r}$ so, dass
+	Seien $\lambda_i$ wie oben definiert wieder die Eigenwerte von $X^\top X$ und sei $X_r\in\RR^{p\times n}$ eine Matrix mit $\rang X_r=r<n$. Nach Lemma \ref{lem:obereDreiecks} gibt es zwei orthogonale Matrizen \(\tilde{U}\in\RR^{p\times p}\) und \(\tilde{V}\in\RR^{n\times n}\), sowie eine obere Dreiecksmatrix $\hat{R}\in\RR^{r\times r}$ so, dass
 	\begin{align*}
 		\tilde{U}^\top X_r \tilde{V}=R \text{ mit } R = \begin{pmatrix}
 			                                                \hat{R} & 0 \\
@@ -300,7 +300,7 @@ In der Einleitung haben wir grob den DMD Algorithmus erklärt.
 Wir gehen hier jetzt aber auf die \glqq Exact DMD\grqq\ Variante ein, da sie im Gegensatz zur ursprünglichen Variante keine einheitlichen Zeitabstände zwischen den Messungen erfordert.
 Dieses Kapitel beruht auf dem Buch \glqq Data-Driven Science and Engineering\grqq\ \cite{SlaySlaySlay}.
 
-Exact DMD erlaubt es uns Daten über mehrere Messungen, die zeitlich unterschiedlich auseinanderliegen, zusammenzutragen. 
+Exact DMD erlaubt es uns, Daten über mehrere Messungen, die zeitlich unterschiedlich auseinanderliegen, zusammenzutragen. 
 Zu jeder Messung gehört dann ein Datenpaar $\{x(t_i),x(t_i')\}$ mit $i=1,\dots,n$ und $t'_i=t_i +\Delta t$.
 Dabei ist $x$ die Messung zum Zeitpunkt $t_i$ beziehungsweise $t'_i$.
 Fügen wir die Datenpaare in zwei Matrizen \(X,X'\in\mathbb{R}^{p\times n}\) ein, erhalten wir die Zustände des Systems zu \(n \) diskreten Zeitpunkten.
@@ -364,11 +364,11 @@ Wir bestimmen $A_r$ durch
 	\end{split}
 \end{align}
 
-Sei $W\in\RR^{r\times r}$ die Matrix aus Eigenvektoren von $A_r$ und $\Lambda\in\RR^{r\times r}$ eine Diagonalmatrix, dessen Einträge die Eigenwerte $\lambda_i$ der zugehörigen Eigenvektoren von $A_r$ sind, dann ist die Spektralzerlegung von $A_r$ genau
+Sei $W\in\RR^{r\times r}$ die Matrix aus Eigenvektoren von $A_r$ und $\Lambda\in\RR^{r\times r}$ eine Diagonalmatrix, deren Einträge die Eigenwerte $\lambda_i$ der zugehörigen Eigenvektoren von $A_r$ sind, dann ist die Spektralzerlegung von $A_r$ genau
 \begin{align}\label{eq:A_rW}
 	A_rW=W\Lambda \,.
 \end{align}
-Sei $\Phi\in\RR^{p\times p}$ die Matrix, dessen Spalten die Eigenvektoren von $A$ sind. Dann können wir $\Phi$ durch die reduzierten Eigenvektoren $W$ mit 
+Sei $\Phi\in\RR^{p\times p}$ die Matrix, deren Spalten die Eigenvektoren von $A$ sind. Dann können wir $\Phi$ durch die reduzierten Eigenvektoren $W$ mit 
 \begin{align*}
 	\Phi = X'V_r\Sigma_r^{-1} W
 \end{align*}

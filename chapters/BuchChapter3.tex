@@ -25,13 +25,13 @@ Die Mar\v{c}enko--Pastur--Verteilung (kurz M-P-Verteilung) beschreibt die asympt
 Die genauen Anforderungen an $\bm{X}_\eta$ stellen wir im kommenden Unterkapitel \ref{chap:Grundlagen} vor.
 Eine Wahrscheinlichkeitsverteilung, die angibt, wie die Eigenwerte einer Matrix verteilt sind, ist die empirische Spektralverteilung.
 
-Ziel dieses Kapitels ist es, die schwache Konvergenz der empirischen Spektralverteilung gegen die Marčenko-Pastur-Verteilung zu zeigen. 
-Die Herleitung orientiert sich dabei an dem Buch \glqq Spectral Analysis of Large Dimensional Random Matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
+Ziel dieses Kapitels ist es, die schwache Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko--Pastur--Verteilung zu zeigen. 
+Dieses Kapitel orientiert sich dabei an dem Buch \glqq Spectral Analysis of Large Dimensional Random Matrices\grqq\ von Zhidong Bai und Jack W. Silverstein \cite{BaiSilverstein}.
 
 
 \section{Grundlagen}\label{chap:Grundlagen}
 
-Wir beginnen damit, die empirische Spektralverteilung einmal konkret zu definieren.
+Wir beginnen damit, die empirische Spektralverteilung konkret zu definieren.
 \begin{definition}\cite[4, 10]{BaiSilverstein}\label{def:ESD}
     Sei $B$ eine ${p\times p}$ hermitische Matrix mit Eigenwerten $\lambda_i$ und $i=1,\dots,p$.
     Dann ist auf dem Ereignisraum $(\RR,\mathcal{B}(\RR))$ mit $\mathcal{B}(\RR)$ als borelsche $\sigma$-Algebra durch
@@ -63,7 +63,7 @@ Für die Folge an Zufallsmatrizen $\{\bm{X}_\eta\}$ laufen also $p$ und $n$ so g
 nicht divergiert.
 
 \begin{definition}
-    Wir bezeichnen mit $\bar{x}=\frac1n\sum_{m=1}^n x_m$, die durch
+    Wir bezeichnen mit $\bar{x}=\frac1n\sum_{m=1}^n x_m$ die durch
     \begin{align}
         S = \frac{1}{n}\sum_{m=1}^{n}(x_m-\bar{x})(x_m-\bar{x})^H\in\RR^{p\times p} \label{eq:StichKovar}
     \end{align}
@@ -73,13 +73,13 @@ nicht divergiert.
 Durch folgenden Satz können wir die Stichproben-Kovarianzmatrix noch weiter vereinfachen.
 
 \begin{theorem}[{\cite[503]{BaiSilverstein}}]\label{theo:ESDrang1}
-    Seien $A,B\in\CC^{p\times n}$. Dann gilt 
+    Seien $A,B\in\CC^{p\times n}$, dann gilt 
     \begin{align*}
         \dabs{F^{AA^H}-F^{BB^H}}_\infty\leq\frac1p\rang(A-B)\,.
     \end{align*}
 \end{theorem}
 
-Formen wir $S$ zu
+Wir formen $S$ zu
 \begin{align*}
     S  &=  \frac{1}{n}\sum_{m=1}^{n}(x_m-\bar{x})(x_m-\bar{x})^H \\
             &=  \frac{1}{n}\lr{\sum_{m=1}^{n}x_mx_m^H-\sum_{m=1}^{n}x_m\bar{x}^H-\sum_{m=1}^{n}x_m^H\bar{x}+\sum_{m=1}^{n}\bar{x}\,\bar{x}^H} \\
@@ -90,10 +90,10 @@ um und definieren $\bm{S}$ durch
 \begin{align}
     \begin{split}
         \bm{S}&\coloneqq\frac{1}{n}\sum_{m=1}^{n}x_mx_m^H\\ 
-    &= \frac1n \bm{X}\bm{X}^H\,,
+    &= \frac1n \bm{X}\bm{X}^H\,.
     \end{split}\label{eq:StichKovarEinfach}
 \end{align}
-dann können wir mit Satz \ref{theo:ESDrang1} durch 
+Dann können wir mit Satz \ref{theo:ESDrang1} durch 
 \begin{align*}
     \dabs{F^{S}-F^{\bm{S}}}_\infty &\leq \frac1p\rang\lr{\frac{1}{\sqrt{n}}\bm{X}-\bar{x}\
     \bar{x}^H-\frac{1}{\sqrt{n}}\bm{X}} \\
@@ -103,7 +103,7 @@ dann können wir mit Satz \ref{theo:ESDrang1} durch
 zeigen, dass $\bar{x}\,\bar{x}^H$ keinen Einfluss auf die Konvergenz von $F^S$ hat.
 
 \begin{remark}
-Wir verwenden daher die vereinfachte Form $\bm{S}$ für die Stichproben-Kovarianzmatrix.
+Die Folgerung aus Satz \ref{theo:ESDrang1} erlaubt es uns die vereinfachte Form $\bm{S}$ für die Stichproben-Kovarianzmatrix zu verwenden.
 Für den Konvergenzfall betrachten wir entsprechend 
 \[
     \bm{S}_\eta = \frac1n \bm{X}_\eta\bm{X}_\eta^H\,.
@@ -152,7 +152,7 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben,
     \end{align*}
 \end{lemma}
 \begin{proof}
-    Nach \ref{eq:MarchenkoPasturDichte} und \eqref{eq:momente} haben wir 
+    Nach \eqref{eq:MarchenkoPasturDichte} und \eqref{eq:momente} haben wir 
     \begin{align*}
         \beta_k\left(y,\sigma^2\right)&=\int_{a}^{b}x^kp_y(x)\diff x\\
         &=\int_{\sigma^2\left(1-\sqrt{y}\right)^2}^{\sigma^2\left(1+\sqrt{y}\right)^2}x^k\frac{1}{2\pi x y \sigma^2}\sqrt{\left(\sigma^2\left(1+\sqrt{y}\right)^2-x\right)\left(x-\sigma^2\left(1-\sqrt{y}\right)^2\right)}\diff x\,. 
@@ -165,7 +165,7 @@ Wir können die Momente der M-P-Verteilung durch ihren Standardfall beschreiben,
     Die Momente lassen sich also durch $\sigma^{2k}$ skaliert über die Standard-M-P-Verteilung beschreiben.
 \end{proof}
 
-Damit können wir dann zeigen, dass die Mar\v{c}enko--Pastur--Verteilung eindeutig durch die Momente ${\beta_k}$ bestimmt wird und wie die Momente explizit bestimmt aussehen.
+Damit können wir zeigen, dass die Mar\v{c}enko--Pastur--Verteilung eindeutig durch die Momente ${\beta_k}$ bestimmt wird und wie die Momente explizit aussehen.
 
 
 %----------------------------------------------------------------------------------
@@ -173,7 +173,8 @@ Damit können wir dann zeigen, dass die Mar\v{c}enko--Pastur--Verteilung eindeut
 
 
 \begin{lemma}[Carleman {\cite[509]{BaiSilverstein}}]  \label{lem:Carlman}
-    Sei $\{\beta_k=\beta_k(F)\}_{k\in\NN_0}$ die Folge von Momenten der Verteilungsfunktion $F$. Ist die \emph{Carleman-Bedingung}
+    Sei $F$ eine Verteilungsfunktion und $\{\beta_k=\beta_k(F)\}_{k\in\NN_0}$ die Folge ihrer Momente. 
+    Ist die \emph{Carleman--Bedingung}
     \begin{align*}
         \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}}=\infty
     \end{align*}
@@ -181,7 +182,7 @@ Damit können wir dann zeigen, dass die Mar\v{c}enko--Pastur--Verteilung eindeut
 \end{lemma}
 
 \begin{lemma}\label{lem:CarlemanErfüllt}
-    Die Momente $\beta_k$ der Mar\v{c}enko--Pastur--Verteilung erfüllen die Carleman-Bedingung.
+    Die Momente $\beta_k$ der Mar\v{c}enko--Pastur--Verteilung erfüllen die Carleman--Bedingung.
 \end{lemma}
 
 \begin{proof}
@@ -199,7 +200,7 @@ Damit können wir dann zeigen, dass die Mar\v{c}enko--Pastur--Verteilung eindeut
     \begin{align*}
         \sum_{k=1}^{\infty} \beta_{2k}^{-\frac{1}{2k}} \geq \sum_{k=1}^{\infty} \left(1+\sqrt{y}\right)^{-2} = \infty
     \end{align*}
-    die Carleman-Bedingung erfüllt.
+    die Carleman--Bedingung erfüllt.
 \end{proof}
 
 Damit haben wir gezeigt, dass die Mar\v{c}enko--Pastur--Verteilung durch die Momente $\beta_k$ eindeutig bestimmt ist.
@@ -243,17 +244,17 @@ Die explizite Darstellung der Momente zeigen wir im folgenden Lemma.
     \begin{align*}
         \int_{-1}^{1}u^{2\ell}\sqrt{1-u^2}\diff u =  2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff u\,.        
     \end{align*}
-    Wenn wir jetzt $u$ mit $\sqrt{w}$ substituieren,
+    Wenn wir jetzt $u$ mit $\sqrt{w}$ substituieren, erhalten wir ein Integral
     \begin{align*}
          2\int_{0}^{1}u^{2\ell}\sqrt{1-u^2}\diff u &=  \int_{0}^{1}w^{\ell}\sqrt{1-w}\frac{1}{\sqrt{w}}\diff w \\
-        &=  \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w
+        &=  \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w\,,
     \end{align*}
-    erhalten wir ein Integral, das wir mittels Eulerscher Betafunktion lösen können \cite[19]{Beta}.
+    das wir mittels Eulerscher Betafunktion lösen können.
     Die Eulersche Betafunktion ist durch 
     \[
         \int_{0}^{1}t^{p-1}(1-t)^{q-1}dt = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} 
     \]
-    gegeben. Wir können also mit $p=\ell+\frac12$ und $q=1+\frac12$ das Integral durch die Gammafunktionen 
+    gegeben \cite[19]{Beta}. Wir können also mit $p=\ell+\frac12$ und $q=1+\frac12$ das Integral durch die Gammafunktionen 
     \begin{align}
         \int_{0}^{1}w^{\ell-\frac12}\sqrt{1-w}\diff w &= \frac{\Gamma(\ell+\frac12)\Gamma(1+\frac12)}{\Gamma(\ell+2)} \nonumber \\
         &= \frac{1}{(\ell+1)!}\lr{\frac{(2\ell)!\sqrt{\pi}}{\ell!4^\ell}\frac{2!\sqrt{\pi}}{4}} \nonumber \\
@@ -298,7 +299,7 @@ Die explizite Darstellung der Momente zeigen wir im folgenden Lemma.
     \end{align*}
     gilt.
     Für den nächsten Schritt müssen wir die Laufvariablen von $0$ starten lassen. 
-    Momentan haben wir erst das $\ell$ und ermitteln damit, inwieweit das $r$ eingeschränkt ist. 
+    Momentan haben wir erst ein $\ell$ und ermitteln damit, inwieweit $r$ eingeschränkt ist. 
     Für ein festes, aber beliebiges $k$ liegen unsere Laufvariablen in
     \begin{align*}
         A = \left\{(\ell,r)\in\NN^2 \,\middle|\, 0\leq \ell \leq \left\lfloor\frac{k-1}{2}\right\rfloor,\, \ell\leq r \leq k-1-\ell\right\}\,.
@@ -368,40 +369,57 @@ Die explizite Darstellung der Momente zeigen wir im folgenden Lemma.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Hilfsmittel für den Konvergenzbeweis}
 
 
-Im Beweis über die Konvergenz der empirischen Spektralverteilung benutzen wir Elemente aus der Graphentheorie und der Stochastik, die wir vorher noch einführen.
+Im Beweis über die Konvergenz der empirischen Spektralverteilung benutzen wir Elemente aus der Graphentheorie und der Stochastik, die wir in diesem Kapitel einführen.
 
-Dafür definieren wir eine Klasse von \emph{gerichteten Graphen}. 
-Wir weisen den Kanten also eine Richtung zu.
+Wir definieren eine Klasse von \emph{gerichteten Graphen}, also Graphen, deren Kanten eine Richtung zugewiesen haben.
 
-Die Graphen haben die folgenden Eigenschaften.
-
-Die Knotenmenge der Graphen ist in \emph{\textbf{i}}-Knoten und \emph{\textbf{i}}-Knoten unterteilt.
+Gegeben ein Graph, bei dem die Knotenmenge in die Mengen \emph{\textbf{i}}-Knoten und \emph{\textbf{j}}-Knoten unterteilt ist.
+%, wobei die Kanten immer Knoten aus unterschiedlichen Knotenmengen verbinden.
 Sei $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten mit der Gestalt $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ beziehungsweise $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$.
+Den Knoten sind Werte zugewiesen.
 Dabei nehmen \emph{\textbf{i}}-Knoten Werte in $\{0,\dots,p\}$ und \emph{\textbf{j}}-Knoten Werte in $\{0,\dots,n\}$ an.
 Wenn unterschiedliche \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten den gleichen Wert annehmen, bezeichnen wir sie als \emph{koinzident}.
-Wir betrachten koinzidente Knoten als \emph{einen} Knoten mit mehreren Namen.
 
-Nehmen wir zum Beispiel für die Knoten $i_2$ und $i_5$ den gleichen Wert $x$ an, haben wir einen Knoten, welchen wir sowohl $i_2$ als auch $i_5$ nennen, was für die Eigenschaften der Kanten wichtig wird.
+Nun erstellen wir einen neuen Graphen, in dem koinzidente Knoten als \emph{einen} Knoten mit mehreren Namen betrachtet werden.
 
-Zusätzlich gilt, wenn beispielsweise alle \emph{\textbf{i}}-Knoten den Wert $p$ und alle \emph{\textbf{j}}-Knoten den Wert $n$ annehmen, dass es entsprechend $2k$ Kanten zwischen den zwei Knoten gibt, da wir je $k$ koinzidente \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten haben.
+\begin{example}
+    Falls die Knoten $i_2$ und $i_5$ den gleichen Wert $x$ annehmen, erhalten wir einen Knoten, welchen wir sowohl $i_2$ als auch $i_5$ nennen.
+    Dies ist für die Definition der Kanten wichtig.
+\end{example}
 
-Alle Kanten unterliegen den folgenden Regeln.
-Die Kanten laufen von Knoten $i_m$ zu $j_m$ und von $j_m$ zu $i_{m+1}$ mit $m=1,\dots,k$ und der Konvention, dass es einen weiteren Knoten $i_{k+1}$ gibt, der den Graphen abschließt und für den $i_{k+1}=i_1$ gilt.
+Die Kanten des neuen Graphen unterliegen den folgenden Regeln.
+Sie laufen von Knoten $i_m$ zu $j_m$ und von $j_m$ zu $i_{m+1}$ mit $m=1,\dots,k$.
+Zusätzlich gibt es einen weiteren Knoten $i_{k+1}$, der den Graphen abschließt und für den $i_{k+1}=i_1$ gilt.
 
+\begin{example}
+    Wenn alle \emph{\textbf{i}}-Knoten den Wert $p$ und alle \emph{\textbf{j}}-Knoten den Wert $n$ annehmen, gibt es entsprechend $2k$ Kanten zwischen den zwei Knoten, da wir je $k$ koinzidente \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten haben.
+\end{example}
 
-Sei $\hat{r}$ die Anzahl nicht koinzidenter \emph{\textbf{i}}-Knoten, dann ist $r=\hat{r}-1$ und $s$ die Anzahl nicht koinzidenter \emph{\textbf{j}}-Knoten.
+Sei $\hat{r}$ die Anzahl nicht koinzidenter \emph{\textbf{i}}-Knoten, dann definieren wir $r\coloneqq\hat{r}-1$ und $s$ als die Anzahl nicht koinzidenter \emph{\textbf{j}}-Knoten.
 Da $k$ die Anzahl an \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten ist, ist $k$ auch die Anzahl an Kanten, die auf \emph{\textbf{i}}-Knoten zeigen.
 
-Diese Graphen bezeichnen wir dann als $\Delta(k,r,s)$.
-Für den Beweis teilen wir die Graphen in drei Kategorien ein.
+Diese Klasse an Graphen bezeichnen wir dann als $\Delta(k,r,s)$ Graphen beziehungsweise $\Delta$ Graphen.
+Für den Beweis teilen wir die $\Delta(k,r,s)$ Graphen in drei Kategorien ein.
 
 \begin{description}\label{descr:GraphenKategorien}
     \item[$\Delta_1(k,r,s)$:] Diese Kategorie fasst alle Graphen zusammen, die zu jeder Kante von \emph{\textbf{i}} nach \emph{\textbf{j}} genau eine Kante vom gleichen \emph{\textbf{j}}-Knoten zum gleichen \emph{\textbf{i}}-Knoten haben. Hier gilt $r+s=k$.
     \item[$\Delta_2(k,r,s)$:] Diese Kategorie beinhaltet alle Graphen, die zwischen zwei Knoten mindestens einmal genau eine Kante besitzen, also Graphen, die mindestens eine \emph{Einzelkante} besitzen.
-    \item[$\Delta_3(k,r,s)$:] Die letzte Kategorie $\Delta_3(k,r,s)$ sind alle Graphen die weder in $\Delta_1(k,r)$ noch in $\Delta_2(k,r,s)$ gehören.
+    \item[$\Delta_3(k,r,s)$:] Die letzte Kategorie $\Delta_3(k,r,s)$ beinhaltet alle Graphen, die weder in $\Delta_1(k,r)$ noch in $\Delta_2(k,r,s)$ liegen.
 \end{description}
 
 
@@ -475,12 +493,10 @@ Für den Beweis teilen wir die Graphen in drei Kategorien ein.
 
 
 
-Für bessere Lesbarkeit schreiben wir für die Kategorien $\Delta_{i}(k,r,s)$ nur noch $\Delta_{i}$, wobei $i\in{1,2,3}$.
-Wir bezeichnen zwei Graphen als isomorph, wenn wir für die \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten eine geeignete Zuweisung von Werten finden so, dass die Graphen identisch sind.
+Zur besseren Lesbarkeit schreiben wir für die jeweiligen Kategorien $\Delta_{i}(k,r,s)$ nur noch $\Delta_{i}$, wobei $i\in\{1,2,3\}$.
+Wir bezeichnen zwei Graphen als isomorph, wenn wir für die \emph{\textbf{i}}/\emph{\textbf{j}}-Knoten eine geeignete Zuweisung von Knotenwerten so finden, dass die Graphen identisch sind.
 
 \begin{example}
-    
-
 
 \begin{figure}[H]
         \centering
@@ -566,9 +582,10 @@ Wir bezeichnen zwei Graphen als isomorph, wenn wir für die \emph{\textbf{i}}/\e
 \end{figure}
 
 Graph a) ist isomorph zu b), da wir die Werte von zwei Knoten ändern können und einen identischen Graphen erhalten.
-Graph c) ist aber nicht isomorph zu a), da wir zusätzlich noch die Indizes der Knotennamen tauschen müssten, was aber nicht geht, da der Knoten fest ist.
+Graph c) ist aber nicht isomorph zu a), da die Graphenstruktur unterschiedlich ist.
+
 \end{example}
-Für die Graphen haben wir noch ein paar Lemmata.
+Zu den $\Delta$ Graphen benötigen wir noch ein paar Lemmata.
 
 \begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{lem:AnzahlIsomklasse}
     Die Anzahl der Graphen in jeder Isomorphieklasse von $\Delta(k,r,s)$ Graphen, mit festen $k$, $r$ und $s$, ist
@@ -578,7 +595,7 @@ Für die Graphen haben wir noch ein paar Lemmata.
 \end{lemma}
 
 \begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{lem:AnzahlNichtKoinzidenterKnotenKateg3}
-    Die Anzahl nicht koinzidenter Knoten von $\Delta_3(k,r,s)$ Graphen, also $r+s$, ist kleiner gleich $k$. 
+    Die Anzahl nicht koinzidenter Knoten von $\Delta_3(k,r,s)$ Graphen ist kleiner oder gleich $k$, also $r+s\leq k$. 
 \end{lemma}
 
 \begin{lemma}[{\cite[43]{BaiSilverstein}}]\label{AnzahlKateg1Graphen}
@@ -596,7 +613,17 @@ Für die Graphen haben wir noch ein paar Lemmata.
 
 
 
-Aus der Stochastik benötigen wir einmal das starke Gesetz der großen Zahlen und eine Metrik für Wahrscheinlichkeitsverteilungen.
+
+
+
+
+
+
+
+
+
+Zusätzlich zu den Graphen verwenden wir noch Elemente aus der Stochastik.
+Zum einen benötigen wir das starke Gesetz der großen Zahlen und zum anderen eine Metrik für Wahrscheinlichkeitsverteilungen, die Lévy--Metrik.
 
 \begin{theorem}[Starkes Gesetz der großen Zahlen {\cite[139]{Stochastik}}]\label{theo:StarkeGroßeZahlen}
     Seien $\{\mathcal{Z}_i\}_{i\in\NN}$ unabhängige und identisch verteilte Zufallsvariablen, die einen Moment erster Ordnung besitzen, dann gilt 
@@ -606,19 +633,18 @@ Aus der Stochastik benötigen wir einmal das starke Gesetz der großen Zahlen un
 \end{theorem}
 
 
-\begin{definition}[Lévy-Metrik {\cite[164]{Stochastik}}]\label{def:lévy}
+\begin{definition}[Lévy--Metrik {\cite[164]{Stochastik}}]\label{def:lévy}
     Seien $F_1$ und $F_2$ Wahrscheinlichkeitsmaße auf $(\RR,\mathscr{B}(\RR))$ mit zugehörigen Verteilungsfunktionen $\textbf{\emph{F}}_1$ und $\textbf{\emph{F}}_2$. 
-    Dann ist die \emph{Lévy-Metrik} definiert durch
+    Dann ist die \emph{Lévy--Metrik} definiert durch
     \begin{align*}
         \mathscr{L}(F_1,F_2)= \inf\{\varepsilon>0 ,\ x\in\RR \colon \textbf{\emph{F}}_1(x-\varepsilon)-\varepsilon\leq \textbf{\emph{F}}_2(x) \leq \textbf{\emph{F}}_1(x+\varepsilon)+\varepsilon\}\,.
     \end{align*} 
 \end{definition}
 
-Für den Beweis benutzen wir die Eigenschaft aus dem folgenden Lemma.
 
 \begin{lemma}[{\cite[502]{BaiSilverstein}}]\label{lem:L4}
     Seien $A,B\in\CC^{p\times n}$ und $S=AA^H$, $\bar{S}=BB^H$. 
-    Dann gilt für die Lévy-Metrik
+    Dann gilt für die Lévy--Metrik
     \begin{align*}
         \mathscr{L}^4\lr{F^S,F^{\bar{S}}}\leq \frac{2}{p^2}\tr\lr{AA^H+BB^H}\tr{\lr{(A-B)(A-B)^{H}}}\,.
     \end{align*}
@@ -655,18 +681,18 @@ Für den Beweis benutzen wir die Eigenschaft aus dem folgenden Lemma.
 Kommen wir nun zum Satz über die Konvergenz der empirischen Spektralverteilung gegen die Mar\v{c}enko--Pastur--Verteilung.
 
 \begin{theorem}\label{theo:MPVert}
-    Seien $\{\bm{X}_\eta\}$ eine Folge an $p_\eta\times n_\eta$ Zufallsmatrizen wie in Definition \ref{def:Zufallsmatrix} beschrieben und ihre Einträge $\{x_{ij}\}$ mit $i=1,\dots,p_\eta$ und $j=1,\dots,n_\eta$ unabhängig und identisch verteilte komplexe Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. 
-    Sei weiter $p_\eta$ und $n_\eta$ monoton steigend mit $\eta$ und $\displaystyle\lim_{\eta\to\infty}\frac{p_\eta}{n_\eta}=y \in(0,\infty)$.
+    Sei $\{\bm{X}_\eta\}$ eine Folge an $p_\eta\times n_\eta$ Zufallsmatrizen, wie in Definition \ref{def:Zufallsmatrix} beschrieben, und seien ihre Einträge $\{x_{ij}\}$ mit $i=1,\dots,p_\eta$ und $j=1,\dots,n_\eta$ unabhängig und identisch verteilte komplexe Zufallsvariablen mit Erwartungswert $0$ und Varianz $\sigma^2$. 
+    Seien weiter $p_\eta$ und $n_\eta$ monoton steigend mit $\eta$ und $\displaystyle\lim_{\eta\to\infty}\frac{p_\eta}{n_\eta}=y \in(0,\infty)$.
     
-    Dann konvergiert die empirische Spektralverteilung der Stichproben-Kovarianzmatrix $F^{\bm{S}_\eta}$ mit $\eta\to\infty$ fast sicher gegen die Mar\v{c}enko--Pastur--Verteilung $F_y$, wie sie in Kapitel \ref{kap:MarchenkoPastur} beschrieben wurde.
+    Dann konvergiert die empirische Spektralverteilung der Stichproben-Kovarianzmatrix $F^{\bm{S}_\eta}$ mit $\eta\to\infty$ fast sicher gegen die Mar\v{c}enko--Pastur--Verteilung $F_y$ aus Kapitel \ref{kap:MarchenkoPastur}.
 \end{theorem}
 
 Im folgenden Beweis nehmen wir mit Lemma \ref{lem:betaUmformung} ohne Beschränkung der Allgemeinheit an, dass die Varianz $\sigma^2=1$ ist, wir also den Standardfall betrachten.
 
-Wir zeigen die schwache Konvergenz der empirischen Spektralverteilung gegen die Mar\-\v{c}enko-Pastur-Verteilung mithilfe der Momentmethode.
+Wir zeigen die schwache Konvergenz der empirischen Spektralverteilung gegen die Mar\-\v{c}enko--Pastur--Verteilung mithilfe der Momentmethode.
 
-Nach der Momentmethode konvergiert eine Folge an Wahrscheinlichkeitsverteilungen $\{F_n\}$, wenn ihre Momente $\beta_{n,k}$ jeder Ordnung $k\geq0$ endlich sind und gegen einen Grenzwert $\beta_k$ konvergieren, schwach gegen eine Wahrscheinlichkeitsverteilung, die eindeutig von ihren Momenten $\beta_k$ bestimmt sein muss \cite[507]{BaiSilverstein}.
-Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, dass die Momente der Mar\v{c}enko--Pastur--Verteilung die Carleman-Bedingung \ref{lem:Carlman} und damit die Eindeutigkeit erfüllen.
+Nach der Momentmethode konvergiert eine Folge an Wahrscheinlichkeitsverteilungen $\{F_n\}_n$, wenn ihre Momente $\beta_{n,k}$ jeder Ordnung $k\geq0$ endlich sind und gegen einen Grenzwert $\beta_k$ konvergieren, schwach gegen eine Wahrscheinlichkeitsverteilung, die eindeutig von ihren Momenten $\beta_k$ bestimmt sein muss \cite[507]{BaiSilverstein}.
+Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, dass die Momente der Mar\v{c}enko--Pastur--Verteilung die Carleman--Bedingung \ref{lem:Carlman} und damit die Eindeutigkeit erfüllen.
 
 \begin{proof}
     Die Momentmethode verlangt, dass die Momente jeder Ordnung der Verteilung endlich sind.
@@ -693,9 +719,9 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
         = \frac{1}{n_\eta}\tilde{\bm{X}}_\eta \tilde{\bm{X}}_\eta^{H}\,.
     \end{align*}
     Wir bezeichnen ab hier alle $\bm{X}_\eta$ als $\bm{X}$.
-    Mit $\hat{\bm{S}}_\eta$ und $\tilde{\bm{S}}_\eta$ haben wir die beschränkte und zentralisierte Stichproben Kovarianzmatrix. 
+    Mit $\hat{\bm{S}}_\eta$ und $\tilde{\bm{S}}_\eta$ erhalten wir die beschränkte und zentralisierte Stichproben Kovarianzmatrix. 
 
-    Im Folgenden wollen wir zeigen, dass sich durch das Beschränken und Zentralisieren der Grenzwert nicht ändert.
+    Im Folgenden stellen wir sicher, dass sich der Grenzwert durch das Beschränken und Zentralisieren nicht ändert.
     Nach Lemma \ref{lem:L4} erhalten wir
     \begin{align*}
         \mathscr{L}^4\lr{F^{\bm{S}},F^{\hat{\bm{S}}_\eta}} &\leq \frac{2}{n_\eta p_\eta}\tr\lr{\bm{X}\bm{X}^H+\hat{\bm{X}}\hat{\bm{X}}^H}\tr{\lr{(\bm{X}-\hat{\bm{X}})(\bm{X}-\hat{\bm{X}})^{H}}} 
@@ -717,12 +743,12 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
         &= \frac{1}{p_\eta} \rang(\mathbb{E}(\hat{x}_{11})) \\
         &= \frac{1}{p_\eta}
     \end{align*}
-    sehen, dass das Entfernen des Erwartungswertes, also die Zentralisierung der Zufallsvariablen, auch keinen Einfluss auf die Konvergenz hat.
+    sehen, dass die Zentralisierung der Zufallsvariablen, ebenfalls keinen Einfluss auf die Konvergenz hat.
     
     Die Verteilung wurde jetzt so modifiziert, dass die Zufallsvariablen nicht mehr unendlich groß werden können und den Erhalt des Erwartungswertes garantiert, ohne die Konvergenz zu beeinträchtigen. 
     
-    Wir müssen aber noch dafür sorgen, dass die Varianz erhalten bleibt.
-    Dafür müssen wir zeigen, dass durch Skalierung von $\tilde{\bm{S}}_\eta$ mit $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$, wenn $C\to \infty$ gilt, der Abstand zu $\tilde{\bm{S}}_\eta$ wieder vernachlässigbar klein wird.
+    Wir müssen zusätzlich noch dafür sorgen, dass die Varianz erhalten bleibt.
+    Dafür müssen wir zeigen, dass durch Skalierung von $\tilde{\bm{S}}_\eta$ mit $\tilde{\sigma}^2=\mathbb{E}\lr{|\tilde{x}_{ij}|^2}\to 1$, wenn $C\to \infty$ gilt, der Abstand zu $\tilde{\bm{S}}_\eta$ vernachlässigbar klein wird.
 
     Es gilt wieder mit Lemma \ref{lem:L4}
     \begin{align*}
@@ -746,14 +772,14 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
     \end{align*}
     für die Momente der empirischen Spektralverteilung. 
     
-    Hier verwenden wir die oben eingeführte Klasse von Graphen.
+    Hier verwenden wir die eingeführte Klasse von $\Delta$ Graphen.
     Wir können die Spur nämlich mit $\emph{\textbf{i}}=\{i_1,\dots,i_k\}$ und $\emph{\textbf{j}}=\{j_1,\dots,j_k\}$, wobei die Elemente von $\emph{\textbf{i}}$ in $\{1,\dots,p_\eta\}$ und $\emph{\textbf{j}}$ in $\{1,\dots,n_\eta\}$ liegen, durch 
     \begin{align*}
             \frac{1}{p_\eta n_\eta^k}\tr\lr{\lr{\bm{X}\bm{X}^H}^k} &= \frac{1}{p_\eta n_\eta^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k}
     \end{align*}
     beschreiben.
     Dabei sind $x_{i_1j_1}\overline{x}_{i_2j_1}\dots$ die Produkte der einzelnen Summanden der Spur und wir summieren über alle Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}.
-    Die Zufallsvariablen $x_{\emph{\textbf{i}}\emph{\textbf{j}}}$ stellen die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten und $\overline{x}_{\emph{\textbf{i}}\emph{\textbf{j}}}$ Kanten von \emph{\textbf{j}}-Knoten zu \emph{\textbf{i}}-Knoten dar.
+    Die Zufallsvariablen $x_{\emph{\textbf{i}}\emph{\textbf{j}}}$ geben die Kanten von \emph{\textbf{i}}-Knoten zu \emph{\textbf{j}}-Knoten an und $\overline{x}_{\emph{\textbf{i}}\emph{\textbf{j}}}$ Kanten von \emph{\textbf{j}}-Knoten zu \emph{\textbf{i}}-Knoten.
     Wir definieren dann
     \begin{align*}
         \frac{1}{p_\eta n_\eta^k}\sum_{\emph{\textbf{i}}}\sum_{\emph{\textbf{j}}}x_{i_1j_1}\overline{x}_{i_2j_1}x_{i_2j_2}\overline{x}_{i_3j_2}\cdots x_{i_kj_k}\overline{x}_{i_1j_k} & \eqqcolon \frac{1}{p_\eta n_\eta^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \bm{X}_{\Delta(k,r,s)}\,.
@@ -761,9 +787,9 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
 
     Nach der Momentmethode konvergiert die empirische Spektralverteilung schwach gegen die Mar\v{c}enko--Pastur--Verteilung, wenn die Momente der empirischen Spektralverteilung gegen die Momente der Mar\v{c}enko--Pastur--Verteilung konvergieren.
     Das zeigen wir, indem wir den Erwartungswert und die Varianz der Momente der empirischen Spektralverteilung bestimmen.
-    Sie konvergieren, wenn der Erwartungswert $\EE(\beta_k(\bm{S}_\eta))$ gegen die Momente der Mar\v{c}enko--Pastur--Verteilung läuft und die Varianz gegen null geht.
+    Sie konvergieren genau dann, wenn der Erwartungswert $\EE(\beta_k(\bm{S}_\eta))$ gegen die Momente der Mar\v{c}enko--Pastur--Verteilung läuft und die Varianz gegen null läuft.
     
-    Fangen wir an mit dem Erwartungswert.
+    Wir prüfen zunächst den Erwartungswert.
     Es gilt
     \begin{align*}
         \EE(\beta_k(\bm{S}_\eta)) = \frac{1}{p_\eta n_\eta^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}}\EE\lr{\bm{X}_{\Delta(k,r,s)}}\,.
@@ -792,7 +818,7 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
     \begin{align*}
         \EE\lr{\bm{X}_{\Delta_2}}= \EE(x_{i_1j_1}^{\omega_1})\EE(x_{i_2j_1}^{\omega_2})\dots
     \end{align*}
-    welches gleich $1$ ist. Da der Erwartungswert der Zufallsvariablen $x_{i_mj_m}$ gleich $0$ ist, folgt daraus, dass $\EE(x_{i_mj_m}^{1})=0=\EE\lr{\bm{X}_{\Delta_2}}$ gilt.
+    welcher $1$ ist. Da der Erwartungswert der Zufallsvariablen $x_{i_mj_m}$ $0$ ist, gilt $\EE(x_{i_mj_m}^{1})=0=\EE\lr{\bm{X}_{\Delta_2}}$.
     Für $W_2$ ergibt sich dann
     \begin{align}
         W_2 = \frac{1}{n_\eta^k p_\eta}\sum_{\Delta_2} \alpha\EE\lr{\bm{X}_{\Delta_2}} = 0 \,.\label{eq:Delta2}
@@ -803,7 +829,7 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
         W_3 = \frac{1}{n_\eta^k p_\eta}\sum_{\Delta_3} \alpha\EE\lr{\bm{X}_{\Delta_3}}
     \end{align*}
     gilt.
-    Weiter oben haben wir gezeigt, dass $x_{ij}$ gleichmäßig durch ein $C>0$ beschränkt ist. 
+    Wir haben gezeigt, dass $x_{ij}$ gleichmäßig durch ein $C>0$ beschränkt ist. 
     Daraus erhalten wir, dass $|X_{\Delta(k,r,s)}|\leq C^{2k}$ gilt. 
     Mit Lemma \ref{lem:AnzahlNichtKoinzidenterKnotenKateg3} wissen wir, dass die Anzahl nicht koinzidenter Knoten maximal $k$ betragen kann. 
     Dadurch ist die Anzahl unterschiedlicher $\Delta_3$ Graphen in $\mathcal{O}\lr{n^k}$. Wir haben also
@@ -818,20 +844,20 @@ Mit dem Beweis von Lemma \ref{lem:CarlemanErfüllt} haben wir bereits gezeigt, d
     \end{align}
     Der Erwartungswert der Momente konvergiert folglich gegen die Momente der Mar\v{c}enko--Pastur--Verteilung plus einen vernachlässigbar kleinen Term, da $p_\eta$ gegen unendlich läuft.
 
-    Jetzt fehlt noch die Varianz.
+    Zuletzt müssen wir noch die Varianz prüfen.
     Für diese gilt
     \begin{align*}
         \text{Var}(\beta_k(\bm{S}_\eta)) &\coloneqq \frac{1}{p_\eta n_\eta^k} \sum_{\emph{\textbf{i}},\emph{\textbf{j}}} \lr{\EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}}-\EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}}\,.
     \end{align*}
-    Dabei sind $\Delta_a$ und $\Delta_b$ zwei Graphen mit unterschiedlichen Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}. 
+    Dabei sind $\Delta_a$ und $\Delta_b$ zwei $\Delta$ Graphen mit unterschiedlichen Permutationen von \emph{\textbf{i}} und \emph{\textbf{j}}. 
     Wie für den Erwartungswert suchen wir uns Kategorien, um die Varianz stückweise zu beschreiben.
 
     Als Erstes betrachten wir alle Graphen $\Delta_a$ und $\Delta_b$ so, dass $\Delta_a$ und $\Delta_b$ unabhängig sind, sich also keine Kanten teilen.
-    Daraus folgt direkt durch Rechenregeln von Erwartungswerten, dass
+    Daraus folgt direkt
     \begin{align*}
-        \EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}} = \EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}
-    \end{align*}
-    gilt. Das heißt, für unabhängige Graphen ist die Varianz gleich $0$.
+        \EE\lr{\bm{X}_{\Delta_a(k,r,s)}\bm{X}_{\Delta_b(k,r,s)}} = \EE\lr{\bm{X}_{\Delta_a(k,r,s)}}\EE\lr{\bm{X}_{\Delta_b(k,r,s)}}\,.
+    \end{align*} 
+    Das heißt, für unabhängige Graphen ist die Varianz gleich $0$.
 
     Als Nächstes betrachten wir alle Graphen $\Delta_a$ und $ \Delta_b$, die mindestens eine Einzelkante besitzen. 
     Damit erhalten wir wie in \eqref{eq:Delta2} wieder 

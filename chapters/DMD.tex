@@ -104,7 +104,7 @@ Wichtig zu erwähnen ist noch, dass unter den in Satz \ref{theo:svd} genannten V
 Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 
 \begin{lemma}\label{lem:EigenwerteSingulärwerte}
-	Seien \(X\in \mathbb{R}^{p\times n}\) und $\sigma_i\in(0,\infty)$ die Singulärwerte von $X$ mit den Voraussetzungen aus Satz \ref{theo:svd}. 
+	Seien \(X\in \mathbb{R}^{p\times n}\) und $\sigma_i\in(0,\infty)$ die $i$-ten Singulärwerte von $X$ mit den Voraussetzungen aus Satz \ref{theo:svd}. 
 	Seien weiter $\lambda_i$ die Eigenwerte von $X^\top X$. 
 	Dann gilt 
 	\begin{align}
@@ -140,7 +140,7 @@ Die beiden orthogonalen Matrizen $U$ und $V$ hingegen sind nicht eindeutig.
 	\]
 \end{proof}
 
-Den Beweis von Satz \ref{theo:svd} teilen wir auf. Wir betrachten dafür zum einen die Singulärwertzerlegung für den Fall, dass $X$ vollen Rang besitzt und zum anderen für den rangreduzierten Fall.
+Den Beweis von Satz \ref{theo:svd} teilen wir auf. Wir betrachten dafür zum einen die Singulärwertzerlegung für den Fall, dass $X$ vollen Rang besitzt, und zum anderen für den rangreduzierten Fall.
 Für den vollen Rang benutzen wir das folgende Lemma.
 
 \begin{lemma}[{\cite[191]{Numerik1}}] \label{lem:diagonal}
@@ -169,10 +169,10 @@ Für den rangreduzierten Fall brauchen wir das folgende Lemma.
 %-----------------------Beweis--SWZ--------------------------------
 
 
-Für den Beweis der Singulärwertzerlegung, gehen wir mit Lemma \ref{lem:InvarinatBzglTansp} ohne Beschränkung der Allgemeinheit davon aus, dass $n<p$ gilt.
+Für den Beweis der Singulärwertzerlegung, gehen wir durch Lemma \ref{lem:InvarinatBzglTansp} ohne Beschrän\-kung der Allgemeinheit davon aus, dass $n<p$ gilt.
 
 \begin{proof}[Beweis von Satz \ref{theo:svd}]
-	Zunächst betrachten wir den Fall des vollen Ranges von $X$, also \\ $\rang X = r = n$.
+	Zunächst betrachten wir den Fall des vollen Ranges von $X$. Sei also der Rang von durch $\rang X = r = n$ gegeben.
 	Bei vollem Rang ist \(X^\top X\in\mathbb{R}^{n\times n}\) sowohl symmetrisch als auch positiv definit. Die Eigenwerte \(\lambda_i\) von \(X^\top X\) sortieren wir nach ihrer Größe, also
 	\[
 		\lambda_1 \geq \lambda_2 \geq \dots \geq \lambda_n > 0\,.
@@ -297,15 +297,15 @@ Für den Beweis der Singulärwertzerlegung, gehen wir mit Lemma \ref{lem:Invarin
 \section{Exact DMD}\label{chap:exactDMD}
 
 In der Einleitung haben wir grob den DMD Algorithmus erklärt.
-Wir gehen hier jetzt aber auf die \glqq Exact DMD\grqq\ Variante ein, da sie im Gegensatz zur ursprünglichen Variante keine einheitlichen Zeitabstände zwischen den Messungen erfordert.
+Wir gehen hier jetzt aber auf die \glqq exact DMD\grqq\ Variante ein, da sie im Gegensatz zur ursprünglichen Variante keine einheitlichen Zeitabstände zwischen den Messungen erfordert.
 Dieses Kapitel beruht auf dem Buch \glqq Data-Driven Science and Engineering\grqq\ \cite{SlaySlaySlay}.
 
 Exact DMD erlaubt es uns, Daten über mehrere Messungen, die zeitlich unterschiedlich auseinanderliegen, zusammenzutragen. 
 Zu jeder Messung gehört dann ein Datenpaar $\{x(t_i),x(t_i')\}$ mit $i=1,\dots,n$ und $t'_i=t_i +\Delta t$.
 Dabei ist $x$ die Messung zum Zeitpunkt $t_i$ beziehungsweise $t'_i$.
-Fügen wir die Datenpaare in zwei Matrizen \(X,X'\in\mathbb{R}^{p\times n}\) ein, erhalten wir die Zustände des Systems zu \(n \) diskreten Zeitpunkten.
+Fügen wir die Datenpaare wie in \eqref{eq:Datenmatrizen} in zwei Matrizen \(X,X'\in\mathbb{R}^{p\times n}\) ein, erhalten wir die Zustände des Systems zu \(n \) diskreten Zeitpunkten.
 Wir erhalten also 
-\begin{align*}
+\begin{align}\label{eq:Datenmatrizen}
 	X=\begin{pmatrix}
 		|      & |      &       & |      \\
 		x(t_1) & x(t_2) & \dots & x(t_n) \\
@@ -317,7 +317,7 @@ Wir erhalten also
 		x(t'_1) & x(t'_2) & \dots & x(t'_n) \\
 		|       & |       &       & |
 	\end{pmatrix}\,.
-\end{align*}
+\end{align}
 
 
 
@@ -338,9 +338,9 @@ Um den diagonalisierbaren, linearen Operator $A$ zu finden, der
 \begin{align*}
 	X'\approx AX
 \end{align*}
-löst, benötigen wir die Pseudoinverse von $X$. Um eine eindeutige Inverse zu bekommen, benutzen wir die Moore-Penrose-Inverse aus dem folgenden Satz.
-\begin{theorem}[Moore-Penrose-Inverse {\cite[230]{Numerik1}}] \label{theo:moorePenrose}
-	Sei $X\in\RR^{p\times n}$ eine Matrix und $U, \hat{\Sigma}$ und $V$ die Matrizen aus der Singulärwertzerlegung in Satz \ref{theo:svd}. Dann existiert genau eine Moore-Penrose-Inverse der Form
+löst, benötigen wir die Pseudoinverse von $X$. Um eine eindeutige Inverse zu bekommen, benutzen wir die Moore--Penrose--Inverse aus dem folgenden Satz.
+\begin{theorem}[Moore--Penrose--Inverse {\cite[230]{Numerik1}}] \label{theo:moorePenrose}
+	Sei $X\in\RR^{p\times n}$ eine Matrix und $U, \hat{\Sigma}$ und $V$ die Matrizen aus der Singulärwertzerlegung in Satz \ref{theo:svd}. Dann existiert genau eine Moore--Penrose--Inverse der Form
 	\begin{align*}
 		X^\dag=V\begin{pmatrix}
 			        \hat{\Sigma}^{-1} & 0 \\
